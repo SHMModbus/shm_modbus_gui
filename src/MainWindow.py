@@ -606,7 +606,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         # dump buttons
         def on_dump_do() -> None:
             try:
-                self.shm_tools.dump_shm_to_file(f"{self.modbus_cfg.name_prefix}DO", self.tool_dump_do_file.text())
+                self.shm_tools.dump_shm_to_file(f"{self.modbus_cfg.name_prefix}DO", self.tool_dump_do_file.text(),
+                                                self.modbus_cfg.sem_name if self.modbus_cfg.sem_enable else None)
             except Exception as e:
                 QMessageBox.critical(self, "Error", f"Failed to dump shared memory: {e}")
 
@@ -614,7 +615,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
         def on_dump_di() -> None:
             try:
-                self.shm_tools.dump_shm_to_file(f"{self.modbus_cfg.name_prefix}DI", self.tool_dump_di_file.text())
+                self.shm_tools.dump_shm_to_file(f"{self.modbus_cfg.name_prefix}DI", self.tool_dump_di_file.text(),
+                                                self.modbus_cfg.sem_name if self.modbus_cfg.sem_enable else None)
             except Exception as e:
                 QMessageBox.critical(self, "Error", f"Failed to dump shared memory: {e}")
 
@@ -622,7 +624,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
         def on_dump_ao() -> None:
             try:
-                self.shm_tools.dump_shm_to_file(f"{self.modbus_cfg.name_prefix}AO", self.tool_dump_ao_file.text())
+                self.shm_tools.dump_shm_to_file(f"{self.modbus_cfg.name_prefix}AO", self.tool_dump_ao_file.text(),
+                                                self.modbus_cfg.sem_name if self.modbus_cfg.sem_enable else None)
             except Exception as e:
                 QMessageBox.critical(self, "Error", f"Failed to dump shared memory: {e}")
 
@@ -684,7 +687,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                     f"{self.modbus_cfg.name_prefix}DO",
                     self.tool_load_do_file.text(),
                     self.tool_load_do_invert.isChecked(),
-                    self.tool_load_do_repeat.isChecked())
+                    self.tool_load_do_repeat.isChecked(),
+                    self.modbus_cfg.sem_name if self.modbus_cfg.sem_enable else None)
             except Exception as e:
                 QMessageBox.critical(self, "Error", f"Failed to load shared memory: {e}")
 
@@ -696,7 +700,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                     f"{self.modbus_cfg.name_prefix}DI",
                     self.tool_load_di_file.text(),
                     self.tool_load_di_invert.isChecked(),
-                    self.tool_load_di_repeat.isChecked())
+                    self.tool_load_di_repeat.isChecked(),
+                    self.modbus_cfg.sem_name if self.modbus_cfg.sem_enable else None)
             except Exception as e:
                 QMessageBox.critical(self, "Error", f"Failed to load shared memory: {e}")
 
@@ -708,7 +713,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                     f"{self.modbus_cfg.name_prefix}AO",
                     self.tool_load_ao_file.text(),
                     self.tool_load_ao_invert.isChecked(),
-                    self.tool_load_ao_repeat.isChecked())
+                    self.tool_load_ao_repeat.isChecked(),
+                    self.modbus_cfg.sem_name if self.modbus_cfg.sem_enable else None)
             except Exception as e:
                 QMessageBox.critical(self, "Error", f"Failed to load shared memory: {e}")
 
@@ -720,7 +726,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                     f"{self.modbus_cfg.name_prefix}AI",
                     self.tool_load_ai_file.text(),
                     self.tool_load_ai_invert.isChecked(),
-                    self.tool_load_ai_repeat.isChecked())
+                    self.tool_load_ai_repeat.isChecked(),
+                    self.modbus_cfg.sem_name if self.modbus_cfg.sem_enable else None)
             except Exception as e:
                 QMessageBox.critical(self, "Error", f"Failed to load shared memory: {e}")
 

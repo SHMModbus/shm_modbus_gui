@@ -48,10 +48,11 @@ class SHMTools:
         return random
 
     @staticmethod
-    def dump_shm_to_file(shm_name: str, filename: str) -> None:
+    def dump_shm_to_file(shm_name: str, filename: str, semaphore: str | None) -> None:
         print(f"{shm_name} > {filename}")
+        sem_cmd = f" -s \"{semaphore}\"" if semaphore else ""
         process = QProcess()
-        process.start("bash", ["-c", f"dump-shm \"{shm_name}\" > \"{filename}\""])
+        process.start("bash", ["-c", f"dump-shm \"{shm_name}\"{sem_cmd} > \"{filename}\""])
         if process.waitForFinished(1000):
             if process.exitCode() != 0:
                 stderr = bytes(process.readAllStandardError()).decode("utf-8")
@@ -62,15 +63,15 @@ class SHMTools:
         pass
 
     @staticmethod
-    def load_shm_from_file(shm_name: str, filename: str, invert: bool, repeat: bool) -> None:
+    def load_shm_from_file(shm_name: str, filename: str, invert: bool, repeat: bool, semaphore: str | None) -> None:
         print(f"{shm_name} < {filename}")
-
+        sem_cmd = f" -s \"{semaphore}\"" if semaphore else ""
         cmd = f"write-shm -n \"{shm_name}\""
         if invert:
             cmd += " -i"
         if repeat:
             cmd += " -r"
-        cmd += f" < \"{filename}\""
+        cmd += f"{sem_cmd} < \"{filename}\""
 
         process = QProcess()
         process.start("bash", ["-c", cmd])
