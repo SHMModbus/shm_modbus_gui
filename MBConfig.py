@@ -132,7 +132,7 @@ class MBConfig(ABC):
         raise NotImplementedError
 
     @abstractmethod
-    def apply(self, main_window: any) ->None:
+    def apply(self, main_window: any) -> None:
         raise NotImplementedError
 
     @abstractmethod

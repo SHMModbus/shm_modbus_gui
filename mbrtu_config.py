@@ -94,7 +94,7 @@ class MBRTUConfig(MBConfig.MBConfig):
         self.serialtype = data["serial"]["type"]
         self.client_id = data["modbus"]["clientid"]
 
-    def apply(self, main_window: any) ->None:
+    def apply(self, main_window: any) -> None:
         # serial
         main_window.mbrtu_device.setText(self.device)
         main_window.mbrtu_parity.setCurrentIndex(self.parity)

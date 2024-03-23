@@ -64,6 +64,7 @@ class SHMHexdump(QtWidgets.QMainWindow, Ui_ShmHexdump):
 
         # create hexdump
         self.execute()
+
     def execute(self):
         size = self.registers.value() * self.register_size
         offset = self.offset.value() * self.register_size

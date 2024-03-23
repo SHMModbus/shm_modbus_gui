@@ -36,14 +36,14 @@ class MBTCPConfig(MBConfig.MBConfig):
 
     def save(self, filename: str) -> None:
         data = self.as_dict()
-        data["network"] ={
-                "host": self.host,
-                "port": self.port,
-                "tcp_timeout": self.tcp_timeout,
-                "system_tcp_timeout": self.system_tcp_timeout,
-                "connections": self.connections,
-                "reconnect": self.reconnect,
-            }
+        data["network"] = {
+            "host": self.host,
+            "port": self.port,
+            "tcp_timeout": self.tcp_timeout,
+            "system_tcp_timeout": self.system_tcp_timeout,
+            "connections": self.connections,
+            "reconnect": self.reconnect,
+        }
         data["shm"]["separate"] = self.separate
         data["shm"]["separate_all"] = self.separate_all
         data["shm"]["separate_list"] = list(self.separate_list)
@@ -71,7 +71,7 @@ class MBTCPConfig(MBConfig.MBConfig):
             raise RuntimeError("network.host is invalid")
 
         # - port
-        if data["network"]["port"] <= 0 or data["network"]["port"] >= 2**16:
+        if data["network"]["port"] <= 0 or data["network"]["port"] >= 2 ** 16:
             raise RuntimeError("network.port is not a valid TCP port")
 
         # - tcp timeout
@@ -116,7 +116,7 @@ class MBTCPConfig(MBConfig.MBConfig):
         main_window.mbtcp_separate.setChecked(self.separate)
         main_window.mbtcp_separate_all.setChecked(self.separate_all)
         main_window.mbtcp_name_prefix.setText(self.name_prefix)
-        main_window.mbtcp_separate_list.setText(','.join([f"{x}"for x in sorted(self.separate_list)]))
+        main_window.mbtcp_separate_list.setText(','.join([f"{x}" for x in sorted(self.separate_list)]))
 
         # modbus
         main_window.mbtcp_monitor.setChecked(self.monitor)

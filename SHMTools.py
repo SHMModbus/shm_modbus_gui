@@ -3,6 +3,7 @@ from PySide6.QtCore import QProcess
 from PySide6.QtGui import QCloseEvent
 
 from SHMHexdump import SHMHexdump
+
 from SHMRandom import SHMRandom
 
 
@@ -12,7 +13,6 @@ class SHMTools:
 
         self.hexdump: dict[str, SHMHexdump] = {}
         self.random: dict[str, SHMRandom] = {}
-
 
     def close_all(self) -> None:
         # close all hexdump windows

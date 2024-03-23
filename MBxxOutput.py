@@ -73,6 +73,7 @@ class MBxxOutput(QtWidgets.QMainWindow, Ui_MBxxxOutput):
 
 if __name__ == "__main__":
     import sys
+
     app = QtWidgets.QApplication(sys.argv)
     window = MBxxOutput(["uname", "-a"])
     window.finished.connect(lambda: print("process finished"))
