@@ -11,11 +11,11 @@ class MBxxOutput(QtWidgets.QMainWindow, Ui_MBxxxOutput):
     finished = QtCore.Signal()
     closed = QtCore.Signal()
 
-    def __init__(self, command: list) -> None:
+    def __init__(self, command: list, title: str) -> None:
         super(MBxxOutput, self).__init__()
         self.setupUi(self)
 
-        self.setWindowTitle(shlex.join(command))
+        self.setWindowTitle(title)
 
         fixed_font = QFontDatabase.systemFont(QFontDatabase.FixedFont)
         self.stdout.setFont(fixed_font)

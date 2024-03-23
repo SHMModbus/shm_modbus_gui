@@ -1,8 +1,12 @@
+import os
+
 from PySide6 import QtWidgets
 from PySide6.QtCore import QRegularExpression
 from PySide6.QtGui import QRegularExpressionValidator
 from PySide6.QtWidgets import QFileDialog, QMessageBox
 
+import MBConfig
+import SHMTools
 from py_ui import Ui_MainWindow
 from mbtcp_config import MBTCPConfig
 from mbrtu_config import MBRTUConfig
@@ -28,6 +32,13 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.command_window: MBxxOutput | None = None
         self.process_active: bool = False
         self.window_open: bool = False
+
+        # internal variables
+        self.modbus_cfg: MBConfig.MBConfig | None = None
+
+        # SHM Tools
+        self.shm_tools = SHMTools.SHMTools(self)
+        self.__shm_tools_init_gui()
 
     def __init_mbtcp(self) -> None:
         """
@@ -149,6 +160,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         """
         @brief connect signals/slots for ui
         """
+
         # shared memory separate
         def shm_separate_changed(value: int) -> None:
             enabled = value != 0
@@ -203,13 +215,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             self.tab_shm_tools.setEnabled(True)
 
             # execute command
-            cmd = MBTCPConfig(self).get_command()
-            self.process_active = True
-            self.window_open = True
-            self.command_window = MBxxOutput(cmd)
-            self.command_window.finished.connect(self.__process_finished)
-            self.command_window.closed.connect(self.__command_window_closed)
-            self.command_window.show()
+            self.modbus_cfg = MBTCPConfig(self)
+            self.__exec_process("Shared Memory Modbus TCP Client")
 
     def __mbtcp_config_save(self) -> None:
         """
@@ -357,14 +364,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             self.tab_shm_tools.setEnabled(True)
 
             # execute command
-            cmd = MBRTUConfig(self).get_command()
-            print(cmd)
-            self.process_active = True
-            self.window_open = True
-            self.command_window = MBxxOutput(cmd)
-            self.command_window.finished.connect(self.__process_finished)
-            self.command_window.closed.connect(self.__command_window_closed)
-            self.command_window.show()
+            self.modbus_cfg = MBRTUConfig(self)
+            self.__exec_process("Shared Memory Modbus RTU Client")
 
     def __mbrtu_ui_actions(self) -> None:
         """
@@ -424,7 +425,15 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                 config.apply(self)
             except RuntimeError as e:
                 QMessageBox.critical(self, "Error", f"Failed to load configuration: {e}")
-                raise
+
+    def __exec_process(self, title: str):
+        cmd = self.modbus_cfg.get_command()
+        self.process_active = True
+        self.window_open = True
+        self.command_window = MBxxOutput(cmd, title)
+        self.command_window.finished.connect(self.__process_finished)
+        self.command_window.closed.connect(self.__command_window_closed)
+        self.command_window.show()
 
     def __process_finished(self) -> None:
         """
@@ -471,9 +480,256 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             self.mbtcp_start.setEnabled(False)
             self.mbrtu_start.setEnabled(False)
 
+        self.__close_tool_windows()
+
+    def __shm_tools_init_gui(self) -> None:
+        """
+        @brief initialize tool gui
+        """
+        self.__shm_tools_init_hexdump_gui()
+        self.__shm_tools_init_random_gui()
+        self.__shm_tools_init_dump_gui()
+        self.__shm_tools_init_load_gui()
+
+    def __shm_tools_init_hexdump_gui(self) -> None:
+        def on_button_hexdump_do_clicked() -> None:
+            hexdump = self.shm_tools.start_hexdump(f"{self.modbus_cfg.name_prefix}DO", self.modbus_cfg.do, 1,
+                                                   self.modbus_cfg.sem_name if self.modbus_cfg.sem_enable else None)
+            self.tool_hexdump_do.setEnabled(False)
+            hexdump.closed.connect(lambda: self.tool_hexdump_do.setEnabled(True))
+
+        self.tool_hexdump_do.clicked.connect(on_button_hexdump_do_clicked)
+
+        def on_button_hexdump_di_clicked() -> None:
+            hexdump = self.shm_tools.start_hexdump(f"{self.modbus_cfg.name_prefix}DI", self.modbus_cfg.di, 1,
+                                                   self.modbus_cfg.sem_name if self.modbus_cfg.sem_enable else None)
+            self.tool_hexdump_di.setEnabled(False)
+            hexdump.closed.connect(lambda: self.tool_hexdump_di.setEnabled(True))
+
+        self.tool_hexdump_di.clicked.connect(on_button_hexdump_di_clicked)
+
+        def on_button_hexdump_ao_clicked() -> None:
+            hexdump = self.shm_tools.start_hexdump(f"{self.modbus_cfg.name_prefix}AO", self.modbus_cfg.ao, 2,
+                                                   self.modbus_cfg.sem_name if self.modbus_cfg.sem_enable else None)
+            self.tool_hexdump_ao.setEnabled(False)
+            hexdump.closed.connect(lambda: self.tool_hexdump_ao.setEnabled(True))
+
+        self.tool_hexdump_ao.clicked.connect(on_button_hexdump_ao_clicked)
+
+        def on_button_hexdump_ai_clicked() -> None:
+            hexdump = self.shm_tools.start_hexdump(f"{self.modbus_cfg.name_prefix}AI", self.modbus_cfg.ai, 2,
+                                                   self.modbus_cfg.sem_name if self.modbus_cfg.sem_enable else None)
+            self.tool_hexdump_ai.setEnabled(False)
+            hexdump.closed.connect(lambda: self.tool_hexdump_ai.setEnabled(True))
+
+        self.tool_hexdump_ai.clicked.connect(on_button_hexdump_ai_clicked)
+
+    def __shm_tools_init_random_gui(self) -> None:
+        def on_button_random_do_clicked() -> None:
+            random = self.shm_tools.start_random(f"{self.modbus_cfg.name_prefix}DO", self.modbus_cfg.do, 1,
+                                                 self.modbus_cfg.sem_name if self.modbus_cfg.sem_enable else None, 0x1)
+            self.tool_random_do.setEnabled(False)
+            random.closed.connect(lambda: self.tool_random_do.setEnabled(True))
+
+        self.tool_random_do.clicked.connect(on_button_random_do_clicked)
+
+        def on_button_random_di_clicked() -> None:
+            random = self.shm_tools.start_random(f"{self.modbus_cfg.name_prefix}DI", self.modbus_cfg.do, 1,
+                                                 self.modbus_cfg.sem_name if self.modbus_cfg.sem_enable else None, 0x1)
+            self.tool_random_di.setEnabled(False)
+            random.closed.connect(lambda: self.tool_random_di.setEnabled(True))
+
+        self.tool_random_di.clicked.connect(on_button_random_di_clicked)
+
+        def on_button_random_ao_clicked() -> None:
+            random = self.shm_tools.start_random(f"{self.modbus_cfg.name_prefix}AO", self.modbus_cfg.do, 1,
+                                                 self.modbus_cfg.sem_name if self.modbus_cfg.sem_enable else None)
+            self.tool_random_ao.setEnabled(False)
+            random.closed.connect(lambda: self.tool_random_ao.setEnabled(True))
+
+        self.tool_random_ao.clicked.connect(on_button_random_ao_clicked)
+
+        def on_button_random_ai_clicked() -> None:
+            random = self.shm_tools.start_random(f"{self.modbus_cfg.name_prefix}AI", self.modbus_cfg.do, 1,
+                                                 self.modbus_cfg.sem_name if self.modbus_cfg.sem_enable else None)
+            self.tool_random_ai.setEnabled(False)
+            random.closed.connect(lambda: self.tool_random_ai.setEnabled(True))
+
+        self.tool_random_ai.clicked.connect(on_button_random_ai_clicked)
+
+    def __shm_tools_init_dump_gui(self) -> None:
+        # file dialogs
+        def on_dump_do_file_dialog() -> None:
+            text = self.tool_dump_do_file.text()
+            filename = text if len(text) else f"{os.getcwd()}/{self.modbus_cfg.name_prefix}DO"
+
+            file_name, _ = QFileDialog.getSaveFileName(self, caption="select DO register dump file", dir=filename)
+            if len(file_name):
+                self.tool_dump_do_file.setText(file_name)
+
+        self.tool_dump_do_file_dialog.clicked.connect(on_dump_do_file_dialog)
+
+        def on_dump_di_file_dialog() -> None:
+            text = self.tool_dump_di_file.text()
+            filename = text if len(text) else f"{os.getcwd()}/{self.modbus_cfg.name_prefix}DI"
+
+            file_name, _ = QFileDialog.getSaveFileName(self, caption="select DI register dump file", dir=filename)
+            if len(file_name):
+                self.tool_dump_di_file.setText(file_name)
+
+        self.tool_dump_di_file_dialog.clicked.connect(on_dump_di_file_dialog)
+
+        def on_dump_ao_file_dialog() -> None:
+            text = self.tool_dump_ao_file.text()
+            filename = text if len(text) else f"{os.getcwd()}/{self.modbus_cfg.name_prefix}ao"
+
+            file_name, _ = QFileDialog.getSaveFileName(self, caption="select AO register dump file", dir=filename)
+            if len(file_name):
+                self.tool_dump_ao_file.setText(file_name)
+
+        self.tool_dump_ao_file_dialog.clicked.connect(on_dump_ao_file_dialog)
+
+        def on_dump_ai_file_dialog() -> None:
+            text = self.tool_dump_ai_file.text()
+            filename = text if len(text) else f"{os.getcwd()}/{self.modbus_cfg.name_prefix}ai"
+
+            file_name, _ = QFileDialog.getSaveFileName(self, caption="select AI register dump file", dir=filename)
+            if len(file_name):
+                self.tool_dump_ai_file.setText(file_name)
+
+        self.tool_dump_ai_file_dialog.clicked.connect(on_dump_ai_file_dialog)
+
+        # dump buttons
+        def on_dump_do() -> None:
+            try:
+                self.shm_tools.dump_shm_to_file(f"{self.modbus_cfg.name_prefix}DO", self.tool_dump_do_file.text())
+            except Exception as e:
+                QMessageBox.critical(self, "Error", f"Failed to dump shared memory: {e}")
+
+        self.tool_dump_do.clicked.connect(on_dump_do)
+
+        def on_dump_di() -> None:
+            try:
+                self.shm_tools.dump_shm_to_file(f"{self.modbus_cfg.name_prefix}DI", self.tool_dump_di_file.text())
+            except Exception as e:
+                QMessageBox.critical(self, "Error", f"Failed to dump shared memory: {e}")
+
+        self.tool_dump_di.clicked.connect(on_dump_di)
+
+        def on_dump_ao() -> None:
+            try:
+                self.shm_tools.dump_shm_to_file(f"{self.modbus_cfg.name_prefix}AO", self.tool_dump_ao_file.text())
+            except Exception as e:
+                QMessageBox.critical(self, "Error", f"Failed to dump shared memory: {e}")
+
+        self.tool_dump_ao.clicked.connect(on_dump_ao)
+
+        def on_dump_ai() -> None:
+            try:
+                self.shm_tools.dump_shm_to_file(f"{self.modbus_cfg.name_prefix}AI", self.tool_dump_ai_file.text())
+            except Exception as e:
+                QMessageBox.critical(self, "Error", f"Failed to dump shared memory: {e}")
+
+        self.tool_dump_ai.clicked.connect(on_dump_ai)
+
+    def __shm_tools_init_load_gui(self):
+        def on_load_do_file_dialog() -> None:
+            text = self.tool_load_do_file.text()
+            filename = text if len(text) else f"{os.getcwd()}/{self.modbus_cfg.name_prefix}DO"
+
+            file_name, _ = QFileDialog.getOpenFileName(self, caption="select DO register load file", dir=filename)
+            if len(file_name):
+                self.tool_load_do_file.setText(file_name)
+
+        self.tool_load_do_file_dialog.clicked.connect(on_load_do_file_dialog)
+
+        def on_load_di_file_dialog() -> None:
+            text = self.tool_load_di_file.text()
+            filename = text if len(text) else f"{os.getcwd()}/{self.modbus_cfg.name_prefix}DI"
+
+            file_name, _ = QFileDialog.getOpenFileName(self, caption="select DI register load file", dir=filename)
+            if len(file_name):
+                self.tool_load_di_file.setText(file_name)
+
+        self.tool_load_di_file_dialog.clicked.connect(on_load_di_file_dialog)
+
+        def on_load_ao_file_dialog() -> None:
+            text = self.tool_load_ao_file.text()
+            filename = text if len(text) else f"{os.getcwd()}/{self.modbus_cfg.name_prefix}AO"
+
+            file_name, _ = QFileDialog.getOpenFileName(self, caption="select AO register load file", dir=filename)
+            if len(file_name):
+                self.tool_load_ao_file.setText(file_name)
+
+        self.tool_load_ao_file_dialog.clicked.connect(on_load_ao_file_dialog)
+
+        def on_load_ai_file_dialog() -> None:
+            text = self.tool_load_ai_file.text()
+            filename = text if len(text) else f"{os.getcwd()}/{self.modbus_cfg.name_prefix}AI"
+
+            file_name, _ = QFileDialog.getOpenFileName(self, caption="select AI register load file", dir=filename)
+            if len(file_name):
+                self.tool_load_ai_file.setText(file_name)
+
+        self.tool_load_ai_file_dialog.clicked.connect(on_load_ai_file_dialog)
+
+        # button load
+        def on_load_do() -> None:
+            try:
+                self.shm_tools.load_shm_from_file(
+                    f"{self.modbus_cfg.name_prefix}DO",
+                    self.tool_load_do_file.text(),
+                    self.tool_load_do_invert.isChecked(),
+                    self.tool_load_do_repeat.isChecked())
+            except Exception as e:
+                QMessageBox.critical(self, "Error", f"Failed to load shared memory: {e}")
+
+        self.tool_load_do.clicked.connect(on_load_do)
+
+        def on_load_di() -> None:
+            try:
+                self.shm_tools.load_shm_from_file(
+                    f"{self.modbus_cfg.name_prefix}DI",
+                    self.tool_load_di_file.text(),
+                    self.tool_load_di_invert.isChecked(),
+                    self.tool_load_di_repeat.isChecked())
+            except Exception as e:
+                QMessageBox.critical(self, "Error", f"Failed to load shared memory: {e}")
+
+        self.tool_load_di.clicked.connect(on_load_di)
+
+        def on_load_ao() -> None:
+            try:
+                self.shm_tools.load_shm_from_file(
+                    f"{self.modbus_cfg.name_prefix}AO",
+                    self.tool_load_ao_file.text(),
+                    self.tool_load_ao_invert.isChecked(),
+                    self.tool_load_ao_repeat.isChecked())
+            except Exception as e:
+                QMessageBox.critical(self, "Error", f"Failed to load shared memory: {e}")
+
+        self.tool_load_ao.clicked.connect(on_load_ao)
+
+        def on_load_ai() -> None:
+            try:
+                self.shm_tools.load_shm_from_file(
+                    f"{self.modbus_cfg.name_prefix}AI",
+                    self.tool_load_ai_file.text(),
+                    self.tool_load_ai_invert.isChecked(),
+                    self.tool_load_ai_repeat.isChecked())
+            except Exception as e:
+                QMessageBox.critical(self, "Error", f"Failed to load shared memory: {e}")
+
+        self.tool_load_ai.clicked.connect(on_load_ai)
+
     def __close_tool_windows(self):
         """
         @brief close all tool windows
         """
-        # TODO
-        pass
+        self.shm_tools.close_all()
+
+    def closeEvent(self, event):
+        super().closeEvent(event)
+        self.__close_tool_windows()
+        if self.window_open:
+            self.command_window.closeEvent(event)

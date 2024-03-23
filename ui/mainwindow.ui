@@ -1024,7 +1024,7 @@
                <property name="geometry">
                 <rect>
                  <x>0</x>
-                 <y>-586</y>
+                 <y>0</y>
                  <width>727</width>
                  <height>1025</height>
                 </rect>
@@ -1792,7 +1792,7 @@
         <string>Shared Memory Tools</string>
        </attribute>
        <layout class="QGridLayout" name="gridLayout_25">
-        <item row="1" column="0">
+        <item row="0" column="0">
          <widget class="QScrollArea" name="scrollArea">
           <property name="enabled">
            <bool>true</bool>
@@ -1805,8 +1805,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>766</width>
-             <height>484</height>
+             <width>745</width>
+             <height>628</height>
             </rect>
            </property>
            <layout class="QGridLayout" name="gridLayout_26">
@@ -1820,26 +1820,41 @@
               </property>
              </widget>
             </item>
-            <item row="0" column="0">
-             <widget class="QWidget" name="widget_19" native="true">
-              <property name="enabled">
-               <bool>true</bool>
-              </property>
-              <layout class="QGridLayout" name="gridLayout_27">
-               <item row="0" column="0">
-                <widget class="QPushButton" name="tool_set_values">
-                 <property name="enabled">
-                  <bool>true</bool>
-                 </property>
+            <item row="8" column="0">
+             <widget class="QWidget" name="random_ai" native="true">
+              <layout class="QGridLayout" name="gridLayout_30">
+               <item row="0" column="1">
+                <widget class="QPushButton" name="tool_random_ao">
                  <property name="text">
-                  <string>set values</string>
+                  <string>randomize AO</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="0">
+                <widget class="QPushButton" name="tool_random_do">
+                 <property name="text">
+                  <string>randomize DO</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="0">
+                <widget class="QPushButton" name="tool_random_di">
+                 <property name="text">
+                  <string>randomize DI</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="1">
+                <widget class="QPushButton" name="tool_random_ai">
+                 <property name="text">
+                  <string>randomize AI</string>
                  </property>
                 </widget>
                </item>
               </layout>
              </widget>
             </item>
-            <item row="7" column="0">
+            <item row="9" column="0">
              <spacer name="verticalSpacer_3">
               <property name="enabled">
                <bool>true</bool>
@@ -1855,24 +1870,14 @@
               </property>
              </spacer>
             </item>
-            <item row="3" column="0">
-             <widget class="Line" name="line_10">
-              <property name="enabled">
-               <bool>true</bool>
-              </property>
-              <property name="orientation">
-               <enum>Qt::Horizontal</enum>
-              </property>
-             </widget>
-            </item>
-            <item row="5" column="0">
+            <item row="7" column="0">
              <widget class="Line" name="line_11">
               <property name="orientation">
                <enum>Qt::Horizontal</enum>
               </property>
              </widget>
             </item>
-            <item row="4" column="0">
+            <item row="6" column="0">
              <widget class="QWidget" name="widget_21" native="true">
               <property name="enabled">
                <bool>true</bool>
@@ -1927,17 +1932,7 @@
                <bool>true</bool>
               </property>
               <layout class="QGridLayout" name="gridLayout_28">
-               <item row="2" column="0">
-                <widget class="QPushButton" name="tool_dump_ao">
-                 <property name="enabled">
-                  <bool>true</bool>
-                 </property>
-                 <property name="text">
-                  <string>dump AO to file</string>
-                 </property>
-                </widget>
-               </item>
-               <item row="3" column="0">
+               <item row="3" column="1">
                 <widget class="QPushButton" name="tool_dump_ai">
                  <property name="enabled">
                   <bool>true</bool>
@@ -1947,7 +1942,76 @@
                  </property>
                 </widget>
                </item>
-               <item row="0" column="0">
+               <item row="1" column="3">
+                <widget class="QToolButton" name="tool_dump_di_file_dialog">
+                 <property name="statusTip">
+                  <string>Select file to dump DI registers. The file is not written. Use dump (left) to execute dump.</string>
+                 </property>
+                 <property name="text">
+                  <string>...</string>
+                 </property>
+                 <property name="icon">
+                  <iconset theme="document-save">
+                   <normaloff>.</normaloff>.</iconset>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="3">
+                <widget class="QToolButton" name="tool_dump_do_file_dialog">
+                 <property name="statusTip">
+                  <string>Select file to dump DO registers. The file is not written. Use dump (left) to execute dump.</string>
+                 </property>
+                 <property name="text">
+                  <string>...</string>
+                 </property>
+                 <property name="icon">
+                  <iconset theme="document-save">
+                   <normaloff>.</normaloff>.</iconset>
+                 </property>
+                </widget>
+               </item>
+               <item row="2" column="1">
+                <widget class="QPushButton" name="tool_dump_ao">
+                 <property name="enabled">
+                  <bool>true</bool>
+                 </property>
+                 <property name="text">
+                  <string>dump AO to file</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="2">
+                <widget class="QLineEdit" name="tool_dump_do_file">
+                 <property name="text">
+                  <string>/tmp/modbus_DO</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="2">
+                <widget class="QLineEdit" name="tool_dump_di_file">
+                 <property name="text">
+                  <string>/tmp/modbus_DI</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="2" column="3">
+                <widget class="QToolButton" name="tool_dump_ao_file_dialog">
+                 <property name="toolTip">
+                  <string/>
+                 </property>
+                 <property name="statusTip">
+                  <string>Select file to dump AO registers. The file is not written. Use dump (left) to execute dump.</string>
+                 </property>
+                 <property name="text">
+                  <string>...</string>
+                 </property>
+                 <property name="icon">
+                  <iconset theme="document-save">
+                   <normaloff>.</normaloff>.</iconset>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="1">
                 <widget class="QPushButton" name="tool_dump_do">
                  <property name="enabled">
                   <bool>true</bool>
@@ -1957,21 +2021,14 @@
                  </property>
                 </widget>
                </item>
-               <item row="2" column="1">
+               <item row="2" column="2">
                 <widget class="QLineEdit" name="tool_dump_ao_file">
                  <property name="text">
                   <string>/tmp/modbus_AO</string>
                  </property>
                 </widget>
                </item>
-               <item row="0" column="1">
-                <widget class="QLineEdit" name="tool_dump_do_file">
-                 <property name="text">
-                  <string>/tmp/modbus_DO</string>
-                 </property>
-                </widget>
-               </item>
-               <item row="1" column="0">
+               <item row="1" column="1">
                 <widget class="QPushButton" name="tool_dump_di">
                  <property name="enabled">
                   <bool>true</bool>
@@ -1981,95 +2038,281 @@
                  </property>
                 </widget>
                </item>
-               <item row="3" column="1">
+               <item row="3" column="3">
+                <widget class="QToolButton" name="tool_dump_ai_file_dialog">
+                 <property name="toolTip">
+                  <string/>
+                 </property>
+                 <property name="statusTip">
+                  <string>Select file to dump AI registers. The file is not written. Use dump (left) to execute dump.</string>
+                 </property>
+                 <property name="text">
+                  <string>...</string>
+                 </property>
+                 <property name="icon">
+                  <iconset theme="document-save">
+                   <normaloff>.</normaloff>.</iconset>
+                 </property>
+                </widget>
+               </item>
+               <item row="3" column="2">
                 <widget class="QLineEdit" name="tool_dump_ai_file">
                  <property name="text">
                   <string>/tmp/modbus_AI</string>
                  </property>
                 </widget>
                </item>
-               <item row="1" column="1">
-                <widget class="QLineEdit" name="tool_dump_di_file">
+              </layout>
+             </widget>
+            </item>
+            <item row="0" column="0">
+             <widget class="QWidget" name="widget_19" native="true">
+              <property name="enabled">
+               <bool>true</bool>
+              </property>
+              <layout class="QGridLayout" name="gridLayout_27">
+               <item row="0" column="0">
+                <widget class="QPushButton" name="tool_set_values">
+                 <property name="enabled">
+                  <bool>false</bool>
+                 </property>
                  <property name="text">
-                  <string>/tmp/modbus_DI</string>
-                 </property>
-                </widget>
-               </item>
-               <item row="3" column="2">
-                <widget class="QToolButton" name="tool_dump_ai_file_dialog">
-                 <property name="text">
-                  <string>...</string>
-                 </property>
-                 <property name="icon">
-                  <iconset theme="document-open">
-                   <normaloff>.</normaloff>.</iconset>
-                 </property>
-                </widget>
-               </item>
-               <item row="2" column="2">
-                <widget class="QToolButton" name="tool_dump_ao_file_dialog">
-                 <property name="text">
-                  <string>...</string>
-                 </property>
-                 <property name="icon">
-                  <iconset theme="document-open">
-                   <normaloff>.</normaloff>.</iconset>
-                 </property>
-                </widget>
-               </item>
-               <item row="1" column="2">
-                <widget class="QToolButton" name="tool_dump_di_file_dialog">
-                 <property name="text">
-                  <string>...</string>
-                 </property>
-                 <property name="icon">
-                  <iconset theme="document-open">
-                   <normaloff>.</normaloff>.</iconset>
-                 </property>
-                </widget>
-               </item>
-               <item row="0" column="2">
-                <widget class="QToolButton" name="tool_dump_do_file_dialog">
-                 <property name="text">
-                  <string>...</string>
-                 </property>
-                 <property name="icon">
-                  <iconset theme="document-open">
-                   <normaloff>.</normaloff>.</iconset>
+                  <string>set values</string>
                  </property>
                 </widget>
                </item>
               </layout>
              </widget>
             </item>
-            <item row="6" column="0">
-             <widget class="QWidget" name="random_ai" native="true">
-              <layout class="QGridLayout" name="gridLayout_30">
-               <item row="0" column="1">
-                <widget class="QPushButton" name="tool_random_ao">
+            <item row="3" column="0">
+             <widget class="Line" name="line_12">
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+             </widget>
+            </item>
+            <item row="5" column="0">
+             <widget class="Line" name="line_10">
+              <property name="enabled">
+               <bool>true</bool>
+              </property>
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+             </widget>
+            </item>
+            <item row="4" column="0">
+             <widget class="QWidget" name="widget_22" native="true">
+              <layout class="QGridLayout" name="gridLayout_31">
+               <item row="2" column="4">
+                <widget class="QToolButton" name="tool_load_ao_file_dialog">
+                 <property name="toolTip">
+                  <string/>
+                 </property>
+                 <property name="statusTip">
+                  <string>Select file to load AO registers. The file is not loaded. Use load button (left) to load registers from dump.</string>
+                 </property>
                  <property name="text">
-                  <string>randomize AO</string>
+                  <string>...</string>
+                 </property>
+                 <property name="icon">
+                  <iconset theme="document-open"/>
+                 </property>
+                </widget>
+               </item>
+               <item row="3" column="0">
+                <widget class="QPushButton" name="tool_load_ai">
+                 <property name="text">
+                  <string>load AI from file</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="2">
+                <widget class="QCheckBox" name="tool_load_do_repeat">
+                 <property name="toolTip">
+                  <string>repeat loading the data untill the complete shared memory is filled</string>
+                 </property>
+                 <property name="statusTip">
+                  <string>repeat loading the data untill the complete shared memory is filled</string>
+                 </property>
+                 <property name="text">
+                  <string>repeat</string>
+                 </property>
+                 <property name="checked">
+                  <bool>true</bool>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="3">
+                <widget class="QLineEdit" name="tool_load_di_file">
+                 <property name="text">
+                  <string>/tmp/modbus_DI</string>
                  </property>
                 </widget>
                </item>
                <item row="0" column="0">
-                <widget class="QPushButton" name="tool_random_do">
+                <widget class="QPushButton" name="tool_load_do">
                  <property name="text">
-                  <string>randomize DO</string>
+                  <string>load DO from file</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="3" column="3">
+                <widget class="QLineEdit" name="tool_load_ai_file">
+                 <property name="text">
+                  <string>/tmp/modbus_AI</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="2" column="3">
+                <widget class="QLineEdit" name="tool_load_ao_file">
+                 <property name="text">
+                  <string>/tmp/modbus_AO</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="2" column="1">
+                <widget class="QCheckBox" name="tool_load_ao_invert">
+                 <property name="text">
+                  <string>invert</string>
                  </property>
                 </widget>
                </item>
                <item row="1" column="0">
-                <widget class="QPushButton" name="tool_random_di">
+                <widget class="QPushButton" name="tool_load_di">
                  <property name="text">
-                  <string>randomize DI</string>
+                  <string>load DI from file</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="3">
+                <widget class="QLineEdit" name="tool_load_do_file">
+                 <property name="text">
+                  <string>/tmp/modbus_DO</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="2">
+                <widget class="QCheckBox" name="tool_load_di_repeat">
+                 <property name="toolTip">
+                  <string>repeat loading the data untill the complete shared memory is filled</string>
+                 </property>
+                 <property name="statusTip">
+                  <string>repeat loading the data untill the complete shared memory is filled</string>
+                 </property>
+                 <property name="text">
+                  <string>repeat</string>
+                 </property>
+                 <property name="checked">
+                  <bool>true</bool>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="1">
+                <widget class="QCheckBox" name="tool_load_do_invert">
+                 <property name="text">
+                  <string>invert</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="4">
+                <widget class="QToolButton" name="tool_load_do_file_dialog">
+                 <property name="toolTip">
+                  <string/>
+                 </property>
+                 <property name="statusTip">
+                  <string>Select file to load DO registers. The file is not loaded. Use load button (left) to load registers from dump.</string>
+                 </property>
+                 <property name="text">
+                  <string>...</string>
+                 </property>
+                 <property name="icon">
+                  <iconset theme="document-open"/>
+                 </property>
+                </widget>
+               </item>
+               <item row="3" column="1">
+                <widget class="QCheckBox" name="tool_load_ai_invert">
+                 <property name="text">
+                  <string>invert</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="2" column="0">
+                <widget class="QPushButton" name="tool_load_ao">
+                 <property name="text">
+                  <string>load AO from file</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="3" column="2">
+                <widget class="QCheckBox" name="tool_load_ai_repeat">
+                 <property name="toolTip">
+                  <string>repeat loading the data untill the complete shared memory is filled</string>
+                 </property>
+                 <property name="statusTip">
+                  <string>repeat loading the data untill the complete shared memory is filled</string>
+                 </property>
+                 <property name="text">
+                  <string>repeat</string>
+                 </property>
+                 <property name="checked">
+                  <bool>true</bool>
+                 </property>
+                </widget>
+               </item>
+               <item row="2" column="2">
+                <widget class="QCheckBox" name="tool_load_ao_repeat">
+                 <property name="toolTip">
+                  <string>repeat loading the data untill the complete shared memory is filled</string>
+                 </property>
+                 <property name="statusTip">
+                  <string>repeat loading the data untill the complete shared memory is filled</string>
+                 </property>
+                 <property name="text">
+                  <string>repeat</string>
+                 </property>
+                 <property name="checked">
+                  <bool>true</bool>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="4">
+                <widget class="QToolButton" name="tool_load_di_file_dialog">
+                 <property name="toolTip">
+                  <string/>
+                 </property>
+                 <property name="statusTip">
+                  <string>Select file to load DI registers. The file is not loaded. Use load button (left) to load registers from dump.</string>
+                 </property>
+                 <property name="text">
+                  <string>...</string>
+                 </property>
+                 <property name="icon">
+                  <iconset theme="document-open"/>
                  </property>
                 </widget>
                </item>
                <item row="1" column="1">
-                <widget class="QPushButton" name="tool_random_ai">
+                <widget class="QCheckBox" name="tool_load_di_invert">
                  <property name="text">
-                  <string>randomize AI</string>
+                  <string>invert</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="3" column="4">
+                <widget class="QToolButton" name="tool_load_ai_file_dialog">
+                 <property name="toolTip">
+                  <string/>
+                 </property>
+                 <property name="statusTip">
+                  <string>Select file to load AI registers. The file is not loaded. Use load button (left) to load registers from dump.</string>
+                 </property>
+                 <property name="text">
+                  <string>...</string>
+                 </property>
+                 <property name="icon">
+                  <iconset theme="document-open"/>
                  </property>
                 </widget>
                </item>
