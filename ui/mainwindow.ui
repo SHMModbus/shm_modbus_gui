@@ -1024,8 +1024,8 @@
                <property name="geometry">
                 <rect>
                  <x>0</x>
-                 <y>0</y>
-                 <width>519</width>
+                 <y>-586</y>
+                 <width>727</width>
                  <height>1025</height>
                 </rect>
                </property>
@@ -1496,7 +1496,7 @@
                     </widget>
                    </item>
                    <item row="0" column="2">
-                    <widget class="QPushButton" name="mbtru_do_default">
+                    <widget class="QPushButton" name="mbrtu_do_default">
                      <property name="text">
                       <string>65536</string>
                      </property>
@@ -1711,10 +1711,13 @@
                      <property name="text">
                       <string>enable</string>
                      </property>
+                     <property name="checked">
+                      <bool>true</bool>
+                     </property>
                     </widget>
                    </item>
                    <item row="0" column="4">
-                    <widget class="QPushButton" name="mbtru_sem_flags_default">
+                    <widget class="QPushButton" name="mbrtu_sem_flags_default">
                      <property name="text">
                       <string>defaults</string>
                      </property>
@@ -1802,8 +1805,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>238</width>
-             <height>447</height>
+             <width>766</width>
+             <height>484</height>
             </rect>
            </property>
            <layout class="QGridLayout" name="gridLayout_26">

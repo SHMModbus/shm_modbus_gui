@@ -634,7 +634,7 @@ class Ui_MainWindow(object):
         self.scrollArea_2.setWidgetResizable(True)
         self.mbrtu_settings = QWidget()
         self.mbrtu_settings.setObjectName(u"mbrtu_settings")
-        self.mbrtu_settings.setGeometry(QRect(0, 0, 519, 1025))
+        self.mbrtu_settings.setGeometry(QRect(0, -586, 727, 1025))
         self.gridLayout_15 = QGridLayout(self.mbrtu_settings)
         self.gridLayout_15.setObjectName(u"gridLayout_15")
         self.line_5 = QFrame(self.mbrtu_settings)
@@ -927,10 +927,10 @@ class Ui_MainWindow(object):
 
         self.gridLayout_17.addWidget(self.mbrtu_do, 0, 1, 1, 1)
 
-        self.mbtru_do_default = QPushButton(self.widget_11)
-        self.mbtru_do_default.setObjectName(u"mbtru_do_default")
+        self.mbrtu_do_default = QPushButton(self.widget_11)
+        self.mbrtu_do_default.setObjectName(u"mbrtu_do_default")
 
-        self.gridLayout_17.addWidget(self.mbtru_do_default, 0, 2, 1, 1)
+        self.gridLayout_17.addWidget(self.mbrtu_do_default, 0, 2, 1, 1)
 
         self.mbrtu_di_default = QPushButton(self.widget_11)
         self.mbrtu_di_default.setObjectName(u"mbrtu_di_default")
@@ -1056,13 +1056,14 @@ class Ui_MainWindow(object):
 
         self.mbrtu_sem_enable = QCheckBox(self.widget_16)
         self.mbrtu_sem_enable.setObjectName(u"mbrtu_sem_enable")
+        self.mbrtu_sem_enable.setChecked(True)
 
         self.gridLayout_22.addWidget(self.mbrtu_sem_enable, 0, 1, 1, 1)
 
-        self.mbtru_sem_flags_default = QPushButton(self.widget_16)
-        self.mbtru_sem_flags_default.setObjectName(u"mbtru_sem_flags_default")
+        self.mbrtu_sem_flags_default = QPushButton(self.widget_16)
+        self.mbrtu_sem_flags_default.setObjectName(u"mbrtu_sem_flags_default")
 
-        self.gridLayout_22.addWidget(self.mbtru_sem_flags_default, 0, 4, 1, 1)
+        self.gridLayout_22.addWidget(self.mbrtu_sem_flags_default, 0, 4, 1, 1)
 
 
         self.gridLayout_15.addWidget(self.widget_16, 17, 0, 1, 1)
@@ -1118,7 +1119,7 @@ class Ui_MainWindow(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollAreaWidgetContents = QWidget()
         self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
-        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 238, 447))
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 766, 484))
         self.gridLayout_26 = QGridLayout(self.scrollAreaWidgetContents)
         self.gridLayout_26.setObjectName(u"gridLayout_26")
         self.line_9 = QFrame(self.scrollAreaWidgetContents)
@@ -1434,7 +1435,7 @@ class Ui_MainWindow(object):
         self.label_29.setText(QCoreApplication.translate("MainWindow", u"AI:", None))
         self.label_27.setText(QCoreApplication.translate("MainWindow", u"DI:", None))
         self.label_26.setText(QCoreApplication.translate("MainWindow", u"DO:", None))
-        self.mbtru_do_default.setText(QCoreApplication.translate("MainWindow", u"65536", None))
+        self.mbrtu_do_default.setText(QCoreApplication.translate("MainWindow", u"65536", None))
         self.mbrtu_di_default.setText(QCoreApplication.translate("MainWindow", u"65536", None))
         self.mbrtu_ao_default.setText(QCoreApplication.translate("MainWindow", u"65536", None))
         self.mbrtu_ai_default.setText(QCoreApplication.translate("MainWindow", u"65536", None))
@@ -1448,7 +1449,7 @@ class Ui_MainWindow(object):
         self.mbrtu_enable_response_timeout.setText(QCoreApplication.translate("MainWindow", u"edit response timeout", None))
         self.mbrtu_sem_force.setText(QCoreApplication.translate("MainWindow", u"force", None))
         self.mbrtu_sem_enable.setText(QCoreApplication.translate("MainWindow", u"enable", None))
-        self.mbtru_sem_flags_default.setText(QCoreApplication.translate("MainWindow", u"defaults", None))
+        self.mbrtu_sem_flags_default.setText(QCoreApplication.translate("MainWindow", u"defaults", None))
         self.label_30.setText(QCoreApplication.translate("MainWindow", u"Shared Memory", None))
         self.label_35.setText(QCoreApplication.translate("MainWindow", u"name:", None))
         self.mbrtu_sem_name.setText(QCoreApplication.translate("MainWindow", u"modbus", None))
