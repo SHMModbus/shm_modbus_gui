@@ -40,6 +40,10 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.shm_tools = SHMTools.SHMTools(self)
         self.__shm_tools_init_gui()
 
+        # Version popup
+        self.actionVersion.triggered.connect(
+            lambda: QMessageBox.information(self, "SHM Modbus Version", f"{constants.APP_NAME} {constants.VERSION}"))
+
     def __init_mbtcp(self) -> None:
         """
         @brief initialize modbus tcp ui

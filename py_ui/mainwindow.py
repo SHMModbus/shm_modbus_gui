@@ -34,8 +34,8 @@ class Ui_MainWindow(object):
         sizePolicy.setHeightForWidth(MainWindow.sizePolicy().hasHeightForWidth())
         MainWindow.setSizePolicy(sizePolicy)
         MainWindow.setMinimumSize(QSize(600, 300))
-        self.actionAbout = QAction(MainWindow)
-        self.actionAbout.setObjectName(u"actionAbout")
+        self.actionVersion = QAction(MainWindow)
+        self.actionVersion.setObjectName(u"actionVersion")
         self.actionsave_modbus_tcp_client_config = QAction(MainWindow)
         self.actionsave_modbus_tcp_client_config.setObjectName(u"actionsave_modbus_tcp_client_config")
         self.actionsave_modbus_rtu_client_config = QAction(MainWindow)
@@ -1456,7 +1456,7 @@ class Ui_MainWindow(object):
         self.menuFile.addSeparator()
         self.menuFile.addAction(self.actionsave_modbus_tcp_client_config)
         self.menuFile.addAction(self.actionsave_modbus_rtu_client_config)
-        self.menuHelp.addAction(self.actionAbout)
+        self.menuHelp.addAction(self.actionVersion)
 
         self.retranslateUi(MainWindow)
 
@@ -1469,7 +1469,7 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"SHM Modbus", None))
-        self.actionAbout.setText(QCoreApplication.translate("MainWindow", u"About", None))
+        self.actionVersion.setText(QCoreApplication.translate("MainWindow", u"Version", None))
         self.actionsave_modbus_tcp_client_config.setText(QCoreApplication.translate("MainWindow", u"save modbus tcp client config", None))
         self.actionsave_modbus_rtu_client_config.setText(QCoreApplication.translate("MainWindow", u"save modbus rtu client config", None))
         self.actionopen_modbus_tcp_client_config.setText(QCoreApplication.translate("MainWindow", u"open modbus tcp client config", None))
