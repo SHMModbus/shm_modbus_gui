@@ -546,7 +546,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.tool_random_di.clicked.connect(on_button_random_di_clicked)
 
         def on_button_random_ao_clicked() -> None:
-            random = self.shm_tools.start_random(f"{self.modbus_cfg.name_prefix}AO", self.modbus_cfg.do, 1,
+            random = self.shm_tools.start_random(f"{self.modbus_cfg.name_prefix}AO", self.modbus_cfg.do, 2,
                                                  self.modbus_cfg.sem_name if self.modbus_cfg.sem_enable else None)
             self.tool_random_ao.setEnabled(False)
             random.closed.connect(lambda: self.tool_random_ao.setEnabled(True))
@@ -554,7 +554,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.tool_random_ao.clicked.connect(on_button_random_ao_clicked)
 
         def on_button_random_ai_clicked() -> None:
-            random = self.shm_tools.start_random(f"{self.modbus_cfg.name_prefix}AI", self.modbus_cfg.do, 1,
+            random = self.shm_tools.start_random(f"{self.modbus_cfg.name_prefix}AI", self.modbus_cfg.do, 2,
                                                  self.modbus_cfg.sem_name if self.modbus_cfg.sem_enable else None)
             self.tool_random_ai.setEnabled(False)
             random.closed.connect(lambda: self.tool_random_ai.setEnabled(True))
