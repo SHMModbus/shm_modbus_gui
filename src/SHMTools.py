@@ -1,9 +1,6 @@
-from PySide6 import QtCore
 from PySide6.QtCore import QProcess
-from PySide6.QtGui import QCloseEvent
 
 from SHMHexdump import SHMHexdump
-
 from SHMRandom import SHMRandom
 
 

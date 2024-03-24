@@ -1,10 +1,10 @@
 #!/usr/bin/python
 
 import sys
-from MainWindow import MainWindow
 from PySide6 import QtWidgets
 import argparse
 
+from MainWindow import MainWindow
 import constants
 
 

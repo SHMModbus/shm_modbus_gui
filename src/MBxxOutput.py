@@ -4,7 +4,6 @@ from PySide6.QtGui import QFontDatabase, QTextCursor
 from PySide6.QtWidgets import QFileDialog, QMessageBox
 
 from py_ui import Ui_MBxxxOutput
-import shlex
 
 
 class MBxxOutput(QtWidgets.QMainWindow, Ui_MBxxxOutput):

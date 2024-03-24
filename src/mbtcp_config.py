@@ -1,7 +1,7 @@
 import json
 import re
-import constants
 
+import constants
 import MBConfig
 
 JSON_KEYS = (("network.connections", int),

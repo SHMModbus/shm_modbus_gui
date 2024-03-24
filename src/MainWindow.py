@@ -1,5 +1,4 @@
 import os
-
 from PySide6 import QtWidgets
 from PySide6.QtCore import QRegularExpression
 from PySide6.QtGui import QRegularExpressionValidator
@@ -633,7 +632,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
         def on_dump_ai() -> None:
             try:
-                self.shm_tools.dump_shm_to_file(f"{self.modbus_cfg.name_prefix}AI", self.tool_dump_ai_file.text())
+                self.shm_tools.dump_shm_to_file(f"{self.modbus_cfg.name_prefix}AI", self.tool_dump_ai_file.text(),
+                                                self.modbus_cfg.sem_name if self.modbus_cfg.sem_enable else None)
             except Exception as e:
                 QMessageBox.critical(self, "Error", f"Failed to dump shared memory: {e}")
 
