@@ -2,7 +2,7 @@ from PyQt6.QtCore import QTimer
 from PySide6 import QtWidgets, QtCore
 from PySide6.QtCore import QProcess, QMutex
 from PySide6.QtGui import QFontDatabase, QTextCursor
-from PySide6.QtWidgets import QMessageBox
+from PySide6.QtWidgets import QMessageBox, QFileDialog
 
 from py_ui import Ui_ShmHexdump
 
@@ -79,6 +79,17 @@ class SHMHexdump(QtWidgets.QMainWindow, Ui_ShmHexdump):
                 self.timer.stop()
 
         self.checkbox_autorefresh.stateChanged.connect(on_checkbox_autorefresh_clicked)
+
+        def on_action_save_triggered():
+            data = self.hexdump_text.toPlainText()
+            file_name, _ = QFileDialog.getSaveFileName(self, caption="Save Hexdump", filter="*.txt")
+            try:
+                with open(file_name, 'w') as f:
+                    f.write(data)
+            except Exception as e:
+                QMessageBox.critical(self, "Error", f"Failed to save: {e}")
+
+        self.actionSave.triggered.connect(on_action_save_triggered)
 
         # create hexdump
         self.execute()
