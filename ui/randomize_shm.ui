@@ -54,6 +54,12 @@
       </item>
       <item row="0" column="5">
        <widget class="QSpinBox" name="registers">
+        <property name="toolTip">
+         <string>number of registers</string>
+        </property>
+        <property name="statusTip">
+         <string>number of registers to randomize</string>
+        </property>
         <property name="minimum">
          <number>1</number>
         </property>
@@ -79,6 +85,12 @@
           <horstretch>0</horstretch>
           <verstretch>0</verstretch>
          </sizepolicy>
+        </property>
+        <property name="toolTip">
+         <string>register offset</string>
+        </property>
+        <property name="statusTip">
+         <string>register offset (ignore first n registers)</string>
         </property>
         <property name="maximum">
          <number>65535</number>
@@ -113,6 +125,15 @@
       </item>
       <item row="0" column="1">
        <widget class="QSlider" name="slider_interval">
+        <property name="toolTip">
+         <string>randomization time intervall</string>
+        </property>
+        <property name="statusTip">
+         <string>intervall</string>
+        </property>
+        <property name="whatsThis">
+         <string>randomization time intervall</string>
+        </property>
         <property name="minimum">
          <number>100</number>
         </property>
@@ -142,6 +163,12 @@
       </item>
       <item row="0" column="2">
        <widget class="QSpinBox" name="spinbox_interval">
+        <property name="toolTip">
+         <string>randomization time intervall</string>
+        </property>
+        <property name="statusTip">
+         <string>randomization time intervall</string>
+        </property>
         <property name="minimum">
          <number>1000</number>
         </property>
@@ -161,6 +188,12 @@
      <layout class="QGridLayout" name="gridLayout_3">
       <item row="0" column="1">
        <widget class="QPushButton" name="button_start">
+        <property name="toolTip">
+         <string>start/stop randomization</string>
+        </property>
+        <property name="statusTip">
+         <string>start/stop randomization</string>
+        </property>
         <property name="text">
          <string>Start</string>
         </property>
@@ -168,6 +201,12 @@
       </item>
       <item row="0" column="0">
        <widget class="QPushButton" name="button_once">
+        <property name="toolTip">
+         <string>randomize once</string>
+        </property>
+        <property name="statusTip">
+         <string>randomize once</string>
+        </property>
         <property name="text">
          <string>Once</string>
         </property>

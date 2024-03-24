@@ -73,8 +73,17 @@ class Ui_MBxxxOutput(object):
         self.actionSave_STDOUT.setText(QCoreApplication.translate("MBxxxOutput", u"Save stdout", None))
         self.actionSave_STDERR.setText(QCoreApplication.translate("MBxxxOutput", u"Save stderr", None))
 #if QT_CONFIG(tooltip)
-        self.stdout.setToolTip("")
+        self.stdout.setToolTip(QCoreApplication.translate("MBxxxOutput", u"stdout", None))
 #endif // QT_CONFIG(tooltip)
+#if QT_CONFIG(statustip)
+        self.stdout.setStatusTip(QCoreApplication.translate("MBxxxOutput", u"stdout", None))
+#endif // QT_CONFIG(statustip)
+#if QT_CONFIG(tooltip)
+        self.stderr.setToolTip(QCoreApplication.translate("MBxxxOutput", u"stderr", None))
+#endif // QT_CONFIG(tooltip)
+#if QT_CONFIG(statustip)
+        self.stderr.setStatusTip(QCoreApplication.translate("MBxxxOutput", u"stderr", None))
+#endif // QT_CONFIG(statustip)
         self.menuFile.setTitle(QCoreApplication.translate("MBxxxOutput", u"File", None))
     # retranslateUi
 
