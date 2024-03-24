@@ -178,12 +178,11 @@ class MBRTUConfig(MBConfig.MBConfig):
         if self.force:
             command.append("--force")
 
-        # TODO enable once available in modbus-rtu-client-shm
-        # if self.sem_enable:
-        #     command.append("--semaphore")
-        #     command.append(self.sem_name)
-        #
-        #     if self.sem_force:
-        #         command.append("--semaphore-force")
+        if self.sem_enable:
+            command.append("--semaphore")
+            command.append(self.sem_name)
+
+            if self.sem_force:
+                command.append("--semaphore-force")
 
         return command
