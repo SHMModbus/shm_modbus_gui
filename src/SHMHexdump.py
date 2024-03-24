@@ -1,6 +1,5 @@
-from PyQt6.QtCore import QTimer
 from PySide6 import QtWidgets, QtCore
-from PySide6.QtCore import QProcess, QMutex
+from PySide6.QtCore import QProcess, QMutex, QTimer
 from PySide6.QtGui import QFontDatabase, QTextCursor
 from PySide6.QtWidgets import QMessageBox, QFileDialog
 
