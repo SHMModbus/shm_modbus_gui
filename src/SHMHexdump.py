@@ -1,5 +1,6 @@
+from PyQt6.QtCore import QTimer
 from PySide6 import QtWidgets, QtCore
-from PySide6.QtCore import QProcess
+from PySide6.QtCore import QProcess, QMutex
 from PySide6.QtGui import QFontDatabase, QTextCursor
 from PySide6.QtWidgets import QMessageBox
 
@@ -34,10 +35,26 @@ class SHMHexdump(QtWidgets.QMainWindow, Ui_ShmHexdump):
         fixed_font = QFontDatabase.systemFont(QFontDatabase.FixedFont)
         self.hexdump_text.setFont(fixed_font)
 
+        # auto refresh timer
+        self.timer = QTimer()
+        self.timer.timeout.connect(self.execute)
+
+        # execution mutex
+        self.exec_mutex = QMutex()
+
         # ui actions
         self.button_refresh.clicked.connect(self.execute)
-        self.slider_interval.valueChanged.connect(lambda value: self.spinbox_interval.setValue(value))
-        self.spinbox_interval.valueChanged.connect(lambda value: self.slider_interval.setValue(value))
+
+        def on_slider_interval_value_changed(value: int):
+            self.spinbox_interval.setValue(value)
+            self.timer.setInterval(value)
+
+        self.slider_interval.valueChanged.connect(on_slider_interval_value_changed)
+
+        def on_spinbox_interval_value_changed(value: int):
+            self.slider_interval.setValue(value)
+
+        self.spinbox_interval.valueChanged.connect(on_spinbox_interval_value_changed)
 
         def on_offset_value_changed(value: int):
             new_max = self.num_registers - value
@@ -57,8 +74,9 @@ class SHMHexdump(QtWidgets.QMainWindow, Ui_ShmHexdump):
 
         def on_checkbox_autorefresh_clicked(state: int):
             if state != 0:
-                QMessageBox.critical(self, "Not Implemented", "This feature is not yet implemented.")
-                self.checkbox_autorefresh.setChecked(False)
+                self.timer.start(self.spinbox_interval.value())
+            else:
+                self.timer.stop()
 
         self.checkbox_autorefresh.stateChanged.connect(on_checkbox_autorefresh_clicked)
 
@@ -66,6 +84,8 @@ class SHMHexdump(QtWidgets.QMainWindow, Ui_ShmHexdump):
         self.execute()
 
     def execute(self):
+        self.exec_mutex.lock()
+
         size = self.registers.value() * self.register_size
         offset = self.offset.value() * self.register_size
         sem_cmd = f" -s {self.semaphore}" if self.semaphore else ""
@@ -83,8 +103,11 @@ class SHMHexdump(QtWidgets.QMainWindow, Ui_ShmHexdump):
             self.hexdump_text.clear()
             self.hexdump_text.insertPlainText("COMMAND TIMEOUT")
 
+        self.exec_mutex.unlock()
+
     def closeEvent(self, event):
         super(SHMHexdump, self).closeEvent(event)
+        self.timer.stop()
         self.closed.emit()
 
 
