@@ -75,7 +75,7 @@ if __name__ == "__main__":
     import sys
 
     app = QtWidgets.QApplication(sys.argv)
-    window = MBxxOutput(["uname", "-a"])
+    window = MBxxOutput(["uname", "-a"], "Test MBxxOutput")
     window.finished.connect(lambda: print("process finished"))
     window.closed.connect(lambda: print("window closed"))
     window.show()
