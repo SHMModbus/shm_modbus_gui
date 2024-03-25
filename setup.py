@@ -9,7 +9,7 @@ setup(
     author = 'Nikolas Koesling',
     packages = ['src'],
     package_data={},
-    install_requires=['future'],
+    install_requires=['pyside6'],
     entry_points = {
         'console_scripts': [
             'shm-modbus-gui=src.main:main']
