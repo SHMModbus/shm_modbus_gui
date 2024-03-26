@@ -3,7 +3,7 @@ from PySide6.QtCore import QProcess, QMutex, QTimer
 from PySide6.QtGui import QFontDatabase, QTextCursor
 from PySide6.QtWidgets import QMessageBox, QFileDialog
 
-from py_ui import Ui_ShmHexdump
+from .py_ui import Ui_ShmHexdump
 
 
 class SHMHexdump(QtWidgets.QMainWindow, Ui_ShmHexdump):

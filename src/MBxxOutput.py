@@ -3,7 +3,7 @@ from PySide6.QtCore import QProcess
 from PySide6.QtGui import QFontDatabase, QTextCursor
 from PySide6.QtWidgets import QFileDialog, QMessageBox
 
-from py_ui import Ui_MBxxxOutput
+from .py_ui import Ui_MBxxxOutput
 
 
 class MBxxOutput(QtWidgets.QMainWindow, Ui_MBxxxOutput):

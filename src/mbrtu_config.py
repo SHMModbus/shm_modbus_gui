@@ -1,8 +1,8 @@
 import json
 import re
 
-import MBConfig
-import constants
+from . import MBConfig
+from . import constants
 
 JSON_KEYS = (("serial.device", str),
              ("serial.parity", int),

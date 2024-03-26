@@ -1,7 +1,7 @@
 from PySide6 import QtWidgets, QtCore
 from PySide6.QtWidgets import QMessageBox
 
-from py_ui import Ui_RandomizeShm
+from .py_ui import Ui_RandomizeShm
 
 
 class SHMRandom(QtWidgets.QWidget, Ui_RandomizeShm):

@@ -7,7 +7,10 @@ setup(
     description = 'gui for shm-modbus',
     license='GPLv3',
     author = 'Nikolas Koesling',
-    packages = ['src'],
+    packages = [
+        'src',
+        'src.py_ui'
+        ],
     package_data={},
     install_requires=['pyside6'],
     entry_points = {
