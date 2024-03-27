@@ -1,0 +1,31 @@
+name: shm-modbus-gui
+summary: gui for shm-modbus
+description: |
+  QT6 (PySide6) gui for shm-modbus
+version: test
+base: core22
+confinement: devmode
+
+parts:
+  shm-modbus-gui:
+    plugin: python
+    source: .
+    stage-packages:
+      - libgl1
+      - libxkbcommon0
+      - libegl1
+      - libfontconfig1
+      - libpulse0
+      - libxcb-cursor0
+      - qt6-base-dev
+
+
+apps:
+  shm-modbus-gui:
+    command: bin/shm-modbus-gui
+    plugs:
+      - desktop
+      - wayland
+      - x11
+    environment:
+      QT_PLUGIN_PATH: "$SNAP/usr/lib/$CRAFT_ARCH_TRIPLET/qt6/plugins"

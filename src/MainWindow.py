@@ -4,13 +4,13 @@ from PySide6.QtCore import QRegularExpression
 from PySide6.QtGui import QRegularExpressionValidator
 from PySide6.QtWidgets import QFileDialog, QMessageBox
 
-import MBConfig
-import SHMTools
-from py_ui import Ui_MainWindow
-from mbtcp_config import MBTCPConfig
-from mbrtu_config import MBRTUConfig
-from MBxxOutput import MBxxOutput
-import constants
+from . import MBConfig
+from . import SHMTools
+from .py_ui import Ui_MainWindow
+from .mbtcp_config import MBTCPConfig
+from .mbrtu_config import MBRTUConfig
+from .MBxxOutput import MBxxOutput
+from . import constants
 
 
 class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):

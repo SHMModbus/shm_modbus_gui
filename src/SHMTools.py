@@ -1,7 +1,7 @@
 from PySide6.QtCore import QProcess
 
-from SHMHexdump import SHMHexdump
-from SHMRandom import SHMRandom
+from .SHMHexdump import SHMHexdump
+from .SHMRandom import SHMRandom
 
 
 class SHMTools:

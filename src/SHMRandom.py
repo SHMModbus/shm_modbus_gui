@@ -1,7 +1,7 @@
 from PySide6 import QtWidgets, QtCore
 from PySide6.QtWidgets import QMessageBox
 
-from py_ui import Ui_RandomizeShm
+from .py_ui import Ui_RandomizeShm
 
 
 class SHMRandom(QtWidgets.QWidget, Ui_RandomizeShm):
@@ -129,7 +129,8 @@ class SHMRandom(QtWidgets.QWidget, Ui_RandomizeShm):
         self.active = False
         if exit_code != 0:
             stderr = bytes(self.process.readAllStandardError()).decode("utf-8")
-            QMessageBox.warning(self, "Command Failed", f"Execution of command shared-mem-random failed: {stderr}")
+            QMessageBox.warning(self, "Command Failed",
+                                f"Execution of command shared-mem-random failed (exit code: {exit_code}):\n {stderr}")
 
     def closeEvent(self, event):
         super(SHMRandom, self).closeEvent(event)

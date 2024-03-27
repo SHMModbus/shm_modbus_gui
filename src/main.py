@@ -4,8 +4,8 @@ import sys
 from PySide6 import QtWidgets
 import argparse
 
-from MainWindow import MainWindow
-import constants
+from .MainWindow import MainWindow
+from . import constants
 
 
 def main() -> None:
