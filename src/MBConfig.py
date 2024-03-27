@@ -1,7 +1,7 @@
 import re
 from abc import ABC, abstractmethod
 
-import constants
+from . import constants
 
 JSON_KEYS = (("modbus.byte_timeout", float),
              ("modbus.edit_byte_timeout", bool),
