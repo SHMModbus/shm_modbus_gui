@@ -41,13 +41,872 @@
        </attribute>
        <layout class="QGridLayout" name="gridLayout_2">
         <item row="0" column="0">
-         <widget class="QTabWidget" name="tabWidget_modbus_clients">
+         <widget class="QTabWidget" name="tabWidget_modbus_cl">
           <property name="currentIndex">
            <number>0</number>
           </property>
+          <widget class="QWidget" name="tab_modbus_setings">
+           <attribute name="title">
+            <string>Modbus Settings</string>
+           </attribute>
+           <layout class="QGridLayout" name="gridLayout_33">
+            <item row="0" column="0">
+             <widget class="QScrollArea" name="scrollArea_3">
+              <property name="widgetResizable">
+               <bool>true</bool>
+              </property>
+              <widget class="QWidget" name="scrollAreaWidgetContents_2">
+               <property name="geometry">
+                <rect>
+                 <x>0</x>
+                 <y>0</y>
+                 <width>727</width>
+                 <height>567</height>
+                </rect>
+               </property>
+               <layout class="QVBoxLayout" name="verticalLayout">
+                <item>
+                 <widget class="QLabel" name="label_4">
+                  <property name="font">
+                   <font>
+                    <pointsize>14</pointsize>
+                   </font>
+                  </property>
+                  <property name="text">
+                   <string>Registers</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QWidget" name="widget_2" native="true">
+                  <layout class="QGridLayout" name="gridLayout_6">
+                   <item row="0" column="1">
+                    <widget class="QSpinBox" name="mb_do">
+                     <property name="sizePolicy">
+                      <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+                       <horstretch>1</horstretch>
+                       <verstretch>0</verstretch>
+                      </sizepolicy>
+                     </property>
+                     <property name="toolTip">
+                      <string>number of DO registers (Coils, discrete output)</string>
+                     </property>
+                     <property name="statusTip">
+                      <string>number of DO registers (Coils, discrete output)</string>
+                     </property>
+                     <property name="minimum">
+                      <number>1</number>
+                     </property>
+                     <property name="maximum">
+                      <number>65536</number>
+                     </property>
+                     <property name="value">
+                      <number>65536</number>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="0" column="2">
+                    <widget class="QPushButton" name="mb_do_default">
+                     <property name="sizePolicy">
+                      <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+                       <horstretch>0</horstretch>
+                       <verstretch>0</verstretch>
+                      </sizepolicy>
+                     </property>
+                     <property name="minimumSize">
+                      <size>
+                       <width>0</width>
+                       <height>0</height>
+                      </size>
+                     </property>
+                     <property name="maximumSize">
+                      <size>
+                       <width>16777215</width>
+                       <height>16777215</height>
+                      </size>
+                     </property>
+                     <property name="toolTip">
+                      <string>set default number of DO registers (Coils, discrete output) (65536)</string>
+                     </property>
+                     <property name="statusTip">
+                      <string>set default number of DO registers (Coils, discrete output) (65536)</string>
+                     </property>
+                     <property name="text">
+                      <string>65536</string>
+                     </property>
+                     <property name="iconSize">
+                      <size>
+                       <width>16</width>
+                       <height>16</height>
+                      </size>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="1" column="0">
+                    <widget class="QLabel" name="label_6">
+                     <property name="sizePolicy">
+                      <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+                       <horstretch>0</horstretch>
+                       <verstretch>0</verstretch>
+                      </sizepolicy>
+                     </property>
+                     <property name="text">
+                      <string>DI:</string>
+                     </property>
+                     <property name="alignment">
+                      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="1" column="1">
+                    <widget class="QSpinBox" name="mb_di">
+                     <property name="sizePolicy">
+                      <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+                       <horstretch>1</horstretch>
+                       <verstretch>0</verstretch>
+                      </sizepolicy>
+                     </property>
+                     <property name="toolTip">
+                      <string>number of DI registers (discrete input)</string>
+                     </property>
+                     <property name="statusTip">
+                      <string>number of DI registers (discrete input)</string>
+                     </property>
+                     <property name="minimum">
+                      <number>1</number>
+                     </property>
+                     <property name="maximum">
+                      <number>65536</number>
+                     </property>
+                     <property name="value">
+                      <number>65536</number>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="1" column="5">
+                    <widget class="QSpinBox" name="mb_ai">
+                     <property name="sizePolicy">
+                      <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+                       <horstretch>1</horstretch>
+                       <verstretch>0</verstretch>
+                      </sizepolicy>
+                     </property>
+                     <property name="toolTip">
+                      <string>number of AI registers (input registers)</string>
+                     </property>
+                     <property name="statusTip">
+                      <string>number of AI registers (input registers)</string>
+                     </property>
+                     <property name="minimum">
+                      <number>1</number>
+                     </property>
+                     <property name="maximum">
+                      <number>65536</number>
+                     </property>
+                     <property name="value">
+                      <number>65536</number>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="0" column="0">
+                    <widget class="QLabel" name="label_5">
+                     <property name="sizePolicy">
+                      <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+                       <horstretch>0</horstretch>
+                       <verstretch>0</verstretch>
+                      </sizepolicy>
+                     </property>
+                     <property name="text">
+                      <string>DO:</string>
+                     </property>
+                     <property name="alignment">
+                      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="0" column="5">
+                    <widget class="QSpinBox" name="mb_ao">
+                     <property name="sizePolicy">
+                      <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+                       <horstretch>1</horstretch>
+                       <verstretch>0</verstretch>
+                      </sizepolicy>
+                     </property>
+                     <property name="toolTip">
+                      <string>number of AO registers (holding registers)</string>
+                     </property>
+                     <property name="statusTip">
+                      <string>number of AO registers (holding registers)</string>
+                     </property>
+                     <property name="minimum">
+                      <number>1</number>
+                     </property>
+                     <property name="maximum">
+                      <number>65536</number>
+                     </property>
+                     <property name="value">
+                      <number>65536</number>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="1" column="6">
+                    <widget class="QPushButton" name="mb_ai_default">
+                     <property name="minimumSize">
+                      <size>
+                       <width>0</width>
+                       <height>0</height>
+                      </size>
+                     </property>
+                     <property name="maximumSize">
+                      <size>
+                       <width>16777215</width>
+                       <height>16777215</height>
+                      </size>
+                     </property>
+                     <property name="toolTip">
+                      <string>set default number of AI registers (input registers) (65536)</string>
+                     </property>
+                     <property name="statusTip">
+                      <string>set default number of AI registers (input registers) (65536)</string>
+                     </property>
+                     <property name="text">
+                      <string>65536</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="0" column="6">
+                    <widget class="QPushButton" name="mb_ao_default">
+                     <property name="minimumSize">
+                      <size>
+                       <width>0</width>
+                       <height>0</height>
+                      </size>
+                     </property>
+                     <property name="maximumSize">
+                      <size>
+                       <width>16777215</width>
+                       <height>16777215</height>
+                      </size>
+                     </property>
+                     <property name="toolTip">
+                      <string>set default number of AO registers (holding registers) (65536)</string>
+                     </property>
+                     <property name="statusTip">
+                      <string>set default number of AO registers (holding registers) (65536)</string>
+                     </property>
+                     <property name="accessibleName">
+                      <string/>
+                     </property>
+                     <property name="text">
+                      <string>65536</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="0" column="4">
+                    <widget class="QLabel" name="label_7">
+                     <property name="sizePolicy">
+                      <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+                       <horstretch>0</horstretch>
+                       <verstretch>0</verstretch>
+                      </sizepolicy>
+                     </property>
+                     <property name="toolTip">
+                      <string/>
+                     </property>
+                     <property name="text">
+                      <string>AO:</string>
+                     </property>
+                     <property name="alignment">
+                      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="1" column="4">
+                    <widget class="QLabel" name="label_8">
+                     <property name="sizePolicy">
+                      <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+                       <horstretch>0</horstretch>
+                       <verstretch>0</verstretch>
+                      </sizepolicy>
+                     </property>
+                     <property name="text">
+                      <string>AI:</string>
+                     </property>
+                     <property name="alignment">
+                      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="1" column="2">
+                    <widget class="QPushButton" name="mb_di_default">
+                     <property name="minimumSize">
+                      <size>
+                       <width>0</width>
+                       <height>0</height>
+                      </size>
+                     </property>
+                     <property name="maximumSize">
+                      <size>
+                       <width>16777215</width>
+                       <height>16777215</height>
+                      </size>
+                     </property>
+                     <property name="toolTip">
+                      <string>set default number of DI registers (discrete input) (65536)</string>
+                     </property>
+                     <property name="statusTip">
+                      <string>set default number of DI registers (discrete input) (65536)</string>
+                     </property>
+                     <property name="text">
+                      <string>65536</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="0" column="3">
+                    <spacer name="horizontalSpacer_16">
+                     <property name="orientation">
+                      <enum>Qt::Horizontal</enum>
+                     </property>
+                     <property name="sizeHint" stdset="0">
+                      <size>
+                       <width>40</width>
+                       <height>20</height>
+                      </size>
+                     </property>
+                    </spacer>
+                   </item>
+                  </layout>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="Line" name="line_4">
+                  <property name="orientation">
+                   <enum>Qt::Horizontal</enum>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QLabel" name="label_30">
+                  <property name="font">
+                   <font>
+                    <pointsize>14</pointsize>
+                   </font>
+                  </property>
+                  <property name="toolTipDuration">
+                   <number>-1</number>
+                  </property>
+                  <property name="frameShadow">
+                   <enum>QFrame::Plain</enum>
+                  </property>
+                  <property name="lineWidth">
+                   <number>1</number>
+                  </property>
+                  <property name="text">
+                   <string>Shared Memory</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QWidget" name="widget_12" native="true">
+                  <layout class="QGridLayout" name="gridLayout_18">
+                   <item row="0" column="6">
+                    <widget class="QPushButton" name="mb_shm_flags_default">
+                     <property name="toolTip">
+                      <string>set default shared memory flags (force: false)</string>
+                     </property>
+                     <property name="statusTip">
+                      <string>set default shared memory flags (force: false)</string>
+                     </property>
+                     <property name="text">
+                      <string>defaults</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="0" column="0">
+                    <spacer name="horizontalSpacer_4">
+                     <property name="orientation">
+                      <enum>Qt::Horizontal</enum>
+                     </property>
+                     <property name="sizeHint" stdset="0">
+                      <size>
+                       <width>40</width>
+                       <height>20</height>
+                      </size>
+                     </property>
+                    </spacer>
+                   </item>
+                   <item row="0" column="1">
+                    <widget class="QCheckBox" name="mb_force">
+                     <property name="sizePolicy">
+                      <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+                       <horstretch>1</horstretch>
+                       <verstretch>0</verstretch>
+                      </sizepolicy>
+                     </property>
+                     <property name="toolTip">
+                      <string>orce the use of the shared memory even if it already exists. Do not use this option per default! It should only be used if the shared memory of an improperly terminated instance continues to exist as an orphan and is no longer used.</string>
+                     </property>
+                     <property name="statusTip">
+                      <string>force the use of the shared memory even if it already exists. </string>
+                     </property>
+                     <property name="text">
+                      <string>force</string>
+                     </property>
+                    </widget>
+                   </item>
+                  </layout>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QWidget" name="widget_13" native="true">
+                  <layout class="QGridLayout" name="gridLayout_19">
+                   <item row="0" column="1">
+                    <widget class="QLineEdit" name="mb_shm_name">
+                     <property name="text">
+                      <string>modbus_</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="0" column="2">
+                    <widget class="QPushButton" name="mb_shm_name_default">
+                     <property name="toolTip">
+                      <string>set default shared memory name prefix (modbus_)</string>
+                     </property>
+                     <property name="statusTip">
+                      <string>set default shared memory name prefix (modbus_)</string>
+                     </property>
+                     <property name="text">
+                      <string>modbus_</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="0" column="0">
+                    <widget class="QLabel" name="label_31">
+                     <property name="text">
+                      <string>name prefix:</string>
+                     </property>
+                    </widget>
+                   </item>
+                  </layout>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="Line" name="line_3">
+                  <property name="orientation">
+                   <enum>Qt::Horizontal</enum>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QLabel" name="label_15">
+                  <property name="font">
+                   <font>
+                    <pointsize>14</pointsize>
+                   </font>
+                  </property>
+                  <property name="text">
+                   <string>Modbus</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QWidget" name="widget_8" native="true">
+                  <property name="sizePolicy">
+                   <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                    <horstretch>0</horstretch>
+                    <verstretch>0</verstretch>
+                   </sizepolicy>
+                  </property>
+                  <layout class="QGridLayout" name="gridLayout_12">
+                   <item row="0" column="1">
+                    <widget class="QCheckBox" name="mb_monitor">
+                     <property name="sizePolicy">
+                      <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+                       <horstretch>0</horstretch>
+                       <verstretch>0</verstretch>
+                      </sizepolicy>
+                     </property>
+                     <property name="font">
+                      <font>
+                       <pointsize>9</pointsize>
+                      </font>
+                     </property>
+                     <property name="toolTip">
+                      <string>monitor all modbus PDUs</string>
+                     </property>
+                     <property name="statusTip">
+                      <string>monitor all modbus PDUs (strong impact on performance)</string>
+                     </property>
+                     <property name="text">
+                      <string>monitor</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="0" column="2">
+                    <spacer name="horizontalSpacer_7">
+                     <property name="orientation">
+                      <enum>Qt::Horizontal</enum>
+                     </property>
+                     <property name="sizeHint" stdset="0">
+                      <size>
+                       <width>40</width>
+                       <height>20</height>
+                      </size>
+                     </property>
+                    </spacer>
+                   </item>
+                   <item row="0" column="3">
+                    <widget class="QCheckBox" name="mb_enable_byte_timeout">
+                     <property name="toolTip">
+                      <string>manually set the libmodbus byte timeout</string>
+                     </property>
+                     <property name="statusTip">
+                      <string>manually set the libmodbus byte timeout</string>
+                     </property>
+                     <property name="text">
+                      <string>edit byte timeout</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="0" column="4">
+                    <spacer name="horizontalSpacer_8">
+                     <property name="orientation">
+                      <enum>Qt::Horizontal</enum>
+                     </property>
+                     <property name="sizeHint" stdset="0">
+                      <size>
+                       <width>40</width>
+                       <height>20</height>
+                      </size>
+                     </property>
+                    </spacer>
+                   </item>
+                   <item row="0" column="5">
+                    <widget class="QCheckBox" name="mb_enable_response_timeout">
+                     <property name="sizePolicy">
+                      <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+                       <horstretch>1</horstretch>
+                       <verstretch>0</verstretch>
+                      </sizepolicy>
+                     </property>
+                     <property name="toolTip">
+                      <string>manually set the libmodbus response timeout</string>
+                     </property>
+                     <property name="statusTip">
+                      <string>manually set the libmodbus response timeout</string>
+                     </property>
+                     <property name="text">
+                      <string>edit response timeout</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="0" column="6">
+                    <widget class="QPushButton" name="mb_mb_flags_default">
+                     <property name="toolTip">
+                      <string>set default modbus flags (all false)</string>
+                     </property>
+                     <property name="statusTip">
+                      <string>set default modbus flags (all false)</string>
+                     </property>
+                     <property name="text">
+                      <string>defaults</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="0" column="0">
+                    <spacer name="horizontalSpacer_11">
+                     <property name="orientation">
+                      <enum>Qt::Horizontal</enum>
+                     </property>
+                     <property name="sizeHint" stdset="0">
+                      <size>
+                       <width>40</width>
+                       <height>20</height>
+                      </size>
+                     </property>
+                    </spacer>
+                   </item>
+                  </layout>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QWidget" name="widget_9" native="true">
+                  <layout class="QGridLayout" name="gridLayout_13">
+                   <item row="0" column="1">
+                    <widget class="QDoubleSpinBox" name="mb_byte_timeout">
+                     <property name="enabled">
+                      <bool>false</bool>
+                     </property>
+                     <property name="sizePolicy">
+                      <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+                       <horstretch>1</horstretch>
+                       <verstretch>0</verstretch>
+                      </sizepolicy>
+                     </property>
+                     <property name="toolTip">
+                      <string>libmodbus byte timeout</string>
+                     </property>
+                     <property name="statusTip">
+                      <string>libmodbus byte timeout</string>
+                     </property>
+                     <property name="maximum">
+                      <double>86400.000000000000000</double>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="0" column="3">
+                    <widget class="QLabel" name="label_17">
+                     <property name="text">
+                      <string>response timeout:</string>
+                     </property>
+                     <property name="alignment">
+                      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="0" column="4">
+                    <widget class="QDoubleSpinBox" name="mb_response_timeout">
+                     <property name="enabled">
+                      <bool>false</bool>
+                     </property>
+                     <property name="sizePolicy">
+                      <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+                       <horstretch>1</horstretch>
+                       <verstretch>0</verstretch>
+                      </sizepolicy>
+                     </property>
+                     <property name="toolTip">
+                      <string>libmodbus response timeout</string>
+                     </property>
+                     <property name="statusTip">
+                      <string>libmodbus response timeout</string>
+                     </property>
+                     <property name="minimum">
+                      <double>0.000000000000000</double>
+                     </property>
+                     <property name="maximum">
+                      <double>86400.000000000000000</double>
+                     </property>
+                     <property name="value">
+                      <double>0.000000000000000</double>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="0" column="5">
+                    <spacer name="horizontalSpacer_15">
+                     <property name="orientation">
+                      <enum>Qt::Horizontal</enum>
+                     </property>
+                     <property name="sizeType">
+                      <enum>QSizePolicy::Fixed</enum>
+                     </property>
+                     <property name="sizeHint" stdset="0">
+                      <size>
+                       <width>80</width>
+                       <height>20</height>
+                      </size>
+                     </property>
+                    </spacer>
+                   </item>
+                   <item row="0" column="0">
+                    <widget class="QLabel" name="label_16">
+                     <property name="text">
+                      <string>byte timeout:</string>
+                     </property>
+                     <property name="alignment">
+                      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="0" column="2">
+                    <spacer name="horizontalSpacer_17">
+                     <property name="orientation">
+                      <enum>Qt::Horizontal</enum>
+                     </property>
+                     <property name="sizeHint" stdset="0">
+                      <size>
+                       <width>40</width>
+                       <height>20</height>
+                      </size>
+                     </property>
+                    </spacer>
+                   </item>
+                  </layout>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="Line" name="line_2">
+                  <property name="orientation">
+                   <enum>Qt::Horizontal</enum>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QLabel" name="label_13">
+                  <property name="font">
+                   <font>
+                    <pointsize>14</pointsize>
+                   </font>
+                  </property>
+                  <property name="text">
+                   <string>Semaphore</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QWidget" name="widget_5" native="true">
+                  <layout class="QGridLayout" name="gridLayout_9">
+                   <item row="0" column="3">
+                    <widget class="QCheckBox" name="mb_sem_force">
+                     <property name="sizePolicy">
+                      <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+                       <horstretch>1</horstretch>
+                       <verstretch>0</verstretch>
+                      </sizepolicy>
+                     </property>
+                     <property name="toolTip">
+                      <string>Force the use of the semaphore even if it already exists. Do not use this option per default! It should only be used if the semaphore of an improperly terminated instance continues to exist as an orphan and is no longer used.</string>
+                     </property>
+                     <property name="statusTip">
+                      <string>Force the use of the semaphore even if it already exists.</string>
+                     </property>
+                     <property name="text">
+                      <string>force</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="0" column="1">
+                    <widget class="QCheckBox" name="mb_sem_enable">
+                     <property name="toolTip">
+                      <string>enable semaphore mechanism</string>
+                     </property>
+                     <property name="statusTip">
+                      <string>enable semaphore mechanism to protect the shared memory from simultaneous access.</string>
+                     </property>
+                     <property name="text">
+                      <string>enable</string>
+                     </property>
+                     <property name="checked">
+                      <bool>true</bool>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="0" column="2">
+                    <spacer name="horizontalSpacer_5">
+                     <property name="orientation">
+                      <enum>Qt::Horizontal</enum>
+                     </property>
+                     <property name="sizeHint" stdset="0">
+                      <size>
+                       <width>40</width>
+                       <height>20</height>
+                      </size>
+                     </property>
+                    </spacer>
+                   </item>
+                   <item row="0" column="4">
+                    <widget class="QPushButton" name="mb_sem_defaults">
+                     <property name="toolTip">
+                      <string>set default semaphore flags (enabled: true, force: false)</string>
+                     </property>
+                     <property name="statusTip">
+                      <string>set default semaphore flags (enabled: true, force: false)</string>
+                     </property>
+                     <property name="text">
+                      <string>defaults</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="0" column="0">
+                    <spacer name="horizontalSpacer_12">
+                     <property name="orientation">
+                      <enum>Qt::Horizontal</enum>
+                     </property>
+                     <property name="sizeHint" stdset="0">
+                      <size>
+                       <width>40</width>
+                       <height>20</height>
+                      </size>
+                     </property>
+                    </spacer>
+                   </item>
+                  </layout>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QWidget" name="widget_6" native="true">
+                  <layout class="QGridLayout" name="gridLayout_10">
+                   <item row="0" column="0">
+                    <widget class="QLabel" name="label_14">
+                     <property name="text">
+                      <string>name:</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="0" column="1">
+                    <widget class="QLineEdit" name="mb_sem_name">
+                     <property name="toolTip">
+                      <string>semaphore name</string>
+                     </property>
+                     <property name="statusTip">
+                      <string>semaphore name</string>
+                     </property>
+                     <property name="text">
+                      <string>modbus</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="0" column="2">
+                    <widget class="QPushButton" name="mb_sem_name_default">
+                     <property name="toolTip">
+                      <string>set default semaphore name (modbus)</string>
+                     </property>
+                     <property name="statusTip">
+                      <string>set default semaphore name (modbus)</string>
+                     </property>
+                     <property name="text">
+                      <string>modbus</string>
+                     </property>
+                    </widget>
+                   </item>
+                  </layout>
+                 </widget>
+                </item>
+               </layout>
+              </widget>
+             </widget>
+            </item>
+            <item row="1" column="0">
+             <widget class="QWidget" name="widget_11" native="true">
+              <layout class="QGridLayout" name="gridLayout_17">
+               <item row="0" column="0">
+                <widget class="QPushButton" name="mb_defaults">
+                 <property name="text">
+                  <string>Defaults</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="1">
+                <spacer name="horizontalSpacer">
+                 <property name="orientation">
+                  <enum>Qt::Horizontal</enum>
+                 </property>
+                 <property name="sizeHint" stdset="0">
+                  <size>
+                   <width>40</width>
+                   <height>20</height>
+                  </size>
+                 </property>
+                </spacer>
+               </item>
+              </layout>
+             </widget>
+            </item>
+           </layout>
+          </widget>
           <widget class="QWidget" name="tab_mbtcp">
            <attribute name="title">
-            <string>TCP</string>
+            <string>Modbus Client TCP</string>
            </attribute>
            <layout class="QGridLayout" name="gridLayout_3">
             <property name="sizeConstraint">
@@ -100,17 +959,127 @@
                <property name="geometry">
                 <rect>
                  <x>0</x>
-                 <y>-510</y>
+                 <y>0</y>
                  <width>727</width>
-                 <height>895</height>
+                 <height>431</height>
                 </rect>
                </property>
                <layout class="QGridLayout" name="gridLayout_4">
-                <item row="16" column="0">
-                 <widget class="QWidget" name="widget_5" native="true">
-                  <layout class="QGridLayout" name="gridLayout_9">
+                <item row="6" column="0">
+                 <widget class="QWidget" name="widget_4" native="true">
+                  <layout class="QGridLayout" name="gridLayout_8">
+                   <item row="0" column="1">
+                    <widget class="QLineEdit" name="mbtcp_separate_list">
+                     <property name="enabled">
+                      <bool>false</bool>
+                     </property>
+                     <property name="toolTip">
+                      <string>comma separated list of client ids for wich a separate shared memory is used.</string>
+                     </property>
+                     <property name="statusTip">
+                      <string>comma separated list of client ids for wich a separate shared memory is used.</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="0" column="0">
+                    <widget class="QLabel" name="label_12">
+                     <property name="text">
+                      <string>separate:</string>
+                     </property>
+                     <property name="alignment">
+                      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="0" column="2">
+                    <widget class="QPushButton" name="mbtcp_separate_list_clear">
+                     <property name="toolTip">
+                      <string>clear list</string>
+                     </property>
+                     <property name="statusTip">
+                      <string>clear list</string>
+                     </property>
+                     <property name="text">
+                      <string>clear</string>
+                     </property>
+                    </widget>
+                   </item>
+                  </layout>
+                 </widget>
+                </item>
+                <item row="7" column="0">
+                 <spacer name="verticalSpacer">
+                  <property name="orientation">
+                   <enum>Qt::Vertical</enum>
+                  </property>
+                  <property name="sizeHint" stdset="0">
+                   <size>
+                    <width>20</width>
+                    <height>40</height>
+                   </size>
+                  </property>
+                 </spacer>
+                </item>
+                <item row="4" column="0">
+                 <widget class="QWidget" name="widget_3" native="true">
+                  <layout class="QGridLayout" name="gridLayout_7">
                    <item row="0" column="3">
-                    <widget class="QCheckBox" name="mbtcp_sem_force">
+                    <spacer name="horizontalSpacer_3">
+                     <property name="orientation">
+                      <enum>Qt::Horizontal</enum>
+                     </property>
+                     <property name="sizeHint" stdset="0">
+                      <size>
+                       <width>40</width>
+                       <height>20</height>
+                      </size>
+                     </property>
+                    </spacer>
+                   </item>
+                   <item row="0" column="2">
+                    <widget class="QCheckBox" name="mbtcp_separate">
+                     <property name="toolTip">
+                      <string>Use a separate shared memory for requests with specific client ids.</string>
+                     </property>
+                     <property name="statusTip">
+                      <string>Use a separate shared memory for requests with specific client ids.</string>
+                     </property>
+                     <property name="text">
+                      <string>separate</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="0" column="1">
+                    <spacer name="horizontalSpacer_2">
+                     <property name="orientation">
+                      <enum>Qt::Horizontal</enum>
+                     </property>
+                     <property name="sizeHint" stdset="0">
+                      <size>
+                       <width>40</width>
+                       <height>20</height>
+                      </size>
+                     </property>
+                    </spacer>
+                   </item>
+                   <item row="0" column="5">
+                    <widget class="QPushButton" name="mbtcp_shm_defaults">
+                     <property name="toolTip">
+                      <string>set default shared memory flags (force: false, separate: false)</string>
+                     </property>
+                     <property name="statusTip">
+                      <string>set default shared memory flags (force: false, separate: false)</string>
+                     </property>
+                     <property name="text">
+                      <string>defaults</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="0" column="4">
+                    <widget class="QCheckBox" name="mbtcp_separate_all">
+                     <property name="enabled">
+                      <bool>false</bool>
+                     </property>
                      <property name="sizePolicy">
                       <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
                        <horstretch>1</horstretch>
@@ -118,75 +1087,36 @@
                       </sizepolicy>
                      </property>
                      <property name="toolTip">
-                      <string>Force the use of the semaphore even if it already exists. Do not use this option per default! It should only be used if the semaphore of an improperly terminated instance continues to exist as an orphan and is no longer used.</string>
+                      <string>Use a separate shared memory for each client id .</string>
                      </property>
                      <property name="statusTip">
-                      <string>Force the use of the semaphore even if it already exists.</string>
+                      <string>Use a separate shared memory for each client id .</string>
                      </property>
                      <property name="text">
-                      <string>force</string>
+                      <string>separate-all</string>
                      </property>
                     </widget>
-                   </item>
-                   <item row="0" column="1">
-                    <widget class="QCheckBox" name="mbtcp_sem_enable">
-                     <property name="toolTip">
-                      <string>enable semaphore mechanism</string>
-                     </property>
-                     <property name="statusTip">
-                      <string>enable semaphore mechanism to protect the shared memory from simultaneous access.</string>
-                     </property>
-                     <property name="text">
-                      <string>enable</string>
-                     </property>
-                     <property name="checked">
-                      <bool>true</bool>
-                     </property>
-                    </widget>
-                   </item>
-                   <item row="0" column="2">
-                    <spacer name="horizontalSpacer_5">
-                     <property name="orientation">
-                      <enum>Qt::Horizontal</enum>
-                     </property>
-                     <property name="sizeHint" stdset="0">
-                      <size>
-                       <width>40</width>
-                       <height>20</height>
-                      </size>
-                     </property>
-                    </spacer>
-                   </item>
-                   <item row="0" column="4">
-                    <widget class="QPushButton" name="mbtcp_sem_defaults">
-                     <property name="toolTip">
-                      <string>set default semaphore flags (enabled: true, force: false)</string>
-                     </property>
-                     <property name="statusTip">
-                      <string>set default semaphore flags (enabled: true, force: false)</string>
-                     </property>
-                     <property name="text">
-                      <string>defaults</string>
-                     </property>
-                    </widget>
-                   </item>
-                   <item row="0" column="0">
-                    <spacer name="horizontalSpacer_12">
-                     <property name="orientation">
-                      <enum>Qt::Horizontal</enum>
-                     </property>
-                     <property name="sizeHint" stdset="0">
-                      <size>
-                       <width>40</width>
-                       <height>20</height>
-                      </size>
-                     </property>
-                    </spacer>
                    </item>
                   </layout>
                  </widget>
                 </item>
-                <item row="6" column="0">
+                <item row="0" column="0">
+                 <widget class="QLabel" name="label">
+                  <property name="font">
+                   <font>
+                    <pointsize>14</pointsize>
+                    <underline>false</underline>
+                   </font>
+                  </property>
+                  <property name="text">
+                   <string>Network</string>
+                  </property>
+                  <property name="alignment">
+                   <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+                  </property>
+                 </widget>
+                </item>
+                <item row="3" column="0">
                  <widget class="QLabel" name="label_9">
                   <property name="font">
                    <font>
@@ -399,851 +1329,10 @@
                   </layout>
                  </widget>
                 </item>
-                <item row="13" column="0">
-                 <widget class="QWidget" name="widget_9" native="true">
-                  <layout class="QGridLayout" name="gridLayout_13">
-                   <item row="0" column="1">
-                    <widget class="QDoubleSpinBox" name="mbtcp_byte_timeout">
-                     <property name="enabled">
-                      <bool>false</bool>
-                     </property>
-                     <property name="sizePolicy">
-                      <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
-                       <horstretch>1</horstretch>
-                       <verstretch>0</verstretch>
-                      </sizepolicy>
-                     </property>
-                     <property name="toolTip">
-                      <string>libmodbus byte timeout</string>
-                     </property>
-                     <property name="statusTip">
-                      <string>libmodbus byte timeout</string>
-                     </property>
-                     <property name="maximum">
-                      <double>86400.000000000000000</double>
-                     </property>
-                    </widget>
-                   </item>
-                   <item row="0" column="3">
-                    <widget class="QLabel" name="label_17">
-                     <property name="text">
-                      <string>response timeout:</string>
-                     </property>
-                     <property name="alignment">
-                      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-                     </property>
-                    </widget>
-                   </item>
-                   <item row="0" column="4">
-                    <widget class="QDoubleSpinBox" name="mbtcp_response_timeout">
-                     <property name="enabled">
-                      <bool>false</bool>
-                     </property>
-                     <property name="sizePolicy">
-                      <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
-                       <horstretch>1</horstretch>
-                       <verstretch>0</verstretch>
-                      </sizepolicy>
-                     </property>
-                     <property name="toolTip">
-                      <string>libmodbus response timeout</string>
-                     </property>
-                     <property name="statusTip">
-                      <string>libmodbus response timeout</string>
-                     </property>
-                     <property name="minimum">
-                      <double>0.000000000000000</double>
-                     </property>
-                     <property name="maximum">
-                      <double>86400.000000000000000</double>
-                     </property>
-                     <property name="value">
-                      <double>0.000000000000000</double>
-                     </property>
-                    </widget>
-                   </item>
-                   <item row="0" column="5">
-                    <spacer name="horizontalSpacer_15">
-                     <property name="orientation">
-                      <enum>Qt::Horizontal</enum>
-                     </property>
-                     <property name="sizeType">
-                      <enum>QSizePolicy::Fixed</enum>
-                     </property>
-                     <property name="sizeHint" stdset="0">
-                      <size>
-                       <width>80</width>
-                       <height>20</height>
-                      </size>
-                     </property>
-                    </spacer>
-                   </item>
-                   <item row="0" column="0">
-                    <widget class="QLabel" name="label_16">
-                     <property name="text">
-                      <string>byte timeout:</string>
-                     </property>
-                     <property name="alignment">
-                      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-                     </property>
-                    </widget>
-                   </item>
-                   <item row="0" column="2">
-                    <spacer name="horizontalSpacer_17">
-                     <property name="orientation">
-                      <enum>Qt::Horizontal</enum>
-                     </property>
-                     <property name="sizeHint" stdset="0">
-                      <size>
-                       <width>40</width>
-                       <height>20</height>
-                      </size>
-                     </property>
-                    </spacer>
-                   </item>
-                  </layout>
-                 </widget>
-                </item>
-                <item row="18" column="0">
-                 <spacer name="verticalSpacer">
-                  <property name="orientation">
-                   <enum>Qt::Vertical</enum>
-                  </property>
-                  <property name="sizeHint" stdset="0">
-                   <size>
-                    <width>20</width>
-                    <height>40</height>
-                   </size>
-                  </property>
-                 </spacer>
-                </item>
-                <item row="12" column="0">
-                 <widget class="QWidget" name="widget_8" native="true">
-                  <property name="sizePolicy">
-                   <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-                    <horstretch>0</horstretch>
-                    <verstretch>0</verstretch>
-                   </sizepolicy>
-                  </property>
-                  <layout class="QGridLayout" name="gridLayout_12">
-                   <item row="0" column="1">
-                    <widget class="QCheckBox" name="mbtcp_monitor">
-                     <property name="sizePolicy">
-                      <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
-                       <horstretch>0</horstretch>
-                       <verstretch>0</verstretch>
-                      </sizepolicy>
-                     </property>
-                     <property name="font">
-                      <font>
-                       <pointsize>9</pointsize>
-                      </font>
-                     </property>
-                     <property name="toolTip">
-                      <string>monitor all modbus PDUs</string>
-                     </property>
-                     <property name="statusTip">
-                      <string>monitor all modbus PDUs (strong impact on performance)</string>
-                     </property>
-                     <property name="text">
-                      <string>monitor</string>
-                     </property>
-                    </widget>
-                   </item>
-                   <item row="0" column="2">
-                    <spacer name="horizontalSpacer_7">
-                     <property name="orientation">
-                      <enum>Qt::Horizontal</enum>
-                     </property>
-                     <property name="sizeHint" stdset="0">
-                      <size>
-                       <width>40</width>
-                       <height>20</height>
-                      </size>
-                     </property>
-                    </spacer>
-                   </item>
-                   <item row="0" column="3">
-                    <widget class="QCheckBox" name="mbtcp_enable_byte_timeout">
-                     <property name="toolTip">
-                      <string>manually set the libmodbus byte timeout</string>
-                     </property>
-                     <property name="statusTip">
-                      <string>manually set the libmodbus byte timeout</string>
-                     </property>
-                     <property name="text">
-                      <string>edit byte timeout</string>
-                     </property>
-                    </widget>
-                   </item>
-                   <item row="0" column="4">
-                    <spacer name="horizontalSpacer_8">
-                     <property name="orientation">
-                      <enum>Qt::Horizontal</enum>
-                     </property>
-                     <property name="sizeHint" stdset="0">
-                      <size>
-                       <width>40</width>
-                       <height>20</height>
-                      </size>
-                     </property>
-                    </spacer>
-                   </item>
-                   <item row="0" column="5">
-                    <widget class="QCheckBox" name="mbtcp_enable_response_timeout">
-                     <property name="sizePolicy">
-                      <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
-                       <horstretch>1</horstretch>
-                       <verstretch>0</verstretch>
-                      </sizepolicy>
-                     </property>
-                     <property name="toolTip">
-                      <string>manually set the libmodbus response timeout</string>
-                     </property>
-                     <property name="statusTip">
-                      <string>manually set the libmodbus response timeout</string>
-                     </property>
-                     <property name="text">
-                      <string>edit response timeout</string>
-                     </property>
-                    </widget>
-                   </item>
-                   <item row="0" column="6">
-                    <widget class="QPushButton" name="mbtcp_mb_flags_default">
-                     <property name="toolTip">
-                      <string>set default modbus flags (all false)</string>
-                     </property>
-                     <property name="statusTip">
-                      <string>set default modbus flags (all false)</string>
-                     </property>
-                     <property name="text">
-                      <string>defaults</string>
-                     </property>
-                    </widget>
-                   </item>
-                   <item row="0" column="0">
-                    <spacer name="horizontalSpacer_11">
-                     <property name="orientation">
-                      <enum>Qt::Horizontal</enum>
-                     </property>
-                     <property name="sizeHint" stdset="0">
-                      <size>
-                       <width>40</width>
-                       <height>20</height>
-                      </size>
-                     </property>
-                    </spacer>
-                   </item>
-                  </layout>
-                 </widget>
-                </item>
-                <item row="17" column="0">
-                 <widget class="QWidget" name="widget_6" native="true">
-                  <layout class="QGridLayout" name="gridLayout_10">
-                   <item row="0" column="0">
-                    <widget class="QLabel" name="label_14">
-                     <property name="text">
-                      <string>name:</string>
-                     </property>
-                    </widget>
-                   </item>
-                   <item row="0" column="1">
-                    <widget class="QLineEdit" name="mbtcp_sem_name">
-                     <property name="toolTip">
-                      <string>semaphore name</string>
-                     </property>
-                     <property name="statusTip">
-                      <string>semaphore name</string>
-                     </property>
-                     <property name="text">
-                      <string>modbus</string>
-                     </property>
-                    </widget>
-                   </item>
-                   <item row="0" column="2">
-                    <widget class="QPushButton" name="mbtcp_sem_name_default">
-                     <property name="toolTip">
-                      <string>set default semaphore name (modbus)</string>
-                     </property>
-                     <property name="statusTip">
-                      <string>set default semaphore name (modbus)</string>
-                     </property>
-                     <property name="text">
-                      <string>modbus</string>
-                     </property>
-                    </widget>
-                   </item>
-                  </layout>
-                 </widget>
-                </item>
-                <item row="7" column="0">
-                 <widget class="QWidget" name="widget_3" native="true">
-                  <layout class="QGridLayout" name="gridLayout_7">
-                   <item row="0" column="3">
-                    <spacer name="horizontalSpacer_2">
-                     <property name="orientation">
-                      <enum>Qt::Horizontal</enum>
-                     </property>
-                     <property name="sizeHint" stdset="0">
-                      <size>
-                       <width>40</width>
-                       <height>20</height>
-                      </size>
-                     </property>
-                    </spacer>
-                   </item>
-                   <item row="0" column="2">
-                    <widget class="QCheckBox" name="mbtcp_force">
-                     <property name="sizePolicy">
-                      <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
-                       <horstretch>0</horstretch>
-                       <verstretch>0</verstretch>
-                      </sizepolicy>
-                     </property>
-                     <property name="toolTip">
-                      <string>orce the use of the shared memory even if it already exists. Do not use this option per default! It should only be used if the shared memory of an improperly terminated instance continues to exist as an orphan and is no longer used.</string>
-                     </property>
-                     <property name="statusTip">
-                      <string>force the use of the shared memory even if it already exists. </string>
-                     </property>
-                     <property name="text">
-                      <string>force</string>
-                     </property>
-                    </widget>
-                   </item>
-                   <item row="0" column="4">
-                    <widget class="QCheckBox" name="mbtcp_separate">
-                     <property name="toolTip">
-                      <string>Use a separate shared memory for requests with specific client ids.</string>
-                     </property>
-                     <property name="statusTip">
-                      <string>Use a separate shared memory for requests with specific client ids.</string>
-                     </property>
-                     <property name="text">
-                      <string>separate</string>
-                     </property>
-                    </widget>
-                   </item>
-                   <item row="0" column="5">
-                    <spacer name="horizontalSpacer_3">
-                     <property name="orientation">
-                      <enum>Qt::Horizontal</enum>
-                     </property>
-                     <property name="sizeHint" stdset="0">
-                      <size>
-                       <width>40</width>
-                       <height>20</height>
-                      </size>
-                     </property>
-                    </spacer>
-                   </item>
-                   <item row="0" column="6">
-                    <widget class="QCheckBox" name="mbtcp_separate_all">
-                     <property name="enabled">
-                      <bool>false</bool>
-                     </property>
-                     <property name="sizePolicy">
-                      <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
-                       <horstretch>1</horstretch>
-                       <verstretch>0</verstretch>
-                      </sizepolicy>
-                     </property>
-                     <property name="toolTip">
-                      <string>Use a separate shared memory for each client id .</string>
-                     </property>
-                     <property name="statusTip">
-                      <string>Use a separate shared memory for each client id .</string>
-                     </property>
-                     <property name="text">
-                      <string>separate-all</string>
-                     </property>
-                    </widget>
-                   </item>
-                   <item row="0" column="1">
-                    <spacer name="horizontalSpacer">
-                     <property name="orientation">
-                      <enum>Qt::Horizontal</enum>
-                     </property>
-                     <property name="sizeHint" stdset="0">
-                      <size>
-                       <width>40</width>
-                       <height>20</height>
-                      </size>
-                     </property>
-                    </spacer>
-                   </item>
-                   <item row="0" column="7">
-                    <widget class="QPushButton" name="mbtcp_shm_defaults">
-                     <property name="toolTip">
-                      <string>set default shared memory flags (force: false, separate: false)</string>
-                     </property>
-                     <property name="statusTip">
-                      <string>set default shared memory flags (force: false, separate: false)</string>
-                     </property>
-                     <property name="text">
-                      <string>defaults</string>
-                     </property>
-                    </widget>
-                   </item>
-                  </layout>
-                 </widget>
-                </item>
-                <item row="10" column="0">
-                 <widget class="Line" name="line_3">
-                  <property name="orientation">
-                   <enum>Qt::Horizontal</enum>
-                  </property>
-                 </widget>
-                </item>
                 <item row="2" column="0">
                  <widget class="Line" name="line">
                   <property name="orientation">
                    <enum>Qt::Horizontal</enum>
-                  </property>
-                 </widget>
-                </item>
-                <item row="14" column="0">
-                 <widget class="Line" name="line_4">
-                  <property name="orientation">
-                   <enum>Qt::Horizontal</enum>
-                  </property>
-                 </widget>
-                </item>
-                <item row="9" column="0">
-                 <widget class="QWidget" name="widget_4" native="true">
-                  <layout class="QGridLayout" name="gridLayout_8">
-                   <item row="0" column="0">
-                    <widget class="QLabel" name="label_10">
-                     <property name="text">
-                      <string>name prefix:</string>
-                     </property>
-                     <property name="alignment">
-                      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-                     </property>
-                    </widget>
-                   </item>
-                   <item row="0" column="1">
-                    <widget class="QLineEdit" name="mbtcp_name_prefix">
-                     <property name="toolTip">
-                      <string>shared memory name prefix</string>
-                     </property>
-                     <property name="statusTip">
-                      <string>shared memory name prefix</string>
-                     </property>
-                     <property name="text">
-                      <string>modbus_</string>
-                     </property>
-                    </widget>
-                   </item>
-                   <item row="0" column="2">
-                    <widget class="QPushButton" name="mbtcp_name_default">
-                     <property name="toolTip">
-                      <string>set default shared memory name prefix (modbus_)</string>
-                     </property>
-                     <property name="statusTip">
-                      <string>set default shared memory name prefix (modbus_)</string>
-                     </property>
-                     <property name="text">
-                      <string>modbus_</string>
-                     </property>
-                    </widget>
-                   </item>
-                   <item row="1" column="0">
-                    <widget class="QLabel" name="label_12">
-                     <property name="text">
-                      <string>separate:</string>
-                     </property>
-                     <property name="alignment">
-                      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-                     </property>
-                    </widget>
-                   </item>
-                   <item row="1" column="1">
-                    <widget class="QLineEdit" name="mbtcp_separate_list">
-                     <property name="enabled">
-                      <bool>false</bool>
-                     </property>
-                     <property name="toolTip">
-                      <string>comma separated list of client ids for wich a separate shared memory is used.</string>
-                     </property>
-                     <property name="statusTip">
-                      <string>comma separated list of client ids for wich a separate shared memory is used.</string>
-                     </property>
-                    </widget>
-                   </item>
-                   <item row="1" column="2">
-                    <widget class="QPushButton" name="mbtcp_separate_list_clear">
-                     <property name="toolTip">
-                      <string>clear list</string>
-                     </property>
-                     <property name="statusTip">
-                      <string>clear list</string>
-                     </property>
-                     <property name="text">
-                      <string>clear</string>
-                     </property>
-                    </widget>
-                   </item>
-                  </layout>
-                 </widget>
-                </item>
-                <item row="3" column="0">
-                 <widget class="QLabel" name="label_4">
-                  <property name="font">
-                   <font>
-                    <pointsize>14</pointsize>
-                   </font>
-                  </property>
-                  <property name="text">
-                   <string>Registers</string>
-                  </property>
-                 </widget>
-                </item>
-                <item row="11" column="0">
-                 <widget class="QLabel" name="label_15">
-                  <property name="font">
-                   <font>
-                    <pointsize>14</pointsize>
-                   </font>
-                  </property>
-                  <property name="text">
-                   <string>Modbus</string>
-                  </property>
-                 </widget>
-                </item>
-                <item row="5" column="0">
-                 <widget class="Line" name="line_2">
-                  <property name="orientation">
-                   <enum>Qt::Horizontal</enum>
-                  </property>
-                 </widget>
-                </item>
-                <item row="4" column="0">
-                 <widget class="QWidget" name="widget_2" native="true">
-                  <layout class="QGridLayout" name="gridLayout_6">
-                   <item row="0" column="1">
-                    <widget class="QSpinBox" name="mbtcp_do">
-                     <property name="sizePolicy">
-                      <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
-                       <horstretch>1</horstretch>
-                       <verstretch>0</verstretch>
-                      </sizepolicy>
-                     </property>
-                     <property name="toolTip">
-                      <string>number of DO registers (Coils, discrete output)</string>
-                     </property>
-                     <property name="statusTip">
-                      <string>number of DO registers (Coils, discrete output)</string>
-                     </property>
-                     <property name="minimum">
-                      <number>1</number>
-                     </property>
-                     <property name="maximum">
-                      <number>65536</number>
-                     </property>
-                     <property name="value">
-                      <number>65536</number>
-                     </property>
-                    </widget>
-                   </item>
-                   <item row="0" column="2">
-                    <widget class="QPushButton" name="mbtcp_do_default">
-                     <property name="sizePolicy">
-                      <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
-                       <horstretch>0</horstretch>
-                       <verstretch>0</verstretch>
-                      </sizepolicy>
-                     </property>
-                     <property name="minimumSize">
-                      <size>
-                       <width>0</width>
-                       <height>0</height>
-                      </size>
-                     </property>
-                     <property name="maximumSize">
-                      <size>
-                       <width>16777215</width>
-                       <height>16777215</height>
-                      </size>
-                     </property>
-                     <property name="toolTip">
-                      <string>set default number of DO registers (Coils, discrete output) (65536)</string>
-                     </property>
-                     <property name="statusTip">
-                      <string>set default number of DO registers (Coils, discrete output) (65536)</string>
-                     </property>
-                     <property name="text">
-                      <string>65536</string>
-                     </property>
-                     <property name="iconSize">
-                      <size>
-                       <width>16</width>
-                       <height>16</height>
-                      </size>
-                     </property>
-                    </widget>
-                   </item>
-                   <item row="1" column="0">
-                    <widget class="QLabel" name="label_6">
-                     <property name="sizePolicy">
-                      <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
-                       <horstretch>0</horstretch>
-                       <verstretch>0</verstretch>
-                      </sizepolicy>
-                     </property>
-                     <property name="text">
-                      <string>DI:</string>
-                     </property>
-                     <property name="alignment">
-                      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-                     </property>
-                    </widget>
-                   </item>
-                   <item row="1" column="1">
-                    <widget class="QSpinBox" name="mbtcp_di">
-                     <property name="sizePolicy">
-                      <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
-                       <horstretch>1</horstretch>
-                       <verstretch>0</verstretch>
-                      </sizepolicy>
-                     </property>
-                     <property name="toolTip">
-                      <string>number of DI registers (discrete input)</string>
-                     </property>
-                     <property name="statusTip">
-                      <string>number of DI registers (discrete input)</string>
-                     </property>
-                     <property name="minimum">
-                      <number>1</number>
-                     </property>
-                     <property name="maximum">
-                      <number>65536</number>
-                     </property>
-                     <property name="value">
-                      <number>65536</number>
-                     </property>
-                    </widget>
-                   </item>
-                   <item row="1" column="5">
-                    <widget class="QSpinBox" name="mbtcp_ai">
-                     <property name="sizePolicy">
-                      <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
-                       <horstretch>1</horstretch>
-                       <verstretch>0</verstretch>
-                      </sizepolicy>
-                     </property>
-                     <property name="toolTip">
-                      <string>number of AI registers (input registers)</string>
-                     </property>
-                     <property name="statusTip">
-                      <string>number of AI registers (input registers)</string>
-                     </property>
-                     <property name="minimum">
-                      <number>1</number>
-                     </property>
-                     <property name="maximum">
-                      <number>65536</number>
-                     </property>
-                     <property name="value">
-                      <number>65536</number>
-                     </property>
-                    </widget>
-                   </item>
-                   <item row="0" column="0">
-                    <widget class="QLabel" name="label_5">
-                     <property name="sizePolicy">
-                      <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
-                       <horstretch>0</horstretch>
-                       <verstretch>0</verstretch>
-                      </sizepolicy>
-                     </property>
-                     <property name="text">
-                      <string>DO:</string>
-                     </property>
-                     <property name="alignment">
-                      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-                     </property>
-                    </widget>
-                   </item>
-                   <item row="0" column="5">
-                    <widget class="QSpinBox" name="mbtcp_ao">
-                     <property name="sizePolicy">
-                      <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
-                       <horstretch>1</horstretch>
-                       <verstretch>0</verstretch>
-                      </sizepolicy>
-                     </property>
-                     <property name="toolTip">
-                      <string>number of AO registers (holding registers)</string>
-                     </property>
-                     <property name="statusTip">
-                      <string>number of AO registers (holding registers)</string>
-                     </property>
-                     <property name="minimum">
-                      <number>1</number>
-                     </property>
-                     <property name="maximum">
-                      <number>65536</number>
-                     </property>
-                     <property name="value">
-                      <number>65536</number>
-                     </property>
-                    </widget>
-                   </item>
-                   <item row="1" column="6">
-                    <widget class="QPushButton" name="mbtcp_ai_default">
-                     <property name="minimumSize">
-                      <size>
-                       <width>0</width>
-                       <height>0</height>
-                      </size>
-                     </property>
-                     <property name="maximumSize">
-                      <size>
-                       <width>16777215</width>
-                       <height>16777215</height>
-                      </size>
-                     </property>
-                     <property name="toolTip">
-                      <string>set default number of AI registers (input registers) (65536)</string>
-                     </property>
-                     <property name="statusTip">
-                      <string>set default number of AI registers (input registers) (65536)</string>
-                     </property>
-                     <property name="text">
-                      <string>65536</string>
-                     </property>
-                    </widget>
-                   </item>
-                   <item row="0" column="6">
-                    <widget class="QPushButton" name="mbtcp_ao_default">
-                     <property name="minimumSize">
-                      <size>
-                       <width>0</width>
-                       <height>0</height>
-                      </size>
-                     </property>
-                     <property name="maximumSize">
-                      <size>
-                       <width>16777215</width>
-                       <height>16777215</height>
-                      </size>
-                     </property>
-                     <property name="toolTip">
-                      <string>set default number of AO registers (holding registers) (65536)</string>
-                     </property>
-                     <property name="statusTip">
-                      <string>set default number of AO registers (holding registers) (65536)</string>
-                     </property>
-                     <property name="accessibleName">
-                      <string/>
-                     </property>
-                     <property name="text">
-                      <string>65536</string>
-                     </property>
-                    </widget>
-                   </item>
-                   <item row="0" column="4">
-                    <widget class="QLabel" name="label_7">
-                     <property name="sizePolicy">
-                      <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
-                       <horstretch>0</horstretch>
-                       <verstretch>0</verstretch>
-                      </sizepolicy>
-                     </property>
-                     <property name="toolTip">
-                      <string/>
-                     </property>
-                     <property name="text">
-                      <string>AO:</string>
-                     </property>
-                     <property name="alignment">
-                      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-                     </property>
-                    </widget>
-                   </item>
-                   <item row="1" column="4">
-                    <widget class="QLabel" name="label_8">
-                     <property name="sizePolicy">
-                      <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
-                       <horstretch>0</horstretch>
-                       <verstretch>0</verstretch>
-                      </sizepolicy>
-                     </property>
-                     <property name="text">
-                      <string>AI:</string>
-                     </property>
-                     <property name="alignment">
-                      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-                     </property>
-                    </widget>
-                   </item>
-                   <item row="1" column="2">
-                    <widget class="QPushButton" name="mbtcp_di_default">
-                     <property name="minimumSize">
-                      <size>
-                       <width>0</width>
-                       <height>0</height>
-                      </size>
-                     </property>
-                     <property name="maximumSize">
-                      <size>
-                       <width>16777215</width>
-                       <height>16777215</height>
-                      </size>
-                     </property>
-                     <property name="toolTip">
-                      <string>set default number of DI registers (discrete input) (65536)</string>
-                     </property>
-                     <property name="statusTip">
-                      <string>set default number of DI registers (discrete input) (65536)</string>
-                     </property>
-                     <property name="text">
-                      <string>65536</string>
-                     </property>
-                    </widget>
-                   </item>
-                   <item row="0" column="3">
-                    <spacer name="horizontalSpacer_16">
-                     <property name="orientation">
-                      <enum>Qt::Horizontal</enum>
-                     </property>
-                     <property name="sizeHint" stdset="0">
-                      <size>
-                       <width>40</width>
-                       <height>20</height>
-                      </size>
-                     </property>
-                    </spacer>
-                   </item>
-                  </layout>
-                 </widget>
-                </item>
-                <item row="15" column="0">
-                 <widget class="QLabel" name="label_13">
-                  <property name="font">
-                   <font>
-                    <pointsize>14</pointsize>
-                   </font>
-                  </property>
-                  <property name="text">
-                   <string>Semaphore</string>
-                  </property>
-                 </widget>
-                </item>
-                <item row="0" column="0">
-                 <widget class="QLabel" name="label">
-                  <property name="font">
-                   <font>
-                    <pointsize>14</pointsize>
-                    <underline>false</underline>
-                   </font>
-                  </property>
-                  <property name="text">
-                   <string>Network</string>
-                  </property>
-                  <property name="alignment">
-                   <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
                   </property>
                  </widget>
                 </item>
@@ -1255,7 +1344,7 @@
           </widget>
           <widget class="QWidget" name="tab_mbrtu">
            <attribute name="title">
-            <string>RTU</string>
+            <string>Modbus Client RTU</string>
            </attribute>
            <layout class="QGridLayout" name="gridLayout_14">
             <item row="2" column="0">
@@ -1293,27 +1382,73 @@
                <property name="geometry">
                 <rect>
                  <x>0</x>
-                 <y>-534</y>
+                 <y>0</y>
                  <width>727</width>
-                 <height>919</height>
+                 <height>391</height>
                 </rect>
                </property>
                <layout class="QGridLayout" name="gridLayout_15">
-                <item row="16" column="0">
-                 <widget class="Line" name="line_8">
-                  <property name="orientation">
-                   <enum>Qt::Horizontal</enum>
+                <item row="6" column="0">
+                 <widget class="QWidget" name="widget_15" native="true">
+                  <layout class="QGridLayout" name="gridLayout_21">
+                   <item row="0" column="0">
+                    <widget class="QLabel" name="label_33">
+                     <property name="text">
+                      <string>client id:</string>
+                     </property>
+                     <property name="alignment">
+                      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="0" column="2">
+                    <widget class="QPushButton" name="mbrtu_clientid_default">
+                     <property name="toolTip">
+                      <string>set default modbus client id (0)</string>
+                     </property>
+                     <property name="statusTip">
+                      <string>set default modbus client id (0)</string>
+                     </property>
+                     <property name="text">
+                      <string>0</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="0" column="1">
+                    <widget class="QSpinBox" name="mbrtu_clientid">
+                     <property name="sizePolicy">
+                      <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+                       <horstretch>1</horstretch>
+                       <verstretch>0</verstretch>
+                      </sizepolicy>
+                     </property>
+                     <property name="toolTip">
+                      <string>modbus client id</string>
+                     </property>
+                     <property name="statusTip">
+                      <string>modbus client id</string>
+                     </property>
+                     <property name="maximum">
+                      <number>255</number>
+                     </property>
+                    </widget>
+                   </item>
+                  </layout>
+                 </widget>
+                </item>
+                <item row="0" column="0">
+                 <widget class="QLabel" name="label_18">
+                  <property name="font">
+                   <font>
+                    <pointsize>14</pointsize>
+                   </font>
+                  </property>
+                  <property name="text">
+                   <string>Serial</string>
                   </property>
                  </widget>
                 </item>
-                <item row="10" column="0">
-                 <widget class="Line" name="line_7">
-                  <property name="orientation">
-                   <enum>Qt::Horizontal</enum>
-                  </property>
-                 </widget>
-                </item>
-                <item row="5" column="0">
+                <item row="3" column="0">
                  <spacer name="verticalSpacer_2">
                   <property name="orientation">
                    <enum>Qt::Vertical</enum>
@@ -1327,214 +1462,15 @@
                  </spacer>
                 </item>
                 <item row="4" column="0">
-                 <widget class="QWidget" name="widget_11" native="true">
-                  <layout class="QGridLayout" name="gridLayout_17">
-                   <item row="1" column="5">
-                    <widget class="QSpinBox" name="mbrtu_ai">
-                     <property name="sizePolicy">
-                      <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
-                       <horstretch>1</horstretch>
-                       <verstretch>0</verstretch>
-                      </sizepolicy>
-                     </property>
-                     <property name="toolTip">
-                      <string>number of AI registers (input registers)</string>
-                     </property>
-                     <property name="statusTip">
-                      <string>number of AI registers (input registers)</string>
-                     </property>
-                     <property name="minimum">
-                      <number>1</number>
-                     </property>
-                     <property name="maximum">
-                      <number>65536</number>
-                     </property>
-                     <property name="value">
-                      <number>65536</number>
-                     </property>
-                    </widget>
-                   </item>
-                   <item row="1" column="6">
-                    <widget class="QPushButton" name="mbrtu_ai_default">
-                     <property name="toolTip">
-                      <string>set default number of AI registers (input registers) (65536)</string>
-                     </property>
-                     <property name="statusTip">
-                      <string>set default number of AI registers (input registers) (65536)</string>
-                     </property>
-                     <property name="text">
-                      <string>65536</string>
-                     </property>
-                    </widget>
-                   </item>
-                   <item row="0" column="6">
-                    <widget class="QPushButton" name="mbrtu_ao_default">
-                     <property name="toolTip">
-                      <string>set default number of AO registers (holding registers) (65536)</string>
-                     </property>
-                     <property name="statusTip">
-                      <string>set default number of AO registers (holding registers) (65536)</string>
-                     </property>
-                     <property name="text">
-                      <string>65536</string>
-                     </property>
-                    </widget>
-                   </item>
-                   <item row="1" column="1">
-                    <widget class="QSpinBox" name="mbrtu_di">
-                     <property name="sizePolicy">
-                      <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
-                       <horstretch>1</horstretch>
-                       <verstretch>0</verstretch>
-                      </sizepolicy>
-                     </property>
-                     <property name="toolTip">
-                      <string>number of DI registers (discrete input)</string>
-                     </property>
-                     <property name="statusTip">
-                      <string>number of DI registers (discrete input)</string>
-                     </property>
-                     <property name="minimum">
-                      <number>1</number>
-                     </property>
-                     <property name="maximum">
-                      <number>65536</number>
-                     </property>
-                     <property name="value">
-                      <number>65536</number>
-                     </property>
-                    </widget>
-                   </item>
-                   <item row="1" column="4">
-                    <widget class="QLabel" name="label_29">
-                     <property name="text">
-                      <string>AI:</string>
-                     </property>
-                     <property name="alignment">
-                      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-                     </property>
-                    </widget>
-                   </item>
-                   <item row="0" column="0">
-                    <widget class="QLabel" name="label_26">
-                     <property name="text">
-                      <string>DO:</string>
-                     </property>
-                     <property name="alignment">
-                      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-                     </property>
-                    </widget>
-                   </item>
-                   <item row="1" column="2">
-                    <widget class="QPushButton" name="mbrtu_di_default">
-                     <property name="toolTip">
-                      <string>set default number of DI registers (discrete input) (65536)</string>
-                     </property>
-                     <property name="statusTip">
-                      <string>set default number of DI registers (discrete input) (65536)</string>
-                     </property>
-                     <property name="text">
-                      <string>65536</string>
-                     </property>
-                    </widget>
-                   </item>
-                   <item row="0" column="4">
-                    <widget class="QLabel" name="label_28">
-                     <property name="text">
-                      <string>AO:</string>
-                     </property>
-                     <property name="alignment">
-                      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-                     </property>
-                    </widget>
-                   </item>
-                   <item row="0" column="5">
-                    <widget class="QSpinBox" name="mbrtu_ao">
-                     <property name="sizePolicy">
-                      <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
-                       <horstretch>1</horstretch>
-                       <verstretch>0</verstretch>
-                      </sizepolicy>
-                     </property>
-                     <property name="toolTip">
-                      <string>number of AO registers (holding registers)</string>
-                     </property>
-                     <property name="statusTip">
-                      <string>number of AO registers (holding registers)</string>
-                     </property>
-                     <property name="minimum">
-                      <number>1</number>
-                     </property>
-                     <property name="maximum">
-                      <number>65536</number>
-                     </property>
-                     <property name="value">
-                      <number>65536</number>
-                     </property>
-                    </widget>
-                   </item>
-                   <item row="0" column="1">
-                    <widget class="QSpinBox" name="mbrtu_do">
-                     <property name="sizePolicy">
-                      <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
-                       <horstretch>1</horstretch>
-                       <verstretch>0</verstretch>
-                      </sizepolicy>
-                     </property>
-                     <property name="toolTip">
-                      <string>number of DO registers (Coils, discrete output)</string>
-                     </property>
-                     <property name="statusTip">
-                      <string>number of DO registers (Coils, discrete output)</string>
-                     </property>
-                     <property name="minimum">
-                      <number>1</number>
-                     </property>
-                     <property name="maximum">
-                      <number>65536</number>
-                     </property>
-                     <property name="value">
-                      <number>65536</number>
-                     </property>
-                    </widget>
-                   </item>
-                   <item row="1" column="0">
-                    <widget class="QLabel" name="label_27">
-                     <property name="text">
-                      <string>DI:</string>
-                     </property>
-                     <property name="alignment">
-                      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-                     </property>
-                    </widget>
-                   </item>
-                   <item row="0" column="2">
-                    <widget class="QPushButton" name="mbrtu_do_default">
-                     <property name="toolTip">
-                      <string>set default number of DO registers (Coils, discrete output) (65536)</string>
-                     </property>
-                     <property name="statusTip">
-                      <string>set default number of DO registers (Coils, discrete output) (65536)</string>
-                     </property>
-                     <property name="text">
-                      <string>65536</string>
-                     </property>
-                    </widget>
-                   </item>
-                   <item row="0" column="3">
-                    <spacer name="horizontalSpacer_18">
-                     <property name="orientation">
-                      <enum>Qt::Horizontal</enum>
-                     </property>
-                     <property name="sizeHint" stdset="0">
-                      <size>
-                       <width>40</width>
-                       <height>20</height>
-                      </size>
-                     </property>
-                    </spacer>
-                   </item>
-                  </layout>
+                 <widget class="QLabel" name="label_32">
+                  <property name="font">
+                   <font>
+                    <pointsize>14</pointsize>
+                   </font>
+                  </property>
+                  <property name="text">
+                   <string>Modbus</string>
+                  </property>
                  </widget>
                 </item>
                 <item row="1" column="0">
@@ -1784,540 +1720,11 @@
                   </layout>
                  </widget>
                 </item>
-                <item row="13" column="0">
-                 <widget class="QWidget" name="widget_14" native="true">
-                  <layout class="QGridLayout" name="gridLayout_20">
-                   <item row="0" column="2">
-                    <spacer name="horizontalSpacer_13">
-                     <property name="orientation">
-                      <enum>Qt::Horizontal</enum>
-                     </property>
-                     <property name="sizeHint" stdset="0">
-                      <size>
-                       <width>40</width>
-                       <height>20</height>
-                      </size>
-                     </property>
-                    </spacer>
-                   </item>
-                   <item row="0" column="4">
-                    <spacer name="horizontalSpacer_14">
-                     <property name="orientation">
-                      <enum>Qt::Horizontal</enum>
-                     </property>
-                     <property name="sizeHint" stdset="0">
-                      <size>
-                       <width>40</width>
-                       <height>20</height>
-                      </size>
-                     </property>
-                    </spacer>
-                   </item>
-                   <item row="0" column="5">
-                    <widget class="QCheckBox" name="mbrtu_enable_response_timeout">
-                     <property name="sizePolicy">
-                      <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
-                       <horstretch>1</horstretch>
-                       <verstretch>0</verstretch>
-                      </sizepolicy>
-                     </property>
-                     <property name="toolTip">
-                      <string>manually set the libmodbus response timeout</string>
-                     </property>
-                     <property name="statusTip">
-                      <string>manually set the libmodbus response timeout</string>
-                     </property>
-                     <property name="text">
-                      <string>edit response timeout</string>
-                     </property>
-                    </widget>
-                   </item>
-                   <item row="0" column="3">
-                    <widget class="QCheckBox" name="mbrtu_enable_byte_timeout">
-                     <property name="toolTip">
-                      <string>manually set the libmodbus byte timeout</string>
-                     </property>
-                     <property name="statusTip">
-                      <string>manually set the libmodbus byte timeout</string>
-                     </property>
-                     <property name="text">
-                      <string>edit byte timeout</string>
-                     </property>
-                    </widget>
-                   </item>
-                   <item row="0" column="6">
-                    <widget class="QPushButton" name="mbrtu_modbus_flags_default">
-                     <property name="toolTip">
-                      <string>set default shared memory flags (force: false)</string>
-                     </property>
-                     <property name="statusTip">
-                      <string>set default shared memory flags (force: false)</string>
-                     </property>
-                     <property name="text">
-                      <string>defaults</string>
-                     </property>
-                    </widget>
-                   </item>
-                   <item row="0" column="0">
-                    <spacer name="horizontalSpacer_6">
-                     <property name="orientation">
-                      <enum>Qt::Horizontal</enum>
-                     </property>
-                     <property name="sizeHint" stdset="0">
-                      <size>
-                       <width>40</width>
-                       <height>20</height>
-                      </size>
-                     </property>
-                    </spacer>
-                   </item>
-                   <item row="0" column="1">
-                    <widget class="QCheckBox" name="mbrtu_monitor">
-                     <property name="sizePolicy">
-                      <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
-                       <horstretch>0</horstretch>
-                       <verstretch>0</verstretch>
-                      </sizepolicy>
-                     </property>
-                     <property name="toolTip">
-                      <string>monitor all modbus PDUs</string>
-                     </property>
-                     <property name="statusTip">
-                      <string>monitor all modbus PDUs (strong impact on performance)</string>
-                     </property>
-                     <property name="text">
-                      <string>monitor</string>
-                     </property>
-                    </widget>
-                   </item>
-                  </layout>
-                 </widget>
-                </item>
-                <item row="8" column="0">
-                 <widget class="QWidget" name="widget_12" native="true">
-                  <layout class="QGridLayout" name="gridLayout_18">
-                   <item row="0" column="1">
-                    <widget class="QCheckBox" name="mbrtu_force">
-                     <property name="sizePolicy">
-                      <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
-                       <horstretch>1</horstretch>
-                       <verstretch>0</verstretch>
-                      </sizepolicy>
-                     </property>
-                     <property name="toolTip">
-                      <string>orce the use of the shared memory even if it already exists. Do not use this option per default! It should only be used if the shared memory of an improperly terminated instance continues to exist as an orphan and is no longer used.</string>
-                     </property>
-                     <property name="statusTip">
-                      <string>force the use of the shared memory even if it already exists. </string>
-                     </property>
-                     <property name="text">
-                      <string>force</string>
-                     </property>
-                    </widget>
-                   </item>
-                   <item row="0" column="6">
-                    <widget class="QPushButton" name="mbrtu_shm_flags_default">
-                     <property name="toolTip">
-                      <string>set default shared memory flags (force: false)</string>
-                     </property>
-                     <property name="statusTip">
-                      <string>set default shared memory flags (force: false)</string>
-                     </property>
-                     <property name="text">
-                      <string>defaults</string>
-                     </property>
-                    </widget>
-                   </item>
-                   <item row="0" column="0">
-                    <spacer name="horizontalSpacer_4">
-                     <property name="orientation">
-                      <enum>Qt::Horizontal</enum>
-                     </property>
-                     <property name="sizeHint" stdset="0">
-                      <size>
-                       <width>40</width>
-                       <height>20</height>
-                      </size>
-                     </property>
-                    </spacer>
-                   </item>
-                  </layout>
-                 </widget>
-                </item>
-                <item row="6" column="0">
-                 <widget class="Line" name="line_6">
-                  <property name="orientation">
-                   <enum>Qt::Horizontal</enum>
-                  </property>
-                 </widget>
-                </item>
-                <item row="19" column="0">
-                 <widget class="QWidget" name="widget_18" native="true">
-                  <layout class="QGridLayout" name="gridLayout_24">
-                   <item row="0" column="0">
-                    <widget class="QLabel" name="label_35">
-                     <property name="text">
-                      <string>name:</string>
-                     </property>
-                    </widget>
-                   </item>
-                   <item row="0" column="1">
-                    <widget class="QLineEdit" name="mbrtu_sem_name">
-                     <property name="toolTip">
-                      <string>semaphore name</string>
-                     </property>
-                     <property name="statusTip">
-                      <string>semaphore name</string>
-                     </property>
-                     <property name="text">
-                      <string>modbus</string>
-                     </property>
-                    </widget>
-                   </item>
-                   <item row="0" column="2">
-                    <widget class="QPushButton" name="mbrtu_sem_name_default">
-                     <property name="toolTip">
-                      <string>set default semaphore name (modbus)</string>
-                     </property>
-                     <property name="statusTip">
-                      <string>set default semaphore name (modbus)</string>
-                     </property>
-                     <property name="text">
-                      <string>modbus</string>
-                     </property>
-                    </widget>
-                   </item>
-                  </layout>
-                 </widget>
-                </item>
-                <item row="15" column="0">
-                 <widget class="QWidget" name="widget_15" native="true">
-                  <layout class="QGridLayout" name="gridLayout_21">
-                   <item row="0" column="0">
-                    <widget class="QLabel" name="label_33">
-                     <property name="text">
-                      <string>client id:</string>
-                     </property>
-                     <property name="alignment">
-                      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-                     </property>
-                    </widget>
-                   </item>
-                   <item row="0" column="2">
-                    <widget class="QPushButton" name="mbrtu_clientid_default">
-                     <property name="toolTip">
-                      <string>set default modbus client id (0)</string>
-                     </property>
-                     <property name="statusTip">
-                      <string>set default modbus client id (0)</string>
-                     </property>
-                     <property name="text">
-                      <string>0</string>
-                     </property>
-                    </widget>
-                   </item>
-                   <item row="0" column="1">
-                    <widget class="QSpinBox" name="mbrtu_clientid">
-                     <property name="sizePolicy">
-                      <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
-                       <horstretch>1</horstretch>
-                       <verstretch>0</verstretch>
-                      </sizepolicy>
-                     </property>
-                     <property name="toolTip">
-                      <string>modbus client id</string>
-                     </property>
-                     <property name="statusTip">
-                      <string>modbus client id</string>
-                     </property>
-                     <property name="maximum">
-                      <number>255</number>
-                     </property>
-                    </widget>
-                   </item>
-                  </layout>
-                 </widget>
-                </item>
-                <item row="9" column="0">
-                 <widget class="QWidget" name="widget_13" native="true">
-                  <layout class="QGridLayout" name="gridLayout_19">
-                   <item row="0" column="2">
-                    <widget class="QPushButton" name="mbrtu_shm_name_default">
-                     <property name="toolTip">
-                      <string>set default shared memory name prefix (modbus_)</string>
-                     </property>
-                     <property name="statusTip">
-                      <string>set default shared memory name prefix (modbus_)</string>
-                     </property>
-                     <property name="text">
-                      <string>modbus_</string>
-                     </property>
-                    </widget>
-                   </item>
-                   <item row="0" column="1">
-                    <widget class="QLineEdit" name="mbrtu_shm_name">
-                     <property name="text">
-                      <string>modbus_</string>
-                     </property>
-                    </widget>
-                   </item>
-                   <item row="0" column="0">
-                    <widget class="QLabel" name="label_31">
-                     <property name="text">
-                      <string>name prefix:</string>
-                     </property>
-                    </widget>
-                   </item>
-                  </layout>
-                 </widget>
-                </item>
-                <item row="17" column="0">
-                 <widget class="QLabel" name="label_34">
-                  <property name="font">
-                   <font>
-                    <pointsize>14</pointsize>
-                   </font>
-                  </property>
-                  <property name="text">
-                   <string>Semaphore</string>
-                  </property>
-                 </widget>
-                </item>
-                <item row="7" column="0">
-                 <widget class="QLabel" name="label_30">
-                  <property name="font">
-                   <font>
-                    <pointsize>14</pointsize>
-                   </font>
-                  </property>
-                  <property name="toolTipDuration">
-                   <number>-1</number>
-                  </property>
-                  <property name="frameShadow">
-                   <enum>QFrame::Plain</enum>
-                  </property>
-                  <property name="lineWidth">
-                   <number>1</number>
-                  </property>
-                  <property name="text">
-                   <string>Shared Memory</string>
-                  </property>
-                 </widget>
-                </item>
-                <item row="11" column="0">
-                 <widget class="QLabel" name="label_32">
-                  <property name="font">
-                   <font>
-                    <pointsize>14</pointsize>
-                   </font>
-                  </property>
-                  <property name="text">
-                   <string>Modbus</string>
-                  </property>
-                 </widget>
-                </item>
-                <item row="0" column="0">
-                 <widget class="QLabel" name="label_18">
-                  <property name="font">
-                   <font>
-                    <pointsize>14</pointsize>
-                   </font>
-                  </property>
-                  <property name="text">
-                   <string>Serial</string>
-                  </property>
-                 </widget>
-                </item>
                 <item row="2" column="0">
                  <widget class="Line" name="line_5">
                   <property name="orientation">
                    <enum>Qt::Horizontal</enum>
                   </property>
-                 </widget>
-                </item>
-                <item row="18" column="0">
-                 <widget class="QWidget" name="widget_16" native="true">
-                  <layout class="QGridLayout" name="gridLayout_22">
-                   <item row="0" column="0">
-                    <spacer name="horizontalSpacer_9">
-                     <property name="orientation">
-                      <enum>Qt::Horizontal</enum>
-                     </property>
-                     <property name="sizeHint" stdset="0">
-                      <size>
-                       <width>40</width>
-                       <height>20</height>
-                      </size>
-                     </property>
-                    </spacer>
-                   </item>
-                   <item row="0" column="2">
-                    <spacer name="horizontalSpacer_10">
-                     <property name="orientation">
-                      <enum>Qt::Horizontal</enum>
-                     </property>
-                     <property name="sizeHint" stdset="0">
-                      <size>
-                       <width>40</width>
-                       <height>20</height>
-                      </size>
-                     </property>
-                    </spacer>
-                   </item>
-                   <item row="0" column="3">
-                    <widget class="QCheckBox" name="mbrtu_sem_force">
-                     <property name="sizePolicy">
-                      <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
-                       <horstretch>1</horstretch>
-                       <verstretch>0</verstretch>
-                      </sizepolicy>
-                     </property>
-                     <property name="toolTip">
-                      <string>Force the use of the semaphore even if it already exists. Do not use this option per default! It should only be used if the semaphore of an improperly terminated instance continues to exist as an orphan and is no longer used.</string>
-                     </property>
-                     <property name="statusTip">
-                      <string>Force the use of the semaphore even if it already exists.</string>
-                     </property>
-                     <property name="text">
-                      <string>force</string>
-                     </property>
-                    </widget>
-                   </item>
-                   <item row="0" column="1">
-                    <widget class="QCheckBox" name="mbrtu_sem_enable">
-                     <property name="toolTip">
-                      <string>enable semaphore mechanism</string>
-                     </property>
-                     <property name="statusTip">
-                      <string>enable semaphore mechanism to protect the shared memory from simultaneous access.</string>
-                     </property>
-                     <property name="text">
-                      <string>enable</string>
-                     </property>
-                     <property name="checked">
-                      <bool>true</bool>
-                     </property>
-                    </widget>
-                   </item>
-                   <item row="0" column="4">
-                    <widget class="QPushButton" name="mbrtu_sem_flags_default">
-                     <property name="toolTip">
-                      <string>set default semaphore flags (enabled: true, force: false)</string>
-                     </property>
-                     <property name="statusTip">
-                      <string>set default semaphore flags (enabled: true, force: false)</string>
-                     </property>
-                     <property name="text">
-                      <string>defaults</string>
-                     </property>
-                    </widget>
-                   </item>
-                  </layout>
-                 </widget>
-                </item>
-                <item row="3" column="0">
-                 <widget class="QLabel" name="label_25">
-                  <property name="font">
-                   <font>
-                    <pointsize>14</pointsize>
-                   </font>
-                  </property>
-                  <property name="text">
-                   <string>Registers</string>
-                  </property>
-                 </widget>
-                </item>
-                <item row="14" column="0">
-                 <widget class="QWidget" name="widget_23" native="true">
-                  <layout class="QGridLayout" name="gridLayout_32">
-                   <item row="0" column="3">
-                    <widget class="QLabel" name="label_37">
-                     <property name="text">
-                      <string>response timeout:</string>
-                     </property>
-                     <property name="alignment">
-                      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-                     </property>
-                    </widget>
-                   </item>
-                   <item row="0" column="1">
-                    <widget class="QDoubleSpinBox" name="mbrtu_byte_timeout">
-                     <property name="sizePolicy">
-                      <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
-                       <horstretch>1</horstretch>
-                       <verstretch>0</verstretch>
-                      </sizepolicy>
-                     </property>
-                     <property name="toolTip">
-                      <string>libmodbus byte timeout</string>
-                     </property>
-                     <property name="statusTip">
-                      <string>libmodbus byte timeout</string>
-                     </property>
-                     <property name="maximum">
-                      <double>86400.000000000000000</double>
-                     </property>
-                    </widget>
-                   </item>
-                   <item row="0" column="0">
-                    <widget class="QLabel" name="label_36">
-                     <property name="text">
-                      <string>byte timeout:</string>
-                     </property>
-                     <property name="alignment">
-                      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-                     </property>
-                    </widget>
-                   </item>
-                   <item row="0" column="2">
-                    <spacer name="horizontalSpacer_19">
-                     <property name="orientation">
-                      <enum>Qt::Horizontal</enum>
-                     </property>
-                     <property name="sizeHint" stdset="0">
-                      <size>
-                       <width>40</width>
-                       <height>20</height>
-                      </size>
-                     </property>
-                    </spacer>
-                   </item>
-                   <item row="0" column="4">
-                    <widget class="QDoubleSpinBox" name="mbrtu_response_timeout">
-                     <property name="sizePolicy">
-                      <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
-                       <horstretch>1</horstretch>
-                       <verstretch>0</verstretch>
-                      </sizepolicy>
-                     </property>
-                     <property name="toolTip">
-                      <string>libmodbus response timeout</string>
-                     </property>
-                     <property name="statusTip">
-                      <string>libmodbus response timeout</string>
-                     </property>
-                     <property name="maximum">
-                      <double>86400.000000000000000</double>
-                     </property>
-                    </widget>
-                   </item>
-                   <item row="0" column="5">
-                    <spacer name="horizontalSpacer_20">
-                     <property name="orientation">
-                      <enum>Qt::Horizontal</enum>
-                     </property>
-                     <property name="sizeType">
-                      <enum>QSizePolicy::Fixed</enum>
-                     </property>
-                     <property name="sizeHint" stdset="0">
-                      <size>
-                       <width>80</width>
-                       <height>20</height>
-                      </size>
-                     </property>
-                    </spacer>
-                   </item>
-                  </layout>
                  </widget>
                 </item>
                </layout>
@@ -2350,7 +1757,7 @@
            <property name="geometry">
             <rect>
              <x>0</x>
-             <y>-101</y>
+             <y>0</y>
              <width>745</width>
              <height>585</height>
             </rect>
@@ -2408,7 +1815,7 @@
                  </property>
                  <property name="icon">
                   <iconset theme="document-save">
-                   <normaloff>.</normaloff>.</iconset>
+                   <normaloff>../../../../../.designer/backup</normaloff>../../../../../.designer/backup</iconset>
                  </property>
                 </widget>
                </item>
@@ -2425,7 +1832,7 @@
                  </property>
                  <property name="icon">
                   <iconset theme="document-save">
-                   <normaloff>.</normaloff>.</iconset>
+                   <normaloff>../../../../../.designer/backup</normaloff>../../../../../.designer/backup</iconset>
                  </property>
                 </widget>
                </item>
@@ -2484,7 +1891,7 @@
                  </property>
                  <property name="icon">
                   <iconset theme="document-save">
-                   <normaloff>.</normaloff>.</iconset>
+                   <normaloff>../../../../../.designer/backup</normaloff>../../../../../.designer/backup</iconset>
                  </property>
                 </widget>
                </item>
@@ -2546,7 +1953,7 @@
                  </property>
                  <property name="icon">
                   <iconset theme="document-save">
-                   <normaloff>.</normaloff>.</iconset>
+                   <normaloff>../../../../../.designer/backup</normaloff>../../../../../.designer/backup</iconset>
                  </property>
                 </widget>
                </item>
@@ -2744,7 +2151,7 @@
                  </property>
                  <property name="icon">
                   <iconset theme="document-open">
-                   <normaloff>.</normaloff>.</iconset>
+                   <normaloff>../../../../../.designer/backup</normaloff>../../../../../.designer/backup</iconset>
                  </property>
                 </widget>
                </item>
@@ -2910,7 +2317,7 @@
                  </property>
                  <property name="icon">
                   <iconset theme="document-open">
-                   <normaloff>.</normaloff>.</iconset>
+                   <normaloff>../../../../../.designer/backup</normaloff>../../../../../.designer/backup</iconset>
                  </property>
                 </widget>
                </item>
@@ -2985,7 +2392,7 @@
                  </property>
                  <property name="icon">
                   <iconset theme="document-open">
-                   <normaloff>.</normaloff>.</iconset>
+                   <normaloff>../../../../../.designer/backup</normaloff>../../../../../.designer/backup</iconset>
                  </property>
                 </widget>
                </item>
@@ -3015,7 +2422,7 @@
                  </property>
                  <property name="icon">
                   <iconset theme="document-open">
-                   <normaloff>.</normaloff>.</iconset>
+                   <normaloff>../../../../../.designer/backup</normaloff>../../../../../.designer/backup</iconset>
                  </property>
                 </widget>
                </item>
@@ -3045,11 +2452,9 @@
     <property name="title">
      <string>File</string>
     </property>
-    <addaction name="actionopen_modbus_tcp_client_config"/>
-    <addaction name="actionopen_modbus_rtu_client_config"/>
+    <addaction name="actionopen_modbus_client_config"/>
     <addaction name="separator"/>
-    <addaction name="actionsave_modbus_tcp_client_config"/>
-    <addaction name="actionsave_modbus_rtu_client_config"/>
+    <addaction name="actionsave_modbus_client_config"/>
    </widget>
    <widget class="QMenu" name="menuHelp">
     <property name="title">
@@ -3066,9 +2471,9 @@
     <string>Version</string>
    </property>
   </action>
-  <action name="actionsave_modbus_tcp_client_config">
+  <action name="actionsave_modbus_client_config">
    <property name="text">
-    <string>save modbus tcp client config</string>
+    <string>save modbus client config</string>
    </property>
   </action>
   <action name="actionsave_modbus_rtu_client_config">
@@ -3076,9 +2481,9 @@
     <string>save modbus rtu client config</string>
    </property>
   </action>
-  <action name="actionopen_modbus_tcp_client_config">
+  <action name="actionopen_modbus_client_config">
    <property name="text">
-    <string>open modbus tcp client config</string>
+    <string>open modbus client config</string>
    </property>
   </action>
   <action name="actionopen_modbus_rtu_client_config">

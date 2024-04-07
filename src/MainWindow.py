@@ -7,10 +7,9 @@ from PySide6.QtWidgets import QFileDialog, QMessageBox
 from . import MBConfig
 from . import SHMTools
 from .py_ui import Ui_MainWindow
-from .mbtcp_config import MBTCPConfig
-from .mbrtu_config import MBRTUConfig
 from .MBxxOutput import MBxxOutput
 from . import constants
+from .MBConfig import MBConfig
 
 
 class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
@@ -20,6 +19,9 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
         # disable tools
         self.tab_shm_tools.setEnabled(False)
+
+        # Modbus common settings
+        self.__init_mb()
 
         # Modbus TCP
         self.__init_mbtcp()
@@ -43,6 +45,120 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.actionVersion.triggered.connect(
             lambda: QMessageBox.information(self, "SHM Modbus Version", f"{constants.APP_NAME} {constants.VERSION}"))
 
+    def __init_mb(self) -> None:
+        self.__mb_button_actions()
+        self.__mb_default_values()
+        self.__mb_ui_actions()
+        self.__mb_validators()
+
+    def __mb_button_actions(self):
+        # Registers
+        self.mb_do_default.clicked.connect(lambda: self.mb_do.setValue(65536))
+        self.mb_di_default.clicked.connect(lambda: self.mb_di.setValue(65536))
+        self.mb_ao_default.clicked.connect(lambda: self.mb_ao.setValue(65536))
+        self.mb_ai_default.clicked.connect(lambda: self.mb_ai.setValue(65536))
+
+        # Shared Memory
+        self.mb_shm_flags_default.clicked.connect(lambda: self.mb_force.setChecked(False))
+        self.mb_shm_name_default.clicked.connect(lambda: self.mb_shm_name.setText("modbus_"))
+
+        # Modbus
+        def modbus_defaults() -> None:
+            self.mb_monitor.setChecked(False)
+            self.mb_enable_byte_timeout.setChecked(False)
+            self.mb_enable_response_timeout.setChecked(False)
+            self.mb_byte_timeout.setEnabled(False)
+            self.mb_byte_timeout.setValue(0)
+            self.mb_response_timeout.setEnabled(False)
+            self.mb_response_timeout.setValue(0)
+
+        self.mb_mb_flags_default.clicked.connect(modbus_defaults)
+
+        # Semaphore
+        def semaphore_defaults() -> None:
+            self.mb_sem_enable.setChecked(True)
+            self.mb_sem_force.setChecked(False)
+
+        self.mb_sem_defaults.clicked.connect(semaphore_defaults)
+        self.mb_sem_name_default.clicked.connect(lambda: self.mb_sem_name.setText("modbus"))
+
+        # reset all
+        self.mb_defaults.clicked.connect(lambda: self.__mb_default_values())
+
+        # save / load
+        self.actionsave_modbus_client_config.triggered.connect(self.__config_save)
+        self.actionopen_modbus_client_config.triggered.connect(self.__config_load)
+
+    def __mb_default_values(self) -> None:
+        # Registers
+        self.mb_do_default.click()
+        self.mb_di_default.click()
+        self.mb_ao_default.click()
+        self.mb_ai_default.click()
+
+        # Shared memory
+        self.mb_shm_flags_default.click()
+        self.mb_shm_name_default.click()
+
+        # Modbus
+        self.mb_mb_flags_default.click()
+
+        # Semaphore
+        self.mb_sem_defaults.click()
+        self.mb_sem_name_default.click()
+
+    def __mb_ui_actions(self) -> None:
+        # modbus byte timeout
+        self.mb_enable_byte_timeout.stateChanged.connect(
+            lambda value: self.mb_byte_timeout.setEnabled(value != 0)
+        )
+
+        # modbus response timeout
+        self.mb_enable_response_timeout.stateChanged.connect(
+            lambda value: self.mb_response_timeout.setEnabled(value != 0)
+        )
+
+        # semaphore enable
+        def semaphore_enable_changes(value: int) -> None:
+            enabled = value != 0
+            self.mb_sem_force.setEnabled(enabled)
+            self.mb_sem_name.setEnabled(enabled)
+
+        self.mb_sem_enable.stateChanged.connect(semaphore_enable_changes)
+
+    def __mb_validators(self) -> None:
+        name_re = QRegularExpression(constants.NAME_REGEX)
+        name_validator = QRegularExpressionValidator(name_re)
+        self.mb_shm_name.setValidator(name_validator)
+        self.mb_sem_name.setValidator(name_validator)
+
+    def __config_save(self) -> None:
+        """
+        @brief save config to file
+        """
+
+        file_name, _ = QFileDialog.getSaveFileName(self, caption="Save config", filter="*.json")
+
+        if len(file_name):
+            try:
+                MBConfig(self).save(file_name)
+            except Exception as e:
+                QMessageBox.critical(self, "Error", f"Failed to save configuration: {e}")
+
+    def __config_load(self) -> None:
+        """
+        @brief load config from file
+        """
+        file_name, _ = QFileDialog.getOpenFileName(self, caption="Load config", filter="*.json")
+
+        if len(file_name):
+            try:
+                config = MBConfig(self)
+                config.load(file_name)
+                config.apply(self)
+            except RuntimeError as e:
+                QMessageBox.critical(self, "Error", f"Failed to load configuration: {e}")
+
     def __init_mbtcp(self) -> None:
         """
         @brief initialize modbus tcp ui
@@ -63,23 +179,9 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.mbtcp_connections_default.click()
         self.mbtcp_nw_flags_default.click()
 
-        # Registers
-        self.mbtcp_do_default.click()
-        self.mbtcp_di_default.click()
-        self.mbtcp_ao_default.click()
-        self.mbtcp_ai_default.click()
-
         # Shared memory
         self.mbtcp_shm_defaults.click()
-        self.mbtcp_name_default.click()
         self.mbtcp_separate_list_clear.click()
-
-        # Modbus
-        self.mbtcp_mb_flags_default.click()
-
-        # Semaphore
-        self.mbtcp_sem_defaults.click()
-        self.mbtcp_sem_name_default.click()
 
     def __mbtcp_button_actions(self) -> None:
         """
@@ -97,52 +199,19 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.mbtcp_connections_default.clicked.connect(lambda: self.mbtcp_connections.setValue(1))
         self.mbtcp_nw_flags_default.clicked.connect(lambda: self.mbtcp_reconnect.setChecked(True))
 
-        # Registers
-        self.mbtcp_do_default.clicked.connect(lambda: self.mbtcp_do.setValue(65536))
-        self.mbtcp_di_default.clicked.connect(lambda: self.mbtcp_di.setValue(65536))
-        self.mbtcp_ao_default.clicked.connect(lambda: self.mbtcp_ao.setValue(65536))
-        self.mbtcp_ai_default.clicked.connect(lambda: self.mbtcp_ai.setValue(65536))
-
         # Shared Memory
         def shm_default_flags() -> None:
-            self.mbtcp_force.setChecked(False)
             self.mbtcp_separate.setChecked(False)
             self.mbtcp_separate_all.setChecked(False)
             self.mbtcp_separate_all.setEnabled(False)
 
         self.mbtcp_shm_defaults.clicked.connect(shm_default_flags)
-        self.mbtcp_name_default.clicked.connect(lambda: self.mbtcp_name_prefix.setText("modbus_"))
-        self.mbtcp_separate_list_clear.clicked.connect(lambda: self.mbtcp_separate_list.clear())
-
-        # Modbus
-        def modbus_defaults() -> None:
-            self.mbtcp_monitor.setChecked(False)
-            self.mbtcp_enable_byte_timeout.setChecked(False)
-            self.mbtcp_enable_response_timeout.setChecked(False)
-            self.mbtcp_byte_timeout.setEnabled(False)
-            self.mbtcp_byte_timeout.setValue(0)
-            self.mbtcp_response_timeout.setEnabled(False)
-            self.mbtcp_response_timeout.setValue(0)
-
-        self.mbtcp_mb_flags_default.clicked.connect(modbus_defaults)
-
-        # Semaphore
-        def semaphore_defaults() -> None:
-            self.mbtcp_sem_enable.setChecked(True)
-            self.mbtcp_sem_force.setChecked(False)
-
-        self.mbtcp_sem_defaults.clicked.connect(semaphore_defaults)
-        self.mbtcp_sem_name_default.clicked.connect(lambda: self.mbtcp_sem_name.setText("modbus"))
 
         # reset all
         self.mbtcp_defaults.clicked.connect(self.__mbtcp_default_values)
 
         # start button
         self.mbtcp_start.clicked.connect(self.__mbtcp_start_button_clicked)
-
-        # save / load
-        self.actionsave_modbus_tcp_client_config.triggered.connect(self.__mbtcp_config_save)
-        self.actionopen_modbus_tcp_client_config.triggered.connect(self.__mbtcp_config_load)
 
     def __mbtcp_validators(self) -> None:
         """
@@ -155,14 +224,14 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         separate_list_validator = QRegularExpressionValidator(separate_list_re)
 
         self.mbtcp_host.setValidator(name_validator)
-        self.mbtcp_name_prefix.setValidator(name_validator)
-        self.mbtcp_sem_name.setValidator(name_validator)
         self.mbtcp_separate_list.setValidator(separate_list_validator)
 
     def __mbtcp_ui_actions(self) -> None:
         """
         @brief connect signals/slots for ui
         """
+        # tcp system timeout
+        self.mbtcp_sytstem_tcp_timeout.stateChanged.connect(lambda state: self.mbtcp_tcp_timeout.setEnabled(state == 0))
 
         # shared memory separate
         def shm_separate_changed(value: int) -> None:
@@ -177,29 +246,10 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             lambda value: self.mbtcp_separate_list.setEnabled(value == 0 and self.mbtcp_separate.isChecked())
         )
 
-        # modbus byte timeout
-        self.mbtcp_enable_byte_timeout.stateChanged.connect(
-            lambda value: self.mbtcp_byte_timeout.setEnabled(value != 0)
-        )
-
-        # modbus response timeout
-        self.mbtcp_enable_response_timeout.stateChanged.connect(
-            lambda value: self.mbtcp_response_timeout.setEnabled(value != 0)
-        )
-
-        # semaphore enable
-        def semaphore_enable_changes(value: int) -> None:
-            enabled = value != 0
-            self.mbtcp_sem_force.setEnabled(enabled)
-            self.mbtcp_sem_name.setEnabled(enabled)
-
-        self.mbtcp_sem_enable.stateChanged.connect(semaphore_enable_changes)
-
     def __mbtcp_start_button_clicked(self) -> None:
         """
         @brief mbtcp start button clicked
         """
-
         if self.process_active:
             # already running --> stop mbtcp client
             self.command_window.terminate()
@@ -211,6 +261,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
             # lock ui elements
             self.tab_mbrtu.setEnabled(False)
+            self.tab_modbus_setings.setEnabled(False)
             self.mbrtu_start.setEnabled(False)
             self.mbtcp_settings.setEnabled(False)
             self.mbtcp_defaults.setEnabled(False)
@@ -218,35 +269,9 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             self.tab_shm_tools.setEnabled(True)
 
             # execute command
-            self.modbus_cfg = MBTCPConfig(self)
+            self.modbus_cfg = MBConfig(self)
+            self.modbus_cfg.modbus_type = "tcp"
             self.__exec_process("Shared Memory Modbus TCP Client")
-
-    def __mbtcp_config_save(self) -> None:
-        """
-        @brief save mbtcp config to file
-        """
-
-        file_name, _ = QFileDialog.getSaveFileName(self, caption="Save Modbus TCP config", filter="*.json")
-
-        if len(file_name):
-            try:
-                MBTCPConfig(self).save(file_name)
-            except Exception as e:
-                QMessageBox.critical(self, "Error", f"Failed to save configuration: {e}")
-
-    def __mbtcp_config_load(self) -> None:
-        """
-        @brief load mbtcp config from file
-        """
-        file_name, _ = QFileDialog.getOpenFileName(self, caption="Load Modbus TCP config", filter="*.json")
-
-        if len(file_name):
-            try:
-                config = MBTCPConfig(self)
-                config.load(file_name)
-                config.apply(self)
-            except RuntimeError as e:
-                QMessageBox.critical(self, "Error", f"Failed to load configuration: {e}")
 
     def __init_mbrtu(self) -> None:
         """
@@ -258,23 +283,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.__mbrtu_validators()
 
     def __mbrtu_default_values(self) -> None:
-        # Registers
-        self.mbrtu_do_default.click()
-        self.mbrtu_di_default.click()
-        self.mbrtu_ao_default.click()
-        self.mbrtu_ai_default.click()
-
-        # Shared memory
-        self.mbrtu_shm_flags_default.click()
-        self.mbrtu_shm_name_default.click()
-
         # Modbus
-        self.mbrtu_modbus_flags_default.click()
         self.mbrtu_clientid_default.click()
-
-        # Semaphore
-        self.mbrtu_sem_flags_default.click()
-        self.mbrtu_sem_name_default.click()
 
     def __mbrtu_button_actions(self) -> None:
         """
@@ -288,52 +298,20 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.mbrtu_baudrate_default.clicked.connect(lambda: self.mbrtu_baudrate.text("115200"))
         self.mbrtu_serialtype_default.clicked.connect(lambda: self.mbrtu_serialtype.setCurrentIndex(0))
 
-        # Registers
-        self.mbrtu_do_default.clicked.connect(lambda: self.mbrtu_do.setValue(65536))
-        self.mbrtu_di_default.clicked.connect(lambda: self.mbrtu_di.setValue(65536))
-        self.mbrtu_ao_default.clicked.connect(lambda: self.mbrtu_ao.setValue(65536))
-        self.mbrtu_ai_default.clicked.connect(lambda: self.mbrtu_ai.setValue(65536))
-
-        # Shared Memory
-        self.mbrtu_shm_flags_default.clicked.connect(lambda: self.mbrtu_force.setChecked(False))
-        self.mbrtu_shm_name_default.clicked.connect(lambda: self.mbrtu_shm_name.setText("modbus_"))
-
         # Modbus
-        def modbus_defaults() -> None:
-            self.mbrtu_monitor.setChecked(False)
-            self.mbrtu_enable_byte_timeout.setChecked(False)
-            self.mbrtu_enable_response_timeout.setChecked(False)
-            self.mbrtu_byte_timeout.setEnabled(False)
-            self.mbrtu_byte_timeout.setValue(0)
-            self.mbrtu_response_timeout.setEnabled(False)
-            self.mbrtu_response_timeout.setValue(0)
-
-        self.mbrtu_modbus_flags_default.clicked.connect(modbus_defaults)
         self.mbrtu_clientid_default.clicked.connect(lambda: self.mbrtu_clientid.setValue(0))
-
-        # Semaphore
-        def semaphore_defaults() -> None:
-            self.mbrtu_sem_enable.setChecked(True)
-            self.mbrtu_sem_force.setChecked(False)
-
-        self.mbrtu_sem_flags_default.clicked.connect(semaphore_defaults)
-        self.mbrtu_sem_name_default.clicked.connect(lambda: self.mbrtu_sem_name.setText("modbus"))
 
     def __mbrtu_validators(self) -> None:
         """
         @brief set validators for text input
         """
         device_re = QRegularExpression(constants.DEVICE_REGEX)
-        name_re = QRegularExpression(constants.NAME_REGEX)
         baud_re = QRegularExpression(constants.BAUD_REGEX)
 
         device_validator = QRegularExpressionValidator(device_re)
-        name_validator = QRegularExpressionValidator(name_re)
         baud_validator = QRegularExpressionValidator(baud_re)
 
         self.mbrtu_device.setValidator(device_validator)
-        self.mbrtu_shm_name.setValidator(name_validator)
-        self.mbrtu_sem_name.setValidator(name_validator)
         self.mbrtu_baudrate.setValidator(baud_validator)
 
     def __mbrtu_start_button_clicked(self) -> None:
@@ -360,6 +338,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
             # lock ui elements
             self.tab_mbtcp.setEnabled(False)
+            self.tab_modbus_setings.setEnabled(False)
             self.mbtcp_start.setEnabled(False)
             self.mbrtu_settings.setEnabled(False)
             self.mbrtu_defaults.setEnabled(False)
@@ -367,70 +346,28 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             self.tab_shm_tools.setEnabled(True)
 
             # execute command
-            self.modbus_cfg = MBRTUConfig(self)
+            self.modbus_cfg = MBConfig(self)
+            self.modbus_cfg.modbus_type = "rtu"
             self.__exec_process("Shared Memory Modbus RTU Client")
 
     def __mbrtu_ui_actions(self) -> None:
         """
         @brief connect signals/slots for ui
         """
-        # modbus byte timeout
-        self.mbrtu_enable_byte_timeout.stateChanged.connect(
-            lambda value: self.mbrtu_byte_timeout.setEnabled(value != 0)
-        )
-
-        # modbus response timeout
-        self.mbrtu_enable_response_timeout.stateChanged.connect(
-            lambda value: self.mbrtu_response_timeout.setEnabled(value != 0)
-        )
-
-        # semaphore enable
-        def semaphore_enable_changes(value: int) -> None:
-            enabled = value != 0
-            self.mbrtu_sem_force.setEnabled(enabled)
-            self.mbrtu_sem_name.setEnabled(enabled)
-
-        self.mbrtu_sem_enable.stateChanged.connect(semaphore_enable_changes)
-
         # reset all
         self.mbrtu_defaults.clicked.connect(self.__mbrtu_default_values)
 
         # start button
         self.mbrtu_start.clicked.connect(self.__mbrtu_start_button_clicked)
 
-        # save / load
-        self.actionsave_modbus_rtu_client_config.triggered.connect(self.__mbrtu_config_save)
-        self.actionopen_modbus_rtu_client_config.triggered.connect(self.__mbrtu_config_load)
-
-    def __mbrtu_config_save(self) -> None:
-        """
-        @brief save mbrtu config to file
-        """
-        file_name, _ = QFileDialog.getSaveFileName(self, caption="Save Modbus RTU config", filter="*.json")
-
-        if len(file_name):
-            try:
-                MBRTUConfig(self).save(file_name)
-            except Exception as e:
-                QMessageBox.critical(self, "Error", f"Failed to save configuration: {e}")
-                raise
-
-    def __mbrtu_config_load(self) -> None:
-        """
-        @brief load mbrtu config from file
-        """
-        file_name, _ = QFileDialog.getOpenFileName(self, caption="Load Modbus RTU config", filter="*.json")
-
-        if len(file_name):
-            try:
-                config = MBRTUConfig(self)
-                config.load(file_name)
-                config.apply(self)
-            except RuntimeError as e:
-                QMessageBox.critical(self, "Error", f"Failed to load configuration: {e}")
-
     def __exec_process(self, title: str):
-        cmd = self.modbus_cfg.get_command()
+        if self.modbus_cfg.modbus_type == "tcp":
+            cmd = self.modbus_cfg.get_command_tcp()
+        elif self.modbus_cfg.modbus_type == "rtu":
+            cmd = self.modbus_cfg.get_command_rtu()
+        else:
+            raise RuntimeError(
+                f"Invalid application state: self.modbus_cfg.modbus_type = {self.modbus_cfg.modbus_type}")
         self.process_active = True
         self.window_open = True
         self.command_window = MBxxOutput(cmd, title)
@@ -467,6 +404,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.mbrtu_settings.setEnabled(True)
         self.mbrtu_defaults.setEnabled(True)
         self.mbrtu_start.setText("Start")
+        self.tab_modbus_setings.setEnabled(True)
 
     def __command_window_closed(self) -> None:
         """
