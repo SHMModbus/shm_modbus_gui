@@ -68,6 +68,14 @@ class InspectSHM(QtWidgets.QMainWindow, Ui_InspectSHM):
         self.timer = QTimer()
         self.timer.timeout.connect(self.execute)
 
+        def timer_start_stop(state):
+            if state != 0:
+                self.timer.start(self.spinbox_interval.value())
+            else:
+                self.timer.stop()
+
+        self.auto_refresh.clicked.connect(timer_start_stop)
+
         def on_slider_interval_value_changed(value: int):
             self.spinbox_interval.setValue(value)
             self.timer.setInterval(value)
@@ -118,13 +126,17 @@ class InspectSHM(QtWidgets.QMainWindow, Ui_InspectSHM):
         self.command_window.show()
         self.setDisabled(True)
 
+    def add_row(self):
+        current_row = self.data_table.rowCount()
+        self.data_table.setRowCount(current_row + 1)
+        return current_row
+
     def add_int(self, data: InspectSHMAddInt.InspectSHMInt):
         print(f"add_int: {data}")
 
         self.exec_mutex.lock()
 
-        current_row = self.data_table.rowCount()
-        self.data_table.setRowCount(current_row + 1)
+        current_row = self.add_row()
 
         name_widget = QTableWidgetItem(data.name)
         name_widget.inspect_data = data
@@ -148,22 +160,23 @@ class InspectSHM(QtWidgets.QMainWindow, Ui_InspectSHM):
 
         self.exec_mutex.unlock()
 
-        def timer_start_stop(state):
-            if state != 0:
-                self.timer.start(self.spinbox_interval.value())
-            else:
-                self.timer.stop()
-
-        self.auto_refresh.clicked.connect(timer_start_stop)
-
     def add_float(self, data: InspectSHMAddFloat.InspectSHMFloat):
         print(f"add_float: {data}")
+        self.exec_mutex.lock()
+
+        self.exec_mutex.unlock()
 
     def add_bool(self, data: InspectSHMAddBool.InspectSHMBool):
         print(f"add_bool: {data}")
+        self.exec_mutex.lock()
+
+        self.exec_mutex.unlock()
 
     def add_char_arr(self, data: InspectSHMAddCharArray.InspectSHMCharArray):
         print(f"add_char_arr: {data}")
+        self.exec_mutex.lock()
+
+        self.exec_mutex.unlock()
 
     def delete_row(self, row_widget):
         self.exec_mutex.lock()
