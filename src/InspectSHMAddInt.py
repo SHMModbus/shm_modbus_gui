@@ -70,6 +70,8 @@ class InspectSHMAddInt(QtWidgets.QWidget, Ui_InspectSHMAddInt):
         self.address.valueChanged.connect(lambda x: self.address_dec.setValue(x))
         self.address_dec.valueChanged.connect(lambda x: self.address.setValue(x))
 
+        self.on_size_i(2)
+
         self.reg_AO.clicked.connect(self.on_reg_ao)
         self.reg_AI.clicked.connect(self.on_reg_ai)
 

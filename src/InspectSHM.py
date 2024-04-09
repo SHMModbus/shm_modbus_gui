@@ -3,6 +3,7 @@ from PySide6.QtWidgets import QTableWidgetItem, QPushButton
 from PySide6 import QtWidgets, QtCore
 from PySide6.QtCore import QTimer, QMutex, QProcess, Qt
 import enum
+import struct
 
 from py_ui import Ui_InspectSHM
 
@@ -144,7 +145,7 @@ class InspectSHM(QtWidgets.QMainWindow, Ui_InspectSHM):
         self.data_table.setItem(current_row, int(self.TableCols.NAME), name_widget)
         self.data_table.setItem(current_row, int(self.TableCols.REGISTER), QTableWidgetItem(data.register.name))
         self.data_table.setItem(current_row, int(self.TableCols.ADDR), QTableWidgetItem(f"0x{data.address:04x}"))
-        self.data_table.setItem(current_row, int(self.TableCols.TYPE), QTableWidgetItem(data.display_type.name))
+        self.data_table.setItem(current_row, int(self.TableCols.TYPE), QTableWidgetItem(f"int ({data.display_type.name.lower()})"))
         self.data_table.setItem(current_row, int(self.TableCols.SIZE), QTableWidgetItem(f"{data.size}"))
         self.data_table.setItem(current_row, int(self.TableCols.ENDIAN), QTableWidgetItem(
             f"{'little' if data.little_endian else 'big'}{' (reversed)' if data.reversed_registers else ''}"))
@@ -164,17 +165,82 @@ class InspectSHM(QtWidgets.QMainWindow, Ui_InspectSHM):
         print(f"add_float: {data}")
         self.exec_mutex.lock()
 
+        current_row = self.add_row()
+
+        name_widget = QTableWidgetItem(data.name)
+        name_widget.inspect_data = data
+
+        self.data_table.setItem(current_row, int(self.TableCols.NAME), name_widget)
+        self.data_table.setItem(current_row, int(self.TableCols.REGISTER), QTableWidgetItem(data.register.name))
+        self.data_table.setItem(current_row, int(self.TableCols.ADDR), QTableWidgetItem(f"0x{data.address:04x}"))
+        self.data_table.setItem(current_row, int(self.TableCols.TYPE), QTableWidgetItem(f"float ({data.display_type.name.lower()})"))
+        self.data_table.setItem(current_row, int(self.TableCols.SIZE), QTableWidgetItem(f"{data.size}"))
+        self.data_table.setItem(current_row, int(self.TableCols.ENDIAN), QTableWidgetItem(
+            f"{'little' if data.little_endian else 'big'}{' (reversed)' if data.reversed_registers else ''}"))
+        value_widget = QTableWidgetItem("#####")
+        value_widget.setFont(self.fixed_font)
+        value_widget.setTextAlignment(Qt.AlignRight | Qt.AlignVCenter)
+        self.data_table.setItem(current_row, int(self.TableCols.VALUE), value_widget)
+
+        delete_button = QPushButton()
+        delete_button.setText("del")
+        delete_button.clicked.connect(lambda: self.delete_row(name_widget))
+        self.data_table.setCellWidget(current_row, int(self.TableCols.BUTTON), delete_button)
+
         self.exec_mutex.unlock()
 
     def add_bool(self, data: InspectSHMAddBool.InspectSHMBool):
         print(f"add_bool: {data}")
         self.exec_mutex.lock()
 
+        current_row = self.add_row()
+
+        name_widget = QTableWidgetItem(data.name)
+        name_widget.inspect_data = data
+
+        self.data_table.setItem(current_row, int(self.TableCols.NAME), name_widget)
+        self.data_table.setItem(current_row, int(self.TableCols.REGISTER), QTableWidgetItem(data.register.name))
+        self.data_table.setItem(current_row, int(self.TableCols.ADDR), QTableWidgetItem(f"0x{data.address:04x}:{data.bit}"))
+        self.data_table.setItem(current_row, int(self.TableCols.TYPE), QTableWidgetItem("bool"))
+        self.data_table.setItem(current_row, int(self.TableCols.SIZE), QTableWidgetItem("bit"))
+        self.data_table.setItem(current_row, int(self.TableCols.ENDIAN), QTableWidgetItem(
+            f"{'little' if data.little_endian else 'big'}"))
+        value_widget = QTableWidgetItem("#####")
+        value_widget.setFont(self.fixed_font)
+        value_widget.setTextAlignment(Qt.AlignRight | Qt.AlignVCenter)
+        self.data_table.setItem(current_row, int(self.TableCols.VALUE), value_widget)
+
+        delete_button = QPushButton()
+        delete_button.setText("del")
+        delete_button.clicked.connect(lambda: self.delete_row(name_widget))
+        self.data_table.setCellWidget(current_row, int(self.TableCols.BUTTON), delete_button)
+
         self.exec_mutex.unlock()
 
     def add_char_arr(self, data: InspectSHMAddCharArray.InspectSHMCharArray):
         print(f"add_char_arr: {data}")
         self.exec_mutex.lock()
+
+        current_row = self.add_row()
+
+        name_widget = QTableWidgetItem(data.name)
+        name_widget.inspect_data = data
+
+        self.data_table.setItem(current_row, int(self.TableCols.NAME), name_widget)
+        self.data_table.setItem(current_row, int(self.TableCols.REGISTER), QTableWidgetItem(data.register.name))
+        self.data_table.setItem(current_row, int(self.TableCols.ADDR), QTableWidgetItem(f"0x{data.address:04x}"))
+        self.data_table.setItem(current_row, int(self.TableCols.TYPE), QTableWidgetItem("char[]"))
+        self.data_table.setItem(current_row, int(self.TableCols.SIZE), QTableWidgetItem(f"{data.size}"))
+        self.data_table.setItem(current_row, int(self.TableCols.ENDIAN), QTableWidgetItem("---"))
+        value_widget = QTableWidgetItem("#####")
+        value_widget.setFont(self.fixed_font)
+        value_widget.setTextAlignment(Qt.AlignRight | Qt.AlignVCenter)
+        self.data_table.setItem(current_row, int(self.TableCols.VALUE), value_widget)
+
+        delete_button = QPushButton()
+        delete_button.setText("del")
+        delete_button.clicked.connect(lambda: self.delete_row(name_widget))
+        self.data_table.setCellWidget(current_row, int(self.TableCols.BUTTON), delete_button)
 
         self.exec_mutex.unlock()
 
@@ -255,8 +321,36 @@ class InspectSHM(QtWidgets.QMainWindow, Ui_InspectSHM):
                         self.data_table.item(i, int(self.TableCols.VALUE)).setText("#####")
 
                 case InspectSHMAddFloat.InspectSHMFloat:
-                    # TODO
-                    pass
+                    match row_data.register:
+                        case InspectSHMAddFloat.Register.AO:
+                            shm_bytes = shm_data["AO"]
+                        case InspectSHMAddFloat.Register.AI:
+                            shm_bytes = shm_data["AI"]
+                        case _:
+                            raise RuntimeError(f"Internal error: unexpected register type {row_data.register}")
+                    if shm_bytes:
+                        float_bytes = shm_bytes[row_data.address:row_data.address + row_data.size]
+                        if row_data.reversed_registers:
+                            float_bytes = reg_swap(float_bytes)
+                        endian_char = '<' if row_data.little_endian else '>'
+                        match len(float_bytes):
+                            case 4:
+                                float_value = struct.unpack(f'{endian_char}f', float_bytes)[0]
+                            case 8:
+                                float_value = struct.unpack(f'{endian_char}d', float_bytes)[0]
+                            case _:
+                                raise RuntimeError(f"Internal error: unexpected lenght: {len(float_bytes)}")
+                        match row_data.display_type:
+                            case InspectSHMAddFloat.DisplayType.FIXED:
+                                text = f"{float_value:.8f}"
+                            case InspectSHMAddFloat.DisplayType.SCIENTIFIC:
+                                text = f"{float_value:e}"
+                            case _:
+                                raise RuntimeError(f"Internal error: unexpected display type {row_data.display_type}")
+                        self.data_table.item(i, int(self.TableCols.VALUE)).setText(text)
+                    else:
+                        self.data_table.item(i, int(self.TableCols.VALUE)).setText("#####")
+
                 case InspectSHMAddBool.InspectSHMBool:
                     # TODO
                     pass
