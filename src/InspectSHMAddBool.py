@@ -87,10 +87,14 @@ class InspectSHMAddBool(QtWidgets.QWidget, Ui_InspectSHMAddBool):
     def on_reg_d(self):
         self.bit.setValue(0)
         self.bit.setDisabled(True)
+        self.endian_little.setEnabled(False)
+        self.endian_big.setEnabled(False)
 
     def on_reg_a(self):
         self.bit.setMaximum(15)
         self.bit.setEnabled(True)
+        self.endian_little.setEnabled(True)
+        self.endian_big.setEnabled(True)
 
     def on_add_clicked(self):
         address = self.address.value()

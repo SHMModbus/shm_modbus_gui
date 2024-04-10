@@ -38,17 +38,19 @@ class Ui_InspectSHMAddBool(object):
         self.gridLayout.setObjectName(u"gridLayout")
         self.widget_2 = QWidget(self.scrollAreaWidgetContents)
         self.widget_2.setObjectName(u"widget_2")
-        self.widget_2.setEnabled(False)
+        self.widget_2.setEnabled(True)
         self.verticalLayout_3 = QVBoxLayout(self.widget_2)
         self.verticalLayout_3.setObjectName(u"verticalLayout_3")
         self.endian_little = QRadioButton(self.widget_2)
         self.endian_little.setObjectName(u"endian_little")
+        self.endian_little.setEnabled(False)
         self.endian_little.setChecked(True)
 
         self.verticalLayout_3.addWidget(self.endian_little)
 
         self.endian_big = QRadioButton(self.widget_2)
         self.endian_big.setObjectName(u"endian_big")
+        self.endian_big.setEnabled(False)
 
         self.verticalLayout_3.addWidget(self.endian_big)
 

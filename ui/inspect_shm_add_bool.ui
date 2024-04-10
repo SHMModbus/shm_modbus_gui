@@ -38,11 +38,14 @@
        <item row="12" column="2">
         <widget class="QWidget" name="widget_2" native="true">
          <property name="enabled">
-          <bool>false</bool>
+          <bool>true</bool>
          </property>
          <layout class="QVBoxLayout" name="verticalLayout_3">
           <item>
            <widget class="QRadioButton" name="endian_little">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
             <property name="text">
              <string>little</string>
             </property>
@@ -53,6 +56,9 @@
           </item>
           <item>
            <widget class="QRadioButton" name="endian_big">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
             <property name="text">
              <string>big</string>
             </property>
@@ -163,7 +169,14 @@
         </widget>
        </item>
        <item row="4" column="2">
-        <widget class="QSpinBox" name="address"/>
+        <widget class="QSpinBox" name="address">
+         <property name="prefix">
+          <string>0x</string>
+         </property>
+         <property name="displayIntegerBase">
+          <number>16</number>
+         </property>
+        </widget>
        </item>
        <item row="9" column="2">
         <widget class="QLineEdit" name="true_text">

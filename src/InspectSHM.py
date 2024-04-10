@@ -50,16 +50,16 @@ class InspectSHM(QtWidgets.QMainWindow, Ui_InspectSHM):
         VALUE = 6
         BUTTON = 7
 
-    def __init__(self, shm_name: str, shm_size_do: int, shm_size_di: int, shm_size_ao: int, shm_size_ai: int,
+    def __init__(self, shm_name: str, reg_size_do: int, reg_size_di: int, reg_size_ao: int, reg_size_ai: int,
                  semaphore: str | None = None) -> None:
         super(InspectSHM, self).__init__()
         self.setupUi(self)
 
         self.shm_name = shm_name
-        self.shm_size_do = shm_size_do
-        self.shm_size_di = shm_size_di
-        self.shm_size_ao = shm_size_ao
-        self.shm_size_ai = shm_size_ai
+        self.reg_size_do = reg_size_do
+        self.reg_size_di = reg_size_di
+        self.reg_size_ao = reg_size_ao
+        self.reg_size_ai = reg_size_ai
         self.semaphore = semaphore
 
         self.command_window = None
@@ -99,29 +99,29 @@ class InspectSHM(QtWidgets.QMainWindow, Ui_InspectSHM):
         self.button_add_char_array.clicked.connect(self.button_add_char_array_click)
 
     def button_add_int_click(self):
-        self.command_window = InspectSHMAddInt.InspectSHMAddInt(self.shm_size_ao, self.shm_size_ai)
+        self.command_window = InspectSHMAddInt.InspectSHMAddInt(self.reg_size_ao, self.reg_size_ai)
         self.command_window.add.connect(self.add_int)
         self.command_window.closed.connect(self.command_window_closed)
         self.command_window.show()
         self.setDisabled(True)
 
     def button_add_float_click(self):
-        self.command_window = InspectSHMAddFloat.InspectSHMAddFloat(self.shm_size_ao, self.shm_size_ai)
+        self.command_window = InspectSHMAddFloat.InspectSHMAddFloat(self.reg_size_ao, self.reg_size_ai)
         self.command_window.add.connect(self.add_float)
         self.command_window.closed.connect(self.command_window_closed)
         self.command_window.show()
         self.setDisabled(True)
 
     def button_add_char_array_click(self):
-        self.command_window = InspectSHMAddCharArray.InspectSHMAddCharArray(self.shm_size_ao, self.shm_size_ai)
+        self.command_window = InspectSHMAddCharArray.InspectSHMAddCharArray(self.reg_size_ao, self.reg_size_ai)
         self.command_window.add.connect(self.add_char_arr)
         self.command_window.closed.connect(self.command_window_closed)
         self.command_window.show()
         self.setDisabled(True)
 
     def button_add_bool_click(self):
-        self.command_window = InspectSHMAddBool.InspectSHMAddBool(self.shm_size_do, self.shm_size_di,
-                                                                  self.shm_size_ao, self.shm_size_ai)
+        self.command_window = InspectSHMAddBool.InspectSHMAddBool(self.reg_size_do, self.reg_size_di,
+                                                                  self.reg_size_ao, self.reg_size_ai)
         self.command_window.add.connect(self.add_bool)
         self.command_window.closed.connect(self.command_window_closed)
         self.command_window.show()
@@ -244,7 +244,7 @@ class InspectSHM(QtWidgets.QMainWindow, Ui_InspectSHM):
 
         self.exec_mutex.unlock()
 
-    def delete_row(self, row_widget):
+    def delete_row(self, row_widget : QTableWidgetItem):
         self.exec_mutex.lock()
         i = row_widget.row()
         print(f"delete row {i}: {row_widget.inspect_data}")
@@ -298,7 +298,7 @@ class InspectSHM(QtWidgets.QMainWindow, Ui_InspectSHM):
                         case _:
                             raise RuntimeError(f"Internal error: unexpected register type {row_data.register}")
                     if shm_bytes:
-                        int_bytes = shm_bytes[row_data.address:row_data.address + row_data.size]
+                        int_bytes = shm_bytes[row_data.address * 2:row_data.address * 2 + row_data.size]
                         if row_data.reversed_registers:
                             int_bytes = reg_swap(int_bytes)
                         int_value = int.from_bytes(int_bytes, "little" if row_data.little_endian else "big",
@@ -329,7 +329,7 @@ class InspectSHM(QtWidgets.QMainWindow, Ui_InspectSHM):
                         case _:
                             raise RuntimeError(f"Internal error: unexpected register type {row_data.register}")
                     if shm_bytes:
-                        float_bytes = shm_bytes[row_data.address:row_data.address + row_data.size]
+                        float_bytes = shm_bytes[row_data.address * 2:row_data.address * 2 + row_data.size]
                         if row_data.reversed_registers:
                             float_bytes = reg_swap(float_bytes)
                         endian_char = '<' if row_data.little_endian else '>'
@@ -352,11 +352,48 @@ class InspectSHM(QtWidgets.QMainWindow, Ui_InspectSHM):
                         self.data_table.item(i, int(self.TableCols.VALUE)).setText("#####")
 
                 case InspectSHMAddBool.InspectSHMBool:
-                    # TODO
-                    pass
+                    match row_data.register:
+                        case InspectSHMAddBool.Register.AO:
+                            shm_bytes = shm_data["AO"]
+                            byte_data = shm_bytes[row_data.address * 2:row_data.address * 2 + 2]
+                        case InspectSHMAddBool.Register.AI:
+                            shm_bytes = shm_data["AI"]
+                            byte_data = shm_bytes[row_data.address * 2:row_data.address * 2 + 2]
+                        case InspectSHMAddBool.Register.DO:
+                            shm_bytes = shm_data["DO"]
+                            byte_data = [shm_bytes[row_data.address]]
+                        case InspectSHMAddBool.Register.DI:
+                            shm_bytes = shm_data["DI"]
+                            byte_data = [shm_bytes[row_data.address]]
+                        case _:
+                            raise RuntimeError(f"Internal error: unexpected register type {row_data.register}")
+                    if shm_bytes:
+                        int_value = int.from_bytes(byte_data, 'little' if row_data.little_endian else 'big', signed=False)
+                        bit = (int_value & (1 << row_data.bit)) != 0
+                        self.data_table.item(i, int(self.TableCols.VALUE)).setText(
+                            row_data.true_str if bit else row_data.false_str)
+                    else:
+                        self.data_table.item(i, int(self.TableCols.VALUE)).setText("#####")
+
                 case InspectSHMAddCharArray.InspectSHMCharArray:
-                    # TODO
-                    pass
+                    match row_data.register:
+                        case InspectSHMAddCharArray.Register.AO:
+                            shm_bytes = shm_data["AO"]
+                        case InspectSHMAddCharArray.Register.AI:
+                            shm_bytes = shm_data["AI"]
+                        case _:
+                            raise RuntimeError(f"Internal error: unexpected register type {row_data.register}")
+                    if shm_bytes:
+                        size = row_data.size
+                        if size % 2 != 0:
+                            size += 1
+                        string_bytes = shm_bytes[row_data.address * 2: row_data.address * 2 + size]
+                        # TODO reg swap
+                        string = string_bytes.decode('utf-8', errors="replace")
+                        self.data_table.item(i, int(self.TableCols.VALUE)).setText(f"'{string}'")
+                    else:
+                        self.data_table.item(i, int(self.TableCols.VALUE)).setText("#####")
+
                 case _:
                     raise RuntimeError(f"Internal error: unexpected data type {type(row_data)}")
         self.exec_mutex.unlock()
