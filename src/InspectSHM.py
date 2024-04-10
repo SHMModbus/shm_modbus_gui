@@ -396,6 +396,7 @@ class InspectSHM(QtWidgets.QMainWindow, Ui_InspectSHM):
                             size += 1
                         string_bytes = shm_bytes[row_data.address * 2: row_data.address * 2 + size]
                         # TODO reg swap
+                        string_bytes = string_bytes[:row_data.size]
                         string = string_bytes.decode('utf-8', errors="replace")
                         self.data_table.item(i, int(self.TableCols.VALUE)).setText(f"'{string}'")
                     else:
