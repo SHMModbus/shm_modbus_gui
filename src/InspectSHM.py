@@ -134,8 +134,8 @@ class InspectSHM(QtWidgets.QMainWindow, Ui_InspectSHM):
 
     def add_int(self, data: InspectSHMAddInt.InspectSHMInt):
         print(f"add_int: {data}")
-
         self.exec_mutex.lock()
+        self.data_table.setSortingEnabled(False)
 
         current_row = self.add_row()
 
@@ -159,11 +159,13 @@ class InspectSHM(QtWidgets.QMainWindow, Ui_InspectSHM):
         delete_button.clicked.connect(lambda: self.delete_row(name_widget))
         self.data_table.setCellWidget(current_row, int(self.TableCols.BUTTON), delete_button)
 
+        self.data_table.setSortingEnabled(True)
         self.exec_mutex.unlock()
 
     def add_float(self, data: InspectSHMAddFloat.InspectSHMFloat):
         print(f"add_float: {data}")
         self.exec_mutex.lock()
+        self.data_table.setSortingEnabled(False)
 
         current_row = self.add_row()
 
@@ -187,11 +189,13 @@ class InspectSHM(QtWidgets.QMainWindow, Ui_InspectSHM):
         delete_button.clicked.connect(lambda: self.delete_row(name_widget))
         self.data_table.setCellWidget(current_row, int(self.TableCols.BUTTON), delete_button)
 
+        self.data_table.setSortingEnabled(True)
         self.exec_mutex.unlock()
 
     def add_bool(self, data: InspectSHMAddBool.InspectSHMBool):
         print(f"add_bool: {data}")
         self.exec_mutex.lock()
+        self.data_table.setSortingEnabled(False)
 
         current_row = self.add_row()
 
@@ -215,11 +219,13 @@ class InspectSHM(QtWidgets.QMainWindow, Ui_InspectSHM):
         delete_button.clicked.connect(lambda: self.delete_row(name_widget))
         self.data_table.setCellWidget(current_row, int(self.TableCols.BUTTON), delete_button)
 
+        self.data_table.setSortingEnabled(True)
         self.exec_mutex.unlock()
 
     def add_char_arr(self, data: InspectSHMAddCharArray.InspectSHMCharArray):
         print(f"add_char_arr: {data}")
         self.exec_mutex.lock()
+        self.data_table.setSortingEnabled(False)
 
         current_row = self.add_row()
 
@@ -242,6 +248,7 @@ class InspectSHM(QtWidgets.QMainWindow, Ui_InspectSHM):
         delete_button.clicked.connect(lambda: self.delete_row(name_widget))
         self.data_table.setCellWidget(current_row, int(self.TableCols.BUTTON), delete_button)
 
+        self.data_table.setSortingEnabled(True)
         self.exec_mutex.unlock()
 
     def delete_row(self, row_widget : QTableWidgetItem):
