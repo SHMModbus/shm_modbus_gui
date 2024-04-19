@@ -7,7 +7,7 @@ from .py_ui import Ui_MBxxxOutput
 
 
 class MBxxOutput(QtWidgets.QMainWindow, Ui_MBxxxOutput):
-    finished = QtCore.Signal()
+    finished = QtCore.Signal(int)
     closed = QtCore.Signal()
 
     def __init__(self, command: list, title: str) -> None:
@@ -26,8 +26,10 @@ class MBxxOutput(QtWidgets.QMainWindow, Ui_MBxxxOutput):
         self.process = QProcess()
         self.process.readyReadStandardOutput.connect(self.__handle_stdout)
         self.process.readyReadStandardError.connect(self.__handle_stderr)
-        self.process.start(command[0], command[1:])
         self.process.finished.connect(self.__process_finished)
+        self.process.start(command[0], command[1:])
+        self.process.waitForStarted()
+        self.pid = self.process.processId()
 
     def __handle_stdout(self):
         data = self.process.readAllStandardOutput()
@@ -42,8 +44,8 @@ class MBxxOutput(QtWidgets.QMainWindow, Ui_MBxxxOutput):
         self.stderr.moveCursor(QTextCursor.End)
         self.stderr.insertPlainText(text)
 
-    def __process_finished(self):
-        self.finished.emit()
+    def __process_finished(self, exit_code: int, exit_status: QProcess.ExitStatus):
+        self.finished.emit(exit_code)
 
     def closeEvent(self, event):
         super(MBxxOutput, self).closeEvent(event)

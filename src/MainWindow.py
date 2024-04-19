@@ -31,6 +31,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
         # Command Window
         self.command_window: MBxxOutput | None = None
+        self.command_pid: int | None = None
         self.process_active: bool = False
         self.window_open: bool = False
 
@@ -374,8 +375,9 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.command_window.finished.connect(self.__process_finished)
         self.command_window.closed.connect(self.__command_window_closed)
         self.command_window.show()
+        self.command_pid = self.command_window.pid
 
-    def __process_finished(self) -> None:
+    def __process_finished(self, exit_code: int) -> None:
         """
         @brief actions when modbus process is finished
         """
@@ -406,6 +408,9 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.mbrtu_start.setText("Start")
         self.tab_modbus_setings.setEnabled(True)
 
+        if exit_code != 0:
+            QMessageBox.information(self, "Client terminated", f"Modbus client terminated with exit code {exit_code}")
+
     def __command_window_closed(self) -> None:
         """
         @brief actions when command window is closed
@@ -422,6 +427,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             self.mbrtu_start.setEnabled(False)
 
         self.__close_tool_windows()
+
+        self.command_pid = None
 
     def __shm_tools_init_gui(self) -> None:
         """
@@ -468,7 +475,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     def __shm_tools_init_random_gui(self) -> None:
         def on_button_random_do_clicked() -> None:
             random = self.shm_tools.start_random(f"{self.modbus_cfg.name_prefix}DO", self.modbus_cfg.do, 1,
-                                                 self.modbus_cfg.sem_name if self.modbus_cfg.sem_enable else None, 0x1)
+                                                 self.modbus_cfg.sem_name if self.modbus_cfg.sem_enable else None, 0x1,
+                                                 mb_client_pid=self.command_pid)
             self.tool_random_do.setEnabled(False)
             random.closed.connect(lambda: self.tool_random_do.setEnabled(True))
 
@@ -476,7 +484,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
         def on_button_random_di_clicked() -> None:
             random = self.shm_tools.start_random(f"{self.modbus_cfg.name_prefix}DI", self.modbus_cfg.di, 1,
-                                                 self.modbus_cfg.sem_name if self.modbus_cfg.sem_enable else None, 0x1)
+                                                 self.modbus_cfg.sem_name if self.modbus_cfg.sem_enable else None, 0x1,
+                                                 mb_client_pid=self.command_pid)
             self.tool_random_di.setEnabled(False)
             random.closed.connect(lambda: self.tool_random_di.setEnabled(True))
 
@@ -484,7 +493,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
         def on_button_random_ao_clicked() -> None:
             random = self.shm_tools.start_random(f"{self.modbus_cfg.name_prefix}AO", self.modbus_cfg.ao, 2,
-                                                 self.modbus_cfg.sem_name if self.modbus_cfg.sem_enable else None)
+                                                 self.modbus_cfg.sem_name if self.modbus_cfg.sem_enable else None,
+                                                 mb_client_pid=self.command_pid)
             self.tool_random_ao.setEnabled(False)
             random.closed.connect(lambda: self.tool_random_ao.setEnabled(True))
 
@@ -492,7 +502,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
         def on_button_random_ai_clicked() -> None:
             random = self.shm_tools.start_random(f"{self.modbus_cfg.name_prefix}AI", self.modbus_cfg.ai, 2,
-                                                 self.modbus_cfg.sem_name if self.modbus_cfg.sem_enable else None)
+                                                 self.modbus_cfg.sem_name if self.modbus_cfg.sem_enable else None,
+                                                 mb_client_pid=self.command_pid)
             self.tool_random_ai.setEnabled(False)
             random.closed.connect(lambda: self.tool_random_ai.setEnabled(True))
 

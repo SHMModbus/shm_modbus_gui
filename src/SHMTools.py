@@ -34,11 +34,12 @@ class SHMTools:
         return hexdump
 
     def start_random(self, shm_name: str, registers, register_size, semaphore: str | None = None,
-                     bitmask: int or None = None) -> SHMRandom:
+                     bitmask: int or None = None, mb_client_pid: int | None = None) -> SHMRandom:
         if shm_name in self.random:
             raise RuntimeError(f"Internal Error: A SHMRandom object already exists for {shm_name}")
 
-        random = SHMRandom(shm_name, registers, register_size, bitmask=bitmask, semaphore=semaphore)
+        random = SHMRandom(shm_name, registers, register_size, bitmask=bitmask, semaphore=semaphore,
+                           mb_client_pid=mb_client_pid)
         self.random[shm_name] = random
         random.closed.connect(lambda: self.random.pop(shm_name))
         random.show()
