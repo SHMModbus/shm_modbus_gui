@@ -96,7 +96,7 @@ class InspectSHM_AddInt(QtWidgets.QWidget, Ui_InspectSHMAddInt):
 
         endian = ''
         if size > 8:
-            endian += 'l' if self.endian_little else 'b'
+            endian += 'l' if self.endian_little.isChecked() else 'b'
         if size > 16 and self.endian_reversed.isChecked():
             endian += 'r'
 

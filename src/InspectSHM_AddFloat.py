@@ -55,7 +55,7 @@ class InspectSHM_AddFloat(QtWidgets.QWidget, Ui_InspectSHMAddFloat):
 
         size = 32 if self.size_4.isChecked() else 64
 
-        endian = 'l' if self.endian_little else 'b'
+        endian = 'l' if self.endian_little.isChecked() else 'b'
         if self.endian_reversed.isChecked():
             endian += 'r'
 
