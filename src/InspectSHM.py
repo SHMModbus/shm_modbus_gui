@@ -273,9 +273,9 @@ class InspectSHM(QtWidgets.QMainWindow, Ui_InspectSHM):
                         case 'x':
                             value = f"0x{raw_value:x}"
                         case 'o':
-                            value = f"0x{raw_value:o}"
+                            value = f"0o{raw_value:o}"
                         case 'b':
-                            value = f"0x{raw_value:b}"
+                            value = f"0b{raw_value:b}"
                         case _:
                             raise RuntimeError(f"Unknown int format: {format_char}")
                 elif data_type.startswith("float") or data_type.startswith("double"):
