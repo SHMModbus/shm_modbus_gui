@@ -256,10 +256,10 @@ class InspectSHM(QtWidgets.QMainWindow, Ui_InspectSHM):
                 time_widget = cfg_data["time_widget"]
 
                 if data_type.startswith("int"):
-                    endian = element["endian"]
+                    endian = element["endian"] if "endian" in element else None
                     value = f"{raw_value:d}"
                 elif data_type.startswith("uint"):
-                    endian = element["endian"]
+                    endian = element["endian"] if "endian" in element else None
                     format_char = name.split('_')[1]
                     match format_char:
                         case 'u':
