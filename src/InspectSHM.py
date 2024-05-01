@@ -269,7 +269,7 @@ class InspectSHM(QtWidgets.QMainWindow, Ui_InspectSHM):
                     format_char = name.split('_')[1]
                     match format_char:
                         case 'u':
-                            value = f"{raw_value:u}"
+                            value = f"{raw_value}"
                         case 'x':
                             value = f"0x{raw_value:x}"
                         case 'o':
