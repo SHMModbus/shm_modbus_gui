@@ -1,3 +1,4 @@
+import csv
 import datetime
 import enum
 import json
@@ -7,7 +8,7 @@ import tempfile
 from PySide6 import QtWidgets, QtCore
 from PySide6.QtCore import QMutex, Qt, QProcess, QTimer
 from PySide6.QtGui import QFontDatabase
-from PySide6.QtWidgets import QTableWidgetItem, QPushButton, QMessageBox
+from PySide6.QtWidgets import QTableWidgetItem, QPushButton, QMessageBox, QFileDialog
 
 from .py_ui import Ui_InspectSHM
 from .InspectSHM_AddInt import InspectSHM_AddInt
@@ -66,6 +67,10 @@ class InspectSHM(QtWidgets.QMainWindow, Ui_InspectSHM):
         self.slider_interval.valueChanged.connect(lambda x: self.timer.setInterval(x))
 
         self.auto_refresh.stateChanged.connect(self.on_checkbox_autorefresh_clicked)
+
+        self.actionLoad_config.triggered.connect(self.load_config)
+        self.actionSave_config.triggered.connect(self.save_config)
+        self.actionExport_values.triggered.connect(self.save_values)
 
     def __add_cfg(self, cfg: tuple[str, dict, str, str, str, str]):
         self.exec_mutex.lock()
@@ -314,3 +319,40 @@ class InspectSHM(QtWidgets.QMainWindow, Ui_InspectSHM):
         if self.add_window:
             self.add_window.close()
         self.closed.emit()
+
+    def save_config(self):
+        # TODO
+        QMessageBox.warning(self, "Not implemented", "This feature is not yet implemented.")
+
+    def load_config(self):
+        # TODO
+        QMessageBox.warning(self, "Not implemented", "This feature is not yet implemented.")
+
+    def save_values(self):
+        file_name, _ = QFileDialog.getSaveFileName(self, caption="Save config", filter="*.csv")
+
+        if len(file_name) == 0:
+            return
+
+        with open(file_name, 'w', newline='') as f:
+            writer = csv.writer(f)
+            header = ["name", "register", "address", "data type", "size", "value", "time"]
+
+            writer.writerow(header)
+
+            self.exec_mutex.lock()
+            self.data_table.setSortingEnabled(False)
+
+            for row in range(self.data_table.rowCount()):
+                writer.writerow([
+                    self.data_table.item(row, int(self.TableCols.NAME)).text(),
+                    self.data_table.item(row, int(self.TableCols.REGISTER)).text(),
+                    self.data_table.item(row, int(self.TableCols.ADDR)).text(),
+                    self.data_table.item(row, int(self.TableCols.TYPE)).text(),
+                    self.data_table.item(row, int(self.TableCols.SIZE)).text(),
+                    self.data_table.item(row, int(self.TableCols.VALUE)).text(),
+                    self.data_table.item(row, int(self.TableCols.TIME)).text(),
+                ])
+
+            self.data_table.setSortingEnabled(True)
+            self.exec_mutex.unlock()
