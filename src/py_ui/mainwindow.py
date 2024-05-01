@@ -491,7 +491,7 @@ class Ui_MainWindow(object):
         self.mbtcp_settings.setWidgetResizable(True)
         self.mbtcp_settings_content = QWidget()
         self.mbtcp_settings_content.setObjectName(u"mbtcp_settings_content")
-        self.mbtcp_settings_content.setGeometry(QRect(0, -46, 727, 437))
+        self.mbtcp_settings_content.setGeometry(QRect(0, 0, 373, 437))
         self.gridLayout_4 = QGridLayout(self.mbtcp_settings_content)
         self.gridLayout_4.setObjectName(u"gridLayout_4")
         self.label_9 = QLabel(self.mbtcp_settings_content)
@@ -710,7 +710,7 @@ class Ui_MainWindow(object):
         self.scrollArea_2.setWidgetResizable(True)
         self.mbrtu_settings = QWidget()
         self.mbrtu_settings.setObjectName(u"mbrtu_settings")
-        self.mbrtu_settings.setGeometry(QRect(0, 0, 727, 391))
+        self.mbrtu_settings.setGeometry(QRect(0, 0, 253, 391))
         self.gridLayout_15 = QGridLayout(self.mbrtu_settings)
         self.gridLayout_15.setObjectName(u"gridLayout_15")
         self.label_32 = QLabel(self.mbrtu_settings)
@@ -895,147 +895,9 @@ class Ui_MainWindow(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollAreaWidgetContents = QWidget()
         self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
-        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 745, 585))
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, -162, 745, 646))
         self.gridLayout_26 = QGridLayout(self.scrollAreaWidgetContents)
         self.gridLayout_26.setObjectName(u"gridLayout_26")
-        self.line_10 = QFrame(self.scrollAreaWidgetContents)
-        self.line_10.setObjectName(u"line_10")
-        self.line_10.setEnabled(True)
-        self.line_10.setFrameShape(QFrame.Shape.HLine)
-        self.line_10.setFrameShadow(QFrame.Shadow.Sunken)
-
-        self.gridLayout_26.addWidget(self.line_10, 4, 0, 1, 1)
-
-        self.line_12 = QFrame(self.scrollAreaWidgetContents)
-        self.line_12.setObjectName(u"line_12")
-        self.line_12.setFrameShape(QFrame.Shape.HLine)
-        self.line_12.setFrameShadow(QFrame.Shadow.Sunken)
-
-        self.gridLayout_26.addWidget(self.line_12, 2, 0, 1, 1)
-
-        self.widget_20 = QWidget(self.scrollAreaWidgetContents)
-        self.widget_20.setObjectName(u"widget_20")
-        self.widget_20.setEnabled(True)
-        self.gridLayout_28 = QGridLayout(self.widget_20)
-        self.gridLayout_28.setObjectName(u"gridLayout_28")
-        self.tool_dump_ai = QPushButton(self.widget_20)
-        self.tool_dump_ai.setObjectName(u"tool_dump_ai")
-        self.tool_dump_ai.setEnabled(True)
-
-        self.gridLayout_28.addWidget(self.tool_dump_ai, 3, 1, 1, 1)
-
-        self.tool_dump_di_file_dialog = QToolButton(self.widget_20)
-        self.tool_dump_di_file_dialog.setObjectName(u"tool_dump_di_file_dialog")
-        icon = QIcon()
-        iconThemeName = u"document-save"
-        if QIcon.hasThemeIcon(iconThemeName):
-            icon = QIcon.fromTheme(iconThemeName)
-        else:
-            icon.addFile(u"../../../../../.designer/backup", QSize(), QIcon.Normal, QIcon.Off)
-
-        self.tool_dump_di_file_dialog.setIcon(icon)
-
-        self.gridLayout_28.addWidget(self.tool_dump_di_file_dialog, 1, 3, 1, 1)
-
-        self.tool_dump_do_file_dialog = QToolButton(self.widget_20)
-        self.tool_dump_do_file_dialog.setObjectName(u"tool_dump_do_file_dialog")
-        self.tool_dump_do_file_dialog.setIcon(icon)
-
-        self.gridLayout_28.addWidget(self.tool_dump_do_file_dialog, 0, 3, 1, 1)
-
-        self.tool_dump_ao = QPushButton(self.widget_20)
-        self.tool_dump_ao.setObjectName(u"tool_dump_ao")
-        self.tool_dump_ao.setEnabled(True)
-
-        self.gridLayout_28.addWidget(self.tool_dump_ao, 2, 1, 1, 1)
-
-        self.tool_dump_do_file = QLineEdit(self.widget_20)
-        self.tool_dump_do_file.setObjectName(u"tool_dump_do_file")
-
-        self.gridLayout_28.addWidget(self.tool_dump_do_file, 0, 2, 1, 1)
-
-        self.tool_dump_di_file = QLineEdit(self.widget_20)
-        self.tool_dump_di_file.setObjectName(u"tool_dump_di_file")
-
-        self.gridLayout_28.addWidget(self.tool_dump_di_file, 1, 2, 1, 1)
-
-        self.tool_dump_ao_file_dialog = QToolButton(self.widget_20)
-        self.tool_dump_ao_file_dialog.setObjectName(u"tool_dump_ao_file_dialog")
-        self.tool_dump_ao_file_dialog.setIcon(icon)
-
-        self.gridLayout_28.addWidget(self.tool_dump_ao_file_dialog, 2, 3, 1, 1)
-
-        self.tool_dump_do = QPushButton(self.widget_20)
-        self.tool_dump_do.setObjectName(u"tool_dump_do")
-        self.tool_dump_do.setEnabled(True)
-
-        self.gridLayout_28.addWidget(self.tool_dump_do, 0, 1, 1, 1)
-
-        self.tool_dump_ao_file = QLineEdit(self.widget_20)
-        self.tool_dump_ao_file.setObjectName(u"tool_dump_ao_file")
-
-        self.gridLayout_28.addWidget(self.tool_dump_ao_file, 2, 2, 1, 1)
-
-        self.tool_dump_di = QPushButton(self.widget_20)
-        self.tool_dump_di.setObjectName(u"tool_dump_di")
-        self.tool_dump_di.setEnabled(True)
-
-        self.gridLayout_28.addWidget(self.tool_dump_di, 1, 1, 1, 1)
-
-        self.tool_dump_ai_file_dialog = QToolButton(self.widget_20)
-        self.tool_dump_ai_file_dialog.setObjectName(u"tool_dump_ai_file_dialog")
-        self.tool_dump_ai_file_dialog.setIcon(icon)
-
-        self.gridLayout_28.addWidget(self.tool_dump_ai_file_dialog, 3, 3, 1, 1)
-
-        self.tool_dump_ai_file = QLineEdit(self.widget_20)
-        self.tool_dump_ai_file.setObjectName(u"tool_dump_ai_file")
-
-        self.gridLayout_28.addWidget(self.tool_dump_ai_file, 3, 2, 1, 1)
-
-
-        self.gridLayout_26.addWidget(self.widget_20, 1, 0, 1, 1)
-
-        self.widget_21 = QWidget(self.scrollAreaWidgetContents)
-        self.widget_21.setObjectName(u"widget_21")
-        self.widget_21.setEnabled(True)
-        self.gridLayout_29 = QGridLayout(self.widget_21)
-        self.gridLayout_29.setObjectName(u"gridLayout_29")
-        self.tool_hexdump_ai = QPushButton(self.widget_21)
-        self.tool_hexdump_ai.setObjectName(u"tool_hexdump_ai")
-        self.tool_hexdump_ai.setEnabled(True)
-
-        self.gridLayout_29.addWidget(self.tool_hexdump_ai, 1, 1, 1, 1)
-
-        self.tool_hexdump_di = QPushButton(self.widget_21)
-        self.tool_hexdump_di.setObjectName(u"tool_hexdump_di")
-        self.tool_hexdump_di.setEnabled(True)
-
-        self.gridLayout_29.addWidget(self.tool_hexdump_di, 0, 1, 1, 1)
-
-        self.tool_hexdump_do = QPushButton(self.widget_21)
-        self.tool_hexdump_do.setObjectName(u"tool_hexdump_do")
-        self.tool_hexdump_do.setEnabled(True)
-
-        self.gridLayout_29.addWidget(self.tool_hexdump_do, 0, 0, 1, 1)
-
-        self.tool_hexdump_ao = QPushButton(self.widget_21)
-        self.tool_hexdump_ao.setObjectName(u"tool_hexdump_ao")
-        self.tool_hexdump_ao.setEnabled(True)
-
-        self.gridLayout_29.addWidget(self.tool_hexdump_ao, 1, 0, 1, 1)
-
-
-        self.gridLayout_26.addWidget(self.widget_21, 5, 0, 1, 1)
-
-        self.widget_19 = QWidget(self.scrollAreaWidgetContents)
-        self.widget_19.setObjectName(u"widget_19")
-        self.widget_19.setEnabled(True)
-        self.gridLayout_27 = QGridLayout(self.widget_19)
-        self.gridLayout_27.setObjectName(u"gridLayout_27")
-
-        self.gridLayout_26.addWidget(self.widget_19, 0, 0, 1, 1)
-
         self.line_11 = QFrame(self.scrollAreaWidgetContents)
         self.line_11.setObjectName(u"line_11")
         self.line_11.setFrameShape(QFrame.Shape.HLine)
@@ -1043,51 +905,20 @@ class Ui_MainWindow(object):
 
         self.gridLayout_26.addWidget(self.line_11, 6, 0, 1, 1)
 
-        self.random_ai = QWidget(self.scrollAreaWidgetContents)
-        self.random_ai.setObjectName(u"random_ai")
-        self.gridLayout_30 = QGridLayout(self.random_ai)
-        self.gridLayout_30.setObjectName(u"gridLayout_30")
-        self.tool_random_do = QPushButton(self.random_ai)
-        self.tool_random_do.setObjectName(u"tool_random_do")
-
-        self.gridLayout_30.addWidget(self.tool_random_do, 0, 0, 1, 1)
-
-        self.tool_random_di = QPushButton(self.random_ai)
-        self.tool_random_di.setObjectName(u"tool_random_di")
-
-        self.gridLayout_30.addWidget(self.tool_random_di, 0, 1, 1, 1)
-
-        self.tool_random_ao = QPushButton(self.random_ai)
-        self.tool_random_ao.setObjectName(u"tool_random_ao")
-
-        self.gridLayout_30.addWidget(self.tool_random_ao, 1, 0, 1, 1)
-
-        self.tool_random_ai = QPushButton(self.random_ai)
-        self.tool_random_ai.setObjectName(u"tool_random_ai")
-
-        self.gridLayout_30.addWidget(self.tool_random_ai, 1, 1, 1, 1)
-
-
-        self.gridLayout_26.addWidget(self.random_ai, 7, 0, 1, 1)
-
-        self.verticalSpacer_3 = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
-
-        self.gridLayout_26.addItem(self.verticalSpacer_3, 8, 0, 1, 1)
-
         self.widget_22 = QWidget(self.scrollAreaWidgetContents)
         self.widget_22.setObjectName(u"widget_22")
         self.gridLayout_31 = QGridLayout(self.widget_22)
         self.gridLayout_31.setObjectName(u"gridLayout_31")
         self.tool_load_ao_file_dialog = QToolButton(self.widget_22)
         self.tool_load_ao_file_dialog.setObjectName(u"tool_load_ao_file_dialog")
-        icon1 = QIcon()
+        icon = QIcon()
         iconThemeName = u"document-open"
         if QIcon.hasThemeIcon(iconThemeName):
-            icon1 = QIcon.fromTheme(iconThemeName)
+            icon = QIcon.fromTheme(iconThemeName)
         else:
-            icon1.addFile(u"../../../../../.designer/backup", QSize(), QIcon.Normal, QIcon.Off)
+            icon.addFile(u"../../../../../.designer/backup", QSize(), QIcon.Normal, QIcon.Off)
 
-        self.tool_load_ao_file_dialog.setIcon(icon1)
+        self.tool_load_ao_file_dialog.setIcon(icon)
 
         self.gridLayout_31.addWidget(self.tool_load_ao_file_dialog, 2, 4, 1, 1)
 
@@ -1150,7 +981,7 @@ class Ui_MainWindow(object):
 
         self.tool_load_do_file_dialog = QToolButton(self.widget_22)
         self.tool_load_do_file_dialog.setObjectName(u"tool_load_do_file_dialog")
-        self.tool_load_do_file_dialog.setIcon(icon1)
+        self.tool_load_do_file_dialog.setIcon(icon)
 
         self.gridLayout_31.addWidget(self.tool_load_do_file_dialog, 0, 4, 1, 1)
 
@@ -1178,7 +1009,7 @@ class Ui_MainWindow(object):
 
         self.tool_load_di_file_dialog = QToolButton(self.widget_22)
         self.tool_load_di_file_dialog.setObjectName(u"tool_load_di_file_dialog")
-        self.tool_load_di_file_dialog.setIcon(icon1)
+        self.tool_load_di_file_dialog.setIcon(icon)
 
         self.gridLayout_31.addWidget(self.tool_load_di_file_dialog, 1, 4, 1, 1)
 
@@ -1189,12 +1020,206 @@ class Ui_MainWindow(object):
 
         self.tool_load_ai_file_dialog = QToolButton(self.widget_22)
         self.tool_load_ai_file_dialog.setObjectName(u"tool_load_ai_file_dialog")
-        self.tool_load_ai_file_dialog.setIcon(icon1)
+        self.tool_load_ai_file_dialog.setIcon(icon)
 
         self.gridLayout_31.addWidget(self.tool_load_ai_file_dialog, 3, 4, 1, 1)
 
 
         self.gridLayout_26.addWidget(self.widget_22, 3, 0, 1, 1)
+
+        self.line_10 = QFrame(self.scrollAreaWidgetContents)
+        self.line_10.setObjectName(u"line_10")
+        self.line_10.setEnabled(True)
+        self.line_10.setFrameShape(QFrame.Shape.HLine)
+        self.line_10.setFrameShadow(QFrame.Shadow.Sunken)
+
+        self.gridLayout_26.addWidget(self.line_10, 4, 0, 1, 1)
+
+        self.widget_20 = QWidget(self.scrollAreaWidgetContents)
+        self.widget_20.setObjectName(u"widget_20")
+        self.widget_20.setEnabled(True)
+        self.gridLayout_28 = QGridLayout(self.widget_20)
+        self.gridLayout_28.setObjectName(u"gridLayout_28")
+        self.tool_dump_ai = QPushButton(self.widget_20)
+        self.tool_dump_ai.setObjectName(u"tool_dump_ai")
+        self.tool_dump_ai.setEnabled(True)
+
+        self.gridLayout_28.addWidget(self.tool_dump_ai, 3, 1, 1, 1)
+
+        self.tool_dump_di_file_dialog = QToolButton(self.widget_20)
+        self.tool_dump_di_file_dialog.setObjectName(u"tool_dump_di_file_dialog")
+        icon1 = QIcon()
+        iconThemeName = u"document-save"
+        if QIcon.hasThemeIcon(iconThemeName):
+            icon1 = QIcon.fromTheme(iconThemeName)
+        else:
+            icon1.addFile(u"../../../../../.designer/backup", QSize(), QIcon.Normal, QIcon.Off)
+
+        self.tool_dump_di_file_dialog.setIcon(icon1)
+
+        self.gridLayout_28.addWidget(self.tool_dump_di_file_dialog, 1, 3, 1, 1)
+
+        self.tool_dump_do_file_dialog = QToolButton(self.widget_20)
+        self.tool_dump_do_file_dialog.setObjectName(u"tool_dump_do_file_dialog")
+        self.tool_dump_do_file_dialog.setIcon(icon1)
+
+        self.gridLayout_28.addWidget(self.tool_dump_do_file_dialog, 0, 3, 1, 1)
+
+        self.tool_dump_ao = QPushButton(self.widget_20)
+        self.tool_dump_ao.setObjectName(u"tool_dump_ao")
+        self.tool_dump_ao.setEnabled(True)
+
+        self.gridLayout_28.addWidget(self.tool_dump_ao, 2, 1, 1, 1)
+
+        self.tool_dump_do_file = QLineEdit(self.widget_20)
+        self.tool_dump_do_file.setObjectName(u"tool_dump_do_file")
+
+        self.gridLayout_28.addWidget(self.tool_dump_do_file, 0, 2, 1, 1)
+
+        self.tool_dump_di_file = QLineEdit(self.widget_20)
+        self.tool_dump_di_file.setObjectName(u"tool_dump_di_file")
+
+        self.gridLayout_28.addWidget(self.tool_dump_di_file, 1, 2, 1, 1)
+
+        self.tool_dump_ao_file_dialog = QToolButton(self.widget_20)
+        self.tool_dump_ao_file_dialog.setObjectName(u"tool_dump_ao_file_dialog")
+        self.tool_dump_ao_file_dialog.setIcon(icon1)
+
+        self.gridLayout_28.addWidget(self.tool_dump_ao_file_dialog, 2, 3, 1, 1)
+
+        self.tool_dump_do = QPushButton(self.widget_20)
+        self.tool_dump_do.setObjectName(u"tool_dump_do")
+        self.tool_dump_do.setEnabled(True)
+
+        self.gridLayout_28.addWidget(self.tool_dump_do, 0, 1, 1, 1)
+
+        self.tool_dump_ao_file = QLineEdit(self.widget_20)
+        self.tool_dump_ao_file.setObjectName(u"tool_dump_ao_file")
+
+        self.gridLayout_28.addWidget(self.tool_dump_ao_file, 2, 2, 1, 1)
+
+        self.tool_dump_di = QPushButton(self.widget_20)
+        self.tool_dump_di.setObjectName(u"tool_dump_di")
+        self.tool_dump_di.setEnabled(True)
+
+        self.gridLayout_28.addWidget(self.tool_dump_di, 1, 1, 1, 1)
+
+        self.tool_dump_ai_file_dialog = QToolButton(self.widget_20)
+        self.tool_dump_ai_file_dialog.setObjectName(u"tool_dump_ai_file_dialog")
+        self.tool_dump_ai_file_dialog.setIcon(icon1)
+
+        self.gridLayout_28.addWidget(self.tool_dump_ai_file_dialog, 3, 3, 1, 1)
+
+        self.tool_dump_ai_file = QLineEdit(self.widget_20)
+        self.tool_dump_ai_file.setObjectName(u"tool_dump_ai_file")
+
+        self.gridLayout_28.addWidget(self.tool_dump_ai_file, 3, 2, 1, 1)
+
+
+        self.gridLayout_26.addWidget(self.widget_20, 1, 0, 1, 1)
+
+        self.verticalSpacer_3 = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
+
+        self.gridLayout_26.addItem(self.verticalSpacer_3, 9, 0, 1, 1)
+
+        self.random_ai = QWidget(self.scrollAreaWidgetContents)
+        self.random_ai.setObjectName(u"random_ai")
+        self.gridLayout_30 = QGridLayout(self.random_ai)
+        self.gridLayout_30.setObjectName(u"gridLayout_30")
+        self.tool_random_do = QPushButton(self.random_ai)
+        self.tool_random_do.setObjectName(u"tool_random_do")
+
+        self.gridLayout_30.addWidget(self.tool_random_do, 0, 0, 1, 1)
+
+        self.tool_random_di = QPushButton(self.random_ai)
+        self.tool_random_di.setObjectName(u"tool_random_di")
+
+        self.gridLayout_30.addWidget(self.tool_random_di, 0, 1, 1, 1)
+
+        self.tool_random_ao = QPushButton(self.random_ai)
+        self.tool_random_ao.setObjectName(u"tool_random_ao")
+
+        self.gridLayout_30.addWidget(self.tool_random_ao, 1, 0, 1, 1)
+
+        self.tool_random_ai = QPushButton(self.random_ai)
+        self.tool_random_ai.setObjectName(u"tool_random_ai")
+
+        self.gridLayout_30.addWidget(self.tool_random_ai, 1, 1, 1, 1)
+
+
+        self.gridLayout_26.addWidget(self.random_ai, 7, 0, 1, 1)
+
+        self.widget_19 = QWidget(self.scrollAreaWidgetContents)
+        self.widget_19.setObjectName(u"widget_19")
+        self.widget_19.setEnabled(True)
+        self.gridLayout_27 = QGridLayout(self.widget_19)
+        self.gridLayout_27.setObjectName(u"gridLayout_27")
+
+        self.gridLayout_26.addWidget(self.widget_19, 0, 0, 1, 1)
+
+        self.line_12 = QFrame(self.scrollAreaWidgetContents)
+        self.line_12.setObjectName(u"line_12")
+        self.line_12.setFrameShape(QFrame.Shape.HLine)
+        self.line_12.setFrameShadow(QFrame.Shadow.Sunken)
+
+        self.gridLayout_26.addWidget(self.line_12, 2, 0, 1, 1)
+
+        self.widget_21 = QWidget(self.scrollAreaWidgetContents)
+        self.widget_21.setObjectName(u"widget_21")
+        self.widget_21.setEnabled(True)
+        self.gridLayout_29 = QGridLayout(self.widget_21)
+        self.gridLayout_29.setObjectName(u"gridLayout_29")
+        self.tool_hexdump_ai = QPushButton(self.widget_21)
+        self.tool_hexdump_ai.setObjectName(u"tool_hexdump_ai")
+        self.tool_hexdump_ai.setEnabled(True)
+
+        self.gridLayout_29.addWidget(self.tool_hexdump_ai, 1, 1, 1, 1)
+
+        self.tool_hexdump_di = QPushButton(self.widget_21)
+        self.tool_hexdump_di.setObjectName(u"tool_hexdump_di")
+        self.tool_hexdump_di.setEnabled(True)
+
+        self.gridLayout_29.addWidget(self.tool_hexdump_di, 0, 1, 1, 1)
+
+        self.tool_hexdump_do = QPushButton(self.widget_21)
+        self.tool_hexdump_do.setObjectName(u"tool_hexdump_do")
+        self.tool_hexdump_do.setEnabled(True)
+
+        self.gridLayout_29.addWidget(self.tool_hexdump_do, 0, 0, 1, 1)
+
+        self.tool_hexdump_ao = QPushButton(self.widget_21)
+        self.tool_hexdump_ao.setObjectName(u"tool_hexdump_ao")
+        self.tool_hexdump_ao.setEnabled(True)
+
+        self.gridLayout_29.addWidget(self.tool_hexdump_ao, 1, 0, 1, 1)
+
+
+        self.gridLayout_26.addWidget(self.widget_21, 5, 0, 1, 1)
+
+        self.line_6 = QFrame(self.scrollAreaWidgetContents)
+        self.line_6.setObjectName(u"line_6")
+        self.line_6.setFrameShape(QFrame.Shape.HLine)
+        self.line_6.setFrameShadow(QFrame.Shadow.Sunken)
+
+        self.gridLayout_26.addWidget(self.line_6, 8, 0, 1, 1)
+
+        self.widget_14 = QWidget(self.scrollAreaWidgetContents)
+        self.widget_14.setObjectName(u"widget_14")
+        self.gridLayout_20 = QGridLayout(self.widget_14)
+        self.gridLayout_20.setObjectName(u"gridLayout_20")
+        self.tool_inspec_values = QPushButton(self.widget_14)
+        self.tool_inspec_values.setObjectName(u"tool_inspec_values")
+
+        self.gridLayout_20.addWidget(self.tool_inspec_values, 0, 0, 1, 1)
+
+        self.tool_set_values = QPushButton(self.widget_14)
+        self.tool_set_values.setObjectName(u"tool_set_values")
+        self.tool_set_values.setEnabled(False)
+
+        self.gridLayout_20.addWidget(self.tool_set_values, 0, 1, 1, 1)
+
+
+        self.gridLayout_26.addWidget(self.widget_14, 10, 0, 1, 1)
 
         self.scrollArea.setWidget(self.scrollAreaWidgetContents)
 
@@ -1646,146 +1671,6 @@ class Ui_MainWindow(object):
         self.tabWidget_modbus_cl.setTabText(self.tabWidget_modbus_cl.indexOf(self.tab_mbrtu), QCoreApplication.translate("MainWindow", u"Modbus Client RTU", None))
         self.tabWidget_tools.setTabText(self.tabWidget_tools.indexOf(self.tab_modbus_clients), QCoreApplication.translate("MainWindow", u"Modbus Clients", None))
 #if QT_CONFIG(tooltip)
-        self.tool_dump_ai.setToolTip(QCoreApplication.translate("MainWindow", u"dump AI to file", None))
-#endif // QT_CONFIG(tooltip)
-#if QT_CONFIG(statustip)
-        self.tool_dump_ai.setStatusTip(QCoreApplication.translate("MainWindow", u"dump AI to file", None))
-#endif // QT_CONFIG(statustip)
-        self.tool_dump_ai.setText(QCoreApplication.translate("MainWindow", u"dump AI to file", None))
-#if QT_CONFIG(tooltip)
-        self.tool_dump_di_file_dialog.setToolTip(QCoreApplication.translate("MainWindow", u"Select file to dump DI registers. The file is not written. Use dump (left) to execute dump.", None))
-#endif // QT_CONFIG(tooltip)
-#if QT_CONFIG(statustip)
-        self.tool_dump_di_file_dialog.setStatusTip(QCoreApplication.translate("MainWindow", u"Select file to dump DI registers. The file is not written. Use dump (left) to execute dump.", None))
-#endif // QT_CONFIG(statustip)
-        self.tool_dump_di_file_dialog.setText(QCoreApplication.translate("MainWindow", u"...", None))
-#if QT_CONFIG(tooltip)
-        self.tool_dump_do_file_dialog.setToolTip(QCoreApplication.translate("MainWindow", u"Select file to dump DO registers. The file is not written. Use dump (left) to execute dump.", None))
-#endif // QT_CONFIG(tooltip)
-#if QT_CONFIG(statustip)
-        self.tool_dump_do_file_dialog.setStatusTip(QCoreApplication.translate("MainWindow", u"Select file to dump DO registers. The file is not written. Use dump (left) to execute dump.", None))
-#endif // QT_CONFIG(statustip)
-        self.tool_dump_do_file_dialog.setText(QCoreApplication.translate("MainWindow", u"...", None))
-#if QT_CONFIG(tooltip)
-        self.tool_dump_ao.setToolTip(QCoreApplication.translate("MainWindow", u"dump AO to file", None))
-#endif // QT_CONFIG(tooltip)
-#if QT_CONFIG(statustip)
-        self.tool_dump_ao.setStatusTip(QCoreApplication.translate("MainWindow", u"dump AO to file", None))
-#endif // QT_CONFIG(statustip)
-        self.tool_dump_ao.setText(QCoreApplication.translate("MainWindow", u"dump AO to file", None))
-#if QT_CONFIG(tooltip)
-        self.tool_dump_do_file.setToolTip(QCoreApplication.translate("MainWindow", u"DO dump file", None))
-#endif // QT_CONFIG(tooltip)
-#if QT_CONFIG(statustip)
-        self.tool_dump_do_file.setStatusTip(QCoreApplication.translate("MainWindow", u"DO dump file", None))
-#endif // QT_CONFIG(statustip)
-        self.tool_dump_do_file.setText(QCoreApplication.translate("MainWindow", u"/tmp/modbus_DO", None))
-#if QT_CONFIG(tooltip)
-        self.tool_dump_di_file.setToolTip(QCoreApplication.translate("MainWindow", u"DI dump file", None))
-#endif // QT_CONFIG(tooltip)
-#if QT_CONFIG(statustip)
-        self.tool_dump_di_file.setStatusTip(QCoreApplication.translate("MainWindow", u"DI dump file", None))
-#endif // QT_CONFIG(statustip)
-        self.tool_dump_di_file.setText(QCoreApplication.translate("MainWindow", u"/tmp/modbus_DI", None))
-#if QT_CONFIG(tooltip)
-        self.tool_dump_ao_file_dialog.setToolTip(QCoreApplication.translate("MainWindow", u"Select file to dump AO registers. The file is not written. Use dump (left) to execute dump.", None))
-#endif // QT_CONFIG(tooltip)
-#if QT_CONFIG(statustip)
-        self.tool_dump_ao_file_dialog.setStatusTip(QCoreApplication.translate("MainWindow", u"Select file to dump AO registers. The file is not written. Use dump (left) to execute dump.", None))
-#endif // QT_CONFIG(statustip)
-        self.tool_dump_ao_file_dialog.setText(QCoreApplication.translate("MainWindow", u"...", None))
-#if QT_CONFIG(tooltip)
-        self.tool_dump_do.setToolTip(QCoreApplication.translate("MainWindow", u"dump DO to file", None))
-#endif // QT_CONFIG(tooltip)
-#if QT_CONFIG(statustip)
-        self.tool_dump_do.setStatusTip(QCoreApplication.translate("MainWindow", u"dump DO to file", None))
-#endif // QT_CONFIG(statustip)
-        self.tool_dump_do.setText(QCoreApplication.translate("MainWindow", u"dump DO to file", None))
-#if QT_CONFIG(tooltip)
-        self.tool_dump_ao_file.setToolTip(QCoreApplication.translate("MainWindow", u"AO dump file", None))
-#endif // QT_CONFIG(tooltip)
-#if QT_CONFIG(statustip)
-        self.tool_dump_ao_file.setStatusTip(QCoreApplication.translate("MainWindow", u"AO dump file", None))
-#endif // QT_CONFIG(statustip)
-        self.tool_dump_ao_file.setText(QCoreApplication.translate("MainWindow", u"/tmp/modbus_AO", None))
-#if QT_CONFIG(tooltip)
-        self.tool_dump_di.setToolTip(QCoreApplication.translate("MainWindow", u"dump DI to file", None))
-#endif // QT_CONFIG(tooltip)
-#if QT_CONFIG(statustip)
-        self.tool_dump_di.setStatusTip(QCoreApplication.translate("MainWindow", u"dump DI to file", None))
-#endif // QT_CONFIG(statustip)
-        self.tool_dump_di.setText(QCoreApplication.translate("MainWindow", u"dump DI to file", None))
-#if QT_CONFIG(tooltip)
-        self.tool_dump_ai_file_dialog.setToolTip(QCoreApplication.translate("MainWindow", u"Select file to dump AI registers. The file is not written. Use dump (left) to execute dump.", None))
-#endif // QT_CONFIG(tooltip)
-#if QT_CONFIG(statustip)
-        self.tool_dump_ai_file_dialog.setStatusTip(QCoreApplication.translate("MainWindow", u"Select file to dump AI registers. The file is not written. Use dump (left) to execute dump.", None))
-#endif // QT_CONFIG(statustip)
-        self.tool_dump_ai_file_dialog.setText(QCoreApplication.translate("MainWindow", u"...", None))
-#if QT_CONFIG(tooltip)
-        self.tool_dump_ai_file.setToolTip(QCoreApplication.translate("MainWindow", u"AI dump file", None))
-#endif // QT_CONFIG(tooltip)
-#if QT_CONFIG(statustip)
-        self.tool_dump_ai_file.setStatusTip(QCoreApplication.translate("MainWindow", u"AI dump file", None))
-#endif // QT_CONFIG(statustip)
-        self.tool_dump_ai_file.setText(QCoreApplication.translate("MainWindow", u"/tmp/modbus_AI", None))
-#if QT_CONFIG(tooltip)
-        self.tool_hexdump_ai.setToolTip(QCoreApplication.translate("MainWindow", u"start hexdump tool", None))
-#endif // QT_CONFIG(tooltip)
-#if QT_CONFIG(statustip)
-        self.tool_hexdump_ai.setStatusTip(QCoreApplication.translate("MainWindow", u"start hexdump tool", None))
-#endif // QT_CONFIG(statustip)
-        self.tool_hexdump_ai.setText(QCoreApplication.translate("MainWindow", u"hexdump AI", None))
-#if QT_CONFIG(tooltip)
-        self.tool_hexdump_di.setToolTip(QCoreApplication.translate("MainWindow", u"start hexdump tool", None))
-#endif // QT_CONFIG(tooltip)
-#if QT_CONFIG(statustip)
-        self.tool_hexdump_di.setStatusTip(QCoreApplication.translate("MainWindow", u"start hexdump tool", None))
-#endif // QT_CONFIG(statustip)
-        self.tool_hexdump_di.setText(QCoreApplication.translate("MainWindow", u"hexdump DI", None))
-#if QT_CONFIG(tooltip)
-        self.tool_hexdump_do.setToolTip(QCoreApplication.translate("MainWindow", u"start hexdump tool", None))
-#endif // QT_CONFIG(tooltip)
-#if QT_CONFIG(statustip)
-        self.tool_hexdump_do.setStatusTip(QCoreApplication.translate("MainWindow", u"start hexdump tool", None))
-#endif // QT_CONFIG(statustip)
-        self.tool_hexdump_do.setText(QCoreApplication.translate("MainWindow", u"hexdump DO", None))
-#if QT_CONFIG(tooltip)
-        self.tool_hexdump_ao.setToolTip(QCoreApplication.translate("MainWindow", u"start hexdump tool", None))
-#endif // QT_CONFIG(tooltip)
-#if QT_CONFIG(statustip)
-        self.tool_hexdump_ao.setStatusTip(QCoreApplication.translate("MainWindow", u"start hexdump tool", None))
-#endif // QT_CONFIG(statustip)
-        self.tool_hexdump_ao.setText(QCoreApplication.translate("MainWindow", u"hexdump AO", None))
-#if QT_CONFIG(tooltip)
-        self.tool_random_do.setToolTip(QCoreApplication.translate("MainWindow", u"start randomize tool", None))
-#endif // QT_CONFIG(tooltip)
-#if QT_CONFIG(statustip)
-        self.tool_random_do.setStatusTip(QCoreApplication.translate("MainWindow", u"start randomize tool", None))
-#endif // QT_CONFIG(statustip)
-        self.tool_random_do.setText(QCoreApplication.translate("MainWindow", u"randomize DO", None))
-#if QT_CONFIG(tooltip)
-        self.tool_random_di.setToolTip(QCoreApplication.translate("MainWindow", u"start randomize tool", None))
-#endif // QT_CONFIG(tooltip)
-#if QT_CONFIG(statustip)
-        self.tool_random_di.setStatusTip(QCoreApplication.translate("MainWindow", u"start randomize tool", None))
-#endif // QT_CONFIG(statustip)
-        self.tool_random_di.setText(QCoreApplication.translate("MainWindow", u"randomize DI", None))
-#if QT_CONFIG(tooltip)
-        self.tool_random_ao.setToolTip(QCoreApplication.translate("MainWindow", u"start randomize tool", None))
-#endif // QT_CONFIG(tooltip)
-#if QT_CONFIG(statustip)
-        self.tool_random_ao.setStatusTip(QCoreApplication.translate("MainWindow", u"start randomize tool", None))
-#endif // QT_CONFIG(statustip)
-        self.tool_random_ao.setText(QCoreApplication.translate("MainWindow", u"randomize AO", None))
-#if QT_CONFIG(tooltip)
-        self.tool_random_ai.setToolTip(QCoreApplication.translate("MainWindow", u"start randomize tool", None))
-#endif // QT_CONFIG(tooltip)
-#if QT_CONFIG(statustip)
-        self.tool_random_ai.setStatusTip(QCoreApplication.translate("MainWindow", u"start randomize tool", None))
-#endif // QT_CONFIG(statustip)
-        self.tool_random_ai.setText(QCoreApplication.translate("MainWindow", u"randomize AI", None))
-#if QT_CONFIG(tooltip)
         self.tool_load_ao_file_dialog.setToolTip(QCoreApplication.translate("MainWindow", u"Select file to load AO registers. The file is not loaded. Use load button (left) to load registers from dump.", None))
 #endif // QT_CONFIG(tooltip)
 #if QT_CONFIG(statustip)
@@ -1925,6 +1810,148 @@ class Ui_MainWindow(object):
         self.tool_load_ai_file_dialog.setStatusTip(QCoreApplication.translate("MainWindow", u"Select file to load AI registers. The file is not loaded. Use load button (left) to load registers from dump.", None))
 #endif // QT_CONFIG(statustip)
         self.tool_load_ai_file_dialog.setText(QCoreApplication.translate("MainWindow", u"...", None))
+#if QT_CONFIG(tooltip)
+        self.tool_dump_ai.setToolTip(QCoreApplication.translate("MainWindow", u"dump AI to file", None))
+#endif // QT_CONFIG(tooltip)
+#if QT_CONFIG(statustip)
+        self.tool_dump_ai.setStatusTip(QCoreApplication.translate("MainWindow", u"dump AI to file", None))
+#endif // QT_CONFIG(statustip)
+        self.tool_dump_ai.setText(QCoreApplication.translate("MainWindow", u"dump AI to file", None))
+#if QT_CONFIG(tooltip)
+        self.tool_dump_di_file_dialog.setToolTip(QCoreApplication.translate("MainWindow", u"Select file to dump DI registers. The file is not written. Use dump (left) to execute dump.", None))
+#endif // QT_CONFIG(tooltip)
+#if QT_CONFIG(statustip)
+        self.tool_dump_di_file_dialog.setStatusTip(QCoreApplication.translate("MainWindow", u"Select file to dump DI registers. The file is not written. Use dump (left) to execute dump.", None))
+#endif // QT_CONFIG(statustip)
+        self.tool_dump_di_file_dialog.setText(QCoreApplication.translate("MainWindow", u"...", None))
+#if QT_CONFIG(tooltip)
+        self.tool_dump_do_file_dialog.setToolTip(QCoreApplication.translate("MainWindow", u"Select file to dump DO registers. The file is not written. Use dump (left) to execute dump.", None))
+#endif // QT_CONFIG(tooltip)
+#if QT_CONFIG(statustip)
+        self.tool_dump_do_file_dialog.setStatusTip(QCoreApplication.translate("MainWindow", u"Select file to dump DO registers. The file is not written. Use dump (left) to execute dump.", None))
+#endif // QT_CONFIG(statustip)
+        self.tool_dump_do_file_dialog.setText(QCoreApplication.translate("MainWindow", u"...", None))
+#if QT_CONFIG(tooltip)
+        self.tool_dump_ao.setToolTip(QCoreApplication.translate("MainWindow", u"dump AO to file", None))
+#endif // QT_CONFIG(tooltip)
+#if QT_CONFIG(statustip)
+        self.tool_dump_ao.setStatusTip(QCoreApplication.translate("MainWindow", u"dump AO to file", None))
+#endif // QT_CONFIG(statustip)
+        self.tool_dump_ao.setText(QCoreApplication.translate("MainWindow", u"dump AO to file", None))
+#if QT_CONFIG(tooltip)
+        self.tool_dump_do_file.setToolTip(QCoreApplication.translate("MainWindow", u"DO dump file", None))
+#endif // QT_CONFIG(tooltip)
+#if QT_CONFIG(statustip)
+        self.tool_dump_do_file.setStatusTip(QCoreApplication.translate("MainWindow", u"DO dump file", None))
+#endif // QT_CONFIG(statustip)
+        self.tool_dump_do_file.setText(QCoreApplication.translate("MainWindow", u"/tmp/modbus_DO", None))
+#if QT_CONFIG(tooltip)
+        self.tool_dump_di_file.setToolTip(QCoreApplication.translate("MainWindow", u"DI dump file", None))
+#endif // QT_CONFIG(tooltip)
+#if QT_CONFIG(statustip)
+        self.tool_dump_di_file.setStatusTip(QCoreApplication.translate("MainWindow", u"DI dump file", None))
+#endif // QT_CONFIG(statustip)
+        self.tool_dump_di_file.setText(QCoreApplication.translate("MainWindow", u"/tmp/modbus_DI", None))
+#if QT_CONFIG(tooltip)
+        self.tool_dump_ao_file_dialog.setToolTip(QCoreApplication.translate("MainWindow", u"Select file to dump AO registers. The file is not written. Use dump (left) to execute dump.", None))
+#endif // QT_CONFIG(tooltip)
+#if QT_CONFIG(statustip)
+        self.tool_dump_ao_file_dialog.setStatusTip(QCoreApplication.translate("MainWindow", u"Select file to dump AO registers. The file is not written. Use dump (left) to execute dump.", None))
+#endif // QT_CONFIG(statustip)
+        self.tool_dump_ao_file_dialog.setText(QCoreApplication.translate("MainWindow", u"...", None))
+#if QT_CONFIG(tooltip)
+        self.tool_dump_do.setToolTip(QCoreApplication.translate("MainWindow", u"dump DO to file", None))
+#endif // QT_CONFIG(tooltip)
+#if QT_CONFIG(statustip)
+        self.tool_dump_do.setStatusTip(QCoreApplication.translate("MainWindow", u"dump DO to file", None))
+#endif // QT_CONFIG(statustip)
+        self.tool_dump_do.setText(QCoreApplication.translate("MainWindow", u"dump DO to file", None))
+#if QT_CONFIG(tooltip)
+        self.tool_dump_ao_file.setToolTip(QCoreApplication.translate("MainWindow", u"AO dump file", None))
+#endif // QT_CONFIG(tooltip)
+#if QT_CONFIG(statustip)
+        self.tool_dump_ao_file.setStatusTip(QCoreApplication.translate("MainWindow", u"AO dump file", None))
+#endif // QT_CONFIG(statustip)
+        self.tool_dump_ao_file.setText(QCoreApplication.translate("MainWindow", u"/tmp/modbus_AO", None))
+#if QT_CONFIG(tooltip)
+        self.tool_dump_di.setToolTip(QCoreApplication.translate("MainWindow", u"dump DI to file", None))
+#endif // QT_CONFIG(tooltip)
+#if QT_CONFIG(statustip)
+        self.tool_dump_di.setStatusTip(QCoreApplication.translate("MainWindow", u"dump DI to file", None))
+#endif // QT_CONFIG(statustip)
+        self.tool_dump_di.setText(QCoreApplication.translate("MainWindow", u"dump DI to file", None))
+#if QT_CONFIG(tooltip)
+        self.tool_dump_ai_file_dialog.setToolTip(QCoreApplication.translate("MainWindow", u"Select file to dump AI registers. The file is not written. Use dump (left) to execute dump.", None))
+#endif // QT_CONFIG(tooltip)
+#if QT_CONFIG(statustip)
+        self.tool_dump_ai_file_dialog.setStatusTip(QCoreApplication.translate("MainWindow", u"Select file to dump AI registers. The file is not written. Use dump (left) to execute dump.", None))
+#endif // QT_CONFIG(statustip)
+        self.tool_dump_ai_file_dialog.setText(QCoreApplication.translate("MainWindow", u"...", None))
+#if QT_CONFIG(tooltip)
+        self.tool_dump_ai_file.setToolTip(QCoreApplication.translate("MainWindow", u"AI dump file", None))
+#endif // QT_CONFIG(tooltip)
+#if QT_CONFIG(statustip)
+        self.tool_dump_ai_file.setStatusTip(QCoreApplication.translate("MainWindow", u"AI dump file", None))
+#endif // QT_CONFIG(statustip)
+        self.tool_dump_ai_file.setText(QCoreApplication.translate("MainWindow", u"/tmp/modbus_AI", None))
+#if QT_CONFIG(tooltip)
+        self.tool_random_do.setToolTip(QCoreApplication.translate("MainWindow", u"start randomize tool", None))
+#endif // QT_CONFIG(tooltip)
+#if QT_CONFIG(statustip)
+        self.tool_random_do.setStatusTip(QCoreApplication.translate("MainWindow", u"start randomize tool", None))
+#endif // QT_CONFIG(statustip)
+        self.tool_random_do.setText(QCoreApplication.translate("MainWindow", u"randomize DO", None))
+#if QT_CONFIG(tooltip)
+        self.tool_random_di.setToolTip(QCoreApplication.translate("MainWindow", u"start randomize tool", None))
+#endif // QT_CONFIG(tooltip)
+#if QT_CONFIG(statustip)
+        self.tool_random_di.setStatusTip(QCoreApplication.translate("MainWindow", u"start randomize tool", None))
+#endif // QT_CONFIG(statustip)
+        self.tool_random_di.setText(QCoreApplication.translate("MainWindow", u"randomize DI", None))
+#if QT_CONFIG(tooltip)
+        self.tool_random_ao.setToolTip(QCoreApplication.translate("MainWindow", u"start randomize tool", None))
+#endif // QT_CONFIG(tooltip)
+#if QT_CONFIG(statustip)
+        self.tool_random_ao.setStatusTip(QCoreApplication.translate("MainWindow", u"start randomize tool", None))
+#endif // QT_CONFIG(statustip)
+        self.tool_random_ao.setText(QCoreApplication.translate("MainWindow", u"randomize AO", None))
+#if QT_CONFIG(tooltip)
+        self.tool_random_ai.setToolTip(QCoreApplication.translate("MainWindow", u"start randomize tool", None))
+#endif // QT_CONFIG(tooltip)
+#if QT_CONFIG(statustip)
+        self.tool_random_ai.setStatusTip(QCoreApplication.translate("MainWindow", u"start randomize tool", None))
+#endif // QT_CONFIG(statustip)
+        self.tool_random_ai.setText(QCoreApplication.translate("MainWindow", u"randomize AI", None))
+#if QT_CONFIG(tooltip)
+        self.tool_hexdump_ai.setToolTip(QCoreApplication.translate("MainWindow", u"start hexdump tool", None))
+#endif // QT_CONFIG(tooltip)
+#if QT_CONFIG(statustip)
+        self.tool_hexdump_ai.setStatusTip(QCoreApplication.translate("MainWindow", u"start hexdump tool", None))
+#endif // QT_CONFIG(statustip)
+        self.tool_hexdump_ai.setText(QCoreApplication.translate("MainWindow", u"hexdump AI", None))
+#if QT_CONFIG(tooltip)
+        self.tool_hexdump_di.setToolTip(QCoreApplication.translate("MainWindow", u"start hexdump tool", None))
+#endif // QT_CONFIG(tooltip)
+#if QT_CONFIG(statustip)
+        self.tool_hexdump_di.setStatusTip(QCoreApplication.translate("MainWindow", u"start hexdump tool", None))
+#endif // QT_CONFIG(statustip)
+        self.tool_hexdump_di.setText(QCoreApplication.translate("MainWindow", u"hexdump DI", None))
+#if QT_CONFIG(tooltip)
+        self.tool_hexdump_do.setToolTip(QCoreApplication.translate("MainWindow", u"start hexdump tool", None))
+#endif // QT_CONFIG(tooltip)
+#if QT_CONFIG(statustip)
+        self.tool_hexdump_do.setStatusTip(QCoreApplication.translate("MainWindow", u"start hexdump tool", None))
+#endif // QT_CONFIG(statustip)
+        self.tool_hexdump_do.setText(QCoreApplication.translate("MainWindow", u"hexdump DO", None))
+#if QT_CONFIG(tooltip)
+        self.tool_hexdump_ao.setToolTip(QCoreApplication.translate("MainWindow", u"start hexdump tool", None))
+#endif // QT_CONFIG(tooltip)
+#if QT_CONFIG(statustip)
+        self.tool_hexdump_ao.setStatusTip(QCoreApplication.translate("MainWindow", u"start hexdump tool", None))
+#endif // QT_CONFIG(statustip)
+        self.tool_hexdump_ao.setText(QCoreApplication.translate("MainWindow", u"hexdump AO", None))
+        self.tool_inspec_values.setText(QCoreApplication.translate("MainWindow", u"inspect values", None))
+        self.tool_set_values.setText(QCoreApplication.translate("MainWindow", u"set values", None))
         self.tabWidget_tools.setTabText(self.tabWidget_tools.indexOf(self.tab_shm_tools), QCoreApplication.translate("MainWindow", u"Shared Memory Tools", None))
         self.menuFile.setTitle(QCoreApplication.translate("MainWindow", u"File", None))
         self.menuHelp.setTitle(QCoreApplication.translate("MainWindow", u"Help", None))

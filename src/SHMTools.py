@@ -2,6 +2,7 @@ from PySide6.QtCore import QProcess
 
 from .SHMHexdump import SHMHexdump
 from .SHMRandom import SHMRandom
+from .InspectSHM import InspectSHM
 
 
 class SHMTools:
@@ -10,6 +11,8 @@ class SHMTools:
 
         self.hexdump: dict[str, SHMHexdump] = {}
         self.random: dict[str, SHMRandom] = {}
+        self.inspect_values = None
+        self.set_values = None
 
     def close_all(self) -> None:
         # close all hexdump windows
@@ -21,6 +24,14 @@ class SHMTools:
         random_shm_name = [x for x in self.random.keys()]
         for shm_name in random_shm_name:
             self.random[shm_name].close()
+
+        # close inspect_values
+        if self.inspect_values:
+            self.inspect_values.close()
+
+        # close set_values
+        if self.set_values:
+            self.set_values.close()
 
     def start_hexdump(self, shm_name: str, registers: int, register_size: int,
                       semaphore: str | None = None) -> SHMHexdump:
@@ -44,6 +55,22 @@ class SHMTools:
         random.closed.connect(lambda: self.random.pop(shm_name))
         random.show()
         return random
+
+    def start_inspect_values(self, shm_prefix: str, num_DO: int, num_DI: int, num_AO: int, num_AI: int, semaphore: str | None = None, pid: int | None = None):
+        if self.inspect_values:
+            raise RuntimeError(f"Internal Error: A inspect_valuesSHM object already exists")
+
+        self.inspect_values = InspectSHM(shm_prefix, num_DO, num_DI, num_AO, num_AI, semaphore)
+        self.inspect_values.closed.connect(self.__clear_inspect_values)
+        self.inspect_values.show()
+        return self.inspect_values
+
+    def start_set_values(self):
+        # TODO
+        pass
+
+    def __clear_inspect_values(self):
+        self.inspect_values = None
 
     @staticmethod
     def dump_shm_to_file(shm_name: str, filename: str, semaphore: str | None) -> None:
