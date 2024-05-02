@@ -25,7 +25,7 @@ class Ui_SetValues(object):
     def setupUi(self, SetValues):
         if not SetValues.objectName():
             SetValues.setObjectName(u"SetValues")
-        SetValues.resize(800, 600)
+        SetValues.resize(1150, 600)
         self.actionload_config = QAction(SetValues)
         self.actionload_config.setObjectName(u"actionload_config")
         self.actionsave_config = QAction(SetValues)
@@ -82,6 +82,10 @@ class Ui_SetValues(object):
 
         self.gridLayout_2.addWidget(self.button_add_int, 0, 1, 1, 1)
 
+        self.horizontalSpacer_2 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+
+        self.gridLayout_2.addItem(self.horizontalSpacer_2, 0, 3, 1, 1)
+
 
         self.gridLayout.addWidget(self.widget, 0, 0, 1, 1)
 
@@ -118,7 +122,7 @@ class Ui_SetValues(object):
         SetValues.setCentralWidget(self.centralwidget)
         self.menubar = QMenuBar(SetValues)
         self.menubar.setObjectName(u"menubar")
-        self.menubar.setGeometry(QRect(0, 0, 800, 30))
+        self.menubar.setGeometry(QRect(0, 0, 1150, 30))
         self.menuFile = QMenu(self.menubar)
         self.menuFile.setObjectName(u"menuFile")
         SetValues.setMenuBar(self.menubar)
@@ -155,8 +159,6 @@ class Ui_SetValues(object):
         ___qtablewidgetitem6.setText(QCoreApplication.translate("SetValues", u"Value", None));
         ___qtablewidgetitem7 = self.data_table.horizontalHeaderItem(8)
         ___qtablewidgetitem7.setText(QCoreApplication.translate("SetValues", u"Time", None));
-        ___qtablewidgetitem8 = self.data_table.horizontalHeaderItem(9)
-        ___qtablewidgetitem8.setText(QCoreApplication.translate("SetValues", u"New Column", None));
         self.button_add_float.setText(QCoreApplication.translate("SetValues", u"add float", None))
         self.button_add_bool.setText(QCoreApplication.translate("SetValues", u"add bool", None))
         self.button_add_int.setText(QCoreApplication.translate("SetValues", u"add int", None))

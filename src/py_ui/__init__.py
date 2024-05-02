@@ -7,3 +7,7 @@ from .inspect_shm_add_int import Ui_InspectSHMAddInt
 from .inspect_shm_add_float import Ui_InspectSHMAddFloat
 from .inspect_shm_add_bool import Ui_InspectSHMAddBool
 from .inspect_shm_add_string import Ui_InspectSHMAddString
+from .set_values import Ui_SetValues
+from .set_values_add_int import Ui_InspectSHMAddInt as Ui_SetValuesAddInt
+from .set_values_add_float import Ui_InspectSHMAddFloat as Ui_SetValuesAddFloat
+from .set_values_add_bool import Ui_InspectSHMAddBool as Ui_SetValuesAddBool
