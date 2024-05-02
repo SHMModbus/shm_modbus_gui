@@ -11,3 +11,5 @@ from .set_values import Ui_SetValues
 from .set_values_add_int import Ui_InspectSHMAddInt as Ui_SetValuesAddInt
 from .set_values_add_float import Ui_InspectSHMAddFloat as Ui_SetValuesAddFloat
 from .set_values_add_bool import Ui_InspectSHMAddBool as Ui_SetValuesAddBool
+from .set_values_input import Ui_InputValue
+from .set_values_input_bool import Ui_InputValue as Ui_InputValue_Bool

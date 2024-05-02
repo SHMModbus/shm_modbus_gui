@@ -24,7 +24,7 @@ class Ui_InspectSHMAddBool(object):
     def setupUi(self, InspectSHMAddBool):
         if not InspectSHMAddBool.objectName():
             InspectSHMAddBool.setObjectName(u"InspectSHMAddBool")
-        InspectSHMAddBool.resize(320, 448)
+        InspectSHMAddBool.resize(320, 396)
         InspectSHMAddBool.setMinimumSize(QSize(320, 150))
         self.verticalLayout = QVBoxLayout(InspectSHMAddBool)
         self.verticalLayout.setObjectName(u"verticalLayout")
@@ -33,7 +33,7 @@ class Ui_InspectSHMAddBool(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollAreaWidgetContents = QWidget()
         self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
-        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 304, 392))
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 304, 340))
         self.gridLayout = QGridLayout(self.scrollAreaWidgetContents)
         self.gridLayout.setObjectName(u"gridLayout")
         self.address = QSpinBox(self.scrollAreaWidgetContents)
@@ -76,16 +76,6 @@ class Ui_InspectSHMAddBool(object):
         self.reg_DI.setObjectName(u"reg_DI")
 
         self.verticalLayout_2.addWidget(self.reg_DI)
-
-        self.reg_AO = QRadioButton(self.widget)
-        self.reg_AO.setObjectName(u"reg_AO")
-
-        self.verticalLayout_2.addWidget(self.reg_AO)
-
-        self.reg_AI = QRadioButton(self.widget)
-        self.reg_AI.setObjectName(u"reg_AI")
-
-        self.verticalLayout_2.addWidget(self.reg_AI)
 
 
         self.gridLayout.addWidget(self.widget, 2, 2, 1, 1)
@@ -220,8 +210,6 @@ class Ui_InspectSHMAddBool(object):
         self.label_5.setText(QCoreApplication.translate("InspectSHMAddBool", u"Bit:", None))
         self.reg_DO.setText(QCoreApplication.translate("InspectSHMAddBool", u"DO", None))
         self.reg_DI.setText(QCoreApplication.translate("InspectSHMAddBool", u"DI", None))
-        self.reg_AO.setText(QCoreApplication.translate("InspectSHMAddBool", u"AO", None))
-        self.reg_AI.setText(QCoreApplication.translate("InspectSHMAddBool", u"AI", None))
         self.label.setText(QCoreApplication.translate("InspectSHMAddBool", u"Address (hex):", None))
         self.endian_little.setText(QCoreApplication.translate("InspectSHMAddBool", u"little", None))
         self.endian_big.setText(QCoreApplication.translate("InspectSHMAddBool", u"big", None))

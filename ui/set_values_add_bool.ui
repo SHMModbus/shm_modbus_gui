@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>320</width>
-    <height>448</height>
+    <height>396</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -31,7 +31,7 @@
         <x>0</x>
         <y>0</y>
         <width>304</width>
-        <height>392</height>
+        <height>340</height>
        </rect>
       </property>
       <layout class="QGridLayout" name="gridLayout">
@@ -86,20 +86,6 @@
            <widget class="QRadioButton" name="reg_DI">
             <property name="text">
              <string>DI</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QRadioButton" name="reg_AO">
-            <property name="text">
-             <string>AO</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QRadioButton" name="reg_AI">
-            <property name="text">
-             <string>AI</string>
             </property>
            </widget>
           </item>
