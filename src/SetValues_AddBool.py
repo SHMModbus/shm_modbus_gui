@@ -23,27 +23,13 @@ class SetValues_AddBool(QtWidgets.QWidget, Ui_SetValuesAddBool):
 
         self.button_add.clicked.connect(self.on_button_add)
 
-        self.reg_DO.clicked.connect(self.on_reg_DO)
-        self.reg_DI.clicked.connect(self.on_reg_DI)
+        self.reg_DO.clicked.connect(lambda: self.set_addr_max(self.num_DO))
+        self.reg_DI.clicked.connect(lambda: self.set_addr_max(self.num_DI))
 
     def set_addr_max(self, num_regs):
         addr_max = num_regs - 1
         self.address.setMaximum(addr_max)
         self.address_dec.setMaximum(addr_max)
-
-    def on_reg_DO(self):
-        self.set_addr_max(self.num_DO)
-        self.bit.setEnabled(False)
-        self.bit.setValue(0)
-        self.endian_big.setEnabled(False)
-        self.endian_little.setEnabled(False)
-
-    def on_reg_DI(self):
-        self.set_addr_max(self.num_DI)
-        self.bit.setEnabled(False)
-        self.bit.setValue(0)
-        self.endian_big.setEnabled(False)
-        self.endian_little.setEnabled(False)
 
     def on_button_add(self):
         name = self.name.text()
