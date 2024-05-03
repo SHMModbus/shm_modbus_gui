@@ -26,6 +26,9 @@ class InspectSHM_AddFloat(QtWidgets.QWidget, Ui_InspectSHMAddFloat):
 
         self.button_add.clicked.connect(self.on_button_add)
 
+        self.reg_AO.clicked.connect(self.on_reg_changed)
+        self.reg_AI.clicked.connect(self.on_reg_changed)
+
     def set_addr_max(self, size):
         num_regs = self.num_AO if self.reg_AO.isChecked() else self.num_AI
 
