@@ -1,6 +1,7 @@
 import csv
 import datetime
 import enum
+import hashlib
 import json
 import os
 import tempfile
@@ -54,10 +55,24 @@ class InspectSHM(QtWidgets.QMainWindow, Ui_InspectSHM):
         self.timer.timeout.connect(self.execute)
 
         self.shm_format_cfg = {
-            f"{self.name_prefix}DO": {},
-            f"{self.name_prefix}DI": {},
-            f"{self.name_prefix}AO": {},
-            f"{self.name_prefix}AI": {},
+            "DO": {},
+            "DI": {},
+            "AO": {},
+            "AI": {},
+        }
+
+        self.shm_format_widgets = {
+            "DO": {},
+            "DI": {},
+            "AO": {},
+            "AI": {},
+        }
+
+        self.shm_sizes = {
+            "DO": num_DO,
+            "DI": num_DI,
+            "AO": num_AO * 2,
+            "AI": num_AI * 2,
         }
 
         self.__setup_add_buttons()
@@ -72,18 +87,7 @@ class InspectSHM(QtWidgets.QMainWindow, Ui_InspectSHM):
         self.actionSave_config.triggered.connect(self.save_config)
         self.actionExport_values.triggered.connect(self.save_values)
 
-    def __add_cfg(self, cfg: tuple[str, dict, str, str, str, str]):
-        self.exec_mutex.lock()
-        cfg_line = cfg[0]
-        data = cfg[1]
-        register = cfg[2]
-        reg_addr = cfg[3]
-        size = cfg[4]
-        type_str = cfg[5]
-        name = data["name"]
-        identifier = cfg_line.split(',', maxsplit=2)[-1]
-
-        # add table entry
+    def add_row(self, name: str, register: str, reg_addr: str, type_str: str, size: str, identifier: str):
         self.data_table.setSortingEnabled(False)
 
         current_row = self.data_table.rowCount()
@@ -119,11 +123,32 @@ class InspectSHM(QtWidgets.QMainWindow, Ui_InspectSHM):
 
         self.data_table.setSortingEnabled(True)
 
+        return value_widget, endian_widget, time_widget
+
+    def __add_cfg(self, cfg: tuple[str, dict, str, str, str, str]):
+        self.exec_mutex.lock()
+        cfg_line = cfg[0]
+        data = cfg[1]
+        register = cfg[2]
+        reg_addr = cfg[3]
+        size = cfg[4]
+        type_str = cfg[5]
+        name = data["name"]
+        identifier = cfg_line.split(',', maxsplit=2)[-1]
+
+        # add table entry
+        value_widget, endian_widget, time_widget = self.add_row(name, register, reg_addr, type_str, size, identifier)
+
         data["cfg_line"] = cfg_line
-        data["value_widget"] = value_widget
-        data["endian_widget"] = endian_widget
-        data["time_widget"] = time_widget
-        self.shm_format_cfg[f"{self.name_prefix}{register}"][identifier] = data
+        data["reg_addr"] = reg_addr
+        data["size"] = size
+        data["type_str"] = type_str
+        self.shm_format_cfg[f"{register}"][identifier] = data
+        self.shm_format_widgets[f"{register}"][identifier] = {
+            "value_widget": value_widget,
+            "endian_widget": endian_widget,
+            "time_widget": time_widget,
+        }
         self.exec_mutex.unlock()
 
     def __setup_add_buttons(self):
@@ -187,10 +212,10 @@ class InspectSHM(QtWidgets.QMainWindow, Ui_InspectSHM):
         self.exec_mutex.lock()
         self.data_table.setSortingEnabled(False)
 
-        do_cfg_lines = [x["cfg_line"] for x in self.shm_format_cfg[f"{self.name_prefix}DO"].values()]
-        di_cfg_lines = [x["cfg_line"] for x in self.shm_format_cfg[f"{self.name_prefix}DI"].values()]
-        ao_cfg_lines = [x["cfg_line"] for x in self.shm_format_cfg[f"{self.name_prefix}AO"].values()]
-        ai_cfg_lines = [x["cfg_line"] for x in self.shm_format_cfg[f"{self.name_prefix}AI"].values()]
+        do_cfg_lines = [x["cfg_line"] for x in self.shm_format_cfg["DO"].values()]
+        di_cfg_lines = [x["cfg_line"] for x in self.shm_format_cfg["DI"].values()]
+        ao_cfg_lines = [x["cfg_line"] for x in self.shm_format_cfg["AO"].values()]
+        ai_cfg_lines = [x["cfg_line"] for x in self.shm_format_cfg["AI"].values()]
 
         cfg_files = {}
 
@@ -261,10 +286,11 @@ class InspectSHM(QtWidgets.QMainWindow, Ui_InspectSHM):
                 raw_value = element["data"]
                 data_type: str = element["type"]
 
-                cfg_data = self.shm_format_cfg[shm_name][name]
-                value_widget = cfg_data["value_widget"]
-                endian_widget = cfg_data["endian_widget"]
-                time_widget = cfg_data["time_widget"]
+                cfg_data = self.shm_format_cfg[shm_name[len(self.name_prefix):]][name]
+                cfg_widgets = self.shm_format_widgets[shm_name[len(self.name_prefix):]][name]
+                value_widget = cfg_widgets["value_widget"]
+                endian_widget = cfg_widgets["endian_widget"]
+                time_widget = cfg_widgets["time_widget"]
 
                 if data_type.startswith("int"):
                     endian = element["endian"] if "endian" in element else None
@@ -309,7 +335,8 @@ class InspectSHM(QtWidgets.QMainWindow, Ui_InspectSHM):
     def delete_row(self, row_widget: QTableWidgetItem):
         self.exec_mutex.lock()
         i = row_widget.row()
-        del self.shm_format_cfg[f"{self.name_prefix}{row_widget.register}"][row_widget.identifier]
+        del self.shm_format_cfg[f"{row_widget.register}"][row_widget.identifier]
+        del self.shm_format_widgets[f"{row_widget.register}"][row_widget.identifier]
         self.data_table.removeRow(i)
         self.exec_mutex.unlock()
 
@@ -321,15 +348,100 @@ class InspectSHM(QtWidgets.QMainWindow, Ui_InspectSHM):
         self.closed.emit()
 
     def save_config(self):
-        # TODO
-        QMessageBox.warning(self, "Not implemented", "This feature is not yet implemented.")
+        file_name, _ = QFileDialog.getSaveFileName(self, caption="Save config")
+        if len(file_name) <= 0:
+            return
+
+        cfg_json = json.dumps(self.shm_format_cfg)
+        cfg_hash = hashlib.sha256(cfg_json.encode("utf-8")).hexdigest()
+        try:
+            with open(file_name, 'w') as f:
+                print(cfg_hash, file=f)
+                print(cfg_json, file=f)
+        except Exception as e:
+            QMessageBox.warning(self, "Failed to write config", f"{e}")
 
     def load_config(self):
-        # TODO
-        QMessageBox.warning(self, "Not implemented", "This feature is not yet implemented.")
+        file_name, _ = QFileDialog.getOpenFileName(self, caption="Load config")
+        if len(file_name) <= 0:
+            return
+
+        try:
+            with open(file_name, 'r') as f:
+                cfg_lines = [x.strip() for x in f.readlines()]
+        except Exception as e:
+            QMessageBox.warning(self, "Failed to read config", f"{e}")
+            return
+
+        if len(cfg_lines) != 2:
+            QMessageBox.warning(self, "Invalid file", f"Content of selected file is invalid.")
+            return
+
+        cfg_hash_file = cfg_lines[0]
+        cfg_json = cfg_lines[1]
+
+        cfg_hash = hashlib.sha256(cfg_json.encode("utf-8")).hexdigest()
+        if cfg_hash_file != cfg_hash:
+            QMessageBox.warning(self, "Invalid file", f"Content hash is invalid.")
+            return
+
+        loaded_cfg = json.loads(cfg_json)
+
+        # check config
+        try:
+            for reg, reg_data in loaded_cfg.items():
+                shm_size = self.shm_sizes[reg]
+                for entry in reg_data.values():
+                    cfg_line = entry["cfg_line"]
+                    size_str = entry["size"]
+                    size = 1 if size_str == "bit" else int(size_str) / 8
+                    addr = int(cfg_line.split(',')[0].split(':')[0])
+                    if addr + size > shm_size:
+                        QMessageBox.warning(self, "Invalid file",
+                                            f"Config check failed: Shared memory {self.name_prefix}{reg} "
+                                            f"is to small to apply this configuration.")
+                        return
+
+        except Exception as e:
+            QMessageBox.warning(self, "Invalid file", f"Config check failed:\n{type(e).__name__}\n{e}")
+            return
+
+        # TODO check if entries in table, if yes: ask user to save
+        if self.data_table.rowCount() > 0:
+            pass
+
+        # clear table
+        self.data_table.setRowCount(0)
+
+        # apply config
+        self.shm_format_cfg = loaded_cfg
+
+        # create table entries
+        self.shm_format_widgets = {
+            "DO": {},
+            "DI": {},
+            "AO": {},
+            "AI": {},
+        }
+
+        for register, reg_entry in self.shm_format_cfg.items():
+            for identifier, entry_values in reg_entry.items():
+                name = entry_values["name"]
+                reg_addr = entry_values["reg_addr"]
+                type_str = entry_values["type_str"]
+                size = entry_values["size"]
+
+                value_widget, endian_widget, time_widget = self.add_row(name, register, reg_addr, type_str, size,
+                                                                        identifier)
+
+                self.shm_format_widgets[f"{register}"][identifier] = {
+                    "value_widget": value_widget,
+                    "endian_widget": endian_widget,
+                    "time_widget": time_widget,
+                }
 
     def save_values(self):
-        file_name, _ = QFileDialog.getSaveFileName(self, caption="Save config", filter="*.csv")
+        file_name, _ = QFileDialog.getSaveFileName(self, caption="Save values", filter="*.csv")
 
         if len(file_name) == 0:
             return
