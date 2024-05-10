@@ -16,10 +16,10 @@ from PySide6.QtGui import (QAction, QBrush, QColor, QConicalGradient,
     QIcon, QImage, QKeySequence, QLinearGradient,
     QPainter, QPalette, QPixmap, QRadialGradient,
     QTransform)
-from PySide6.QtWidgets import (QApplication, QFrame, QGridLayout, QHeaderView,
-    QMainWindow, QMenu, QMenuBar, QPushButton,
-    QSizePolicy, QSpacerItem, QStatusBar, QTableWidget,
-    QTableWidgetItem, QWidget)
+from PySide6.QtWidgets import (QAbstractItemView, QApplication, QFrame, QGridLayout,
+    QHeaderView, QMainWindow, QMenu, QMenuBar,
+    QPushButton, QSizePolicy, QSpacerItem, QStatusBar,
+    QTableWidget, QTableWidgetItem, QWidget)
 
 class Ui_SetValues(object):
     def setupUi(self, SetValues):
@@ -60,6 +60,7 @@ class Ui_SetValues(object):
         __qtablewidgetitem10 = QTableWidgetItem()
         self.data_table.setHorizontalHeaderItem(10, __qtablewidgetitem10)
         self.data_table.setObjectName(u"data_table")
+        self.data_table.setEditTriggers(QAbstractItemView.NoEditTriggers)
 
         self.gridLayout.addWidget(self.data_table, 2, 0, 1, 1)
 

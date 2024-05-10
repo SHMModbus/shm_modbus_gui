@@ -17,6 +17,9 @@
    <layout class="QGridLayout" name="gridLayout">
     <item row="2" column="0">
      <widget class="QTableWidget" name="data_table">
+      <property name="editTriggers">
+       <set>QAbstractItemView::NoEditTriggers</set>
+      </property>
       <column>
        <property name="text">
         <string>Name</string>

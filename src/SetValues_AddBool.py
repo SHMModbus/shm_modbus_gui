@@ -5,8 +5,8 @@ from .py_ui import Ui_SetValuesAddBool
 
 class SetValues_AddBool(QtWidgets.QWidget, Ui_SetValuesAddBool):
     closed = QtCore.Signal()
-    # name, register, addr, data_type, size, endian, value, input_regex
-    add_cfg = QtCore.Signal(str, str, int, str, int, str, str, str)
+    # name, register, addr, data_type, size, endian, value, emitter, endian_str
+    add_cfg = QtCore.Signal(str, str, int, str, int, str, str, QtWidgets.QWidget, str)
 
     def __init__(self, num_DO: int, num_DI: int) -> None:
         super(SetValues_AddBool, self).__init__()
@@ -39,9 +39,9 @@ class SetValues_AddBool(QtWidgets.QWidget, Ui_SetValuesAddBool):
         size = 0
         endian = None
         value = "0"
-        input_regex = None
+        endian_str = ""
 
-        self.add_cfg.emit(name, register, addr, data_type, size, endian, value, input_regex)
+        self.add_cfg.emit(name, register, addr, data_type, size, endian, value, self, endian_str)
 
         self.close()
 

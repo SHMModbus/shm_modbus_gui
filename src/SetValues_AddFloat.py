@@ -5,7 +5,8 @@ from .py_ui import Ui_SetValuesAddFloat
 
 class SetValues_AddFloat(QtWidgets.QWidget, Ui_SetValuesAddFloat):
     closed = QtCore.Signal()
-    add_cfg = QtCore.Signal(tuple)
+    # name, register, addr, data_type, size, endian, value, emitter, endian_str
+    add_cfg = QtCore.Signal(str, str, int, str, int, str, str, QtWidgets.QWidget, str)
 
     def __init__(self, num_AO: int, num_AI: int) -> None:
         super(SetValues_AddFloat, self).__init__()
@@ -53,15 +54,21 @@ class SetValues_AddFloat(QtWidgets.QWidget, Ui_SetValuesAddFloat):
         register = "AO" if self.reg_AO.isChecked() else "AI"
 
         register_addr = self.address.value()
-        shm_addr = register_addr * 2
 
         size = 32 if self.size_4.isChecked() else 64
 
         endian = 'l' if self.endian_little.isChecked() else 'b'
+        endian_str = "little" if self.endian_little.isChecked() else "big"
         if self.endian_reversed.isChecked():
             endian += 'r'
+            endian_str += "-swap16"
 
-        # TODO emit signal
+        # emit signal
+        name = self.name.text()
+        addr = register_addr
+        value = "0"
+        data_type = "f"
+        self.add_cfg.emit(name, register, addr, data_type, size, endian, value, self, endian_str)
 
         self.close()
 

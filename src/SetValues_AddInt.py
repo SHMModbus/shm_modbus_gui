@@ -5,7 +5,8 @@ from .py_ui import Ui_SetValuesAddInt
 
 class SetValues_AddInt(QtWidgets.QWidget, Ui_SetValuesAddInt):
     closed = QtCore.Signal()
-    add_cfg = QtCore.Signal(tuple)
+    # name, register, addr, data_type, size, endian, value, emitter, endian_str
+    add_cfg = QtCore.Signal(str, str, int, str, int, str, str, QtWidgets.QWidget, str)
 
     def __init__(self, num_AO: int, num_AI: int) -> None:
         super(SetValues_AddInt, self).__init__()
@@ -65,13 +66,14 @@ class SetValues_AddInt(QtWidgets.QWidget, Ui_SetValuesAddInt):
         register = "AO" if self.reg_AO.isChecked() else "AI"
 
         register_addr = self.address.value()
-        shm_addr = register_addr * 2
+        endian = ''
 
         if self.size_1_lo.isChecked():
             size = 8
+            endian = "_lo"
         elif self.size_1_hi.isChecked():
             size = 8
-            shm_addr += 1
+            endian = "_hi"
         elif self.size_2.isChecked():
             size = 16
         elif self.size_4.isChecked():
@@ -81,15 +83,22 @@ class SetValues_AddInt(QtWidgets.QWidget, Ui_SetValuesAddInt):
         else:
             raise RuntimeError("No size radio button checked")
 
-        data_type_char = 'i' if self.type_signed.isChecked() else 'u'
+        data_type = 'i' if self.type_signed.isChecked() else 'u'
 
-        endian = ''
         if size > 8:
             endian += 'l' if self.endian_little.isChecked() else 'b'
+            endian_str = "little" if self.endian_little.isChecked() else "big"
+        else:
+            endian_str = "low byte" if self.size_1_lo.isChecked() else "high byte"
         if size > 16 and self.endian_reversed.isChecked():
             endian += 'r'
+            endian_str += "-swap16"
 
-        # TODO emit signal
+        # emit signal
+        name = self.name.text()
+        addr = register_addr
+        value = "0"
+        self.add_cfg.emit(name, register, addr, data_type, size, endian, value, self, endian_str)
 
         self.close()
 
