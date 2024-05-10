@@ -3,7 +3,7 @@
 ################################################################################
 ## Form generated from reading UI file 'mainwindow.ui'
 ##
-## Created by: Qt User Interface Compiler version 6.6.2
+## Created by: Qt User Interface Compiler version 6.6.3
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
@@ -21,7 +21,7 @@ from PySide6.QtWidgets import (QApplication, QCheckBox, QComboBox, QDoubleSpinBo
     QLineEdit, QMainWindow, QMenu, QMenuBar,
     QPushButton, QScrollArea, QSizePolicy, QSpacerItem,
     QSpinBox, QStatusBar, QTabWidget, QToolButton,
-    QWidget)
+    QVBoxLayout, QWidget)
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -36,12 +36,12 @@ class Ui_MainWindow(object):
         MainWindow.setMinimumSize(QSize(600, 300))
         self.actionVersion = QAction(MainWindow)
         self.actionVersion.setObjectName(u"actionVersion")
-        self.actionsave_modbus_tcp_client_config = QAction(MainWindow)
-        self.actionsave_modbus_tcp_client_config.setObjectName(u"actionsave_modbus_tcp_client_config")
+        self.actionsave_modbus_client_config = QAction(MainWindow)
+        self.actionsave_modbus_client_config.setObjectName(u"actionsave_modbus_client_config")
         self.actionsave_modbus_rtu_client_config = QAction(MainWindow)
         self.actionsave_modbus_rtu_client_config.setObjectName(u"actionsave_modbus_rtu_client_config")
-        self.actionopen_modbus_tcp_client_config = QAction(MainWindow)
-        self.actionopen_modbus_tcp_client_config.setObjectName(u"actionopen_modbus_tcp_client_config")
+        self.actionopen_modbus_client_config = QAction(MainWindow)
+        self.actionopen_modbus_client_config.setObjectName(u"actionopen_modbus_client_config")
         self.actionopen_modbus_rtu_client_config = QAction(MainWindow)
         self.actionopen_modbus_rtu_client_config.setObjectName(u"actionopen_modbus_rtu_client_config")
         self.centralwidget = QWidget(MainWindow)
@@ -55,8 +55,409 @@ class Ui_MainWindow(object):
         self.tab_modbus_clients.setObjectName(u"tab_modbus_clients")
         self.gridLayout_2 = QGridLayout(self.tab_modbus_clients)
         self.gridLayout_2.setObjectName(u"gridLayout_2")
-        self.tabWidget_modbus_clients = QTabWidget(self.tab_modbus_clients)
-        self.tabWidget_modbus_clients.setObjectName(u"tabWidget_modbus_clients")
+        self.tabWidget_modbus_cl = QTabWidget(self.tab_modbus_clients)
+        self.tabWidget_modbus_cl.setObjectName(u"tabWidget_modbus_cl")
+        self.tab_modbus_setings = QWidget()
+        self.tab_modbus_setings.setObjectName(u"tab_modbus_setings")
+        self.gridLayout_33 = QGridLayout(self.tab_modbus_setings)
+        self.gridLayout_33.setObjectName(u"gridLayout_33")
+        self.scrollArea_3 = QScrollArea(self.tab_modbus_setings)
+        self.scrollArea_3.setObjectName(u"scrollArea_3")
+        self.scrollArea_3.setWidgetResizable(True)
+        self.scrollAreaWidgetContents_2 = QWidget()
+        self.scrollAreaWidgetContents_2.setObjectName(u"scrollAreaWidgetContents_2")
+        self.scrollAreaWidgetContents_2.setGeometry(QRect(0, 0, 727, 567))
+        self.verticalLayout = QVBoxLayout(self.scrollAreaWidgetContents_2)
+        self.verticalLayout.setObjectName(u"verticalLayout")
+        self.label_4 = QLabel(self.scrollAreaWidgetContents_2)
+        self.label_4.setObjectName(u"label_4")
+        font = QFont()
+        font.setPointSize(14)
+        self.label_4.setFont(font)
+
+        self.verticalLayout.addWidget(self.label_4)
+
+        self.widget_2 = QWidget(self.scrollAreaWidgetContents_2)
+        self.widget_2.setObjectName(u"widget_2")
+        self.gridLayout_6 = QGridLayout(self.widget_2)
+        self.gridLayout_6.setObjectName(u"gridLayout_6")
+        self.mb_do = QSpinBox(self.widget_2)
+        self.mb_do.setObjectName(u"mb_do")
+        sizePolicy1 = QSizePolicy(QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Fixed)
+        sizePolicy1.setHorizontalStretch(1)
+        sizePolicy1.setVerticalStretch(0)
+        sizePolicy1.setHeightForWidth(self.mb_do.sizePolicy().hasHeightForWidth())
+        self.mb_do.setSizePolicy(sizePolicy1)
+        self.mb_do.setMinimum(1)
+        self.mb_do.setMaximum(65536)
+        self.mb_do.setValue(65536)
+
+        self.gridLayout_6.addWidget(self.mb_do, 0, 1, 1, 1)
+
+        self.mb_do_default = QPushButton(self.widget_2)
+        self.mb_do_default.setObjectName(u"mb_do_default")
+        sizePolicy2 = QSizePolicy(QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Fixed)
+        sizePolicy2.setHorizontalStretch(0)
+        sizePolicy2.setVerticalStretch(0)
+        sizePolicy2.setHeightForWidth(self.mb_do_default.sizePolicy().hasHeightForWidth())
+        self.mb_do_default.setSizePolicy(sizePolicy2)
+        self.mb_do_default.setMinimumSize(QSize(0, 0))
+        self.mb_do_default.setMaximumSize(QSize(16777215, 16777215))
+        self.mb_do_default.setIconSize(QSize(16, 16))
+
+        self.gridLayout_6.addWidget(self.mb_do_default, 0, 2, 1, 1)
+
+        self.label_6 = QLabel(self.widget_2)
+        self.label_6.setObjectName(u"label_6")
+        sizePolicy3 = QSizePolicy(QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Preferred)
+        sizePolicy3.setHorizontalStretch(0)
+        sizePolicy3.setVerticalStretch(0)
+        sizePolicy3.setHeightForWidth(self.label_6.sizePolicy().hasHeightForWidth())
+        self.label_6.setSizePolicy(sizePolicy3)
+        self.label_6.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
+
+        self.gridLayout_6.addWidget(self.label_6, 1, 0, 1, 1)
+
+        self.mb_di = QSpinBox(self.widget_2)
+        self.mb_di.setObjectName(u"mb_di")
+        sizePolicy1.setHeightForWidth(self.mb_di.sizePolicy().hasHeightForWidth())
+        self.mb_di.setSizePolicy(sizePolicy1)
+        self.mb_di.setMinimum(1)
+        self.mb_di.setMaximum(65536)
+        self.mb_di.setValue(65536)
+
+        self.gridLayout_6.addWidget(self.mb_di, 1, 1, 1, 1)
+
+        self.mb_ai = QSpinBox(self.widget_2)
+        self.mb_ai.setObjectName(u"mb_ai")
+        sizePolicy1.setHeightForWidth(self.mb_ai.sizePolicy().hasHeightForWidth())
+        self.mb_ai.setSizePolicy(sizePolicy1)
+        self.mb_ai.setMinimum(1)
+        self.mb_ai.setMaximum(65536)
+        self.mb_ai.setValue(65536)
+
+        self.gridLayout_6.addWidget(self.mb_ai, 1, 5, 1, 1)
+
+        self.label_5 = QLabel(self.widget_2)
+        self.label_5.setObjectName(u"label_5")
+        sizePolicy3.setHeightForWidth(self.label_5.sizePolicy().hasHeightForWidth())
+        self.label_5.setSizePolicy(sizePolicy3)
+        self.label_5.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
+
+        self.gridLayout_6.addWidget(self.label_5, 0, 0, 1, 1)
+
+        self.mb_ao = QSpinBox(self.widget_2)
+        self.mb_ao.setObjectName(u"mb_ao")
+        sizePolicy1.setHeightForWidth(self.mb_ao.sizePolicy().hasHeightForWidth())
+        self.mb_ao.setSizePolicy(sizePolicy1)
+        self.mb_ao.setMinimum(1)
+        self.mb_ao.setMaximum(65536)
+        self.mb_ao.setValue(65536)
+
+        self.gridLayout_6.addWidget(self.mb_ao, 0, 5, 1, 1)
+
+        self.mb_ai_default = QPushButton(self.widget_2)
+        self.mb_ai_default.setObjectName(u"mb_ai_default")
+        self.mb_ai_default.setMinimumSize(QSize(0, 0))
+        self.mb_ai_default.setMaximumSize(QSize(16777215, 16777215))
+
+        self.gridLayout_6.addWidget(self.mb_ai_default, 1, 6, 1, 1)
+
+        self.mb_ao_default = QPushButton(self.widget_2)
+        self.mb_ao_default.setObjectName(u"mb_ao_default")
+        self.mb_ao_default.setMinimumSize(QSize(0, 0))
+        self.mb_ao_default.setMaximumSize(QSize(16777215, 16777215))
+
+        self.gridLayout_6.addWidget(self.mb_ao_default, 0, 6, 1, 1)
+
+        self.label_7 = QLabel(self.widget_2)
+        self.label_7.setObjectName(u"label_7")
+        sizePolicy3.setHeightForWidth(self.label_7.sizePolicy().hasHeightForWidth())
+        self.label_7.setSizePolicy(sizePolicy3)
+        self.label_7.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
+
+        self.gridLayout_6.addWidget(self.label_7, 0, 4, 1, 1)
+
+        self.label_8 = QLabel(self.widget_2)
+        self.label_8.setObjectName(u"label_8")
+        sizePolicy3.setHeightForWidth(self.label_8.sizePolicy().hasHeightForWidth())
+        self.label_8.setSizePolicy(sizePolicy3)
+        self.label_8.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
+
+        self.gridLayout_6.addWidget(self.label_8, 1, 4, 1, 1)
+
+        self.mb_di_default = QPushButton(self.widget_2)
+        self.mb_di_default.setObjectName(u"mb_di_default")
+        self.mb_di_default.setMinimumSize(QSize(0, 0))
+        self.mb_di_default.setMaximumSize(QSize(16777215, 16777215))
+
+        self.gridLayout_6.addWidget(self.mb_di_default, 1, 2, 1, 1)
+
+        self.horizontalSpacer_16 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+
+        self.gridLayout_6.addItem(self.horizontalSpacer_16, 0, 3, 1, 1)
+
+
+        self.verticalLayout.addWidget(self.widget_2)
+
+        self.line_4 = QFrame(self.scrollAreaWidgetContents_2)
+        self.line_4.setObjectName(u"line_4")
+        self.line_4.setFrameShape(QFrame.HLine)
+        self.line_4.setFrameShadow(QFrame.Sunken)
+
+        self.verticalLayout.addWidget(self.line_4)
+
+        self.label_30 = QLabel(self.scrollAreaWidgetContents_2)
+        self.label_30.setObjectName(u"label_30")
+        self.label_30.setFont(font)
+        self.label_30.setToolTipDuration(-1)
+        self.label_30.setFrameShadow(QFrame.Plain)
+        self.label_30.setLineWidth(1)
+
+        self.verticalLayout.addWidget(self.label_30)
+
+        self.widget_12 = QWidget(self.scrollAreaWidgetContents_2)
+        self.widget_12.setObjectName(u"widget_12")
+        self.gridLayout_18 = QGridLayout(self.widget_12)
+        self.gridLayout_18.setObjectName(u"gridLayout_18")
+        self.mb_shm_flags_default = QPushButton(self.widget_12)
+        self.mb_shm_flags_default.setObjectName(u"mb_shm_flags_default")
+
+        self.gridLayout_18.addWidget(self.mb_shm_flags_default, 0, 6, 1, 1)
+
+        self.horizontalSpacer_4 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+
+        self.gridLayout_18.addItem(self.horizontalSpacer_4, 0, 0, 1, 1)
+
+        self.mb_force = QCheckBox(self.widget_12)
+        self.mb_force.setObjectName(u"mb_force")
+        sizePolicy1.setHeightForWidth(self.mb_force.sizePolicy().hasHeightForWidth())
+        self.mb_force.setSizePolicy(sizePolicy1)
+
+        self.gridLayout_18.addWidget(self.mb_force, 0, 1, 1, 1)
+
+
+        self.verticalLayout.addWidget(self.widget_12)
+
+        self.widget_13 = QWidget(self.scrollAreaWidgetContents_2)
+        self.widget_13.setObjectName(u"widget_13")
+        self.gridLayout_19 = QGridLayout(self.widget_13)
+        self.gridLayout_19.setObjectName(u"gridLayout_19")
+        self.mb_shm_name = QLineEdit(self.widget_13)
+        self.mb_shm_name.setObjectName(u"mb_shm_name")
+
+        self.gridLayout_19.addWidget(self.mb_shm_name, 0, 1, 1, 1)
+
+        self.mb_shm_name_default = QPushButton(self.widget_13)
+        self.mb_shm_name_default.setObjectName(u"mb_shm_name_default")
+
+        self.gridLayout_19.addWidget(self.mb_shm_name_default, 0, 2, 1, 1)
+
+        self.label_31 = QLabel(self.widget_13)
+        self.label_31.setObjectName(u"label_31")
+
+        self.gridLayout_19.addWidget(self.label_31, 0, 0, 1, 1)
+
+
+        self.verticalLayout.addWidget(self.widget_13)
+
+        self.line_3 = QFrame(self.scrollAreaWidgetContents_2)
+        self.line_3.setObjectName(u"line_3")
+        self.line_3.setFrameShape(QFrame.HLine)
+        self.line_3.setFrameShadow(QFrame.Sunken)
+
+        self.verticalLayout.addWidget(self.line_3)
+
+        self.label_15 = QLabel(self.scrollAreaWidgetContents_2)
+        self.label_15.setObjectName(u"label_15")
+        self.label_15.setFont(font)
+
+        self.verticalLayout.addWidget(self.label_15)
+
+        self.widget_8 = QWidget(self.scrollAreaWidgetContents_2)
+        self.widget_8.setObjectName(u"widget_8")
+        sizePolicy.setHeightForWidth(self.widget_8.sizePolicy().hasHeightForWidth())
+        self.widget_8.setSizePolicy(sizePolicy)
+        self.gridLayout_12 = QGridLayout(self.widget_8)
+        self.gridLayout_12.setObjectName(u"gridLayout_12")
+        self.mb_monitor = QCheckBox(self.widget_8)
+        self.mb_monitor.setObjectName(u"mb_monitor")
+        sizePolicy2.setHeightForWidth(self.mb_monitor.sizePolicy().hasHeightForWidth())
+        self.mb_monitor.setSizePolicy(sizePolicy2)
+        font1 = QFont()
+        font1.setPointSize(9)
+        self.mb_monitor.setFont(font1)
+
+        self.gridLayout_12.addWidget(self.mb_monitor, 0, 1, 1, 1)
+
+        self.horizontalSpacer_7 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+
+        self.gridLayout_12.addItem(self.horizontalSpacer_7, 0, 2, 1, 1)
+
+        self.mb_enable_byte_timeout = QCheckBox(self.widget_8)
+        self.mb_enable_byte_timeout.setObjectName(u"mb_enable_byte_timeout")
+
+        self.gridLayout_12.addWidget(self.mb_enable_byte_timeout, 0, 3, 1, 1)
+
+        self.horizontalSpacer_8 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+
+        self.gridLayout_12.addItem(self.horizontalSpacer_8, 0, 4, 1, 1)
+
+        self.mb_enable_response_timeout = QCheckBox(self.widget_8)
+        self.mb_enable_response_timeout.setObjectName(u"mb_enable_response_timeout")
+        sizePolicy1.setHeightForWidth(self.mb_enable_response_timeout.sizePolicy().hasHeightForWidth())
+        self.mb_enable_response_timeout.setSizePolicy(sizePolicy1)
+
+        self.gridLayout_12.addWidget(self.mb_enable_response_timeout, 0, 5, 1, 1)
+
+        self.mb_mb_flags_default = QPushButton(self.widget_8)
+        self.mb_mb_flags_default.setObjectName(u"mb_mb_flags_default")
+
+        self.gridLayout_12.addWidget(self.mb_mb_flags_default, 0, 6, 1, 1)
+
+        self.horizontalSpacer_11 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+
+        self.gridLayout_12.addItem(self.horizontalSpacer_11, 0, 0, 1, 1)
+
+
+        self.verticalLayout.addWidget(self.widget_8)
+
+        self.widget_9 = QWidget(self.scrollAreaWidgetContents_2)
+        self.widget_9.setObjectName(u"widget_9")
+        self.gridLayout_13 = QGridLayout(self.widget_9)
+        self.gridLayout_13.setObjectName(u"gridLayout_13")
+        self.mb_byte_timeout = QDoubleSpinBox(self.widget_9)
+        self.mb_byte_timeout.setObjectName(u"mb_byte_timeout")
+        self.mb_byte_timeout.setEnabled(False)
+        sizePolicy1.setHeightForWidth(self.mb_byte_timeout.sizePolicy().hasHeightForWidth())
+        self.mb_byte_timeout.setSizePolicy(sizePolicy1)
+        self.mb_byte_timeout.setMaximum(86400.000000000000000)
+
+        self.gridLayout_13.addWidget(self.mb_byte_timeout, 0, 1, 1, 1)
+
+        self.label_17 = QLabel(self.widget_9)
+        self.label_17.setObjectName(u"label_17")
+        self.label_17.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
+
+        self.gridLayout_13.addWidget(self.label_17, 0, 3, 1, 1)
+
+        self.mb_response_timeout = QDoubleSpinBox(self.widget_9)
+        self.mb_response_timeout.setObjectName(u"mb_response_timeout")
+        self.mb_response_timeout.setEnabled(False)
+        sizePolicy1.setHeightForWidth(self.mb_response_timeout.sizePolicy().hasHeightForWidth())
+        self.mb_response_timeout.setSizePolicy(sizePolicy1)
+        self.mb_response_timeout.setMinimum(0.000000000000000)
+        self.mb_response_timeout.setMaximum(86400.000000000000000)
+        self.mb_response_timeout.setValue(0.000000000000000)
+
+        self.gridLayout_13.addWidget(self.mb_response_timeout, 0, 4, 1, 1)
+
+        self.horizontalSpacer_15 = QSpacerItem(80, 20, QSizePolicy.Policy.Fixed, QSizePolicy.Policy.Minimum)
+
+        self.gridLayout_13.addItem(self.horizontalSpacer_15, 0, 5, 1, 1)
+
+        self.label_16 = QLabel(self.widget_9)
+        self.label_16.setObjectName(u"label_16")
+        self.label_16.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
+
+        self.gridLayout_13.addWidget(self.label_16, 0, 0, 1, 1)
+
+        self.horizontalSpacer_17 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+
+        self.gridLayout_13.addItem(self.horizontalSpacer_17, 0, 2, 1, 1)
+
+
+        self.verticalLayout.addWidget(self.widget_9)
+
+        self.line_2 = QFrame(self.scrollAreaWidgetContents_2)
+        self.line_2.setObjectName(u"line_2")
+        self.line_2.setFrameShape(QFrame.HLine)
+        self.line_2.setFrameShadow(QFrame.Sunken)
+
+        self.verticalLayout.addWidget(self.line_2)
+
+        self.label_13 = QLabel(self.scrollAreaWidgetContents_2)
+        self.label_13.setObjectName(u"label_13")
+        self.label_13.setFont(font)
+
+        self.verticalLayout.addWidget(self.label_13)
+
+        self.widget_5 = QWidget(self.scrollAreaWidgetContents_2)
+        self.widget_5.setObjectName(u"widget_5")
+        self.gridLayout_9 = QGridLayout(self.widget_5)
+        self.gridLayout_9.setObjectName(u"gridLayout_9")
+        self.mb_sem_force = QCheckBox(self.widget_5)
+        self.mb_sem_force.setObjectName(u"mb_sem_force")
+        sizePolicy1.setHeightForWidth(self.mb_sem_force.sizePolicy().hasHeightForWidth())
+        self.mb_sem_force.setSizePolicy(sizePolicy1)
+
+        self.gridLayout_9.addWidget(self.mb_sem_force, 0, 3, 1, 1)
+
+        self.mb_sem_enable = QCheckBox(self.widget_5)
+        self.mb_sem_enable.setObjectName(u"mb_sem_enable")
+        self.mb_sem_enable.setChecked(True)
+
+        self.gridLayout_9.addWidget(self.mb_sem_enable, 0, 1, 1, 1)
+
+        self.horizontalSpacer_5 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+
+        self.gridLayout_9.addItem(self.horizontalSpacer_5, 0, 2, 1, 1)
+
+        self.mb_sem_defaults = QPushButton(self.widget_5)
+        self.mb_sem_defaults.setObjectName(u"mb_sem_defaults")
+
+        self.gridLayout_9.addWidget(self.mb_sem_defaults, 0, 4, 1, 1)
+
+        self.horizontalSpacer_12 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+
+        self.gridLayout_9.addItem(self.horizontalSpacer_12, 0, 0, 1, 1)
+
+
+        self.verticalLayout.addWidget(self.widget_5)
+
+        self.widget_6 = QWidget(self.scrollAreaWidgetContents_2)
+        self.widget_6.setObjectName(u"widget_6")
+        self.gridLayout_10 = QGridLayout(self.widget_6)
+        self.gridLayout_10.setObjectName(u"gridLayout_10")
+        self.label_14 = QLabel(self.widget_6)
+        self.label_14.setObjectName(u"label_14")
+
+        self.gridLayout_10.addWidget(self.label_14, 0, 0, 1, 1)
+
+        self.mb_sem_name = QLineEdit(self.widget_6)
+        self.mb_sem_name.setObjectName(u"mb_sem_name")
+
+        self.gridLayout_10.addWidget(self.mb_sem_name, 0, 1, 1, 1)
+
+        self.mb_sem_name_default = QPushButton(self.widget_6)
+        self.mb_sem_name_default.setObjectName(u"mb_sem_name_default")
+
+        self.gridLayout_10.addWidget(self.mb_sem_name_default, 0, 2, 1, 1)
+
+
+        self.verticalLayout.addWidget(self.widget_6)
+
+        self.scrollArea_3.setWidget(self.scrollAreaWidgetContents_2)
+
+        self.gridLayout_33.addWidget(self.scrollArea_3, 0, 0, 1, 1)
+
+        self.widget_11 = QWidget(self.tab_modbus_setings)
+        self.widget_11.setObjectName(u"widget_11")
+        self.gridLayout_17 = QGridLayout(self.widget_11)
+        self.gridLayout_17.setObjectName(u"gridLayout_17")
+        self.mb_defaults = QPushButton(self.widget_11)
+        self.mb_defaults.setObjectName(u"mb_defaults")
+
+        self.gridLayout_17.addWidget(self.mb_defaults, 0, 0, 1, 1)
+
+        self.horizontalSpacer = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+
+        self.gridLayout_17.addItem(self.horizontalSpacer, 0, 1, 1, 1)
+
+
+        self.gridLayout_33.addWidget(self.widget_11, 1, 0, 1, 1)
+
+        self.tabWidget_modbus_cl.addTab(self.tab_modbus_setings, "")
         self.tab_mbtcp = QWidget()
         self.tab_mbtcp.setObjectName(u"tab_mbtcp")
         self.gridLayout_3 = QGridLayout(self.tab_mbtcp)
@@ -68,9 +469,6 @@ class Ui_MainWindow(object):
         self.gridLayout_11.setObjectName(u"gridLayout_11")
         self.mbtcp_start = QPushButton(self.widget_7)
         self.mbtcp_start.setObjectName(u"mbtcp_start")
-        sizePolicy1 = QSizePolicy(QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Fixed)
-        sizePolicy1.setHorizontalStretch(1)
-        sizePolicy1.setVerticalStretch(0)
         sizePolicy1.setHeightForWidth(self.mbtcp_start.sizePolicy().hasHeightForWidth())
         self.mbtcp_start.setSizePolicy(sizePolicy1)
 
@@ -89,49 +487,85 @@ class Ui_MainWindow(object):
         self.mbtcp_settings.setWidgetResizable(True)
         self.mbtcp_settings_content = QWidget()
         self.mbtcp_settings_content.setObjectName(u"mbtcp_settings_content")
-        self.mbtcp_settings_content.setGeometry(QRect(0, -510, 727, 895))
+        self.mbtcp_settings_content.setGeometry(QRect(0, 0, 727, 431))
         self.gridLayout_4 = QGridLayout(self.mbtcp_settings_content)
         self.gridLayout_4.setObjectName(u"gridLayout_4")
-        self.widget_5 = QWidget(self.mbtcp_settings_content)
-        self.widget_5.setObjectName(u"widget_5")
-        self.gridLayout_9 = QGridLayout(self.widget_5)
-        self.gridLayout_9.setObjectName(u"gridLayout_9")
-        self.mbtcp_sem_force = QCheckBox(self.widget_5)
-        self.mbtcp_sem_force.setObjectName(u"mbtcp_sem_force")
-        sizePolicy1.setHeightForWidth(self.mbtcp_sem_force.sizePolicy().hasHeightForWidth())
-        self.mbtcp_sem_force.setSizePolicy(sizePolicy1)
+        self.widget_4 = QWidget(self.mbtcp_settings_content)
+        self.widget_4.setObjectName(u"widget_4")
+        self.gridLayout_8 = QGridLayout(self.widget_4)
+        self.gridLayout_8.setObjectName(u"gridLayout_8")
+        self.mbtcp_separate_list = QLineEdit(self.widget_4)
+        self.mbtcp_separate_list.setObjectName(u"mbtcp_separate_list")
+        self.mbtcp_separate_list.setEnabled(False)
 
-        self.gridLayout_9.addWidget(self.mbtcp_sem_force, 0, 3, 1, 1)
+        self.gridLayout_8.addWidget(self.mbtcp_separate_list, 0, 1, 1, 1)
 
-        self.mbtcp_sem_enable = QCheckBox(self.widget_5)
-        self.mbtcp_sem_enable.setObjectName(u"mbtcp_sem_enable")
-        self.mbtcp_sem_enable.setChecked(True)
+        self.label_12 = QLabel(self.widget_4)
+        self.label_12.setObjectName(u"label_12")
+        self.label_12.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
 
-        self.gridLayout_9.addWidget(self.mbtcp_sem_enable, 0, 1, 1, 1)
+        self.gridLayout_8.addWidget(self.label_12, 0, 0, 1, 1)
 
-        self.horizontalSpacer_5 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+        self.mbtcp_separate_list_clear = QPushButton(self.widget_4)
+        self.mbtcp_separate_list_clear.setObjectName(u"mbtcp_separate_list_clear")
 
-        self.gridLayout_9.addItem(self.horizontalSpacer_5, 0, 2, 1, 1)
-
-        self.mbtcp_sem_defaults = QPushButton(self.widget_5)
-        self.mbtcp_sem_defaults.setObjectName(u"mbtcp_sem_defaults")
-
-        self.gridLayout_9.addWidget(self.mbtcp_sem_defaults, 0, 4, 1, 1)
-
-        self.horizontalSpacer_12 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
-
-        self.gridLayout_9.addItem(self.horizontalSpacer_12, 0, 0, 1, 1)
+        self.gridLayout_8.addWidget(self.mbtcp_separate_list_clear, 0, 2, 1, 1)
 
 
-        self.gridLayout_4.addWidget(self.widget_5, 16, 0, 1, 1)
+        self.gridLayout_4.addWidget(self.widget_4, 6, 0, 1, 1)
+
+        self.verticalSpacer = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
+
+        self.gridLayout_4.addItem(self.verticalSpacer, 7, 0, 1, 1)
+
+        self.widget_3 = QWidget(self.mbtcp_settings_content)
+        self.widget_3.setObjectName(u"widget_3")
+        self.gridLayout_7 = QGridLayout(self.widget_3)
+        self.gridLayout_7.setObjectName(u"gridLayout_7")
+        self.horizontalSpacer_3 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+
+        self.gridLayout_7.addItem(self.horizontalSpacer_3, 0, 3, 1, 1)
+
+        self.mbtcp_separate = QCheckBox(self.widget_3)
+        self.mbtcp_separate.setObjectName(u"mbtcp_separate")
+
+        self.gridLayout_7.addWidget(self.mbtcp_separate, 0, 2, 1, 1)
+
+        self.horizontalSpacer_2 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+
+        self.gridLayout_7.addItem(self.horizontalSpacer_2, 0, 1, 1, 1)
+
+        self.mbtcp_shm_defaults = QPushButton(self.widget_3)
+        self.mbtcp_shm_defaults.setObjectName(u"mbtcp_shm_defaults")
+
+        self.gridLayout_7.addWidget(self.mbtcp_shm_defaults, 0, 5, 1, 1)
+
+        self.mbtcp_separate_all = QCheckBox(self.widget_3)
+        self.mbtcp_separate_all.setObjectName(u"mbtcp_separate_all")
+        self.mbtcp_separate_all.setEnabled(False)
+        sizePolicy1.setHeightForWidth(self.mbtcp_separate_all.sizePolicy().hasHeightForWidth())
+        self.mbtcp_separate_all.setSizePolicy(sizePolicy1)
+
+        self.gridLayout_7.addWidget(self.mbtcp_separate_all, 0, 4, 1, 1)
+
+
+        self.gridLayout_4.addWidget(self.widget_3, 4, 0, 1, 1)
+
+        self.label = QLabel(self.mbtcp_settings_content)
+        self.label.setObjectName(u"label")
+        font2 = QFont()
+        font2.setPointSize(14)
+        font2.setUnderline(False)
+        self.label.setFont(font2)
+        self.label.setAlignment(Qt.AlignLeading|Qt.AlignLeft|Qt.AlignVCenter)
+
+        self.gridLayout_4.addWidget(self.label, 0, 0, 1, 1)
 
         self.label_9 = QLabel(self.mbtcp_settings_content)
         self.label_9.setObjectName(u"label_9")
-        font = QFont()
-        font.setPointSize(14)
         self.label_9.setFont(font)
 
-        self.gridLayout_4.addWidget(self.label_9, 6, 0, 1, 1)
+        self.gridLayout_4.addWidget(self.label_9, 3, 0, 1, 1)
 
         self.widget = QWidget(self.mbtcp_settings_content)
         self.widget.setObjectName(u"widget")
@@ -228,181 +662,6 @@ class Ui_MainWindow(object):
 
         self.gridLayout_4.addWidget(self.widget, 1, 0, 1, 1)
 
-        self.widget_9 = QWidget(self.mbtcp_settings_content)
-        self.widget_9.setObjectName(u"widget_9")
-        self.gridLayout_13 = QGridLayout(self.widget_9)
-        self.gridLayout_13.setObjectName(u"gridLayout_13")
-        self.mbtcp_byte_timeout = QDoubleSpinBox(self.widget_9)
-        self.mbtcp_byte_timeout.setObjectName(u"mbtcp_byte_timeout")
-        self.mbtcp_byte_timeout.setEnabled(False)
-        sizePolicy1.setHeightForWidth(self.mbtcp_byte_timeout.sizePolicy().hasHeightForWidth())
-        self.mbtcp_byte_timeout.setSizePolicy(sizePolicy1)
-        self.mbtcp_byte_timeout.setMaximum(86400.000000000000000)
-
-        self.gridLayout_13.addWidget(self.mbtcp_byte_timeout, 0, 1, 1, 1)
-
-        self.label_17 = QLabel(self.widget_9)
-        self.label_17.setObjectName(u"label_17")
-        self.label_17.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
-
-        self.gridLayout_13.addWidget(self.label_17, 0, 3, 1, 1)
-
-        self.mbtcp_response_timeout = QDoubleSpinBox(self.widget_9)
-        self.mbtcp_response_timeout.setObjectName(u"mbtcp_response_timeout")
-        self.mbtcp_response_timeout.setEnabled(False)
-        sizePolicy1.setHeightForWidth(self.mbtcp_response_timeout.sizePolicy().hasHeightForWidth())
-        self.mbtcp_response_timeout.setSizePolicy(sizePolicy1)
-        self.mbtcp_response_timeout.setMinimum(0.000000000000000)
-        self.mbtcp_response_timeout.setMaximum(86400.000000000000000)
-        self.mbtcp_response_timeout.setValue(0.000000000000000)
-
-        self.gridLayout_13.addWidget(self.mbtcp_response_timeout, 0, 4, 1, 1)
-
-        self.horizontalSpacer_15 = QSpacerItem(80, 20, QSizePolicy.Policy.Fixed, QSizePolicy.Policy.Minimum)
-
-        self.gridLayout_13.addItem(self.horizontalSpacer_15, 0, 5, 1, 1)
-
-        self.label_16 = QLabel(self.widget_9)
-        self.label_16.setObjectName(u"label_16")
-        self.label_16.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
-
-        self.gridLayout_13.addWidget(self.label_16, 0, 0, 1, 1)
-
-        self.horizontalSpacer_17 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
-
-        self.gridLayout_13.addItem(self.horizontalSpacer_17, 0, 2, 1, 1)
-
-
-        self.gridLayout_4.addWidget(self.widget_9, 13, 0, 1, 1)
-
-        self.verticalSpacer = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
-
-        self.gridLayout_4.addItem(self.verticalSpacer, 18, 0, 1, 1)
-
-        self.widget_8 = QWidget(self.mbtcp_settings_content)
-        self.widget_8.setObjectName(u"widget_8")
-        sizePolicy.setHeightForWidth(self.widget_8.sizePolicy().hasHeightForWidth())
-        self.widget_8.setSizePolicy(sizePolicy)
-        self.gridLayout_12 = QGridLayout(self.widget_8)
-        self.gridLayout_12.setObjectName(u"gridLayout_12")
-        self.mbtcp_monitor = QCheckBox(self.widget_8)
-        self.mbtcp_monitor.setObjectName(u"mbtcp_monitor")
-        sizePolicy2 = QSizePolicy(QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Fixed)
-        sizePolicy2.setHorizontalStretch(0)
-        sizePolicy2.setVerticalStretch(0)
-        sizePolicy2.setHeightForWidth(self.mbtcp_monitor.sizePolicy().hasHeightForWidth())
-        self.mbtcp_monitor.setSizePolicy(sizePolicy2)
-        font1 = QFont()
-        font1.setPointSize(9)
-        self.mbtcp_monitor.setFont(font1)
-
-        self.gridLayout_12.addWidget(self.mbtcp_monitor, 0, 1, 1, 1)
-
-        self.horizontalSpacer_7 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
-
-        self.gridLayout_12.addItem(self.horizontalSpacer_7, 0, 2, 1, 1)
-
-        self.mbtcp_enable_byte_timeout = QCheckBox(self.widget_8)
-        self.mbtcp_enable_byte_timeout.setObjectName(u"mbtcp_enable_byte_timeout")
-
-        self.gridLayout_12.addWidget(self.mbtcp_enable_byte_timeout, 0, 3, 1, 1)
-
-        self.horizontalSpacer_8 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
-
-        self.gridLayout_12.addItem(self.horizontalSpacer_8, 0, 4, 1, 1)
-
-        self.mbtcp_enable_response_timeout = QCheckBox(self.widget_8)
-        self.mbtcp_enable_response_timeout.setObjectName(u"mbtcp_enable_response_timeout")
-        sizePolicy1.setHeightForWidth(self.mbtcp_enable_response_timeout.sizePolicy().hasHeightForWidth())
-        self.mbtcp_enable_response_timeout.setSizePolicy(sizePolicy1)
-
-        self.gridLayout_12.addWidget(self.mbtcp_enable_response_timeout, 0, 5, 1, 1)
-
-        self.mbtcp_mb_flags_default = QPushButton(self.widget_8)
-        self.mbtcp_mb_flags_default.setObjectName(u"mbtcp_mb_flags_default")
-
-        self.gridLayout_12.addWidget(self.mbtcp_mb_flags_default, 0, 6, 1, 1)
-
-        self.horizontalSpacer_11 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
-
-        self.gridLayout_12.addItem(self.horizontalSpacer_11, 0, 0, 1, 1)
-
-
-        self.gridLayout_4.addWidget(self.widget_8, 12, 0, 1, 1)
-
-        self.widget_6 = QWidget(self.mbtcp_settings_content)
-        self.widget_6.setObjectName(u"widget_6")
-        self.gridLayout_10 = QGridLayout(self.widget_6)
-        self.gridLayout_10.setObjectName(u"gridLayout_10")
-        self.label_14 = QLabel(self.widget_6)
-        self.label_14.setObjectName(u"label_14")
-
-        self.gridLayout_10.addWidget(self.label_14, 0, 0, 1, 1)
-
-        self.mbtcp_sem_name = QLineEdit(self.widget_6)
-        self.mbtcp_sem_name.setObjectName(u"mbtcp_sem_name")
-
-        self.gridLayout_10.addWidget(self.mbtcp_sem_name, 0, 1, 1, 1)
-
-        self.mbtcp_sem_name_default = QPushButton(self.widget_6)
-        self.mbtcp_sem_name_default.setObjectName(u"mbtcp_sem_name_default")
-
-        self.gridLayout_10.addWidget(self.mbtcp_sem_name_default, 0, 2, 1, 1)
-
-
-        self.gridLayout_4.addWidget(self.widget_6, 17, 0, 1, 1)
-
-        self.widget_3 = QWidget(self.mbtcp_settings_content)
-        self.widget_3.setObjectName(u"widget_3")
-        self.gridLayout_7 = QGridLayout(self.widget_3)
-        self.gridLayout_7.setObjectName(u"gridLayout_7")
-        self.horizontalSpacer_2 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
-
-        self.gridLayout_7.addItem(self.horizontalSpacer_2, 0, 3, 1, 1)
-
-        self.mbtcp_force = QCheckBox(self.widget_3)
-        self.mbtcp_force.setObjectName(u"mbtcp_force")
-        sizePolicy2.setHeightForWidth(self.mbtcp_force.sizePolicy().hasHeightForWidth())
-        self.mbtcp_force.setSizePolicy(sizePolicy2)
-
-        self.gridLayout_7.addWidget(self.mbtcp_force, 0, 2, 1, 1)
-
-        self.mbtcp_separate = QCheckBox(self.widget_3)
-        self.mbtcp_separate.setObjectName(u"mbtcp_separate")
-
-        self.gridLayout_7.addWidget(self.mbtcp_separate, 0, 4, 1, 1)
-
-        self.horizontalSpacer_3 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
-
-        self.gridLayout_7.addItem(self.horizontalSpacer_3, 0, 5, 1, 1)
-
-        self.mbtcp_separate_all = QCheckBox(self.widget_3)
-        self.mbtcp_separate_all.setObjectName(u"mbtcp_separate_all")
-        self.mbtcp_separate_all.setEnabled(False)
-        sizePolicy1.setHeightForWidth(self.mbtcp_separate_all.sizePolicy().hasHeightForWidth())
-        self.mbtcp_separate_all.setSizePolicy(sizePolicy1)
-
-        self.gridLayout_7.addWidget(self.mbtcp_separate_all, 0, 6, 1, 1)
-
-        self.horizontalSpacer = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
-
-        self.gridLayout_7.addItem(self.horizontalSpacer, 0, 1, 1, 1)
-
-        self.mbtcp_shm_defaults = QPushButton(self.widget_3)
-        self.mbtcp_shm_defaults.setObjectName(u"mbtcp_shm_defaults")
-
-        self.gridLayout_7.addWidget(self.mbtcp_shm_defaults, 0, 7, 1, 1)
-
-
-        self.gridLayout_4.addWidget(self.widget_3, 7, 0, 1, 1)
-
-        self.line_3 = QFrame(self.mbtcp_settings_content)
-        self.line_3.setObjectName(u"line_3")
-        self.line_3.setFrameShape(QFrame.HLine)
-        self.line_3.setFrameShadow(QFrame.Sunken)
-
-        self.gridLayout_4.addWidget(self.line_3, 10, 0, 1, 1)
-
         self.line = QFrame(self.mbtcp_settings_content)
         self.line.setObjectName(u"line")
         self.line.setFrameShape(QFrame.HLine)
@@ -410,210 +669,11 @@ class Ui_MainWindow(object):
 
         self.gridLayout_4.addWidget(self.line, 2, 0, 1, 1)
 
-        self.line_4 = QFrame(self.mbtcp_settings_content)
-        self.line_4.setObjectName(u"line_4")
-        self.line_4.setFrameShape(QFrame.HLine)
-        self.line_4.setFrameShadow(QFrame.Sunken)
-
-        self.gridLayout_4.addWidget(self.line_4, 14, 0, 1, 1)
-
-        self.widget_4 = QWidget(self.mbtcp_settings_content)
-        self.widget_4.setObjectName(u"widget_4")
-        self.gridLayout_8 = QGridLayout(self.widget_4)
-        self.gridLayout_8.setObjectName(u"gridLayout_8")
-        self.label_10 = QLabel(self.widget_4)
-        self.label_10.setObjectName(u"label_10")
-        self.label_10.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
-
-        self.gridLayout_8.addWidget(self.label_10, 0, 0, 1, 1)
-
-        self.mbtcp_name_prefix = QLineEdit(self.widget_4)
-        self.mbtcp_name_prefix.setObjectName(u"mbtcp_name_prefix")
-
-        self.gridLayout_8.addWidget(self.mbtcp_name_prefix, 0, 1, 1, 1)
-
-        self.mbtcp_name_default = QPushButton(self.widget_4)
-        self.mbtcp_name_default.setObjectName(u"mbtcp_name_default")
-
-        self.gridLayout_8.addWidget(self.mbtcp_name_default, 0, 2, 1, 1)
-
-        self.label_12 = QLabel(self.widget_4)
-        self.label_12.setObjectName(u"label_12")
-        self.label_12.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
-
-        self.gridLayout_8.addWidget(self.label_12, 1, 0, 1, 1)
-
-        self.mbtcp_separate_list = QLineEdit(self.widget_4)
-        self.mbtcp_separate_list.setObjectName(u"mbtcp_separate_list")
-        self.mbtcp_separate_list.setEnabled(False)
-
-        self.gridLayout_8.addWidget(self.mbtcp_separate_list, 1, 1, 1, 1)
-
-        self.mbtcp_separate_list_clear = QPushButton(self.widget_4)
-        self.mbtcp_separate_list_clear.setObjectName(u"mbtcp_separate_list_clear")
-
-        self.gridLayout_8.addWidget(self.mbtcp_separate_list_clear, 1, 2, 1, 1)
-
-
-        self.gridLayout_4.addWidget(self.widget_4, 9, 0, 1, 1)
-
-        self.label_4 = QLabel(self.mbtcp_settings_content)
-        self.label_4.setObjectName(u"label_4")
-        self.label_4.setFont(font)
-
-        self.gridLayout_4.addWidget(self.label_4, 3, 0, 1, 1)
-
-        self.label_15 = QLabel(self.mbtcp_settings_content)
-        self.label_15.setObjectName(u"label_15")
-        self.label_15.setFont(font)
-
-        self.gridLayout_4.addWidget(self.label_15, 11, 0, 1, 1)
-
-        self.line_2 = QFrame(self.mbtcp_settings_content)
-        self.line_2.setObjectName(u"line_2")
-        self.line_2.setFrameShape(QFrame.HLine)
-        self.line_2.setFrameShadow(QFrame.Sunken)
-
-        self.gridLayout_4.addWidget(self.line_2, 5, 0, 1, 1)
-
-        self.widget_2 = QWidget(self.mbtcp_settings_content)
-        self.widget_2.setObjectName(u"widget_2")
-        self.gridLayout_6 = QGridLayout(self.widget_2)
-        self.gridLayout_6.setObjectName(u"gridLayout_6")
-        self.mbtcp_do = QSpinBox(self.widget_2)
-        self.mbtcp_do.setObjectName(u"mbtcp_do")
-        sizePolicy1.setHeightForWidth(self.mbtcp_do.sizePolicy().hasHeightForWidth())
-        self.mbtcp_do.setSizePolicy(sizePolicy1)
-        self.mbtcp_do.setMinimum(1)
-        self.mbtcp_do.setMaximum(65536)
-        self.mbtcp_do.setValue(65536)
-
-        self.gridLayout_6.addWidget(self.mbtcp_do, 0, 1, 1, 1)
-
-        self.mbtcp_do_default = QPushButton(self.widget_2)
-        self.mbtcp_do_default.setObjectName(u"mbtcp_do_default")
-        sizePolicy2.setHeightForWidth(self.mbtcp_do_default.sizePolicy().hasHeightForWidth())
-        self.mbtcp_do_default.setSizePolicy(sizePolicy2)
-        self.mbtcp_do_default.setMinimumSize(QSize(0, 0))
-        self.mbtcp_do_default.setMaximumSize(QSize(16777215, 16777215))
-        self.mbtcp_do_default.setIconSize(QSize(16, 16))
-
-        self.gridLayout_6.addWidget(self.mbtcp_do_default, 0, 2, 1, 1)
-
-        self.label_6 = QLabel(self.widget_2)
-        self.label_6.setObjectName(u"label_6")
-        sizePolicy3 = QSizePolicy(QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Preferred)
-        sizePolicy3.setHorizontalStretch(0)
-        sizePolicy3.setVerticalStretch(0)
-        sizePolicy3.setHeightForWidth(self.label_6.sizePolicy().hasHeightForWidth())
-        self.label_6.setSizePolicy(sizePolicy3)
-        self.label_6.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
-
-        self.gridLayout_6.addWidget(self.label_6, 1, 0, 1, 1)
-
-        self.mbtcp_di = QSpinBox(self.widget_2)
-        self.mbtcp_di.setObjectName(u"mbtcp_di")
-        sizePolicy1.setHeightForWidth(self.mbtcp_di.sizePolicy().hasHeightForWidth())
-        self.mbtcp_di.setSizePolicy(sizePolicy1)
-        self.mbtcp_di.setMinimum(1)
-        self.mbtcp_di.setMaximum(65536)
-        self.mbtcp_di.setValue(65536)
-
-        self.gridLayout_6.addWidget(self.mbtcp_di, 1, 1, 1, 1)
-
-        self.mbtcp_ai = QSpinBox(self.widget_2)
-        self.mbtcp_ai.setObjectName(u"mbtcp_ai")
-        sizePolicy1.setHeightForWidth(self.mbtcp_ai.sizePolicy().hasHeightForWidth())
-        self.mbtcp_ai.setSizePolicy(sizePolicy1)
-        self.mbtcp_ai.setMinimum(1)
-        self.mbtcp_ai.setMaximum(65536)
-        self.mbtcp_ai.setValue(65536)
-
-        self.gridLayout_6.addWidget(self.mbtcp_ai, 1, 5, 1, 1)
-
-        self.label_5 = QLabel(self.widget_2)
-        self.label_5.setObjectName(u"label_5")
-        sizePolicy3.setHeightForWidth(self.label_5.sizePolicy().hasHeightForWidth())
-        self.label_5.setSizePolicy(sizePolicy3)
-        self.label_5.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
-
-        self.gridLayout_6.addWidget(self.label_5, 0, 0, 1, 1)
-
-        self.mbtcp_ao = QSpinBox(self.widget_2)
-        self.mbtcp_ao.setObjectName(u"mbtcp_ao")
-        sizePolicy1.setHeightForWidth(self.mbtcp_ao.sizePolicy().hasHeightForWidth())
-        self.mbtcp_ao.setSizePolicy(sizePolicy1)
-        self.mbtcp_ao.setMinimum(1)
-        self.mbtcp_ao.setMaximum(65536)
-        self.mbtcp_ao.setValue(65536)
-
-        self.gridLayout_6.addWidget(self.mbtcp_ao, 0, 5, 1, 1)
-
-        self.mbtcp_ai_default = QPushButton(self.widget_2)
-        self.mbtcp_ai_default.setObjectName(u"mbtcp_ai_default")
-        self.mbtcp_ai_default.setMinimumSize(QSize(0, 0))
-        self.mbtcp_ai_default.setMaximumSize(QSize(16777215, 16777215))
-
-        self.gridLayout_6.addWidget(self.mbtcp_ai_default, 1, 6, 1, 1)
-
-        self.mbtcp_ao_default = QPushButton(self.widget_2)
-        self.mbtcp_ao_default.setObjectName(u"mbtcp_ao_default")
-        self.mbtcp_ao_default.setMinimumSize(QSize(0, 0))
-        self.mbtcp_ao_default.setMaximumSize(QSize(16777215, 16777215))
-
-        self.gridLayout_6.addWidget(self.mbtcp_ao_default, 0, 6, 1, 1)
-
-        self.label_7 = QLabel(self.widget_2)
-        self.label_7.setObjectName(u"label_7")
-        sizePolicy3.setHeightForWidth(self.label_7.sizePolicy().hasHeightForWidth())
-        self.label_7.setSizePolicy(sizePolicy3)
-        self.label_7.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
-
-        self.gridLayout_6.addWidget(self.label_7, 0, 4, 1, 1)
-
-        self.label_8 = QLabel(self.widget_2)
-        self.label_8.setObjectName(u"label_8")
-        sizePolicy3.setHeightForWidth(self.label_8.sizePolicy().hasHeightForWidth())
-        self.label_8.setSizePolicy(sizePolicy3)
-        self.label_8.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
-
-        self.gridLayout_6.addWidget(self.label_8, 1, 4, 1, 1)
-
-        self.mbtcp_di_default = QPushButton(self.widget_2)
-        self.mbtcp_di_default.setObjectName(u"mbtcp_di_default")
-        self.mbtcp_di_default.setMinimumSize(QSize(0, 0))
-        self.mbtcp_di_default.setMaximumSize(QSize(16777215, 16777215))
-
-        self.gridLayout_6.addWidget(self.mbtcp_di_default, 1, 2, 1, 1)
-
-        self.horizontalSpacer_16 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
-
-        self.gridLayout_6.addItem(self.horizontalSpacer_16, 0, 3, 1, 1)
-
-
-        self.gridLayout_4.addWidget(self.widget_2, 4, 0, 1, 1)
-
-        self.label_13 = QLabel(self.mbtcp_settings_content)
-        self.label_13.setObjectName(u"label_13")
-        self.label_13.setFont(font)
-
-        self.gridLayout_4.addWidget(self.label_13, 15, 0, 1, 1)
-
-        self.label = QLabel(self.mbtcp_settings_content)
-        self.label.setObjectName(u"label")
-        font2 = QFont()
-        font2.setPointSize(14)
-        font2.setUnderline(False)
-        self.label.setFont(font2)
-        self.label.setAlignment(Qt.AlignLeading|Qt.AlignLeft|Qt.AlignVCenter)
-
-        self.gridLayout_4.addWidget(self.label, 0, 0, 1, 1)
-
         self.mbtcp_settings.setWidget(self.mbtcp_settings_content)
 
         self.gridLayout_3.addWidget(self.mbtcp_settings, 12, 3, 1, 1)
 
-        self.tabWidget_modbus_clients.addTab(self.tab_mbtcp, "")
+        self.tabWidget_modbus_cl.addTab(self.tab_mbtcp, "")
         self.tab_mbrtu = QWidget()
         self.tab_mbrtu.setObjectName(u"tab_mbrtu")
         self.gridLayout_14 = QGridLayout(self.tab_mbrtu)
@@ -642,121 +702,50 @@ class Ui_MainWindow(object):
         self.scrollArea_2.setWidgetResizable(True)
         self.mbrtu_settings = QWidget()
         self.mbrtu_settings.setObjectName(u"mbrtu_settings")
-        self.mbrtu_settings.setGeometry(QRect(0, -534, 727, 919))
+        self.mbrtu_settings.setGeometry(QRect(0, 0, 727, 391))
         self.gridLayout_15 = QGridLayout(self.mbrtu_settings)
         self.gridLayout_15.setObjectName(u"gridLayout_15")
-        self.line_8 = QFrame(self.mbrtu_settings)
-        self.line_8.setObjectName(u"line_8")
-        self.line_8.setFrameShape(QFrame.HLine)
-        self.line_8.setFrameShadow(QFrame.Sunken)
+        self.widget_15 = QWidget(self.mbrtu_settings)
+        self.widget_15.setObjectName(u"widget_15")
+        self.gridLayout_21 = QGridLayout(self.widget_15)
+        self.gridLayout_21.setObjectName(u"gridLayout_21")
+        self.label_33 = QLabel(self.widget_15)
+        self.label_33.setObjectName(u"label_33")
+        self.label_33.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
 
-        self.gridLayout_15.addWidget(self.line_8, 16, 0, 1, 1)
+        self.gridLayout_21.addWidget(self.label_33, 0, 0, 1, 1)
 
-        self.line_7 = QFrame(self.mbrtu_settings)
-        self.line_7.setObjectName(u"line_7")
-        self.line_7.setFrameShape(QFrame.HLine)
-        self.line_7.setFrameShadow(QFrame.Sunken)
+        self.mbrtu_clientid_default = QPushButton(self.widget_15)
+        self.mbrtu_clientid_default.setObjectName(u"mbrtu_clientid_default")
 
-        self.gridLayout_15.addWidget(self.line_7, 10, 0, 1, 1)
+        self.gridLayout_21.addWidget(self.mbrtu_clientid_default, 0, 2, 1, 1)
+
+        self.mbrtu_clientid = QSpinBox(self.widget_15)
+        self.mbrtu_clientid.setObjectName(u"mbrtu_clientid")
+        sizePolicy1.setHeightForWidth(self.mbrtu_clientid.sizePolicy().hasHeightForWidth())
+        self.mbrtu_clientid.setSizePolicy(sizePolicy1)
+        self.mbrtu_clientid.setMaximum(255)
+
+        self.gridLayout_21.addWidget(self.mbrtu_clientid, 0, 1, 1, 1)
+
+
+        self.gridLayout_15.addWidget(self.widget_15, 6, 0, 1, 1)
+
+        self.label_18 = QLabel(self.mbrtu_settings)
+        self.label_18.setObjectName(u"label_18")
+        self.label_18.setFont(font)
+
+        self.gridLayout_15.addWidget(self.label_18, 0, 0, 1, 1)
 
         self.verticalSpacer_2 = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
 
-        self.gridLayout_15.addItem(self.verticalSpacer_2, 5, 0, 1, 1)
+        self.gridLayout_15.addItem(self.verticalSpacer_2, 3, 0, 1, 1)
 
-        self.widget_11 = QWidget(self.mbrtu_settings)
-        self.widget_11.setObjectName(u"widget_11")
-        self.gridLayout_17 = QGridLayout(self.widget_11)
-        self.gridLayout_17.setObjectName(u"gridLayout_17")
-        self.mbrtu_ai = QSpinBox(self.widget_11)
-        self.mbrtu_ai.setObjectName(u"mbrtu_ai")
-        sizePolicy1.setHeightForWidth(self.mbrtu_ai.sizePolicy().hasHeightForWidth())
-        self.mbrtu_ai.setSizePolicy(sizePolicy1)
-        self.mbrtu_ai.setMinimum(1)
-        self.mbrtu_ai.setMaximum(65536)
-        self.mbrtu_ai.setValue(65536)
+        self.label_32 = QLabel(self.mbrtu_settings)
+        self.label_32.setObjectName(u"label_32")
+        self.label_32.setFont(font)
 
-        self.gridLayout_17.addWidget(self.mbrtu_ai, 1, 5, 1, 1)
-
-        self.mbrtu_ai_default = QPushButton(self.widget_11)
-        self.mbrtu_ai_default.setObjectName(u"mbrtu_ai_default")
-
-        self.gridLayout_17.addWidget(self.mbrtu_ai_default, 1, 6, 1, 1)
-
-        self.mbrtu_ao_default = QPushButton(self.widget_11)
-        self.mbrtu_ao_default.setObjectName(u"mbrtu_ao_default")
-
-        self.gridLayout_17.addWidget(self.mbrtu_ao_default, 0, 6, 1, 1)
-
-        self.mbrtu_di = QSpinBox(self.widget_11)
-        self.mbrtu_di.setObjectName(u"mbrtu_di")
-        sizePolicy1.setHeightForWidth(self.mbrtu_di.sizePolicy().hasHeightForWidth())
-        self.mbrtu_di.setSizePolicy(sizePolicy1)
-        self.mbrtu_di.setMinimum(1)
-        self.mbrtu_di.setMaximum(65536)
-        self.mbrtu_di.setValue(65536)
-
-        self.gridLayout_17.addWidget(self.mbrtu_di, 1, 1, 1, 1)
-
-        self.label_29 = QLabel(self.widget_11)
-        self.label_29.setObjectName(u"label_29")
-        self.label_29.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
-
-        self.gridLayout_17.addWidget(self.label_29, 1, 4, 1, 1)
-
-        self.label_26 = QLabel(self.widget_11)
-        self.label_26.setObjectName(u"label_26")
-        self.label_26.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
-
-        self.gridLayout_17.addWidget(self.label_26, 0, 0, 1, 1)
-
-        self.mbrtu_di_default = QPushButton(self.widget_11)
-        self.mbrtu_di_default.setObjectName(u"mbrtu_di_default")
-
-        self.gridLayout_17.addWidget(self.mbrtu_di_default, 1, 2, 1, 1)
-
-        self.label_28 = QLabel(self.widget_11)
-        self.label_28.setObjectName(u"label_28")
-        self.label_28.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
-
-        self.gridLayout_17.addWidget(self.label_28, 0, 4, 1, 1)
-
-        self.mbrtu_ao = QSpinBox(self.widget_11)
-        self.mbrtu_ao.setObjectName(u"mbrtu_ao")
-        sizePolicy1.setHeightForWidth(self.mbrtu_ao.sizePolicy().hasHeightForWidth())
-        self.mbrtu_ao.setSizePolicy(sizePolicy1)
-        self.mbrtu_ao.setMinimum(1)
-        self.mbrtu_ao.setMaximum(65536)
-        self.mbrtu_ao.setValue(65536)
-
-        self.gridLayout_17.addWidget(self.mbrtu_ao, 0, 5, 1, 1)
-
-        self.mbrtu_do = QSpinBox(self.widget_11)
-        self.mbrtu_do.setObjectName(u"mbrtu_do")
-        sizePolicy1.setHeightForWidth(self.mbrtu_do.sizePolicy().hasHeightForWidth())
-        self.mbrtu_do.setSizePolicy(sizePolicy1)
-        self.mbrtu_do.setMinimum(1)
-        self.mbrtu_do.setMaximum(65536)
-        self.mbrtu_do.setValue(65536)
-
-        self.gridLayout_17.addWidget(self.mbrtu_do, 0, 1, 1, 1)
-
-        self.label_27 = QLabel(self.widget_11)
-        self.label_27.setObjectName(u"label_27")
-        self.label_27.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
-
-        self.gridLayout_17.addWidget(self.label_27, 1, 0, 1, 1)
-
-        self.mbrtu_do_default = QPushButton(self.widget_11)
-        self.mbrtu_do_default.setObjectName(u"mbrtu_do_default")
-
-        self.gridLayout_17.addWidget(self.mbrtu_do_default, 0, 2, 1, 1)
-
-        self.horizontalSpacer_18 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
-
-        self.gridLayout_17.addItem(self.horizontalSpacer_18, 0, 3, 1, 1)
-
-
-        self.gridLayout_15.addWidget(self.widget_11, 4, 0, 1, 1)
+        self.gridLayout_15.addWidget(self.label_32, 4, 0, 1, 1)
 
         self.widget_10 = QWidget(self.mbrtu_settings)
         self.widget_10.setObjectName(u"widget_10")
@@ -871,176 +860,6 @@ class Ui_MainWindow(object):
 
         self.gridLayout_15.addWidget(self.widget_10, 1, 0, 1, 1)
 
-        self.widget_14 = QWidget(self.mbrtu_settings)
-        self.widget_14.setObjectName(u"widget_14")
-        self.gridLayout_20 = QGridLayout(self.widget_14)
-        self.gridLayout_20.setObjectName(u"gridLayout_20")
-        self.horizontalSpacer_13 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
-
-        self.gridLayout_20.addItem(self.horizontalSpacer_13, 0, 2, 1, 1)
-
-        self.horizontalSpacer_14 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
-
-        self.gridLayout_20.addItem(self.horizontalSpacer_14, 0, 4, 1, 1)
-
-        self.mbrtu_enable_response_timeout = QCheckBox(self.widget_14)
-        self.mbrtu_enable_response_timeout.setObjectName(u"mbrtu_enable_response_timeout")
-        sizePolicy1.setHeightForWidth(self.mbrtu_enable_response_timeout.sizePolicy().hasHeightForWidth())
-        self.mbrtu_enable_response_timeout.setSizePolicy(sizePolicy1)
-
-        self.gridLayout_20.addWidget(self.mbrtu_enable_response_timeout, 0, 5, 1, 1)
-
-        self.mbrtu_enable_byte_timeout = QCheckBox(self.widget_14)
-        self.mbrtu_enable_byte_timeout.setObjectName(u"mbrtu_enable_byte_timeout")
-
-        self.gridLayout_20.addWidget(self.mbrtu_enable_byte_timeout, 0, 3, 1, 1)
-
-        self.mbrtu_modbus_flags_default = QPushButton(self.widget_14)
-        self.mbrtu_modbus_flags_default.setObjectName(u"mbrtu_modbus_flags_default")
-
-        self.gridLayout_20.addWidget(self.mbrtu_modbus_flags_default, 0, 6, 1, 1)
-
-        self.horizontalSpacer_6 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
-
-        self.gridLayout_20.addItem(self.horizontalSpacer_6, 0, 0, 1, 1)
-
-        self.mbrtu_monitor = QCheckBox(self.widget_14)
-        self.mbrtu_monitor.setObjectName(u"mbrtu_monitor")
-        sizePolicy2.setHeightForWidth(self.mbrtu_monitor.sizePolicy().hasHeightForWidth())
-        self.mbrtu_monitor.setSizePolicy(sizePolicy2)
-
-        self.gridLayout_20.addWidget(self.mbrtu_monitor, 0, 1, 1, 1)
-
-
-        self.gridLayout_15.addWidget(self.widget_14, 13, 0, 1, 1)
-
-        self.widget_12 = QWidget(self.mbrtu_settings)
-        self.widget_12.setObjectName(u"widget_12")
-        self.gridLayout_18 = QGridLayout(self.widget_12)
-        self.gridLayout_18.setObjectName(u"gridLayout_18")
-        self.mbrtu_force = QCheckBox(self.widget_12)
-        self.mbrtu_force.setObjectName(u"mbrtu_force")
-        sizePolicy1.setHeightForWidth(self.mbrtu_force.sizePolicy().hasHeightForWidth())
-        self.mbrtu_force.setSizePolicy(sizePolicy1)
-
-        self.gridLayout_18.addWidget(self.mbrtu_force, 0, 1, 1, 1)
-
-        self.mbrtu_shm_flags_default = QPushButton(self.widget_12)
-        self.mbrtu_shm_flags_default.setObjectName(u"mbrtu_shm_flags_default")
-
-        self.gridLayout_18.addWidget(self.mbrtu_shm_flags_default, 0, 6, 1, 1)
-
-        self.horizontalSpacer_4 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
-
-        self.gridLayout_18.addItem(self.horizontalSpacer_4, 0, 0, 1, 1)
-
-
-        self.gridLayout_15.addWidget(self.widget_12, 8, 0, 1, 1)
-
-        self.line_6 = QFrame(self.mbrtu_settings)
-        self.line_6.setObjectName(u"line_6")
-        self.line_6.setFrameShape(QFrame.HLine)
-        self.line_6.setFrameShadow(QFrame.Sunken)
-
-        self.gridLayout_15.addWidget(self.line_6, 6, 0, 1, 1)
-
-        self.widget_18 = QWidget(self.mbrtu_settings)
-        self.widget_18.setObjectName(u"widget_18")
-        self.gridLayout_24 = QGridLayout(self.widget_18)
-        self.gridLayout_24.setObjectName(u"gridLayout_24")
-        self.label_35 = QLabel(self.widget_18)
-        self.label_35.setObjectName(u"label_35")
-
-        self.gridLayout_24.addWidget(self.label_35, 0, 0, 1, 1)
-
-        self.mbrtu_sem_name = QLineEdit(self.widget_18)
-        self.mbrtu_sem_name.setObjectName(u"mbrtu_sem_name")
-
-        self.gridLayout_24.addWidget(self.mbrtu_sem_name, 0, 1, 1, 1)
-
-        self.mbrtu_sem_name_default = QPushButton(self.widget_18)
-        self.mbrtu_sem_name_default.setObjectName(u"mbrtu_sem_name_default")
-
-        self.gridLayout_24.addWidget(self.mbrtu_sem_name_default, 0, 2, 1, 1)
-
-
-        self.gridLayout_15.addWidget(self.widget_18, 19, 0, 1, 1)
-
-        self.widget_15 = QWidget(self.mbrtu_settings)
-        self.widget_15.setObjectName(u"widget_15")
-        self.gridLayout_21 = QGridLayout(self.widget_15)
-        self.gridLayout_21.setObjectName(u"gridLayout_21")
-        self.label_33 = QLabel(self.widget_15)
-        self.label_33.setObjectName(u"label_33")
-        self.label_33.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
-
-        self.gridLayout_21.addWidget(self.label_33, 0, 0, 1, 1)
-
-        self.mbrtu_clientid_default = QPushButton(self.widget_15)
-        self.mbrtu_clientid_default.setObjectName(u"mbrtu_clientid_default")
-
-        self.gridLayout_21.addWidget(self.mbrtu_clientid_default, 0, 2, 1, 1)
-
-        self.mbrtu_clientid = QSpinBox(self.widget_15)
-        self.mbrtu_clientid.setObjectName(u"mbrtu_clientid")
-        sizePolicy1.setHeightForWidth(self.mbrtu_clientid.sizePolicy().hasHeightForWidth())
-        self.mbrtu_clientid.setSizePolicy(sizePolicy1)
-        self.mbrtu_clientid.setMaximum(255)
-
-        self.gridLayout_21.addWidget(self.mbrtu_clientid, 0, 1, 1, 1)
-
-
-        self.gridLayout_15.addWidget(self.widget_15, 15, 0, 1, 1)
-
-        self.widget_13 = QWidget(self.mbrtu_settings)
-        self.widget_13.setObjectName(u"widget_13")
-        self.gridLayout_19 = QGridLayout(self.widget_13)
-        self.gridLayout_19.setObjectName(u"gridLayout_19")
-        self.mbrtu_shm_name_default = QPushButton(self.widget_13)
-        self.mbrtu_shm_name_default.setObjectName(u"mbrtu_shm_name_default")
-
-        self.gridLayout_19.addWidget(self.mbrtu_shm_name_default, 0, 2, 1, 1)
-
-        self.mbrtu_shm_name = QLineEdit(self.widget_13)
-        self.mbrtu_shm_name.setObjectName(u"mbrtu_shm_name")
-
-        self.gridLayout_19.addWidget(self.mbrtu_shm_name, 0, 1, 1, 1)
-
-        self.label_31 = QLabel(self.widget_13)
-        self.label_31.setObjectName(u"label_31")
-
-        self.gridLayout_19.addWidget(self.label_31, 0, 0, 1, 1)
-
-
-        self.gridLayout_15.addWidget(self.widget_13, 9, 0, 1, 1)
-
-        self.label_34 = QLabel(self.mbrtu_settings)
-        self.label_34.setObjectName(u"label_34")
-        self.label_34.setFont(font)
-
-        self.gridLayout_15.addWidget(self.label_34, 17, 0, 1, 1)
-
-        self.label_30 = QLabel(self.mbrtu_settings)
-        self.label_30.setObjectName(u"label_30")
-        self.label_30.setFont(font)
-        self.label_30.setToolTipDuration(-1)
-        self.label_30.setFrameShadow(QFrame.Plain)
-        self.label_30.setLineWidth(1)
-
-        self.gridLayout_15.addWidget(self.label_30, 7, 0, 1, 1)
-
-        self.label_32 = QLabel(self.mbrtu_settings)
-        self.label_32.setObjectName(u"label_32")
-        self.label_32.setFont(font)
-
-        self.gridLayout_15.addWidget(self.label_32, 11, 0, 1, 1)
-
-        self.label_18 = QLabel(self.mbrtu_settings)
-        self.label_18.setObjectName(u"label_18")
-        self.label_18.setFont(font)
-
-        self.gridLayout_15.addWidget(self.label_18, 0, 0, 1, 1)
-
         self.line_5 = QFrame(self.mbrtu_settings)
         self.line_5.setObjectName(u"line_5")
         self.line_5.setFrameShape(QFrame.HLine)
@@ -1048,95 +867,13 @@ class Ui_MainWindow(object):
 
         self.gridLayout_15.addWidget(self.line_5, 2, 0, 1, 1)
 
-        self.widget_16 = QWidget(self.mbrtu_settings)
-        self.widget_16.setObjectName(u"widget_16")
-        self.gridLayout_22 = QGridLayout(self.widget_16)
-        self.gridLayout_22.setObjectName(u"gridLayout_22")
-        self.horizontalSpacer_9 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
-
-        self.gridLayout_22.addItem(self.horizontalSpacer_9, 0, 0, 1, 1)
-
-        self.horizontalSpacer_10 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
-
-        self.gridLayout_22.addItem(self.horizontalSpacer_10, 0, 2, 1, 1)
-
-        self.mbrtu_sem_force = QCheckBox(self.widget_16)
-        self.mbrtu_sem_force.setObjectName(u"mbrtu_sem_force")
-        sizePolicy1.setHeightForWidth(self.mbrtu_sem_force.sizePolicy().hasHeightForWidth())
-        self.mbrtu_sem_force.setSizePolicy(sizePolicy1)
-
-        self.gridLayout_22.addWidget(self.mbrtu_sem_force, 0, 3, 1, 1)
-
-        self.mbrtu_sem_enable = QCheckBox(self.widget_16)
-        self.mbrtu_sem_enable.setObjectName(u"mbrtu_sem_enable")
-        self.mbrtu_sem_enable.setChecked(True)
-
-        self.gridLayout_22.addWidget(self.mbrtu_sem_enable, 0, 1, 1, 1)
-
-        self.mbrtu_sem_flags_default = QPushButton(self.widget_16)
-        self.mbrtu_sem_flags_default.setObjectName(u"mbrtu_sem_flags_default")
-
-        self.gridLayout_22.addWidget(self.mbrtu_sem_flags_default, 0, 4, 1, 1)
-
-
-        self.gridLayout_15.addWidget(self.widget_16, 18, 0, 1, 1)
-
-        self.label_25 = QLabel(self.mbrtu_settings)
-        self.label_25.setObjectName(u"label_25")
-        self.label_25.setFont(font)
-
-        self.gridLayout_15.addWidget(self.label_25, 3, 0, 1, 1)
-
-        self.widget_23 = QWidget(self.mbrtu_settings)
-        self.widget_23.setObjectName(u"widget_23")
-        self.gridLayout_32 = QGridLayout(self.widget_23)
-        self.gridLayout_32.setObjectName(u"gridLayout_32")
-        self.label_37 = QLabel(self.widget_23)
-        self.label_37.setObjectName(u"label_37")
-        self.label_37.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
-
-        self.gridLayout_32.addWidget(self.label_37, 0, 3, 1, 1)
-
-        self.mbrtu_byte_timeout = QDoubleSpinBox(self.widget_23)
-        self.mbrtu_byte_timeout.setObjectName(u"mbrtu_byte_timeout")
-        sizePolicy1.setHeightForWidth(self.mbrtu_byte_timeout.sizePolicy().hasHeightForWidth())
-        self.mbrtu_byte_timeout.setSizePolicy(sizePolicy1)
-        self.mbrtu_byte_timeout.setMaximum(86400.000000000000000)
-
-        self.gridLayout_32.addWidget(self.mbrtu_byte_timeout, 0, 1, 1, 1)
-
-        self.label_36 = QLabel(self.widget_23)
-        self.label_36.setObjectName(u"label_36")
-        self.label_36.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
-
-        self.gridLayout_32.addWidget(self.label_36, 0, 0, 1, 1)
-
-        self.horizontalSpacer_19 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
-
-        self.gridLayout_32.addItem(self.horizontalSpacer_19, 0, 2, 1, 1)
-
-        self.mbrtu_response_timeout = QDoubleSpinBox(self.widget_23)
-        self.mbrtu_response_timeout.setObjectName(u"mbrtu_response_timeout")
-        sizePolicy1.setHeightForWidth(self.mbrtu_response_timeout.sizePolicy().hasHeightForWidth())
-        self.mbrtu_response_timeout.setSizePolicy(sizePolicy1)
-        self.mbrtu_response_timeout.setMaximum(86400.000000000000000)
-
-        self.gridLayout_32.addWidget(self.mbrtu_response_timeout, 0, 4, 1, 1)
-
-        self.horizontalSpacer_20 = QSpacerItem(80, 20, QSizePolicy.Policy.Fixed, QSizePolicy.Policy.Minimum)
-
-        self.gridLayout_32.addItem(self.horizontalSpacer_20, 0, 5, 1, 1)
-
-
-        self.gridLayout_15.addWidget(self.widget_23, 14, 0, 1, 1)
-
         self.scrollArea_2.setWidget(self.mbrtu_settings)
 
         self.gridLayout_14.addWidget(self.scrollArea_2, 1, 0, 1, 1)
 
-        self.tabWidget_modbus_clients.addTab(self.tab_mbrtu, "")
+        self.tabWidget_modbus_cl.addTab(self.tab_mbrtu, "")
 
-        self.gridLayout_2.addWidget(self.tabWidget_modbus_clients, 0, 0, 1, 1)
+        self.gridLayout_2.addWidget(self.tabWidget_modbus_cl, 0, 0, 1, 1)
 
         self.tabWidget_tools.addTab(self.tab_modbus_clients, "")
         self.tab_shm_tools = QWidget()
@@ -1150,7 +887,7 @@ class Ui_MainWindow(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollAreaWidgetContents = QWidget()
         self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
-        self.scrollAreaWidgetContents.setGeometry(QRect(0, -101, 745, 585))
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 745, 585))
         self.gridLayout_26 = QGridLayout(self.scrollAreaWidgetContents)
         self.gridLayout_26.setObjectName(u"gridLayout_26")
         self.line_10 = QFrame(self.scrollAreaWidgetContents)
@@ -1186,7 +923,7 @@ class Ui_MainWindow(object):
         if QIcon.hasThemeIcon(iconThemeName):
             icon = QIcon.fromTheme(iconThemeName)
         else:
-            icon.addFile(u".", QSize(), QIcon.Normal, QIcon.Off)
+            icon.addFile(u"../../../../../.designer/backup", QSize(), QIcon.Normal, QIcon.Off)
 
         self.tool_dump_di_file_dialog.setIcon(icon)
 
@@ -1340,7 +1077,7 @@ class Ui_MainWindow(object):
         if QIcon.hasThemeIcon(iconThemeName):
             icon1 = QIcon.fromTheme(iconThemeName)
         else:
-            icon1.addFile(u".", QSize(), QIcon.Normal, QIcon.Off)
+            icon1.addFile(u"../../../../../.designer/backup", QSize(), QIcon.Normal, QIcon.Off)
 
         self.tool_load_ao_file_dialog.setIcon(icon1)
 
@@ -1474,17 +1211,15 @@ class Ui_MainWindow(object):
 
         self.menubar.addAction(self.menuFile.menuAction())
         self.menubar.addAction(self.menuHelp.menuAction())
-        self.menuFile.addAction(self.actionopen_modbus_tcp_client_config)
-        self.menuFile.addAction(self.actionopen_modbus_rtu_client_config)
+        self.menuFile.addAction(self.actionopen_modbus_client_config)
         self.menuFile.addSeparator()
-        self.menuFile.addAction(self.actionsave_modbus_tcp_client_config)
-        self.menuFile.addAction(self.actionsave_modbus_rtu_client_config)
+        self.menuFile.addAction(self.actionsave_modbus_client_config)
         self.menuHelp.addAction(self.actionVersion)
 
         self.retranslateUi(MainWindow)
 
         self.tabWidget_tools.setCurrentIndex(0)
-        self.tabWidget_modbus_clients.setCurrentIndex(0)
+        self.tabWidget_modbus_cl.setCurrentIndex(0)
 
 
         QMetaObject.connectSlotsByName(MainWindow)
@@ -1493,10 +1228,179 @@ class Ui_MainWindow(object):
     def retranslateUi(self, MainWindow):
         MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"SHM Modbus", None))
         self.actionVersion.setText(QCoreApplication.translate("MainWindow", u"Version", None))
-        self.actionsave_modbus_tcp_client_config.setText(QCoreApplication.translate("MainWindow", u"save modbus tcp client config", None))
+        self.actionsave_modbus_client_config.setText(QCoreApplication.translate("MainWindow", u"save modbus client config", None))
         self.actionsave_modbus_rtu_client_config.setText(QCoreApplication.translate("MainWindow", u"save modbus rtu client config", None))
-        self.actionopen_modbus_tcp_client_config.setText(QCoreApplication.translate("MainWindow", u"open modbus tcp client config", None))
+        self.actionopen_modbus_client_config.setText(QCoreApplication.translate("MainWindow", u"open modbus client config", None))
         self.actionopen_modbus_rtu_client_config.setText(QCoreApplication.translate("MainWindow", u"open modbus rtu client config", None))
+        self.label_4.setText(QCoreApplication.translate("MainWindow", u"Registers", None))
+#if QT_CONFIG(tooltip)
+        self.mb_do.setToolTip(QCoreApplication.translate("MainWindow", u"number of DO registers (Coils, discrete output)", None))
+#endif // QT_CONFIG(tooltip)
+#if QT_CONFIG(statustip)
+        self.mb_do.setStatusTip(QCoreApplication.translate("MainWindow", u"number of DO registers (Coils, discrete output)", None))
+#endif // QT_CONFIG(statustip)
+#if QT_CONFIG(tooltip)
+        self.mb_do_default.setToolTip(QCoreApplication.translate("MainWindow", u"set default number of DO registers (Coils, discrete output) (65536)", None))
+#endif // QT_CONFIG(tooltip)
+#if QT_CONFIG(statustip)
+        self.mb_do_default.setStatusTip(QCoreApplication.translate("MainWindow", u"set default number of DO registers (Coils, discrete output) (65536)", None))
+#endif // QT_CONFIG(statustip)
+        self.mb_do_default.setText(QCoreApplication.translate("MainWindow", u"65536", None))
+        self.label_6.setText(QCoreApplication.translate("MainWindow", u"DI:", None))
+#if QT_CONFIG(tooltip)
+        self.mb_di.setToolTip(QCoreApplication.translate("MainWindow", u"number of DI registers (discrete input)", None))
+#endif // QT_CONFIG(tooltip)
+#if QT_CONFIG(statustip)
+        self.mb_di.setStatusTip(QCoreApplication.translate("MainWindow", u"number of DI registers (discrete input)", None))
+#endif // QT_CONFIG(statustip)
+#if QT_CONFIG(tooltip)
+        self.mb_ai.setToolTip(QCoreApplication.translate("MainWindow", u"number of AI registers (input registers)", None))
+#endif // QT_CONFIG(tooltip)
+#if QT_CONFIG(statustip)
+        self.mb_ai.setStatusTip(QCoreApplication.translate("MainWindow", u"number of AI registers (input registers)", None))
+#endif // QT_CONFIG(statustip)
+        self.label_5.setText(QCoreApplication.translate("MainWindow", u"DO:", None))
+#if QT_CONFIG(tooltip)
+        self.mb_ao.setToolTip(QCoreApplication.translate("MainWindow", u"number of AO registers (holding registers)", None))
+#endif // QT_CONFIG(tooltip)
+#if QT_CONFIG(statustip)
+        self.mb_ao.setStatusTip(QCoreApplication.translate("MainWindow", u"number of AO registers (holding registers)", None))
+#endif // QT_CONFIG(statustip)
+#if QT_CONFIG(tooltip)
+        self.mb_ai_default.setToolTip(QCoreApplication.translate("MainWindow", u"set default number of AI registers (input registers) (65536)", None))
+#endif // QT_CONFIG(tooltip)
+#if QT_CONFIG(statustip)
+        self.mb_ai_default.setStatusTip(QCoreApplication.translate("MainWindow", u"set default number of AI registers (input registers) (65536)", None))
+#endif // QT_CONFIG(statustip)
+        self.mb_ai_default.setText(QCoreApplication.translate("MainWindow", u"65536", None))
+#if QT_CONFIG(tooltip)
+        self.mb_ao_default.setToolTip(QCoreApplication.translate("MainWindow", u"set default number of AO registers (holding registers) (65536)", None))
+#endif // QT_CONFIG(tooltip)
+#if QT_CONFIG(statustip)
+        self.mb_ao_default.setStatusTip(QCoreApplication.translate("MainWindow", u"set default number of AO registers (holding registers) (65536)", None))
+#endif // QT_CONFIG(statustip)
+#if QT_CONFIG(accessibility)
+        self.mb_ao_default.setAccessibleName("")
+#endif // QT_CONFIG(accessibility)
+        self.mb_ao_default.setText(QCoreApplication.translate("MainWindow", u"65536", None))
+#if QT_CONFIG(tooltip)
+        self.label_7.setToolTip("")
+#endif // QT_CONFIG(tooltip)
+        self.label_7.setText(QCoreApplication.translate("MainWindow", u"AO:", None))
+        self.label_8.setText(QCoreApplication.translate("MainWindow", u"AI:", None))
+#if QT_CONFIG(tooltip)
+        self.mb_di_default.setToolTip(QCoreApplication.translate("MainWindow", u"set default number of DI registers (discrete input) (65536)", None))
+#endif // QT_CONFIG(tooltip)
+#if QT_CONFIG(statustip)
+        self.mb_di_default.setStatusTip(QCoreApplication.translate("MainWindow", u"set default number of DI registers (discrete input) (65536)", None))
+#endif // QT_CONFIG(statustip)
+        self.mb_di_default.setText(QCoreApplication.translate("MainWindow", u"65536", None))
+        self.label_30.setText(QCoreApplication.translate("MainWindow", u"Shared Memory", None))
+#if QT_CONFIG(tooltip)
+        self.mb_shm_flags_default.setToolTip(QCoreApplication.translate("MainWindow", u"set default shared memory flags (force: false)", None))
+#endif // QT_CONFIG(tooltip)
+#if QT_CONFIG(statustip)
+        self.mb_shm_flags_default.setStatusTip(QCoreApplication.translate("MainWindow", u"set default shared memory flags (force: false)", None))
+#endif // QT_CONFIG(statustip)
+        self.mb_shm_flags_default.setText(QCoreApplication.translate("MainWindow", u"defaults", None))
+#if QT_CONFIG(tooltip)
+        self.mb_force.setToolTip(QCoreApplication.translate("MainWindow", u"orce the use of the shared memory even if it already exists. Do not use this option per default! It should only be used if the shared memory of an improperly terminated instance continues to exist as an orphan and is no longer used.", None))
+#endif // QT_CONFIG(tooltip)
+#if QT_CONFIG(statustip)
+        self.mb_force.setStatusTip(QCoreApplication.translate("MainWindow", u"force the use of the shared memory even if it already exists. ", None))
+#endif // QT_CONFIG(statustip)
+        self.mb_force.setText(QCoreApplication.translate("MainWindow", u"force", None))
+        self.mb_shm_name.setText(QCoreApplication.translate("MainWindow", u"modbus_", None))
+#if QT_CONFIG(tooltip)
+        self.mb_shm_name_default.setToolTip(QCoreApplication.translate("MainWindow", u"set default shared memory name prefix (modbus_)", None))
+#endif // QT_CONFIG(tooltip)
+#if QT_CONFIG(statustip)
+        self.mb_shm_name_default.setStatusTip(QCoreApplication.translate("MainWindow", u"set default shared memory name prefix (modbus_)", None))
+#endif // QT_CONFIG(statustip)
+        self.mb_shm_name_default.setText(QCoreApplication.translate("MainWindow", u"modbus_", None))
+        self.label_31.setText(QCoreApplication.translate("MainWindow", u"name prefix:", None))
+        self.label_15.setText(QCoreApplication.translate("MainWindow", u"Modbus", None))
+#if QT_CONFIG(tooltip)
+        self.mb_monitor.setToolTip(QCoreApplication.translate("MainWindow", u"monitor all modbus PDUs", None))
+#endif // QT_CONFIG(tooltip)
+#if QT_CONFIG(statustip)
+        self.mb_monitor.setStatusTip(QCoreApplication.translate("MainWindow", u"monitor all modbus PDUs (strong impact on performance)", None))
+#endif // QT_CONFIG(statustip)
+        self.mb_monitor.setText(QCoreApplication.translate("MainWindow", u"monitor", None))
+#if QT_CONFIG(tooltip)
+        self.mb_enable_byte_timeout.setToolTip(QCoreApplication.translate("MainWindow", u"manually set the libmodbus byte timeout", None))
+#endif // QT_CONFIG(tooltip)
+#if QT_CONFIG(statustip)
+        self.mb_enable_byte_timeout.setStatusTip(QCoreApplication.translate("MainWindow", u"manually set the libmodbus byte timeout", None))
+#endif // QT_CONFIG(statustip)
+        self.mb_enable_byte_timeout.setText(QCoreApplication.translate("MainWindow", u"edit byte timeout", None))
+#if QT_CONFIG(tooltip)
+        self.mb_enable_response_timeout.setToolTip(QCoreApplication.translate("MainWindow", u"manually set the libmodbus response timeout", None))
+#endif // QT_CONFIG(tooltip)
+#if QT_CONFIG(statustip)
+        self.mb_enable_response_timeout.setStatusTip(QCoreApplication.translate("MainWindow", u"manually set the libmodbus response timeout", None))
+#endif // QT_CONFIG(statustip)
+        self.mb_enable_response_timeout.setText(QCoreApplication.translate("MainWindow", u"edit response timeout", None))
+#if QT_CONFIG(tooltip)
+        self.mb_mb_flags_default.setToolTip(QCoreApplication.translate("MainWindow", u"set default modbus flags (all false)", None))
+#endif // QT_CONFIG(tooltip)
+#if QT_CONFIG(statustip)
+        self.mb_mb_flags_default.setStatusTip(QCoreApplication.translate("MainWindow", u"set default modbus flags (all false)", None))
+#endif // QT_CONFIG(statustip)
+        self.mb_mb_flags_default.setText(QCoreApplication.translate("MainWindow", u"defaults", None))
+#if QT_CONFIG(tooltip)
+        self.mb_byte_timeout.setToolTip(QCoreApplication.translate("MainWindow", u"libmodbus byte timeout", None))
+#endif // QT_CONFIG(tooltip)
+#if QT_CONFIG(statustip)
+        self.mb_byte_timeout.setStatusTip(QCoreApplication.translate("MainWindow", u"libmodbus byte timeout", None))
+#endif // QT_CONFIG(statustip)
+        self.label_17.setText(QCoreApplication.translate("MainWindow", u"response timeout:", None))
+#if QT_CONFIG(tooltip)
+        self.mb_response_timeout.setToolTip(QCoreApplication.translate("MainWindow", u"libmodbus response timeout", None))
+#endif // QT_CONFIG(tooltip)
+#if QT_CONFIG(statustip)
+        self.mb_response_timeout.setStatusTip(QCoreApplication.translate("MainWindow", u"libmodbus response timeout", None))
+#endif // QT_CONFIG(statustip)
+        self.label_16.setText(QCoreApplication.translate("MainWindow", u"byte timeout:", None))
+        self.label_13.setText(QCoreApplication.translate("MainWindow", u"Semaphore", None))
+#if QT_CONFIG(tooltip)
+        self.mb_sem_force.setToolTip(QCoreApplication.translate("MainWindow", u"Force the use of the semaphore even if it already exists. Do not use this option per default! It should only be used if the semaphore of an improperly terminated instance continues to exist as an orphan and is no longer used.", None))
+#endif // QT_CONFIG(tooltip)
+#if QT_CONFIG(statustip)
+        self.mb_sem_force.setStatusTip(QCoreApplication.translate("MainWindow", u"Force the use of the semaphore even if it already exists.", None))
+#endif // QT_CONFIG(statustip)
+        self.mb_sem_force.setText(QCoreApplication.translate("MainWindow", u"force", None))
+#if QT_CONFIG(tooltip)
+        self.mb_sem_enable.setToolTip(QCoreApplication.translate("MainWindow", u"enable semaphore mechanism", None))
+#endif // QT_CONFIG(tooltip)
+#if QT_CONFIG(statustip)
+        self.mb_sem_enable.setStatusTip(QCoreApplication.translate("MainWindow", u"enable semaphore mechanism to protect the shared memory from simultaneous access.", None))
+#endif // QT_CONFIG(statustip)
+        self.mb_sem_enable.setText(QCoreApplication.translate("MainWindow", u"enable", None))
+#if QT_CONFIG(tooltip)
+        self.mb_sem_defaults.setToolTip(QCoreApplication.translate("MainWindow", u"set default semaphore flags (enabled: true, force: false)", None))
+#endif // QT_CONFIG(tooltip)
+#if QT_CONFIG(statustip)
+        self.mb_sem_defaults.setStatusTip(QCoreApplication.translate("MainWindow", u"set default semaphore flags (enabled: true, force: false)", None))
+#endif // QT_CONFIG(statustip)
+        self.mb_sem_defaults.setText(QCoreApplication.translate("MainWindow", u"defaults", None))
+        self.label_14.setText(QCoreApplication.translate("MainWindow", u"name:", None))
+#if QT_CONFIG(tooltip)
+        self.mb_sem_name.setToolTip(QCoreApplication.translate("MainWindow", u"semaphore name", None))
+#endif // QT_CONFIG(tooltip)
+#if QT_CONFIG(statustip)
+        self.mb_sem_name.setStatusTip(QCoreApplication.translate("MainWindow", u"semaphore name", None))
+#endif // QT_CONFIG(statustip)
+        self.mb_sem_name.setText(QCoreApplication.translate("MainWindow", u"modbus", None))
+#if QT_CONFIG(tooltip)
+        self.mb_sem_name_default.setToolTip(QCoreApplication.translate("MainWindow", u"set default semaphore name (modbus)", None))
+#endif // QT_CONFIG(tooltip)
+#if QT_CONFIG(statustip)
+        self.mb_sem_name_default.setStatusTip(QCoreApplication.translate("MainWindow", u"set default semaphore name (modbus)", None))
+#endif // QT_CONFIG(statustip)
+        self.mb_sem_name_default.setText(QCoreApplication.translate("MainWindow", u"modbus", None))
+        self.mb_defaults.setText(QCoreApplication.translate("MainWindow", u"Defaults", None))
+        self.tabWidget_modbus_cl.setTabText(self.tabWidget_modbus_cl.indexOf(self.tab_modbus_setings), QCoreApplication.translate("MainWindow", u"Modbus Settings", None))
 #if QT_CONFIG(tooltip)
         self.mbtcp_start.setToolTip(QCoreApplication.translate("MainWindow", u"start/stop Modbus TCP client", None))
 #endif // QT_CONFIG(tooltip)
@@ -1512,26 +1416,41 @@ class Ui_MainWindow(object):
 #endif // QT_CONFIG(statustip)
         self.mbtcp_defaults.setText(QCoreApplication.translate("MainWindow", u"Defaults", None))
 #if QT_CONFIG(tooltip)
-        self.mbtcp_sem_force.setToolTip(QCoreApplication.translate("MainWindow", u"Force the use of the semaphore even if it already exists. Do not use this option per default! It should only be used if the semaphore of an improperly terminated instance continues to exist as an orphan and is no longer used.", None))
+        self.mbtcp_separate_list.setToolTip(QCoreApplication.translate("MainWindow", u"comma separated list of client ids for wich a separate shared memory is used.", None))
 #endif // QT_CONFIG(tooltip)
 #if QT_CONFIG(statustip)
-        self.mbtcp_sem_force.setStatusTip(QCoreApplication.translate("MainWindow", u"Force the use of the semaphore even if it already exists.", None))
+        self.mbtcp_separate_list.setStatusTip(QCoreApplication.translate("MainWindow", u"comma separated list of client ids for wich a separate shared memory is used.", None))
 #endif // QT_CONFIG(statustip)
-        self.mbtcp_sem_force.setText(QCoreApplication.translate("MainWindow", u"force", None))
+        self.label_12.setText(QCoreApplication.translate("MainWindow", u"separate:", None))
 #if QT_CONFIG(tooltip)
-        self.mbtcp_sem_enable.setToolTip(QCoreApplication.translate("MainWindow", u"enable semaphore mechanism", None))
+        self.mbtcp_separate_list_clear.setToolTip(QCoreApplication.translate("MainWindow", u"clear list", None))
 #endif // QT_CONFIG(tooltip)
 #if QT_CONFIG(statustip)
-        self.mbtcp_sem_enable.setStatusTip(QCoreApplication.translate("MainWindow", u"enable semaphore mechanism to protect the shared memory from simultaneous access.", None))
+        self.mbtcp_separate_list_clear.setStatusTip(QCoreApplication.translate("MainWindow", u"clear list", None))
 #endif // QT_CONFIG(statustip)
-        self.mbtcp_sem_enable.setText(QCoreApplication.translate("MainWindow", u"enable", None))
+        self.mbtcp_separate_list_clear.setText(QCoreApplication.translate("MainWindow", u"clear", None))
 #if QT_CONFIG(tooltip)
-        self.mbtcp_sem_defaults.setToolTip(QCoreApplication.translate("MainWindow", u"set default semaphore flags (enabled: true, force: false)", None))
+        self.mbtcp_separate.setToolTip(QCoreApplication.translate("MainWindow", u"Use a separate shared memory for requests with specific client ids.", None))
 #endif // QT_CONFIG(tooltip)
 #if QT_CONFIG(statustip)
-        self.mbtcp_sem_defaults.setStatusTip(QCoreApplication.translate("MainWindow", u"set default semaphore flags (enabled: true, force: false)", None))
+        self.mbtcp_separate.setStatusTip(QCoreApplication.translate("MainWindow", u"Use a separate shared memory for requests with specific client ids.", None))
 #endif // QT_CONFIG(statustip)
-        self.mbtcp_sem_defaults.setText(QCoreApplication.translate("MainWindow", u"defaults", None))
+        self.mbtcp_separate.setText(QCoreApplication.translate("MainWindow", u"separate", None))
+#if QT_CONFIG(tooltip)
+        self.mbtcp_shm_defaults.setToolTip(QCoreApplication.translate("MainWindow", u"set default shared memory flags (force: false, separate: false)", None))
+#endif // QT_CONFIG(tooltip)
+#if QT_CONFIG(statustip)
+        self.mbtcp_shm_defaults.setStatusTip(QCoreApplication.translate("MainWindow", u"set default shared memory flags (force: false, separate: false)", None))
+#endif // QT_CONFIG(statustip)
+        self.mbtcp_shm_defaults.setText(QCoreApplication.translate("MainWindow", u"defaults", None))
+#if QT_CONFIG(tooltip)
+        self.mbtcp_separate_all.setToolTip(QCoreApplication.translate("MainWindow", u"Use a separate shared memory for each client id .", None))
+#endif // QT_CONFIG(tooltip)
+#if QT_CONFIG(statustip)
+        self.mbtcp_separate_all.setStatusTip(QCoreApplication.translate("MainWindow", u"Use a separate shared memory for each client id .", None))
+#endif // QT_CONFIG(statustip)
+        self.mbtcp_separate_all.setText(QCoreApplication.translate("MainWindow", u"separate-all", None))
+        self.label.setText(QCoreApplication.translate("MainWindow", u"Network", None))
         self.label_9.setText(QCoreApplication.translate("MainWindow", u"Shared Memory", None))
 #if QT_CONFIG(tooltip)
         self.mbtcp_port.setToolTip(QCoreApplication.translate("MainWindow", u"TCP port to listen for connections", None))
@@ -1605,245 +1524,25 @@ class Ui_MainWindow(object):
         self.mbtcp_sytstem_tcp_timeout.setStatusTip(QCoreApplication.translate("MainWindow", u"Use TCP system timeout (TCP timeout is not explicitly set)", None))
 #endif // QT_CONFIG(statustip)
         self.mbtcp_sytstem_tcp_timeout.setText(QCoreApplication.translate("MainWindow", u"use system TCP timeout", None))
-#if QT_CONFIG(tooltip)
-        self.mbtcp_byte_timeout.setToolTip(QCoreApplication.translate("MainWindow", u"libmodbus byte timeout", None))
-#endif // QT_CONFIG(tooltip)
-#if QT_CONFIG(statustip)
-        self.mbtcp_byte_timeout.setStatusTip(QCoreApplication.translate("MainWindow", u"libmodbus byte timeout", None))
-#endif // QT_CONFIG(statustip)
-        self.label_17.setText(QCoreApplication.translate("MainWindow", u"response timeout:", None))
-#if QT_CONFIG(tooltip)
-        self.mbtcp_response_timeout.setToolTip(QCoreApplication.translate("MainWindow", u"libmodbus response timeout", None))
-#endif // QT_CONFIG(tooltip)
-#if QT_CONFIG(statustip)
-        self.mbtcp_response_timeout.setStatusTip(QCoreApplication.translate("MainWindow", u"libmodbus response timeout", None))
-#endif // QT_CONFIG(statustip)
-        self.label_16.setText(QCoreApplication.translate("MainWindow", u"byte timeout:", None))
-#if QT_CONFIG(tooltip)
-        self.mbtcp_monitor.setToolTip(QCoreApplication.translate("MainWindow", u"monitor all modbus PDUs", None))
-#endif // QT_CONFIG(tooltip)
-#if QT_CONFIG(statustip)
-        self.mbtcp_monitor.setStatusTip(QCoreApplication.translate("MainWindow", u"monitor all modbus PDUs (strong impact on performance)", None))
-#endif // QT_CONFIG(statustip)
-        self.mbtcp_monitor.setText(QCoreApplication.translate("MainWindow", u"monitor", None))
-#if QT_CONFIG(tooltip)
-        self.mbtcp_enable_byte_timeout.setToolTip(QCoreApplication.translate("MainWindow", u"manually set the libmodbus byte timeout", None))
-#endif // QT_CONFIG(tooltip)
-#if QT_CONFIG(statustip)
-        self.mbtcp_enable_byte_timeout.setStatusTip(QCoreApplication.translate("MainWindow", u"manually set the libmodbus byte timeout", None))
-#endif // QT_CONFIG(statustip)
-        self.mbtcp_enable_byte_timeout.setText(QCoreApplication.translate("MainWindow", u"edit byte timeout", None))
-#if QT_CONFIG(tooltip)
-        self.mbtcp_enable_response_timeout.setToolTip(QCoreApplication.translate("MainWindow", u"manually set the libmodbus response timeout", None))
-#endif // QT_CONFIG(tooltip)
-#if QT_CONFIG(statustip)
-        self.mbtcp_enable_response_timeout.setStatusTip(QCoreApplication.translate("MainWindow", u"manually set the libmodbus response timeout", None))
-#endif // QT_CONFIG(statustip)
-        self.mbtcp_enable_response_timeout.setText(QCoreApplication.translate("MainWindow", u"edit response timeout", None))
-#if QT_CONFIG(tooltip)
-        self.mbtcp_mb_flags_default.setToolTip(QCoreApplication.translate("MainWindow", u"set default modbus flags (all false)", None))
-#endif // QT_CONFIG(tooltip)
-#if QT_CONFIG(statustip)
-        self.mbtcp_mb_flags_default.setStatusTip(QCoreApplication.translate("MainWindow", u"set default modbus flags (all false)", None))
-#endif // QT_CONFIG(statustip)
-        self.mbtcp_mb_flags_default.setText(QCoreApplication.translate("MainWindow", u"defaults", None))
-        self.label_14.setText(QCoreApplication.translate("MainWindow", u"name:", None))
-#if QT_CONFIG(tooltip)
-        self.mbtcp_sem_name.setToolTip(QCoreApplication.translate("MainWindow", u"semaphore name", None))
-#endif // QT_CONFIG(tooltip)
-#if QT_CONFIG(statustip)
-        self.mbtcp_sem_name.setStatusTip(QCoreApplication.translate("MainWindow", u"semaphore name", None))
-#endif // QT_CONFIG(statustip)
-        self.mbtcp_sem_name.setText(QCoreApplication.translate("MainWindow", u"modbus", None))
-#if QT_CONFIG(tooltip)
-        self.mbtcp_sem_name_default.setToolTip(QCoreApplication.translate("MainWindow", u"set default semaphore name (modbus)", None))
-#endif // QT_CONFIG(tooltip)
-#if QT_CONFIG(statustip)
-        self.mbtcp_sem_name_default.setStatusTip(QCoreApplication.translate("MainWindow", u"set default semaphore name (modbus)", None))
-#endif // QT_CONFIG(statustip)
-        self.mbtcp_sem_name_default.setText(QCoreApplication.translate("MainWindow", u"modbus", None))
-#if QT_CONFIG(tooltip)
-        self.mbtcp_force.setToolTip(QCoreApplication.translate("MainWindow", u"orce the use of the shared memory even if it already exists. Do not use this option per default! It should only be used if the shared memory of an improperly terminated instance continues to exist as an orphan and is no longer used.", None))
-#endif // QT_CONFIG(tooltip)
-#if QT_CONFIG(statustip)
-        self.mbtcp_force.setStatusTip(QCoreApplication.translate("MainWindow", u"force the use of the shared memory even if it already exists. ", None))
-#endif // QT_CONFIG(statustip)
-        self.mbtcp_force.setText(QCoreApplication.translate("MainWindow", u"force", None))
-#if QT_CONFIG(tooltip)
-        self.mbtcp_separate.setToolTip(QCoreApplication.translate("MainWindow", u"Use a separate shared memory for requests with specific client ids.", None))
-#endif // QT_CONFIG(tooltip)
-#if QT_CONFIG(statustip)
-        self.mbtcp_separate.setStatusTip(QCoreApplication.translate("MainWindow", u"Use a separate shared memory for requests with specific client ids.", None))
-#endif // QT_CONFIG(statustip)
-        self.mbtcp_separate.setText(QCoreApplication.translate("MainWindow", u"separate", None))
-#if QT_CONFIG(tooltip)
-        self.mbtcp_separate_all.setToolTip(QCoreApplication.translate("MainWindow", u"Use a separate shared memory for each client id .", None))
-#endif // QT_CONFIG(tooltip)
-#if QT_CONFIG(statustip)
-        self.mbtcp_separate_all.setStatusTip(QCoreApplication.translate("MainWindow", u"Use a separate shared memory for each client id .", None))
-#endif // QT_CONFIG(statustip)
-        self.mbtcp_separate_all.setText(QCoreApplication.translate("MainWindow", u"separate-all", None))
-#if QT_CONFIG(tooltip)
-        self.mbtcp_shm_defaults.setToolTip(QCoreApplication.translate("MainWindow", u"set default shared memory flags (force: false, separate: false)", None))
-#endif // QT_CONFIG(tooltip)
-#if QT_CONFIG(statustip)
-        self.mbtcp_shm_defaults.setStatusTip(QCoreApplication.translate("MainWindow", u"set default shared memory flags (force: false, separate: false)", None))
-#endif // QT_CONFIG(statustip)
-        self.mbtcp_shm_defaults.setText(QCoreApplication.translate("MainWindow", u"defaults", None))
-        self.label_10.setText(QCoreApplication.translate("MainWindow", u"name prefix:", None))
-#if QT_CONFIG(tooltip)
-        self.mbtcp_name_prefix.setToolTip(QCoreApplication.translate("MainWindow", u"shared memory name prefix", None))
-#endif // QT_CONFIG(tooltip)
-#if QT_CONFIG(statustip)
-        self.mbtcp_name_prefix.setStatusTip(QCoreApplication.translate("MainWindow", u"shared memory name prefix", None))
-#endif // QT_CONFIG(statustip)
-        self.mbtcp_name_prefix.setText(QCoreApplication.translate("MainWindow", u"modbus_", None))
-#if QT_CONFIG(tooltip)
-        self.mbtcp_name_default.setToolTip(QCoreApplication.translate("MainWindow", u"set default shared memory name prefix (modbus_)", None))
-#endif // QT_CONFIG(tooltip)
-#if QT_CONFIG(statustip)
-        self.mbtcp_name_default.setStatusTip(QCoreApplication.translate("MainWindow", u"set default shared memory name prefix (modbus_)", None))
-#endif // QT_CONFIG(statustip)
-        self.mbtcp_name_default.setText(QCoreApplication.translate("MainWindow", u"modbus_", None))
-        self.label_12.setText(QCoreApplication.translate("MainWindow", u"separate:", None))
-#if QT_CONFIG(tooltip)
-        self.mbtcp_separate_list.setToolTip(QCoreApplication.translate("MainWindow", u"comma separated list of client ids for wich a separate shared memory is used.", None))
-#endif // QT_CONFIG(tooltip)
-#if QT_CONFIG(statustip)
-        self.mbtcp_separate_list.setStatusTip(QCoreApplication.translate("MainWindow", u"comma separated list of client ids for wich a separate shared memory is used.", None))
-#endif // QT_CONFIG(statustip)
-#if QT_CONFIG(tooltip)
-        self.mbtcp_separate_list_clear.setToolTip(QCoreApplication.translate("MainWindow", u"clear list", None))
-#endif // QT_CONFIG(tooltip)
-#if QT_CONFIG(statustip)
-        self.mbtcp_separate_list_clear.setStatusTip(QCoreApplication.translate("MainWindow", u"clear list", None))
-#endif // QT_CONFIG(statustip)
-        self.mbtcp_separate_list_clear.setText(QCoreApplication.translate("MainWindow", u"clear", None))
-        self.label_4.setText(QCoreApplication.translate("MainWindow", u"Registers", None))
-        self.label_15.setText(QCoreApplication.translate("MainWindow", u"Modbus", None))
-#if QT_CONFIG(tooltip)
-        self.mbtcp_do.setToolTip(QCoreApplication.translate("MainWindow", u"number of DO registers (Coils, discrete output)", None))
-#endif // QT_CONFIG(tooltip)
-#if QT_CONFIG(statustip)
-        self.mbtcp_do.setStatusTip(QCoreApplication.translate("MainWindow", u"number of DO registers (Coils, discrete output)", None))
-#endif // QT_CONFIG(statustip)
-#if QT_CONFIG(tooltip)
-        self.mbtcp_do_default.setToolTip(QCoreApplication.translate("MainWindow", u"set default number of DO registers (Coils, discrete output) (65536)", None))
-#endif // QT_CONFIG(tooltip)
-#if QT_CONFIG(statustip)
-        self.mbtcp_do_default.setStatusTip(QCoreApplication.translate("MainWindow", u"set default number of DO registers (Coils, discrete output) (65536)", None))
-#endif // QT_CONFIG(statustip)
-        self.mbtcp_do_default.setText(QCoreApplication.translate("MainWindow", u"65536", None))
-        self.label_6.setText(QCoreApplication.translate("MainWindow", u"DI:", None))
-#if QT_CONFIG(tooltip)
-        self.mbtcp_di.setToolTip(QCoreApplication.translate("MainWindow", u"number of DI registers (discrete input)", None))
-#endif // QT_CONFIG(tooltip)
-#if QT_CONFIG(statustip)
-        self.mbtcp_di.setStatusTip(QCoreApplication.translate("MainWindow", u"number of DI registers (discrete input)", None))
-#endif // QT_CONFIG(statustip)
-#if QT_CONFIG(tooltip)
-        self.mbtcp_ai.setToolTip(QCoreApplication.translate("MainWindow", u"number of AI registers (input registers)", None))
-#endif // QT_CONFIG(tooltip)
-#if QT_CONFIG(statustip)
-        self.mbtcp_ai.setStatusTip(QCoreApplication.translate("MainWindow", u"number of AI registers (input registers)", None))
-#endif // QT_CONFIG(statustip)
-        self.label_5.setText(QCoreApplication.translate("MainWindow", u"DO:", None))
-#if QT_CONFIG(tooltip)
-        self.mbtcp_ao.setToolTip(QCoreApplication.translate("MainWindow", u"number of AO registers (holding registers)", None))
-#endif // QT_CONFIG(tooltip)
-#if QT_CONFIG(statustip)
-        self.mbtcp_ao.setStatusTip(QCoreApplication.translate("MainWindow", u"number of AO registers (holding registers)", None))
-#endif // QT_CONFIG(statustip)
-#if QT_CONFIG(tooltip)
-        self.mbtcp_ai_default.setToolTip(QCoreApplication.translate("MainWindow", u"set default number of AI registers (input registers) (65536)", None))
-#endif // QT_CONFIG(tooltip)
-#if QT_CONFIG(statustip)
-        self.mbtcp_ai_default.setStatusTip(QCoreApplication.translate("MainWindow", u"set default number of AI registers (input registers) (65536)", None))
-#endif // QT_CONFIG(statustip)
-        self.mbtcp_ai_default.setText(QCoreApplication.translate("MainWindow", u"65536", None))
-#if QT_CONFIG(tooltip)
-        self.mbtcp_ao_default.setToolTip(QCoreApplication.translate("MainWindow", u"set default number of AO registers (holding registers) (65536)", None))
-#endif // QT_CONFIG(tooltip)
-#if QT_CONFIG(statustip)
-        self.mbtcp_ao_default.setStatusTip(QCoreApplication.translate("MainWindow", u"set default number of AO registers (holding registers) (65536)", None))
-#endif // QT_CONFIG(statustip)
-#if QT_CONFIG(accessibility)
-        self.mbtcp_ao_default.setAccessibleName("")
-#endif // QT_CONFIG(accessibility)
-        self.mbtcp_ao_default.setText(QCoreApplication.translate("MainWindow", u"65536", None))
-#if QT_CONFIG(tooltip)
-        self.label_7.setToolTip("")
-#endif // QT_CONFIG(tooltip)
-        self.label_7.setText(QCoreApplication.translate("MainWindow", u"AO:", None))
-        self.label_8.setText(QCoreApplication.translate("MainWindow", u"AI:", None))
-#if QT_CONFIG(tooltip)
-        self.mbtcp_di_default.setToolTip(QCoreApplication.translate("MainWindow", u"set default number of DI registers (discrete input) (65536)", None))
-#endif // QT_CONFIG(tooltip)
-#if QT_CONFIG(statustip)
-        self.mbtcp_di_default.setStatusTip(QCoreApplication.translate("MainWindow", u"set default number of DI registers (discrete input) (65536)", None))
-#endif // QT_CONFIG(statustip)
-        self.mbtcp_di_default.setText(QCoreApplication.translate("MainWindow", u"65536", None))
-        self.label_13.setText(QCoreApplication.translate("MainWindow", u"Semaphore", None))
-        self.label.setText(QCoreApplication.translate("MainWindow", u"Network", None))
-        self.tabWidget_modbus_clients.setTabText(self.tabWidget_modbus_clients.indexOf(self.tab_mbtcp), QCoreApplication.translate("MainWindow", u"TCP", None))
+        self.tabWidget_modbus_cl.setTabText(self.tabWidget_modbus_cl.indexOf(self.tab_mbtcp), QCoreApplication.translate("MainWindow", u"Modbus Client TCP", None))
         self.mbrtu_start.setText(QCoreApplication.translate("MainWindow", u"Start", None))
         self.mbrtu_defaults.setText(QCoreApplication.translate("MainWindow", u"Defaults", None))
+        self.label_33.setText(QCoreApplication.translate("MainWindow", u"client id:", None))
 #if QT_CONFIG(tooltip)
-        self.mbrtu_ai.setToolTip(QCoreApplication.translate("MainWindow", u"number of AI registers (input registers)", None))
+        self.mbrtu_clientid_default.setToolTip(QCoreApplication.translate("MainWindow", u"set default modbus client id (0)", None))
 #endif // QT_CONFIG(tooltip)
 #if QT_CONFIG(statustip)
-        self.mbrtu_ai.setStatusTip(QCoreApplication.translate("MainWindow", u"number of AI registers (input registers)", None))
+        self.mbrtu_clientid_default.setStatusTip(QCoreApplication.translate("MainWindow", u"set default modbus client id (0)", None))
 #endif // QT_CONFIG(statustip)
+        self.mbrtu_clientid_default.setText(QCoreApplication.translate("MainWindow", u"0", None))
 #if QT_CONFIG(tooltip)
-        self.mbrtu_ai_default.setToolTip(QCoreApplication.translate("MainWindow", u"set default number of AI registers (input registers) (65536)", None))
+        self.mbrtu_clientid.setToolTip(QCoreApplication.translate("MainWindow", u"modbus client id", None))
 #endif // QT_CONFIG(tooltip)
 #if QT_CONFIG(statustip)
-        self.mbrtu_ai_default.setStatusTip(QCoreApplication.translate("MainWindow", u"set default number of AI registers (input registers) (65536)", None))
+        self.mbrtu_clientid.setStatusTip(QCoreApplication.translate("MainWindow", u"modbus client id", None))
 #endif // QT_CONFIG(statustip)
-        self.mbrtu_ai_default.setText(QCoreApplication.translate("MainWindow", u"65536", None))
-#if QT_CONFIG(tooltip)
-        self.mbrtu_ao_default.setToolTip(QCoreApplication.translate("MainWindow", u"set default number of AO registers (holding registers) (65536)", None))
-#endif // QT_CONFIG(tooltip)
-#if QT_CONFIG(statustip)
-        self.mbrtu_ao_default.setStatusTip(QCoreApplication.translate("MainWindow", u"set default number of AO registers (holding registers) (65536)", None))
-#endif // QT_CONFIG(statustip)
-        self.mbrtu_ao_default.setText(QCoreApplication.translate("MainWindow", u"65536", None))
-#if QT_CONFIG(tooltip)
-        self.mbrtu_di.setToolTip(QCoreApplication.translate("MainWindow", u"number of DI registers (discrete input)", None))
-#endif // QT_CONFIG(tooltip)
-#if QT_CONFIG(statustip)
-        self.mbrtu_di.setStatusTip(QCoreApplication.translate("MainWindow", u"number of DI registers (discrete input)", None))
-#endif // QT_CONFIG(statustip)
-        self.label_29.setText(QCoreApplication.translate("MainWindow", u"AI:", None))
-        self.label_26.setText(QCoreApplication.translate("MainWindow", u"DO:", None))
-#if QT_CONFIG(tooltip)
-        self.mbrtu_di_default.setToolTip(QCoreApplication.translate("MainWindow", u"set default number of DI registers (discrete input) (65536)", None))
-#endif // QT_CONFIG(tooltip)
-#if QT_CONFIG(statustip)
-        self.mbrtu_di_default.setStatusTip(QCoreApplication.translate("MainWindow", u"set default number of DI registers (discrete input) (65536)", None))
-#endif // QT_CONFIG(statustip)
-        self.mbrtu_di_default.setText(QCoreApplication.translate("MainWindow", u"65536", None))
-        self.label_28.setText(QCoreApplication.translate("MainWindow", u"AO:", None))
-#if QT_CONFIG(tooltip)
-        self.mbrtu_ao.setToolTip(QCoreApplication.translate("MainWindow", u"number of AO registers (holding registers)", None))
-#endif // QT_CONFIG(tooltip)
-#if QT_CONFIG(statustip)
-        self.mbrtu_ao.setStatusTip(QCoreApplication.translate("MainWindow", u"number of AO registers (holding registers)", None))
-#endif // QT_CONFIG(statustip)
-#if QT_CONFIG(tooltip)
-        self.mbrtu_do.setToolTip(QCoreApplication.translate("MainWindow", u"number of DO registers (Coils, discrete output)", None))
-#endif // QT_CONFIG(tooltip)
-#if QT_CONFIG(statustip)
-        self.mbrtu_do.setStatusTip(QCoreApplication.translate("MainWindow", u"number of DO registers (Coils, discrete output)", None))
-#endif // QT_CONFIG(statustip)
-        self.label_27.setText(QCoreApplication.translate("MainWindow", u"DI:", None))
-#if QT_CONFIG(tooltip)
-        self.mbrtu_do_default.setToolTip(QCoreApplication.translate("MainWindow", u"set default number of DO registers (Coils, discrete output) (65536)", None))
-#endif // QT_CONFIG(tooltip)
-#if QT_CONFIG(statustip)
-        self.mbrtu_do_default.setStatusTip(QCoreApplication.translate("MainWindow", u"set default number of DO registers (Coils, discrete output) (65536)", None))
-#endif // QT_CONFIG(statustip)
-        self.mbrtu_do_default.setText(QCoreApplication.translate("MainWindow", u"65536", None))
+        self.label_18.setText(QCoreApplication.translate("MainWindow", u"Serial", None))
+        self.label_32.setText(QCoreApplication.translate("MainWindow", u"Modbus", None))
         self.label_23.setText(QCoreApplication.translate("MainWindow", u"baud rate:", None))
         self.label_19.setText(QCoreApplication.translate("MainWindow", u"device:", None))
 #if QT_CONFIG(tooltip)
@@ -1936,127 +1635,7 @@ class Ui_MainWindow(object):
         self.mbrtu_device_default.setStatusTip(QCoreApplication.translate("MainWindow", u"clear serial device", None))
 #endif // QT_CONFIG(statustip)
         self.mbrtu_device_default.setText(QCoreApplication.translate("MainWindow", u"clear", None))
-#if QT_CONFIG(tooltip)
-        self.mbrtu_enable_response_timeout.setToolTip(QCoreApplication.translate("MainWindow", u"manually set the libmodbus response timeout", None))
-#endif // QT_CONFIG(tooltip)
-#if QT_CONFIG(statustip)
-        self.mbrtu_enable_response_timeout.setStatusTip(QCoreApplication.translate("MainWindow", u"manually set the libmodbus response timeout", None))
-#endif // QT_CONFIG(statustip)
-        self.mbrtu_enable_response_timeout.setText(QCoreApplication.translate("MainWindow", u"edit response timeout", None))
-#if QT_CONFIG(tooltip)
-        self.mbrtu_enable_byte_timeout.setToolTip(QCoreApplication.translate("MainWindow", u"manually set the libmodbus byte timeout", None))
-#endif // QT_CONFIG(tooltip)
-#if QT_CONFIG(statustip)
-        self.mbrtu_enable_byte_timeout.setStatusTip(QCoreApplication.translate("MainWindow", u"manually set the libmodbus byte timeout", None))
-#endif // QT_CONFIG(statustip)
-        self.mbrtu_enable_byte_timeout.setText(QCoreApplication.translate("MainWindow", u"edit byte timeout", None))
-#if QT_CONFIG(tooltip)
-        self.mbrtu_modbus_flags_default.setToolTip(QCoreApplication.translate("MainWindow", u"set default shared memory flags (force: false)", None))
-#endif // QT_CONFIG(tooltip)
-#if QT_CONFIG(statustip)
-        self.mbrtu_modbus_flags_default.setStatusTip(QCoreApplication.translate("MainWindow", u"set default shared memory flags (force: false)", None))
-#endif // QT_CONFIG(statustip)
-        self.mbrtu_modbus_flags_default.setText(QCoreApplication.translate("MainWindow", u"defaults", None))
-#if QT_CONFIG(tooltip)
-        self.mbrtu_monitor.setToolTip(QCoreApplication.translate("MainWindow", u"monitor all modbus PDUs", None))
-#endif // QT_CONFIG(tooltip)
-#if QT_CONFIG(statustip)
-        self.mbrtu_monitor.setStatusTip(QCoreApplication.translate("MainWindow", u"monitor all modbus PDUs (strong impact on performance)", None))
-#endif // QT_CONFIG(statustip)
-        self.mbrtu_monitor.setText(QCoreApplication.translate("MainWindow", u"monitor", None))
-#if QT_CONFIG(tooltip)
-        self.mbrtu_force.setToolTip(QCoreApplication.translate("MainWindow", u"orce the use of the shared memory even if it already exists. Do not use this option per default! It should only be used if the shared memory of an improperly terminated instance continues to exist as an orphan and is no longer used.", None))
-#endif // QT_CONFIG(tooltip)
-#if QT_CONFIG(statustip)
-        self.mbrtu_force.setStatusTip(QCoreApplication.translate("MainWindow", u"force the use of the shared memory even if it already exists. ", None))
-#endif // QT_CONFIG(statustip)
-        self.mbrtu_force.setText(QCoreApplication.translate("MainWindow", u"force", None))
-#if QT_CONFIG(tooltip)
-        self.mbrtu_shm_flags_default.setToolTip(QCoreApplication.translate("MainWindow", u"set default shared memory flags (force: false)", None))
-#endif // QT_CONFIG(tooltip)
-#if QT_CONFIG(statustip)
-        self.mbrtu_shm_flags_default.setStatusTip(QCoreApplication.translate("MainWindow", u"set default shared memory flags (force: false)", None))
-#endif // QT_CONFIG(statustip)
-        self.mbrtu_shm_flags_default.setText(QCoreApplication.translate("MainWindow", u"defaults", None))
-        self.label_35.setText(QCoreApplication.translate("MainWindow", u"name:", None))
-#if QT_CONFIG(tooltip)
-        self.mbrtu_sem_name.setToolTip(QCoreApplication.translate("MainWindow", u"semaphore name", None))
-#endif // QT_CONFIG(tooltip)
-#if QT_CONFIG(statustip)
-        self.mbrtu_sem_name.setStatusTip(QCoreApplication.translate("MainWindow", u"semaphore name", None))
-#endif // QT_CONFIG(statustip)
-        self.mbrtu_sem_name.setText(QCoreApplication.translate("MainWindow", u"modbus", None))
-#if QT_CONFIG(tooltip)
-        self.mbrtu_sem_name_default.setToolTip(QCoreApplication.translate("MainWindow", u"set default semaphore name (modbus)", None))
-#endif // QT_CONFIG(tooltip)
-#if QT_CONFIG(statustip)
-        self.mbrtu_sem_name_default.setStatusTip(QCoreApplication.translate("MainWindow", u"set default semaphore name (modbus)", None))
-#endif // QT_CONFIG(statustip)
-        self.mbrtu_sem_name_default.setText(QCoreApplication.translate("MainWindow", u"modbus", None))
-        self.label_33.setText(QCoreApplication.translate("MainWindow", u"client id:", None))
-#if QT_CONFIG(tooltip)
-        self.mbrtu_clientid_default.setToolTip(QCoreApplication.translate("MainWindow", u"set default modbus client id (0)", None))
-#endif // QT_CONFIG(tooltip)
-#if QT_CONFIG(statustip)
-        self.mbrtu_clientid_default.setStatusTip(QCoreApplication.translate("MainWindow", u"set default modbus client id (0)", None))
-#endif // QT_CONFIG(statustip)
-        self.mbrtu_clientid_default.setText(QCoreApplication.translate("MainWindow", u"0", None))
-#if QT_CONFIG(tooltip)
-        self.mbrtu_clientid.setToolTip(QCoreApplication.translate("MainWindow", u"modbus client id", None))
-#endif // QT_CONFIG(tooltip)
-#if QT_CONFIG(statustip)
-        self.mbrtu_clientid.setStatusTip(QCoreApplication.translate("MainWindow", u"modbus client id", None))
-#endif // QT_CONFIG(statustip)
-#if QT_CONFIG(tooltip)
-        self.mbrtu_shm_name_default.setToolTip(QCoreApplication.translate("MainWindow", u"set default shared memory name prefix (modbus_)", None))
-#endif // QT_CONFIG(tooltip)
-#if QT_CONFIG(statustip)
-        self.mbrtu_shm_name_default.setStatusTip(QCoreApplication.translate("MainWindow", u"set default shared memory name prefix (modbus_)", None))
-#endif // QT_CONFIG(statustip)
-        self.mbrtu_shm_name_default.setText(QCoreApplication.translate("MainWindow", u"modbus_", None))
-        self.mbrtu_shm_name.setText(QCoreApplication.translate("MainWindow", u"modbus_", None))
-        self.label_31.setText(QCoreApplication.translate("MainWindow", u"name prefix:", None))
-        self.label_34.setText(QCoreApplication.translate("MainWindow", u"Semaphore", None))
-        self.label_30.setText(QCoreApplication.translate("MainWindow", u"Shared Memory", None))
-        self.label_32.setText(QCoreApplication.translate("MainWindow", u"Modbus", None))
-        self.label_18.setText(QCoreApplication.translate("MainWindow", u"Serial", None))
-#if QT_CONFIG(tooltip)
-        self.mbrtu_sem_force.setToolTip(QCoreApplication.translate("MainWindow", u"Force the use of the semaphore even if it already exists. Do not use this option per default! It should only be used if the semaphore of an improperly terminated instance continues to exist as an orphan and is no longer used.", None))
-#endif // QT_CONFIG(tooltip)
-#if QT_CONFIG(statustip)
-        self.mbrtu_sem_force.setStatusTip(QCoreApplication.translate("MainWindow", u"Force the use of the semaphore even if it already exists.", None))
-#endif // QT_CONFIG(statustip)
-        self.mbrtu_sem_force.setText(QCoreApplication.translate("MainWindow", u"force", None))
-#if QT_CONFIG(tooltip)
-        self.mbrtu_sem_enable.setToolTip(QCoreApplication.translate("MainWindow", u"enable semaphore mechanism", None))
-#endif // QT_CONFIG(tooltip)
-#if QT_CONFIG(statustip)
-        self.mbrtu_sem_enable.setStatusTip(QCoreApplication.translate("MainWindow", u"enable semaphore mechanism to protect the shared memory from simultaneous access.", None))
-#endif // QT_CONFIG(statustip)
-        self.mbrtu_sem_enable.setText(QCoreApplication.translate("MainWindow", u"enable", None))
-#if QT_CONFIG(tooltip)
-        self.mbrtu_sem_flags_default.setToolTip(QCoreApplication.translate("MainWindow", u"set default semaphore flags (enabled: true, force: false)", None))
-#endif // QT_CONFIG(tooltip)
-#if QT_CONFIG(statustip)
-        self.mbrtu_sem_flags_default.setStatusTip(QCoreApplication.translate("MainWindow", u"set default semaphore flags (enabled: true, force: false)", None))
-#endif // QT_CONFIG(statustip)
-        self.mbrtu_sem_flags_default.setText(QCoreApplication.translate("MainWindow", u"defaults", None))
-        self.label_25.setText(QCoreApplication.translate("MainWindow", u"Registers", None))
-        self.label_37.setText(QCoreApplication.translate("MainWindow", u"response timeout:", None))
-#if QT_CONFIG(tooltip)
-        self.mbrtu_byte_timeout.setToolTip(QCoreApplication.translate("MainWindow", u"libmodbus byte timeout", None))
-#endif // QT_CONFIG(tooltip)
-#if QT_CONFIG(statustip)
-        self.mbrtu_byte_timeout.setStatusTip(QCoreApplication.translate("MainWindow", u"libmodbus byte timeout", None))
-#endif // QT_CONFIG(statustip)
-        self.label_36.setText(QCoreApplication.translate("MainWindow", u"byte timeout:", None))
-#if QT_CONFIG(tooltip)
-        self.mbrtu_response_timeout.setToolTip(QCoreApplication.translate("MainWindow", u"libmodbus response timeout", None))
-#endif // QT_CONFIG(tooltip)
-#if QT_CONFIG(statustip)
-        self.mbrtu_response_timeout.setStatusTip(QCoreApplication.translate("MainWindow", u"libmodbus response timeout", None))
-#endif // QT_CONFIG(statustip)
-        self.tabWidget_modbus_clients.setTabText(self.tabWidget_modbus_clients.indexOf(self.tab_mbrtu), QCoreApplication.translate("MainWindow", u"RTU", None))
+        self.tabWidget_modbus_cl.setTabText(self.tabWidget_modbus_cl.indexOf(self.tab_mbrtu), QCoreApplication.translate("MainWindow", u"Modbus Client RTU", None))
         self.tabWidget_tools.setTabText(self.tabWidget_tools.indexOf(self.tab_modbus_clients), QCoreApplication.translate("MainWindow", u"Modbus Clients", None))
 #if QT_CONFIG(tooltip)
         self.tool_dump_ai.setToolTip(QCoreApplication.translate("MainWindow", u"dump AI to file", None))
