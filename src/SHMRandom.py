@@ -8,7 +8,7 @@ class SHMRandom(QtWidgets.QWidget, Ui_RandomizeShm):
     closed = QtCore.Signal()
 
     def __init__(self, shm_name: str, num_registers: int, register_size: int, bitmask: int | None = None,
-                 semaphore: str | None = None):
+                 semaphore: str | None = None, mb_client_pid: int | None = None):
         super(SHMRandom, self).__init__()
         self.setupUi(self)
 
@@ -18,6 +18,7 @@ class SHMRandom(QtWidgets.QWidget, Ui_RandomizeShm):
         self.shm_size = num_registers * register_size
         self.bitmask = bitmask
         self.semaphore = semaphore
+        self.pid = mb_client_pid
 
         self.setWindowTitle(f"randomize {self.shm_name}")
 
@@ -77,6 +78,10 @@ class SHMRandom(QtWidgets.QWidget, Ui_RandomizeShm):
             cmd.append("-m")
             cmd.append(f"{self.bitmask:x}")
 
+        if self.pid:
+            cmd.append("--pid")
+            cmd.append(f"{self.pid}")
+
         return cmd
 
     def __options_enable(self, enable: bool) -> None:
@@ -134,7 +139,8 @@ class SHMRandom(QtWidgets.QWidget, Ui_RandomizeShm):
 
     def closeEvent(self, event):
         super(SHMRandom, self).closeEvent(event)
-        self.process.kill()
+        if self.process:
+            self.process.terminate()
         self.closed.emit()
 
 
