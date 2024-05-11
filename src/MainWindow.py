@@ -438,6 +438,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.__shm_tools_init_random_gui()
         self.__shm_tools_init_dump_gui()
         self.__shm_tools_init_load_gui()
+        self.__shm_tools_init_inspect_gui()
+        self.__shm_tools_init_set_gui()
 
     def __shm_tools_init_hexdump_gui(self) -> None:
         def on_button_hexdump_do_clicked() -> None:
@@ -681,6 +683,28 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                 QMessageBox.critical(self, "Error", f"Failed to load shared memory: {e}")
 
         self.tool_load_ai.clicked.connect(on_load_ai)
+
+    def __shm_tools_init_inspect_gui(self):
+        def on_button_tool_inspect() -> None:
+            inspect_values = self.shm_tools.start_inspect_values(self.modbus_cfg.name_prefix, self.modbus_cfg.do,
+                                                                 self.modbus_cfg.di, self.modbus_cfg.ao,
+                                                                 self.modbus_cfg.ai,
+                                                                 self.modbus_cfg.sem_name if self.modbus_cfg.sem_enable else None)
+            self.tool_inspec_values.setEnabled(False)
+            inspect_values.closed.connect(lambda: self.tool_inspec_values.setEnabled(True))
+
+        self.tool_inspec_values.clicked.connect(on_button_tool_inspect)
+
+    def __shm_tools_init_set_gui(self):
+        def on_button_tool_set() -> None:
+            set_values = self.shm_tools.start_set_values(self.modbus_cfg.name_prefix, self.modbus_cfg.do,
+                                                                 self.modbus_cfg.di, self.modbus_cfg.ao,
+                                                                 self.modbus_cfg.ai,
+                                                                 self.modbus_cfg.sem_name if self.modbus_cfg.sem_enable else None)
+            self.tool_set_values.setEnabled(False)
+            set_values.closed.connect(lambda: self.tool_set_values.setEnabled(True))
+
+        self.tool_set_values.clicked.connect(on_button_tool_set)
 
     def __close_tool_windows(self):
         """
