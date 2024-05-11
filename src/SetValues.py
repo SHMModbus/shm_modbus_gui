@@ -2,9 +2,9 @@ import enum
 from datetime import datetime
 
 from PySide6 import QtWidgets, QtCore
-from PySide6.QtCore import Qt, QMutex
+from PySide6.QtCore import Qt, QMutex, QProcess
 from PySide6.QtGui import QFontDatabase
-from PySide6.QtWidgets import QTableWidgetItem, QPushButton, QInputDialog
+from PySide6.QtWidgets import QTableWidgetItem, QPushButton, QInputDialog, QMessageBox
 
 from .SetValues_AddFloat import SetValues_AddFloat
 from .SetValues_AddInt import SetValues_AddInt
@@ -270,16 +270,33 @@ class SetValues(QtWidgets.QMainWindow, Ui_SetValues):
             for cfg in self.cfg_data.values():
                 command_list.append(cfg.get_command())
 
-        print(command_list)
+        cmd_args = ['-n', f'{self.name_prefix}', '--pid', '0']
+        if self.semaphore:
+            cmd_args.append('--semaphore')
+            cmd_args.append(f'{self.semaphore}')
+            cmd_args.append('--semaphore-timeout')
+            cmd_args.append('1')
 
-        # TODO apply commands
+        process = QProcess()
+        process.start("stdin-to-modbus-shm", cmd_args)
+        if process.waitForStarted(1000):
+            process.write("\n".join(command_list).encode())
+            process.closeWriteChannel()
+            if process.waitForFinished(1000):
+                if process.exitCode() != 0:
+                    stderr = bytes(process.readAllStandardError()).decode("utf-8")
+                    QMessageBox.warning(self, "stdin-to-modbus-shm failed", stderr)
+                else:
+                    time = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
 
-        time = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-
-        if index:
-            self.cfg_data[index].set_time(time)
+                    if index:
+                        self.cfg_data[index].set_time(time)
+                    else:
+                        for cfg in self.cfg_data.values():
+                            cfg.set_time(time)
+            else:
+                process.terminate()
         else:
-            for cfg in self.cfg_data.values():
-                cfg.set_time(time)
+            process.terminate()
 
         self.exec_mutex.unlock()
