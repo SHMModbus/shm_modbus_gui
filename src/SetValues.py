@@ -1,10 +1,12 @@
 import enum
+import hashlib
+import json
 from datetime import datetime
 
 from PySide6 import QtWidgets, QtCore
 from PySide6.QtCore import Qt, QMutex, QProcess
 from PySide6.QtGui import QFontDatabase
-from PySide6.QtWidgets import QTableWidgetItem, QPushButton, QInputDialog, QMessageBox
+from PySide6.QtWidgets import QTableWidgetItem, QPushButton, QInputDialog, QMessageBox, QFileDialog
 
 from .SetValues_AddFloat import SetValues_AddFloat
 from .SetValues_AddInt import SetValues_AddInt
@@ -35,7 +37,7 @@ class SetValuesEntry:
 
     def __init__(self, index, parent, prefix: str, value: str, suffix: str, name: str, register: str, addr: str,
                  size: int,
-                 endian_str: str, value_type: ValueType):
+                 endian_str: str, value_type: ValueType, type_str: str):
         self.index = index
         self.parent = parent
         self.data_table = parent.data_table
@@ -48,6 +50,7 @@ class SetValuesEntry:
         self.size = size
         self.endian_str = endian_str
         self.value_type = value_type
+        self.type_str = type_str
 
         self.value_widget = None
         self.time_widget = None
@@ -66,7 +69,7 @@ class SetValuesEntry:
         addr_widget.setFont(self.fixed_font)
         addr_widget.setTextAlignment(Qt.AlignRight | Qt.AlignVCenter)
         self.data_table.setItem(current_row, int(self.TableCols.ADDR), addr_widget)
-        self.data_table.setItem(current_row, int(self.TableCols.TYPE), QTableWidgetItem(self.value_type.name))
+        self.data_table.setItem(current_row, int(self.TableCols.TYPE), QTableWidgetItem(self.type_str))
         size_widget = QTableWidgetItem(f"{self.size}" if self.size > 0 else "")
         size_widget.setFont(self.fixed_font)
         size_widget.setTextAlignment(Qt.AlignRight | Qt.AlignVCenter)
@@ -138,18 +141,52 @@ class SetValuesEntry:
             self.value_widget.setText(self.value)
 
     def to_json_dict(self) -> dict:
-        pass
+        return {
+            "name": self.name,
+            "prefix": self.prefix,
+            "value": self.value,
+            "suffix": self.suffix,
+            "register": self.register,
+            "addr": self.addr,
+            "size": self.size,
+            "endian_str": self.endian_str,
+            "value_type": self.value_type.value,
+            "type_str": self.type_str
+        }
 
     @classmethod
     def from_json_dict(cls, index, parent, json_dict: dict):
-        pass
+        expected_keys = [
+            ("name", str),
+            ("prefix", str),
+            ("value", str),
+            ("suffix", str),
+            ("register", str),
+            ("addr", str),
+            ("size", int),
+            ("endian_str", str),
+            ("value_type", int),
+            ("type_str", str),
+        ]
+
+        for key, dtype in expected_keys:
+            if key not in json_dict:
+                raise RuntimeError(f"missing key '{key}'")
+            if not isinstance(json_dict[key], dtype):
+                raise RuntimeError(f"key '{key}' has invalid data type")
+
+        return cls(index, parent, json_dict["prefix"], json_dict["value"], json_dict["suffix"], json_dict["name"],
+                   json_dict["register"], json_dict["addr"], json_dict["size"], json_dict["endian_str"],
+                   SetValuesEntry.ValueType(json_dict["value_type"]), json_dict["type_str"])
+
 
     @classmethod
     def create(cls, index, parent, prefix: str, value: str, suffix: str, name: str, register: str, addr: str,
                size: int,
                endian_str: str,
-               value_type: ValueType):
-        return cls(index, parent, prefix, value, suffix, name, register, addr, size, endian_str, value_type)
+               value_type: ValueType,
+               type_str: str):
+        return cls(index, parent, prefix, value, suffix, name, register, addr, size, endian_str, value_type, type_str)
 
 
 class SetValues(QtWidgets.QMainWindow, Ui_SetValues):
@@ -205,9 +242,7 @@ class SetValues(QtWidgets.QMainWindow, Ui_SetValues):
         self.add_window = None
 
     def __add_cfg(self, name: str, register: str, addr: int, data_type: str | None, size: int, endian: str | None,
-                  value: str, emitter: QtWidgets.QWidget, endian_str: str):
-        print(f"{name},{register},{addr},{data_type},{size},{endian},{value},{type(emitter).__name__},{endian_str}")
-
+                  value: str, emitter: QtWidgets.QWidget, endian_str: str, type_str: str):
         if isinstance(emitter, SetValues_AddBool):
             value_type = SetValuesEntry.ValueType.BOOL
         elif isinstance(emitter, SetValues_AddInt):
@@ -218,7 +253,8 @@ class SetValues(QtWidgets.QMainWindow, Ui_SetValues):
         self.exec_mutex.lock()
         self.cfg_data[self.cfg_index] = SetValuesEntry.create(self.cfg_index, self, f"{register}:{addr}:", f"{value}",
                                                               f":{data_type}{size}{endian}" if data_type and endian else "",
-                                                              name, register, f"0x{addr:04x}", size, endian_str, value_type)
+                                                              name, register, f"0x{addr:04x}", size, endian_str,
+                                                              value_type, type_str)
         self.exec_mutex.unlock()
         self.cfg_index += 1
 
@@ -253,10 +289,80 @@ class SetValues(QtWidgets.QMainWindow, Ui_SetValues):
         self.execute(None)
 
     def on_actions_save(self) -> None:
-        pass
+        file_name, _ = QFileDialog.getSaveFileName(self, caption="Save config")
+        if len(file_name) <= 0:
+            return
+
+        self.exec_mutex.lock()
+
+        json_data = []
+        for cfg in self.cfg_data.values():
+            json_data.append(cfg.to_json_dict())
+
+        json_str = json.dumps(json_data)
+        cfg_hash = hashlib.sha256(json_str.encode("utf-8")).hexdigest()
+
+        try:
+            with open(file_name, 'w') as f:
+                print(cfg_hash, file=f)
+                print(json_str, file=f)
+        except Exception as e:
+            QMessageBox.warning(self, "Failed to write config", f"{e}")
+
+        self.exec_mutex.unlock()
 
     def on_action_load(self) -> None:
-        pass
+        file_name, _ = QFileDialog.getOpenFileName(self, caption="Load config")
+        if len(file_name) <= 0:
+            return
+
+        self.exec_mutex.lock()
+
+        try:
+            with open(file_name, 'r') as f:
+                cfg_lines = [x.strip() for x in f.readlines()]
+        except Exception as e:
+            QMessageBox.warning(self, "Failed to read config", f"{e}")
+            self.exec_mutex.unlock()
+            return
+
+        if len(cfg_lines) != 2:
+            QMessageBox.warning(self, "Invalid file", f"Content of selected file is invalid.")
+            self.exec_mutex.unlock()
+            return
+
+        cfg_hash_file = cfg_lines[0]
+        cfg_json = cfg_lines[1]
+
+        cfg_hash = hashlib.sha256(cfg_json.encode("utf-8")).hexdigest()
+        if cfg_hash_file != cfg_hash:
+            QMessageBox.warning(self, "Invalid file", f"Content hash is invalid.")
+            self.exec_mutex.unlock()
+            return
+
+        loaded_cfg = json.loads(cfg_json)
+        if not isinstance(loaded_cfg, list):
+            QMessageBox.warning(self, "Invalid file", f"Content of selected file is invalid: expected a list.")
+            self.exec_mutex.unlock()
+            return
+
+        # TODO check if entries in table, if yes: ask user to save
+        if self.data_table.rowCount() > 0:
+            pass
+
+        # clear table and config
+        self.data_table.setRowCount(0)
+        self.cfg_index = len(loaded_cfg)
+        self.cfg_data = {}
+
+        for i, cfg in enumerate(loaded_cfg):
+            try:
+                self.cfg_data[i] = SetValuesEntry.from_json_dict(i, self, cfg)
+            except RuntimeError as e:
+                QMessageBox.warning(self, "Failed to load config", f"index: {i}\n{e}")
+                continue
+
+        self.exec_mutex.unlock()
 
     def delete_cfg(self, index: int):
         del self.cfg_data[index]
@@ -269,6 +375,10 @@ class SetValues(QtWidgets.QMainWindow, Ui_SetValues):
         else:
             for cfg in self.cfg_data.values():
                 command_list.append(cfg.get_command())
+
+        if len(command_list) == 0:
+            self.exec_mutex.unlock()
+            return
 
         cmd_args = ['-n', f'{self.name_prefix}', '--pid', '0']
         if self.semaphore:
@@ -305,3 +415,4 @@ class SetValues(QtWidgets.QMainWindow, Ui_SetValues):
         super(SetValues, self).closeEvent(event)
         if self.add_window:
             self.add_window.close()
+        self.closed.emit()

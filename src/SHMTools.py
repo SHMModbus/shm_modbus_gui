@@ -71,12 +71,15 @@ class SHMTools:
             raise RuntimeError(f"Internal Error: A set_values object already exists")
 
         self.set_values = SetValues(shm_prefix, num_DO, num_DI, num_AO, num_AI, semaphore)
-        self.set_values.closed.connect(self.__clear_inspect_values)
+        self.set_values.closed.connect(self.__clear_set_values)
         self.set_values.show()
         return self.set_values
 
     def __clear_inspect_values(self):
         self.inspect_values = None
+
+    def __clear_set_values(self):
+        self.set_values = None
 
     @staticmethod
     def dump_shm_to_file(shm_name: str, filename: str, semaphore: str | None) -> None:

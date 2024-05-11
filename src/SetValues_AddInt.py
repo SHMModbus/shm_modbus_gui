@@ -5,8 +5,8 @@ from .py_ui import Ui_SetValuesAddInt
 
 class SetValues_AddInt(QtWidgets.QWidget, Ui_SetValuesAddInt):
     closed = QtCore.Signal()
-    # name, register, addr, data_type, size, endian, value, emitter, endian_str
-    add_cfg = QtCore.Signal(str, str, int, str, int, str, str, QtWidgets.QWidget, str)
+    # name, register, addr, data_type, size, endian, value, emitter, endian_str, type_str
+    add_cfg = QtCore.Signal(str, str, int, str, int, str, str, QtWidgets.QWidget, str, str)
 
     def __init__(self, num_AO: int, num_AI: int) -> None:
         super(SetValues_AddInt, self).__init__()
@@ -83,7 +83,12 @@ class SetValues_AddInt(QtWidgets.QWidget, Ui_SetValuesAddInt):
         else:
             raise RuntimeError("No size radio button checked")
 
-        data_type = 'i' if self.type_signed.isChecked() else 'u'
+        if self.type_signed.isChecked():
+            data_type = 'i'
+            type_str = "signed integer"
+        else:
+            data_type = 'u'
+            type_str = "unsigned integer"
 
         if size > 8:
             endian += 'l' if self.endian_little.isChecked() else 'b'
@@ -98,7 +103,7 @@ class SetValues_AddInt(QtWidgets.QWidget, Ui_SetValuesAddInt):
         name = self.name.text()
         addr = register_addr
         value = "0"
-        self.add_cfg.emit(name, register, addr, data_type, size, endian, value, self, endian_str)
+        self.add_cfg.emit(name, register, addr, data_type, size, endian, value, self, endian_str, type_str)
 
         self.close()
 
