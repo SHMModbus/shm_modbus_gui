@@ -3,6 +3,7 @@ from PySide6.QtCore import QProcess
 from .SHMHexdump import SHMHexdump
 from .SHMRandom import SHMRandom
 from .InspectSHM import InspectSHM
+from .SetValues import SetValues
 
 
 class SHMTools:
@@ -56,18 +57,23 @@ class SHMTools:
         random.show()
         return random
 
-    def start_inspect_values(self, shm_prefix: str, num_DO: int, num_DI: int, num_AO: int, num_AI: int, semaphore: str | None = None, pid: int | None = None):
+    def start_inspect_values(self, shm_prefix: str, num_DO: int, num_DI: int, num_AO: int, num_AI: int, semaphore: str | None = None):
         if self.inspect_values:
-            raise RuntimeError(f"Internal Error: A inspect_valuesSHM object already exists")
+            raise RuntimeError(f"Internal Error: A inspect_values object already exists")
 
         self.inspect_values = InspectSHM(shm_prefix, num_DO, num_DI, num_AO, num_AI, semaphore)
         self.inspect_values.closed.connect(self.__clear_inspect_values)
         self.inspect_values.show()
         return self.inspect_values
 
-    def start_set_values(self):
-        # TODO
-        pass
+    def start_set_values(self, shm_prefix: str, num_DO: int, num_DI: int, num_AO: int, num_AI: int, semaphore: str | None = None):
+        if self.set_values:
+            raise RuntimeError(f"Internal Error: A set_values object already exists")
+
+        self.set_values = SetValues(shm_prefix, num_DO, num_DI, num_AO, num_AI, semaphore)
+        self.set_values.closed.connect(self.__clear_inspect_values)
+        self.set_values.show()
+        return self.set_values
 
     def __clear_inspect_values(self):
         self.inspect_values = None

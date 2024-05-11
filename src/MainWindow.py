@@ -689,16 +689,22 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             inspect_values = self.shm_tools.start_inspect_values(self.modbus_cfg.name_prefix, self.modbus_cfg.do,
                                                                  self.modbus_cfg.di, self.modbus_cfg.ao,
                                                                  self.modbus_cfg.ai,
-                                                                 self.modbus_cfg.sem_name if self.modbus_cfg.sem_enable else None,
-                                                                 pid=self.command_pid)
+                                                                 self.modbus_cfg.sem_name if self.modbus_cfg.sem_enable else None)
             self.tool_inspec_values.setEnabled(False)
             inspect_values.closed.connect(lambda: self.tool_inspec_values.setEnabled(True))
 
         self.tool_inspec_values.clicked.connect(on_button_tool_inspect)
 
     def __shm_tools_init_set_gui(self):
-        # TODO
-        pass
+        def on_button_tool_set() -> None:
+            set_values = self.shm_tools.start_set_values(self.modbus_cfg.name_prefix, self.modbus_cfg.do,
+                                                                 self.modbus_cfg.di, self.modbus_cfg.ao,
+                                                                 self.modbus_cfg.ai,
+                                                                 self.modbus_cfg.sem_name if self.modbus_cfg.sem_enable else None)
+            self.tool_set_values.setEnabled(False)
+            set_values.closed.connect(lambda: self.tool_set_values.setEnabled(True))
+
+        self.tool_set_values.clicked.connect(on_button_tool_set)
 
     def __close_tool_windows(self):
         """

@@ -1214,7 +1214,7 @@ class Ui_MainWindow(object):
 
         self.tool_set_values = QPushButton(self.widget_14)
         self.tool_set_values.setObjectName(u"tool_set_values")
-        self.tool_set_values.setEnabled(False)
+        self.tool_set_values.setEnabled(True)
 
         self.gridLayout_20.addWidget(self.tool_set_values, 0, 1, 1, 1)
 

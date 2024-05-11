@@ -300,3 +300,8 @@ class SetValues(QtWidgets.QMainWindow, Ui_SetValues):
             process.terminate()
 
         self.exec_mutex.unlock()
+
+    def closeEvent(self, event):
+        super(SetValues, self).closeEvent(event)
+        if self.add_window:
+            self.add_window.close()

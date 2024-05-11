@@ -2475,7 +2475,7 @@
                <item row="0" column="1">
                 <widget class="QPushButton" name="tool_set_values">
                  <property name="enabled">
-                  <bool>false</bool>
+                  <bool>true</bool>
                  </property>
                  <property name="text">
                   <string>set values</string>
