@@ -341,11 +341,13 @@ class InspectSHM(QtWidgets.QMainWindow, Ui_InspectSHM):
         self.exec_mutex.unlock()
 
     def closeEvent(self, event):
+        self.exec_mutex.lock()
         super(InspectSHM, self).closeEvent(event)
         self.timer.stop()
         if self.add_window:
             self.add_window.close()
         self.closed.emit()
+        self.exec_mutex.unlock()
 
     def save_config(self):
         file_name, _ = QFileDialog.getSaveFileName(self, caption="Save config")
