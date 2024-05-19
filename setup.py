@@ -3,7 +3,7 @@ import sys, os
 
 setup(
     name='shm-modbus-gui',
-    version='2.1.0',
+    version='2.1.1',
     description='gui for shm-modbus',
     license='GPLv3',
     author='Nikolas Koesling',
