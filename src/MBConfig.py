@@ -76,7 +76,8 @@ class MBConfig:
         self.separate = main_window.mbtcp_separate.isChecked()
         self.separate_all = main_window.mbtcp_separate_all.isChecked()
         if len(main_window.mbtcp_separate_list.text().strip()):
-            self.separate_list = set([int(x) for x in main_window.mbtcp_separate_list.text().strip().split(',')])
+            self.separate_list = set(
+                [int(x) for x in main_window.mbtcp_separate_list.text().strip().rstrip(',').split(',')])
         else:
             self.separate_list = set()
 
