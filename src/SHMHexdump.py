@@ -116,9 +116,11 @@ class SHMHexdump(QtWidgets.QMainWindow, Ui_ShmHexdump):
         self.exec_mutex.unlock()
 
     def closeEvent(self, event):
+        self.exec_mutex.lock()
         super(SHMHexdump, self).closeEvent(event)
         self.timer.stop()
         self.closed.emit()
+        self.exec_mutex.unlock()
 
 
 if __name__ == "__main__":
