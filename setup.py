@@ -12,7 +12,7 @@ setup(
         'src.py_ui'
     ],
     package_data={},
-    install_requires=['PySide6==6.2.4'],
+    install_requires=['PySide6>=6.2.4'],
     entry_points={
         'console_scripts':
             [
