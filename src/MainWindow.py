@@ -208,6 +208,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
         self.mbtcp_shm_defaults.clicked.connect(shm_default_flags)
 
+        self.mbtcp_separate_list_clear.clicked.connect(lambda: self.mbtcp_separate_list.clear())
+
         # reset all
         self.mbtcp_defaults.clicked.connect(self.__mbtcp_default_values)
 

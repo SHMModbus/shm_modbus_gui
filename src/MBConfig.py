@@ -392,7 +392,7 @@ class MBConfig:
         if self.separate:
             if self.separate_all:
                 command.append("--separate-all")
-            else:
+            elif len(self.separate_list) > 0:
                 command.append("-s")
                 command.append(",".join([f"{x}" for x in self.separate_list]))
 
