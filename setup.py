@@ -1,9 +1,10 @@
 from setuptools import setup
-import sys, os
+import sys
+import os
 
 setup(
     name='shm-modbus-gui',
-    version='2.1.2',
+    version='2.1.3',
     description='gui for shm-modbus',
     license='GPLv3',
     author='Nikolas Koesling',

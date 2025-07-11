@@ -196,7 +196,7 @@ class Ui_InspectSHM(object):
     # setupUi
 
     def retranslateUi(self, InspectSHM):
-        InspectSHM.setWindowTitle(QCoreApplication.translate("InspectSHM", u"MainWindow", None))
+        InspectSHM.setWindowTitle(QCoreApplication.translate("InspectSHM", u"Inspect Values", None))
         self.actionSave_config.setText(QCoreApplication.translate("InspectSHM", u"Save config", None))
         self.actionLoad_config.setText(QCoreApplication.translate("InspectSHM", u"Load config", None))
         self.actionExport_values.setText(QCoreApplication.translate("InspectSHM", u"Export values", None))
