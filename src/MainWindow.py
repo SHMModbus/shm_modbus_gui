@@ -7,6 +7,7 @@ from PySide6.QtWidgets import QFileDialog, QMessageBox
 
 from . import MBConfig
 from . import SHMTools
+from .SelectTTY import SelectTTY
 from .py_ui import Ui_MainWindow
 from .MBxxOutput import MBxxOutput
 from . import constants
@@ -35,6 +36,9 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.command_pid: int | None = None
         self.process_active: bool = False
         self.window_open: bool = False
+
+        # search tty window
+        self.search_tty_window: SelectTTY | None = None
 
         # internal variables
         self.modbus_cfg: MBConfig.MBConfig | None = None
@@ -323,6 +327,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             lambda: self.mbrtu_baudrate.text("115200"))
         self.mbrtu_serialtype_default.clicked.connect(
             lambda: self.mbrtu_serialtype.setCurrentIndex(0))
+        self.mbrtu_search_tty.clicked.connect(self.__mbrtu_search_tty)
 
         # Modbus
         self.mbrtu_clientid_default.clicked.connect(
@@ -376,6 +381,20 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             self.modbus_cfg = MBConfig(self)
             self.modbus_cfg.modbus_type = "rtu"
             self.__exec_process("Shared Memory Modbus RTU Client")
+
+    def __mbrtu_search_tty(self) -> None:
+        def search_done():
+            self.setEnabled(True)
+            self.search_tty_window = None
+
+        self.setEnabled(False)
+        if self.search_tty_window:
+            raise RuntimeError("Internal Error: search_tty_window exists")
+        self.search_tty_window = SelectTTY()
+        self.search_tty_window.closed.connect(search_done)
+        self.search_tty_window.set_tty.connect(self.mbrtu_device.setText)
+        self.search_tty_window.show()
+        self.search_tty_window.search_tty()
 
     def __mbrtu_ui_actions(self) -> None:
         """
@@ -774,6 +793,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.__close_tool_windows()
         if self.window_open:
             self.command_window.closeEvent(event)
+        if self.search_tty_window:
+            self.search_tty_window.closeEvent(event)
 
     def version_popup(self):
         version_cmd = ["shm-modbus", "--version-all"]
