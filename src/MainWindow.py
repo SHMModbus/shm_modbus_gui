@@ -1,6 +1,7 @@
 import os
+import shlex
 from PySide6 import QtWidgets
-from PySide6.QtCore import QRegularExpression
+from PySide6.QtCore import QRegularExpression, QProcess
 from PySide6.QtGui import QRegularExpressionValidator
 from PySide6.QtWidgets import QFileDialog, QMessageBox
 
@@ -43,8 +44,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.__shm_tools_init_gui()
 
         # Version popup
-        self.actionVersion.triggered.connect(
-            lambda: QMessageBox.information(self, "SHM Modbus Version", f"{constants.APP_NAME} {constants.VERSION}"))
+        self.actionVersion.triggered.connect(lambda: self.version_popup())
 
     def __init_mb(self) -> None:
         self.__mb_button_actions()
@@ -60,8 +60,10 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.mb_ai_default.clicked.connect(lambda: self.mb_ai.setValue(65536))
 
         # Shared Memory
-        self.mb_shm_flags_default.clicked.connect(lambda: self.mb_force.setChecked(False))
-        self.mb_shm_name_default.clicked.connect(lambda: self.mb_shm_name.setText("modbus_"))
+        self.mb_shm_flags_default.clicked.connect(
+            lambda: self.mb_force.setChecked(False))
+        self.mb_shm_name_default.clicked.connect(
+            lambda: self.mb_shm_name.setText("modbus_"))
 
         # Modbus
         def modbus_defaults() -> None:
@@ -81,14 +83,17 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             self.mb_sem_force.setChecked(False)
 
         self.mb_sem_defaults.clicked.connect(semaphore_defaults)
-        self.mb_sem_name_default.clicked.connect(lambda: self.mb_sem_name.setText("modbus"))
+        self.mb_sem_name_default.clicked.connect(
+            lambda: self.mb_sem_name.setText("modbus"))
 
         # reset all
         self.mb_defaults.clicked.connect(lambda: self.__mb_default_values())
 
         # save / load
-        self.actionsave_modbus_client_config.triggered.connect(self.__config_save)
-        self.actionopen_modbus_client_config.triggered.connect(self.__config_load)
+        self.actionsave_modbus_client_config.triggered.connect(
+            self.__config_save)
+        self.actionopen_modbus_client_config.triggered.connect(
+            self.__config_load)
 
     def __mb_default_values(self) -> None:
         # Registers
@@ -138,19 +143,22 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         @brief save config to file
         """
 
-        file_name, _ = QFileDialog.getSaveFileName(self, caption="Save config", filter="*.json")
+        file_name, _ = QFileDialog.getSaveFileName(
+            self, caption="Save config", filter="*.json")
 
         if len(file_name):
             try:
                 MBConfig(self).save(file_name)
             except Exception as e:
-                QMessageBox.critical(self, "Error", f"Failed to save configuration: {e}")
+                QMessageBox.critical(
+                    self, "Error", f"Failed to save configuration: {e}")
 
     def __config_load(self) -> None:
         """
         @brief load config from file
         """
-        file_name, _ = QFileDialog.getOpenFileName(self, caption="Load config", filter="*.json")
+        file_name, _ = QFileDialog.getOpenFileName(
+            self, caption="Load config", filter="*.json")
 
         if len(file_name):
             try:
@@ -158,7 +166,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                 config.load(file_name)
                 config.apply(self)
             except RuntimeError as e:
-                QMessageBox.critical(self, "Error", f"Failed to load configuration: {e}")
+                QMessageBox.critical(
+                    self, "Error", f"Failed to load configuration: {e}")
 
     def __init_mbtcp(self) -> None:
         """
@@ -189,16 +198,20 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         @brief connect button signals
         """
         # Network
-        self.mbtcp_host_default.clicked.connect(lambda: self.mbtcp_host.setText("any"))
-        self.mbtcp_port_default.clicked.connect(lambda: self.mbtcp_port.setValue(502))
+        self.mbtcp_host_default.clicked.connect(
+            lambda: self.mbtcp_host.setText("any"))
+        self.mbtcp_port_default.clicked.connect(
+            lambda: self.mbtcp_port.setValue(502))
 
         def tcp_timeout_default() -> None:
             self.mbtcp_tcp_timeout.setValue(5),
             self.mbtcp_sytstem_tcp_timeout.setChecked(False)
 
         self.mbtcp_tcp_timeout_default.clicked.connect(tcp_timeout_default)
-        self.mbtcp_connections_default.clicked.connect(lambda: self.mbtcp_connections.setValue(1))
-        self.mbtcp_nw_flags_default.clicked.connect(lambda: self.mbtcp_reconnect.setChecked(True))
+        self.mbtcp_connections_default.clicked.connect(
+            lambda: self.mbtcp_connections.setValue(1))
+        self.mbtcp_nw_flags_default.clicked.connect(
+            lambda: self.mbtcp_reconnect.setChecked(True))
 
         # Shared Memory
         def shm_default_flags() -> None:
@@ -208,7 +221,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
         self.mbtcp_shm_defaults.clicked.connect(shm_default_flags)
 
-        self.mbtcp_separate_list_clear.clicked.connect(lambda: self.mbtcp_separate_list.clear())
+        self.mbtcp_separate_list_clear.clicked.connect(
+            lambda: self.mbtcp_separate_list.clear())
 
         # reset all
         self.mbtcp_defaults.clicked.connect(self.__mbtcp_default_values)
@@ -234,19 +248,22 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         @brief connect signals/slots for ui
         """
         # tcp system timeout
-        self.mbtcp_sytstem_tcp_timeout.stateChanged.connect(lambda state: self.mbtcp_tcp_timeout.setEnabled(state == 0))
+        self.mbtcp_sytstem_tcp_timeout.stateChanged.connect(
+            lambda state: self.mbtcp_tcp_timeout.setEnabled(state == 0))
 
         # shared memory separate
         def shm_separate_changed(value: int) -> None:
             enabled = value != 0
             self.mbtcp_separate_all.setEnabled(enabled)
-            self.mbtcp_separate_list.setEnabled(enabled and not self.mbtcp_separate_all.isChecked())
+            self.mbtcp_separate_list.setEnabled(
+                enabled and not self.mbtcp_separate_all.isChecked())
 
         self.mbtcp_separate.stateChanged.connect(shm_separate_changed)
 
         # shared memory separate all
         self.mbtcp_separate_all.stateChanged.connect(
-            lambda value: self.mbtcp_separate_list.setEnabled(value == 0 and self.mbtcp_separate.isChecked())
+            lambda value: self.mbtcp_separate_list.setEnabled(
+                value == 0 and self.mbtcp_separate.isChecked())
         )
 
     def __mbtcp_start_button_clicked(self) -> None:
@@ -294,15 +311,22 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         @brief connect button signals
         """
         # Serial
-        self.mbrtu_device_default.clicked.connect(lambda: self.mbrtu_device.clear())
-        self.mbrtu_parity_default.clicked.connect(lambda: self.mbrtu_parity.setCurrentIndex(0))
-        self.mbrtu_databits_default.clicked.connect(lambda: self.mbrtu_databits.setValue(8))
-        self.mbrtu_stopbits_default.clicked.connect(lambda: self.mbrtu_stopbits.setValue(1))
-        self.mbrtu_baudrate_default.clicked.connect(lambda: self.mbrtu_baudrate.text("115200"))
-        self.mbrtu_serialtype_default.clicked.connect(lambda: self.mbrtu_serialtype.setCurrentIndex(0))
+        self.mbrtu_device_default.clicked.connect(
+            lambda: self.mbrtu_device.clear())
+        self.mbrtu_parity_default.clicked.connect(
+            lambda: self.mbrtu_parity.setCurrentIndex(0))
+        self.mbrtu_databits_default.clicked.connect(
+            lambda: self.mbrtu_databits.setValue(8))
+        self.mbrtu_stopbits_default.clicked.connect(
+            lambda: self.mbrtu_stopbits.setValue(1))
+        self.mbrtu_baudrate_default.clicked.connect(
+            lambda: self.mbrtu_baudrate.text("115200"))
+        self.mbrtu_serialtype_default.clicked.connect(
+            lambda: self.mbrtu_serialtype.setCurrentIndex(0))
 
         # Modbus
-        self.mbrtu_clientid_default.clicked.connect(lambda: self.mbrtu_clientid.setValue(0))
+        self.mbrtu_clientid_default.clicked.connect(
+            lambda: self.mbrtu_clientid.setValue(0))
 
     def __mbrtu_validators(self) -> None:
         """
@@ -411,7 +435,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.tab_modbus_setings.setEnabled(True)
 
         if exit_code != 0:
-            QMessageBox.information(self, "Client terminated", f"Modbus client terminated with exit code {exit_code}")
+            QMessageBox.information(
+                self, "Client terminated", f"Modbus client terminated with exit code {exit_code}")
 
     def __command_window_closed(self) -> None:
         """
@@ -448,7 +473,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             hexdump = self.shm_tools.start_hexdump(f"{self.modbus_cfg.name_prefix}DO", self.modbus_cfg.do, 1,
                                                    self.modbus_cfg.sem_name if self.modbus_cfg.sem_enable else None)
             self.tool_hexdump_do.setEnabled(False)
-            hexdump.closed.connect(lambda: self.tool_hexdump_do.setEnabled(True))
+            hexdump.closed.connect(
+                lambda: self.tool_hexdump_do.setEnabled(True))
 
         self.tool_hexdump_do.clicked.connect(on_button_hexdump_do_clicked)
 
@@ -456,7 +482,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             hexdump = self.shm_tools.start_hexdump(f"{self.modbus_cfg.name_prefix}DI", self.modbus_cfg.di, 1,
                                                    self.modbus_cfg.sem_name if self.modbus_cfg.sem_enable else None)
             self.tool_hexdump_di.setEnabled(False)
-            hexdump.closed.connect(lambda: self.tool_hexdump_di.setEnabled(True))
+            hexdump.closed.connect(
+                lambda: self.tool_hexdump_di.setEnabled(True))
 
         self.tool_hexdump_di.clicked.connect(on_button_hexdump_di_clicked)
 
@@ -464,7 +491,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             hexdump = self.shm_tools.start_hexdump(f"{self.modbus_cfg.name_prefix}AO", self.modbus_cfg.ao, 2,
                                                    self.modbus_cfg.sem_name if self.modbus_cfg.sem_enable else None)
             self.tool_hexdump_ao.setEnabled(False)
-            hexdump.closed.connect(lambda: self.tool_hexdump_ao.setEnabled(True))
+            hexdump.closed.connect(
+                lambda: self.tool_hexdump_ao.setEnabled(True))
 
         self.tool_hexdump_ao.clicked.connect(on_button_hexdump_ao_clicked)
 
@@ -472,7 +500,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             hexdump = self.shm_tools.start_hexdump(f"{self.modbus_cfg.name_prefix}AI", self.modbus_cfg.ai, 2,
                                                    self.modbus_cfg.sem_name if self.modbus_cfg.sem_enable else None)
             self.tool_hexdump_ai.setEnabled(False)
-            hexdump.closed.connect(lambda: self.tool_hexdump_ai.setEnabled(True))
+            hexdump.closed.connect(
+                lambda: self.tool_hexdump_ai.setEnabled(True))
 
         self.tool_hexdump_ai.clicked.connect(on_button_hexdump_ai_clicked)
 
@@ -517,9 +546,11 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         # file dialogs
         def on_dump_do_file_dialog() -> None:
             text = self.tool_dump_do_file.text()
-            filename = text if len(text) else f"{os.getcwd()}/{self.modbus_cfg.name_prefix}DO"
+            filename = text if len(
+                text) else f"{os.getcwd()}/{self.modbus_cfg.name_prefix}DO"
 
-            file_name, _ = QFileDialog.getSaveFileName(self, caption="select DO register dump file", dir=filename)
+            file_name, _ = QFileDialog.getSaveFileName(
+                self, caption="select DO register dump file", dir=filename)
             if len(file_name):
                 self.tool_dump_do_file.setText(file_name)
 
@@ -527,9 +558,11 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
         def on_dump_di_file_dialog() -> None:
             text = self.tool_dump_di_file.text()
-            filename = text if len(text) else f"{os.getcwd()}/{self.modbus_cfg.name_prefix}DI"
+            filename = text if len(
+                text) else f"{os.getcwd()}/{self.modbus_cfg.name_prefix}DI"
 
-            file_name, _ = QFileDialog.getSaveFileName(self, caption="select DI register dump file", dir=filename)
+            file_name, _ = QFileDialog.getSaveFileName(
+                self, caption="select DI register dump file", dir=filename)
             if len(file_name):
                 self.tool_dump_di_file.setText(file_name)
 
@@ -537,9 +570,11 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
         def on_dump_ao_file_dialog() -> None:
             text = self.tool_dump_ao_file.text()
-            filename = text if len(text) else f"{os.getcwd()}/{self.modbus_cfg.name_prefix}ao"
+            filename = text if len(
+                text) else f"{os.getcwd()}/{self.modbus_cfg.name_prefix}ao"
 
-            file_name, _ = QFileDialog.getSaveFileName(self, caption="select AO register dump file", dir=filename)
+            file_name, _ = QFileDialog.getSaveFileName(
+                self, caption="select AO register dump file", dir=filename)
             if len(file_name):
                 self.tool_dump_ao_file.setText(file_name)
 
@@ -547,9 +582,11 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
         def on_dump_ai_file_dialog() -> None:
             text = self.tool_dump_ai_file.text()
-            filename = text if len(text) else f"{os.getcwd()}/{self.modbus_cfg.name_prefix}ai"
+            filename = text if len(
+                text) else f"{os.getcwd()}/{self.modbus_cfg.name_prefix}ai"
 
-            file_name, _ = QFileDialog.getSaveFileName(self, caption="select AI register dump file", dir=filename)
+            file_name, _ = QFileDialog.getSaveFileName(
+                self, caption="select AI register dump file", dir=filename)
             if len(file_name):
                 self.tool_dump_ai_file.setText(file_name)
 
@@ -561,7 +598,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                 self.shm_tools.dump_shm_to_file(f"{self.modbus_cfg.name_prefix}DO", self.tool_dump_do_file.text(),
                                                 self.modbus_cfg.sem_name if self.modbus_cfg.sem_enable else None)
             except Exception as e:
-                QMessageBox.critical(self, "Error", f"Failed to dump shared memory: {e}")
+                QMessageBox.critical(
+                    self, "Error", f"Failed to dump shared memory: {e}")
 
         self.tool_dump_do.clicked.connect(on_dump_do)
 
@@ -570,7 +608,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                 self.shm_tools.dump_shm_to_file(f"{self.modbus_cfg.name_prefix}DI", self.tool_dump_di_file.text(),
                                                 self.modbus_cfg.sem_name if self.modbus_cfg.sem_enable else None)
             except Exception as e:
-                QMessageBox.critical(self, "Error", f"Failed to dump shared memory: {e}")
+                QMessageBox.critical(
+                    self, "Error", f"Failed to dump shared memory: {e}")
 
         self.tool_dump_di.clicked.connect(on_dump_di)
 
@@ -579,7 +618,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                 self.shm_tools.dump_shm_to_file(f"{self.modbus_cfg.name_prefix}AO", self.tool_dump_ao_file.text(),
                                                 self.modbus_cfg.sem_name if self.modbus_cfg.sem_enable else None)
             except Exception as e:
-                QMessageBox.critical(self, "Error", f"Failed to dump shared memory: {e}")
+                QMessageBox.critical(
+                    self, "Error", f"Failed to dump shared memory: {e}")
 
         self.tool_dump_ao.clicked.connect(on_dump_ao)
 
@@ -588,16 +628,19 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                 self.shm_tools.dump_shm_to_file(f"{self.modbus_cfg.name_prefix}AI", self.tool_dump_ai_file.text(),
                                                 self.modbus_cfg.sem_name if self.modbus_cfg.sem_enable else None)
             except Exception as e:
-                QMessageBox.critical(self, "Error", f"Failed to dump shared memory: {e}")
+                QMessageBox.critical(
+                    self, "Error", f"Failed to dump shared memory: {e}")
 
         self.tool_dump_ai.clicked.connect(on_dump_ai)
 
     def __shm_tools_init_load_gui(self):
         def on_load_do_file_dialog() -> None:
             text = self.tool_load_do_file.text()
-            filename = text if len(text) else f"{os.getcwd()}/{self.modbus_cfg.name_prefix}DO"
+            filename = text if len(
+                text) else f"{os.getcwd()}/{self.modbus_cfg.name_prefix}DO"
 
-            file_name, _ = QFileDialog.getOpenFileName(self, caption="select DO register load file", dir=filename)
+            file_name, _ = QFileDialog.getOpenFileName(
+                self, caption="select DO register load file", dir=filename)
             if len(file_name):
                 self.tool_load_do_file.setText(file_name)
 
@@ -605,9 +648,11 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
         def on_load_di_file_dialog() -> None:
             text = self.tool_load_di_file.text()
-            filename = text if len(text) else f"{os.getcwd()}/{self.modbus_cfg.name_prefix}DI"
+            filename = text if len(
+                text) else f"{os.getcwd()}/{self.modbus_cfg.name_prefix}DI"
 
-            file_name, _ = QFileDialog.getOpenFileName(self, caption="select DI register load file", dir=filename)
+            file_name, _ = QFileDialog.getOpenFileName(
+                self, caption="select DI register load file", dir=filename)
             if len(file_name):
                 self.tool_load_di_file.setText(file_name)
 
@@ -615,9 +660,11 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
         def on_load_ao_file_dialog() -> None:
             text = self.tool_load_ao_file.text()
-            filename = text if len(text) else f"{os.getcwd()}/{self.modbus_cfg.name_prefix}AO"
+            filename = text if len(
+                text) else f"{os.getcwd()}/{self.modbus_cfg.name_prefix}AO"
 
-            file_name, _ = QFileDialog.getOpenFileName(self, caption="select AO register load file", dir=filename)
+            file_name, _ = QFileDialog.getOpenFileName(
+                self, caption="select AO register load file", dir=filename)
             if len(file_name):
                 self.tool_load_ao_file.setText(file_name)
 
@@ -625,9 +672,11 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
         def on_load_ai_file_dialog() -> None:
             text = self.tool_load_ai_file.text()
-            filename = text if len(text) else f"{os.getcwd()}/{self.modbus_cfg.name_prefix}AI"
+            filename = text if len(
+                text) else f"{os.getcwd()}/{self.modbus_cfg.name_prefix}AI"
 
-            file_name, _ = QFileDialog.getOpenFileName(self, caption="select AI register load file", dir=filename)
+            file_name, _ = QFileDialog.getOpenFileName(
+                self, caption="select AI register load file", dir=filename)
             if len(file_name):
                 self.tool_load_ai_file.setText(file_name)
 
@@ -643,7 +692,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                     self.tool_load_do_repeat.isChecked(),
                     self.modbus_cfg.sem_name if self.modbus_cfg.sem_enable else None)
             except Exception as e:
-                QMessageBox.critical(self, "Error", f"Failed to load shared memory: {e}")
+                QMessageBox.critical(
+                    self, "Error", f"Failed to load shared memory: {e}")
 
         self.tool_load_do.clicked.connect(on_load_do)
 
@@ -656,7 +706,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                     self.tool_load_di_repeat.isChecked(),
                     self.modbus_cfg.sem_name if self.modbus_cfg.sem_enable else None)
             except Exception as e:
-                QMessageBox.critical(self, "Error", f"Failed to load shared memory: {e}")
+                QMessageBox.critical(
+                    self, "Error", f"Failed to load shared memory: {e}")
 
         self.tool_load_di.clicked.connect(on_load_di)
 
@@ -669,7 +720,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                     self.tool_load_ao_repeat.isChecked(),
                     self.modbus_cfg.sem_name if self.modbus_cfg.sem_enable else None)
             except Exception as e:
-                QMessageBox.critical(self, "Error", f"Failed to load shared memory: {e}")
+                QMessageBox.critical(
+                    self, "Error", f"Failed to load shared memory: {e}")
 
         self.tool_load_ao.clicked.connect(on_load_ao)
 
@@ -682,7 +734,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                     self.tool_load_ai_repeat.isChecked(),
                     self.modbus_cfg.sem_name if self.modbus_cfg.sem_enable else None)
             except Exception as e:
-                QMessageBox.critical(self, "Error", f"Failed to load shared memory: {e}")
+                QMessageBox.critical(
+                    self, "Error", f"Failed to load shared memory: {e}")
 
         self.tool_load_ai.clicked.connect(on_load_ai)
 
@@ -693,18 +746,20 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                                                                  self.modbus_cfg.ai,
                                                                  self.modbus_cfg.sem_name if self.modbus_cfg.sem_enable else None)
             self.tool_inspec_values.setEnabled(False)
-            inspect_values.closed.connect(lambda: self.tool_inspec_values.setEnabled(True))
+            inspect_values.closed.connect(
+                lambda: self.tool_inspec_values.setEnabled(True))
 
         self.tool_inspec_values.clicked.connect(on_button_tool_inspect)
 
     def __shm_tools_init_set_gui(self):
         def on_button_tool_set() -> None:
             set_values = self.shm_tools.start_set_values(self.modbus_cfg.name_prefix, self.modbus_cfg.do,
-                                                                 self.modbus_cfg.di, self.modbus_cfg.ao,
-                                                                 self.modbus_cfg.ai,
-                                                                 self.modbus_cfg.sem_name if self.modbus_cfg.sem_enable else None)
+                                                         self.modbus_cfg.di, self.modbus_cfg.ao,
+                                                         self.modbus_cfg.ai,
+                                                         self.modbus_cfg.sem_name if self.modbus_cfg.sem_enable else None)
             self.tool_set_values.setEnabled(False)
-            set_values.closed.connect(lambda: self.tool_set_values.setEnabled(True))
+            set_values.closed.connect(
+                lambda: self.tool_set_values.setEnabled(True))
 
         self.tool_set_values.clicked.connect(on_button_tool_set)
 
@@ -719,3 +774,29 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.__close_tool_windows()
         if self.window_open:
             self.command_window.closeEvent(event)
+
+    def version_popup(self):
+        version_cmd = ["shm-modbus", "--version-all"]
+        cmd = shlex.join(version_cmd)
+        process = QProcess()
+        process.start(version_cmd[0], version_cmd[1:])
+        finished = process.waitForFinished(2000)
+
+        if not finished:
+            if process.exitStatus() == QProcess.NormalExit:
+                version_str = f"command '{cmd}' crashed!"
+            else:
+                version_str = f"command '{cmd}' timed out!"
+        else:
+            if process.exitCode() != 0:
+                data = process.readAllStandardError()
+                exit_code = process.exitCode()
+                msg = bytes(data).decode("utf-8")
+                version_str = f"command '{cmd}' failed!\n\nexit code: {exit_code}\nstderr: {msg}"
+            else:
+                data = process.readAllStandardOutput()
+                lines = bytes(data).decode("utf-8").split('\n')
+                version_str = "\n".join(x.split(' (')[0] for x in lines)
+
+        QMessageBox.information(
+            self, "SHM Modbus Version", version_str)
