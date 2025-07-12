@@ -19,6 +19,8 @@ class SelectTTY(QtWidgets.QWidget, Ui_SelectTTY):
         self.button_retry = self.buttons.button(QDialogButtonBox.StandardButton.Retry)
         self.button_ok = self.buttons.button(QDialogButtonBox.StandardButton.Ok)
 
+        self.button_retry.setText("Reload")
+
         self.button_ok.clicked.connect(self.__ok)
         self.button_retry.clicked.connect(self.__retry)
         self.tty_list.itemClicked.connect(self.__item_selected)
