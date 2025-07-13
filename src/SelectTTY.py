@@ -1,9 +1,8 @@
 import os
 import re
 
-from PyQt6.QtWidgets import QMessageBox
 from PySide6 import QtWidgets, QtCore
-from PySide6.QtWidgets import QDialogButtonBox
+from PySide6.QtWidgets import QDialogButtonBox, QMessageBox
 
 from .py_ui import Ui_SelectTTY
 
