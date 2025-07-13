@@ -82,11 +82,12 @@ class SHMHexdump(QtWidgets.QMainWindow, Ui_ShmHexdump):
         def on_action_save_triggered():
             data = self.hexdump_text.toPlainText()
             file_name, _ = QFileDialog.getSaveFileName(self, caption="Save Hexdump", filter="*.txt")
-            try:
-                with open(file_name, 'w') as f:
-                    f.write(data)
-            except Exception as e:
-                QMessageBox.critical(self, "Error", f"Failed to save: {e}")
+            if file_name and len(file_name) > 0:
+                try:
+                    with open(file_name, 'w') as f:
+                        f.write(data)
+                except Exception as e:
+                    QMessageBox.critical(self, "Error", f"Failed to save: {e}")
 
         self.actionSave.triggered.connect(on_action_save_triggered)
 
