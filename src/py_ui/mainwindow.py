@@ -3,7 +3,7 @@
 ################################################################################
 ## Form generated from reading UI file 'mainwindow.ui'
 ##
-## Created by: Qt User Interface Compiler version 6.7.0
+## Created by: Qt User Interface Compiler version 6.9.1
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
@@ -17,11 +17,11 @@ from PySide6.QtGui import (QAction, QBrush, QColor, QConicalGradient,
     QPainter, QPalette, QPixmap, QRadialGradient,
     QTransform)
 from PySide6.QtWidgets import (QApplication, QCheckBox, QComboBox, QDoubleSpinBox,
-    QFrame, QGridLayout, QLabel, QLayout,
-    QLineEdit, QMainWindow, QMenu, QMenuBar,
-    QPushButton, QScrollArea, QSizePolicy, QSpacerItem,
-    QSpinBox, QStatusBar, QTabWidget, QToolButton,
-    QVBoxLayout, QWidget)
+    QFrame, QGridLayout, QHBoxLayout, QLabel,
+    QLayout, QLineEdit, QMainWindow, QMenu,
+    QMenuBar, QPushButton, QScrollArea, QSizePolicy,
+    QSpacerItem, QSpinBox, QStatusBar, QTabWidget,
+    QToolButton, QVBoxLayout, QWidget)
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -66,7 +66,7 @@ class Ui_MainWindow(object):
         self.scrollArea_3.setWidgetResizable(True)
         self.scrollAreaWidgetContents_2 = QWidget()
         self.scrollAreaWidgetContents_2.setObjectName(u"scrollAreaWidgetContents_2")
-        self.scrollAreaWidgetContents_2.setGeometry(QRect(0, 0, 727, 573))
+        self.scrollAreaWidgetContents_2.setGeometry(QRect(0, 0, 727, 569))
         self.verticalLayout = QVBoxLayout(self.scrollAreaWidgetContents_2)
         self.verticalLayout.setObjectName(u"verticalLayout")
         self.label_4 = QLabel(self.scrollAreaWidgetContents_2)
@@ -114,7 +114,7 @@ class Ui_MainWindow(object):
         sizePolicy3.setVerticalStretch(0)
         sizePolicy3.setHeightForWidth(self.label_6.sizePolicy().hasHeightForWidth())
         self.label_6.setSizePolicy(sizePolicy3)
-        self.label_6.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
+        self.label_6.setAlignment(Qt.AlignmentFlag.AlignRight|Qt.AlignmentFlag.AlignTrailing|Qt.AlignmentFlag.AlignVCenter)
 
         self.gridLayout_6.addWidget(self.label_6, 1, 0, 1, 1)
 
@@ -142,7 +142,7 @@ class Ui_MainWindow(object):
         self.label_5.setObjectName(u"label_5")
         sizePolicy3.setHeightForWidth(self.label_5.sizePolicy().hasHeightForWidth())
         self.label_5.setSizePolicy(sizePolicy3)
-        self.label_5.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
+        self.label_5.setAlignment(Qt.AlignmentFlag.AlignRight|Qt.AlignmentFlag.AlignTrailing|Qt.AlignmentFlag.AlignVCenter)
 
         self.gridLayout_6.addWidget(self.label_5, 0, 0, 1, 1)
 
@@ -174,7 +174,7 @@ class Ui_MainWindow(object):
         self.label_7.setObjectName(u"label_7")
         sizePolicy3.setHeightForWidth(self.label_7.sizePolicy().hasHeightForWidth())
         self.label_7.setSizePolicy(sizePolicy3)
-        self.label_7.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
+        self.label_7.setAlignment(Qt.AlignmentFlag.AlignRight|Qt.AlignmentFlag.AlignTrailing|Qt.AlignmentFlag.AlignVCenter)
 
         self.gridLayout_6.addWidget(self.label_7, 0, 4, 1, 1)
 
@@ -182,7 +182,7 @@ class Ui_MainWindow(object):
         self.label_8.setObjectName(u"label_8")
         sizePolicy3.setHeightForWidth(self.label_8.sizePolicy().hasHeightForWidth())
         self.label_8.setSizePolicy(sizePolicy3)
-        self.label_8.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
+        self.label_8.setAlignment(Qt.AlignmentFlag.AlignRight|Qt.AlignmentFlag.AlignTrailing|Qt.AlignmentFlag.AlignVCenter)
 
         self.gridLayout_6.addWidget(self.label_8, 1, 4, 1, 1)
 
@@ -211,7 +211,7 @@ class Ui_MainWindow(object):
         self.label_30.setObjectName(u"label_30")
         self.label_30.setFont(font)
         self.label_30.setToolTipDuration(-1)
-        self.label_30.setFrameShadow(QFrame.Plain)
+        self.label_30.setFrameShadow(QFrame.Shadow.Plain)
         self.label_30.setLineWidth(1)
 
         self.verticalLayout.addWidget(self.label_30)
@@ -337,7 +337,7 @@ class Ui_MainWindow(object):
 
         self.label_17 = QLabel(self.widget_9)
         self.label_17.setObjectName(u"label_17")
-        self.label_17.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
+        self.label_17.setAlignment(Qt.AlignmentFlag.AlignRight|Qt.AlignmentFlag.AlignTrailing|Qt.AlignmentFlag.AlignVCenter)
 
         self.gridLayout_13.addWidget(self.label_17, 0, 3, 1, 1)
 
@@ -358,7 +358,7 @@ class Ui_MainWindow(object):
 
         self.label_16 = QLabel(self.widget_9)
         self.label_16.setObjectName(u"label_16")
-        self.label_16.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
+        self.label_16.setAlignment(Qt.AlignmentFlag.AlignRight|Qt.AlignmentFlag.AlignTrailing|Qt.AlignmentFlag.AlignVCenter)
 
         self.gridLayout_13.addWidget(self.label_16, 0, 0, 1, 1)
 
@@ -466,7 +466,7 @@ class Ui_MainWindow(object):
         self.tab_mbtcp.setObjectName(u"tab_mbtcp")
         self.gridLayout_3 = QGridLayout(self.tab_mbtcp)
         self.gridLayout_3.setObjectName(u"gridLayout_3")
-        self.gridLayout_3.setSizeConstraint(QLayout.SetMinimumSize)
+        self.gridLayout_3.setSizeConstraint(QLayout.SizeConstraint.SetMinimumSize)
         self.widget_7 = QWidget(self.tab_mbtcp)
         self.widget_7.setObjectName(u"widget_7")
         self.gridLayout_11 = QGridLayout(self.widget_7)
@@ -491,7 +491,7 @@ class Ui_MainWindow(object):
         self.mbtcp_settings.setWidgetResizable(True)
         self.mbtcp_settings_content = QWidget()
         self.mbtcp_settings_content.setObjectName(u"mbtcp_settings_content")
-        self.mbtcp_settings_content.setGeometry(QRect(0, 0, 373, 437))
+        self.mbtcp_settings_content.setGeometry(QRect(0, 0, 727, 435))
         self.gridLayout_4 = QGridLayout(self.mbtcp_settings_content)
         self.gridLayout_4.setObjectName(u"gridLayout_4")
         self.label_9 = QLabel(self.mbtcp_settings_content)
@@ -513,7 +513,7 @@ class Ui_MainWindow(object):
 
         self.label_2 = QLabel(self.widget)
         self.label_2.setObjectName(u"label_2")
-        self.label_2.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
+        self.label_2.setAlignment(Qt.AlignmentFlag.AlignRight|Qt.AlignmentFlag.AlignTrailing|Qt.AlignmentFlag.AlignVCenter)
 
         self.gridLayout_5.addWidget(self.label_2, 1, 0, 1, 1)
 
@@ -529,13 +529,13 @@ class Ui_MainWindow(object):
 
         self.label_11 = QLabel(self.widget)
         self.label_11.setObjectName(u"label_11")
-        self.label_11.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
+        self.label_11.setAlignment(Qt.AlignmentFlag.AlignRight|Qt.AlignmentFlag.AlignTrailing|Qt.AlignmentFlag.AlignVCenter)
 
         self.gridLayout_5.addWidget(self.label_11, 3, 0, 1, 1)
 
         self.label_38 = QLabel(self.widget)
         self.label_38.setObjectName(u"label_38")
-        self.label_38.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
+        self.label_38.setAlignment(Qt.AlignmentFlag.AlignRight|Qt.AlignmentFlag.AlignTrailing|Qt.AlignmentFlag.AlignVCenter)
 
         self.gridLayout_5.addWidget(self.label_38, 5, 0, 1, 1)
 
@@ -554,13 +554,13 @@ class Ui_MainWindow(object):
 
         self.mbtcp_host = QLineEdit(self.widget)
         self.mbtcp_host.setObjectName(u"mbtcp_host")
-        self.mbtcp_host.setCursor(QCursor(Qt.IBeamCursor))
+        self.mbtcp_host.setCursor(QCursor(Qt.CursorShape.IBeamCursor))
 
         self.gridLayout_5.addWidget(self.mbtcp_host, 1, 1, 1, 1)
 
         self.label_3 = QLabel(self.widget)
         self.label_3.setObjectName(u"label_3")
-        self.label_3.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
+        self.label_3.setAlignment(Qt.AlignmentFlag.AlignRight|Qt.AlignmentFlag.AlignTrailing|Qt.AlignmentFlag.AlignVCenter)
 
         self.gridLayout_5.addWidget(self.label_3, 2, 0, 1, 1)
 
@@ -611,7 +611,7 @@ class Ui_MainWindow(object):
 
         self.label_12 = QLabel(self.widget_4)
         self.label_12.setObjectName(u"label_12")
-        self.label_12.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
+        self.label_12.setAlignment(Qt.AlignmentFlag.AlignRight|Qt.AlignmentFlag.AlignTrailing|Qt.AlignmentFlag.AlignVCenter)
 
         self.gridLayout_8.addWidget(self.label_12, 0, 0, 1, 1)
 
@@ -629,7 +629,7 @@ class Ui_MainWindow(object):
         font2.setPointSize(14)
         font2.setUnderline(False)
         self.label.setFont(font2)
-        self.label.setAlignment(Qt.AlignLeading|Qt.AlignLeft|Qt.AlignVCenter)
+        self.label.setAlignment(Qt.AlignmentFlag.AlignLeading|Qt.AlignmentFlag.AlignLeft|Qt.AlignmentFlag.AlignVCenter)
 
         self.gridLayout_4.addWidget(self.label, 0, 0, 1, 1)
 
@@ -710,14 +710,143 @@ class Ui_MainWindow(object):
         self.scrollArea_2.setWidgetResizable(True)
         self.mbrtu_settings = QWidget()
         self.mbrtu_settings.setObjectName(u"mbrtu_settings")
-        self.mbrtu_settings.setGeometry(QRect(0, 0, 253, 391))
+        self.mbrtu_settings.setGeometry(QRect(0, 0, 727, 389))
         self.gridLayout_15 = QGridLayout(self.mbrtu_settings)
         self.gridLayout_15.setObjectName(u"gridLayout_15")
+        self.verticalSpacer_6 = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
+
+        self.gridLayout_15.addItem(self.verticalSpacer_6, 8, 0, 1, 1)
+
         self.label_32 = QLabel(self.mbrtu_settings)
         self.label_32.setObjectName(u"label_32")
         self.label_32.setFont(font)
 
-        self.gridLayout_15.addWidget(self.label_32, 3, 0, 1, 1)
+        self.gridLayout_15.addWidget(self.label_32, 5, 0, 1, 1)
+
+        self.widget_10 = QWidget(self.mbrtu_settings)
+        self.widget_10.setObjectName(u"widget_10")
+        self.gridLayout_16 = QGridLayout(self.widget_10)
+        self.gridLayout_16.setObjectName(u"gridLayout_16")
+        self.label_23 = QLabel(self.widget_10)
+        self.label_23.setObjectName(u"label_23")
+        self.label_23.setAlignment(Qt.AlignmentFlag.AlignRight|Qt.AlignmentFlag.AlignTrailing|Qt.AlignmentFlag.AlignVCenter)
+
+        self.gridLayout_16.addWidget(self.label_23, 4, 0, 1, 1)
+
+        self.mbrtu_parity = QComboBox(self.widget_10)
+        self.mbrtu_parity.addItem("")
+        self.mbrtu_parity.addItem("")
+        self.mbrtu_parity.addItem("")
+        self.mbrtu_parity.setObjectName(u"mbrtu_parity")
+
+        self.gridLayout_16.addWidget(self.mbrtu_parity, 1, 1, 1, 1)
+
+        self.mbrtu_baudrate = QLineEdit(self.widget_10)
+        self.mbrtu_baudrate.setObjectName(u"mbrtu_baudrate")
+
+        self.gridLayout_16.addWidget(self.mbrtu_baudrate, 4, 1, 1, 1)
+
+        self.label_21 = QLabel(self.widget_10)
+        self.label_21.setObjectName(u"label_21")
+        self.label_21.setAlignment(Qt.AlignmentFlag.AlignRight|Qt.AlignmentFlag.AlignTrailing|Qt.AlignmentFlag.AlignVCenter)
+
+        self.gridLayout_16.addWidget(self.label_21, 2, 0, 1, 1)
+
+        self.label_19 = QLabel(self.widget_10)
+        self.label_19.setObjectName(u"label_19")
+        self.label_19.setAlignment(Qt.AlignmentFlag.AlignRight|Qt.AlignmentFlag.AlignTrailing|Qt.AlignmentFlag.AlignVCenter)
+
+        self.gridLayout_16.addWidget(self.label_19, 0, 0, 1, 1)
+
+        self.label_24 = QLabel(self.widget_10)
+        self.label_24.setObjectName(u"label_24")
+        self.label_24.setAlignment(Qt.AlignmentFlag.AlignRight|Qt.AlignmentFlag.AlignTrailing|Qt.AlignmentFlag.AlignVCenter)
+
+        self.gridLayout_16.addWidget(self.label_24, 5, 0, 1, 1)
+
+        self.mbrtu_parity_default = QPushButton(self.widget_10)
+        self.mbrtu_parity_default.setObjectName(u"mbrtu_parity_default")
+
+        self.gridLayout_16.addWidget(self.mbrtu_parity_default, 1, 2, 1, 1)
+
+        self.mbrtu_stopbits_default = QPushButton(self.widget_10)
+        self.mbrtu_stopbits_default.setObjectName(u"mbrtu_stopbits_default")
+
+        self.gridLayout_16.addWidget(self.mbrtu_stopbits_default, 3, 2, 1, 1)
+
+        self.mbrtu_databits_default = QPushButton(self.widget_10)
+        self.mbrtu_databits_default.setObjectName(u"mbrtu_databits_default")
+
+        self.gridLayout_16.addWidget(self.mbrtu_databits_default, 2, 2, 1, 1)
+
+        self.mbrtu_serialtype = QComboBox(self.widget_10)
+        self.mbrtu_serialtype.addItem("")
+        self.mbrtu_serialtype.addItem("")
+        self.mbrtu_serialtype.setObjectName(u"mbrtu_serialtype")
+
+        self.gridLayout_16.addWidget(self.mbrtu_serialtype, 5, 1, 1, 1)
+
+        self.label_22 = QLabel(self.widget_10)
+        self.label_22.setObjectName(u"label_22")
+        self.label_22.setAlignment(Qt.AlignmentFlag.AlignRight|Qt.AlignmentFlag.AlignTrailing|Qt.AlignmentFlag.AlignVCenter)
+
+        self.gridLayout_16.addWidget(self.label_22, 3, 0, 1, 1)
+
+        self.mbrtu_baudrate_default = QPushButton(self.widget_10)
+        self.mbrtu_baudrate_default.setObjectName(u"mbrtu_baudrate_default")
+
+        self.gridLayout_16.addWidget(self.mbrtu_baudrate_default, 4, 2, 1, 1)
+
+        self.mbrtu_stopbits = QSpinBox(self.widget_10)
+        self.mbrtu_stopbits.setObjectName(u"mbrtu_stopbits")
+        self.mbrtu_stopbits.setMinimum(1)
+        self.mbrtu_stopbits.setMaximum(2)
+
+        self.gridLayout_16.addWidget(self.mbrtu_stopbits, 3, 1, 1, 1)
+
+        self.mbrtu_databits = QSpinBox(self.widget_10)
+        self.mbrtu_databits.setObjectName(u"mbrtu_databits")
+        self.mbrtu_databits.setMinimum(5)
+        self.mbrtu_databits.setMaximum(8)
+        self.mbrtu_databits.setValue(8)
+
+        self.gridLayout_16.addWidget(self.mbrtu_databits, 2, 1, 1, 1)
+
+        self.label_20 = QLabel(self.widget_10)
+        self.label_20.setObjectName(u"label_20")
+        self.label_20.setAlignment(Qt.AlignmentFlag.AlignRight|Qt.AlignmentFlag.AlignTrailing|Qt.AlignmentFlag.AlignVCenter)
+
+        self.gridLayout_16.addWidget(self.label_20, 1, 0, 1, 1)
+
+        self.mbrtu_serialtype_default = QPushButton(self.widget_10)
+        self.mbrtu_serialtype_default.setObjectName(u"mbrtu_serialtype_default")
+
+        self.gridLayout_16.addWidget(self.mbrtu_serialtype_default, 5, 2, 1, 1)
+
+        self.mbrtu_device_default = QPushButton(self.widget_10)
+        self.mbrtu_device_default.setObjectName(u"mbrtu_device_default")
+
+        self.gridLayout_16.addWidget(self.mbrtu_device_default, 0, 2, 1, 1)
+
+        self.horizontalLayout = QHBoxLayout()
+        self.horizontalLayout.setObjectName(u"horizontalLayout")
+        self.mbrtu_device = QLineEdit(self.widget_10)
+        self.mbrtu_device.setObjectName(u"mbrtu_device")
+
+        self.horizontalLayout.addWidget(self.mbrtu_device)
+
+        self.mbrtu_search_tty = QToolButton(self.widget_10)
+        self.mbrtu_search_tty.setObjectName(u"mbrtu_search_tty")
+        icon = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.EditFind))
+        self.mbrtu_search_tty.setIcon(icon)
+
+        self.horizontalLayout.addWidget(self.mbrtu_search_tty)
+
+
+        self.gridLayout_16.addLayout(self.horizontalLayout, 0, 1, 1, 1)
+
+
+        self.gridLayout_15.addWidget(self.widget_10, 3, 0, 1, 1)
 
         self.widget_15 = QWidget(self.mbrtu_settings)
         self.widget_15.setObjectName(u"widget_15")
@@ -725,7 +854,7 @@ class Ui_MainWindow(object):
         self.gridLayout_21.setObjectName(u"gridLayout_21")
         self.label_33 = QLabel(self.widget_15)
         self.label_33.setObjectName(u"label_33")
-        self.label_33.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
+        self.label_33.setAlignment(Qt.AlignmentFlag.AlignRight|Qt.AlignmentFlag.AlignTrailing|Qt.AlignmentFlag.AlignVCenter)
 
         self.gridLayout_21.addWidget(self.label_33, 0, 0, 1, 1)
 
@@ -743,131 +872,14 @@ class Ui_MainWindow(object):
         self.gridLayout_21.addWidget(self.mbrtu_clientid, 0, 1, 1, 1)
 
 
-        self.gridLayout_15.addWidget(self.widget_15, 5, 0, 1, 1)
-
-        self.widget_10 = QWidget(self.mbrtu_settings)
-        self.widget_10.setObjectName(u"widget_10")
-        self.gridLayout_16 = QGridLayout(self.widget_10)
-        self.gridLayout_16.setObjectName(u"gridLayout_16")
-        self.label_23 = QLabel(self.widget_10)
-        self.label_23.setObjectName(u"label_23")
-        self.label_23.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
-
-        self.gridLayout_16.addWidget(self.label_23, 4, 0, 1, 1)
-
-        self.label_19 = QLabel(self.widget_10)
-        self.label_19.setObjectName(u"label_19")
-        self.label_19.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
-
-        self.gridLayout_16.addWidget(self.label_19, 0, 0, 1, 1)
-
-        self.mbrtu_device = QLineEdit(self.widget_10)
-        self.mbrtu_device.setObjectName(u"mbrtu_device")
-
-        self.gridLayout_16.addWidget(self.mbrtu_device, 0, 1, 1, 1)
-
-        self.mbrtu_stopbits_default = QPushButton(self.widget_10)
-        self.mbrtu_stopbits_default.setObjectName(u"mbrtu_stopbits_default")
-
-        self.gridLayout_16.addWidget(self.mbrtu_stopbits_default, 3, 2, 1, 1)
-
-        self.label_22 = QLabel(self.widget_10)
-        self.label_22.setObjectName(u"label_22")
-        self.label_22.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
-
-        self.gridLayout_16.addWidget(self.label_22, 3, 0, 1, 1)
-
-        self.mbrtu_databits_default = QPushButton(self.widget_10)
-        self.mbrtu_databits_default.setObjectName(u"mbrtu_databits_default")
-
-        self.gridLayout_16.addWidget(self.mbrtu_databits_default, 2, 2, 1, 1)
-
-        self.mbrtu_baudrate = QLineEdit(self.widget_10)
-        self.mbrtu_baudrate.setObjectName(u"mbrtu_baudrate")
-
-        self.gridLayout_16.addWidget(self.mbrtu_baudrate, 4, 1, 1, 1)
-
-        self.label_20 = QLabel(self.widget_10)
-        self.label_20.setObjectName(u"label_20")
-        self.label_20.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
-
-        self.gridLayout_16.addWidget(self.label_20, 1, 0, 1, 1)
-
-        self.mbrtu_databits = QSpinBox(self.widget_10)
-        self.mbrtu_databits.setObjectName(u"mbrtu_databits")
-        self.mbrtu_databits.setMinimum(5)
-        self.mbrtu_databits.setMaximum(8)
-        self.mbrtu_databits.setValue(8)
-
-        self.gridLayout_16.addWidget(self.mbrtu_databits, 2, 1, 1, 1)
-
-        self.mbrtu_parity_default = QPushButton(self.widget_10)
-        self.mbrtu_parity_default.setObjectName(u"mbrtu_parity_default")
-
-        self.gridLayout_16.addWidget(self.mbrtu_parity_default, 1, 2, 1, 1)
-
-        self.mbrtu_baudrate_default = QPushButton(self.widget_10)
-        self.mbrtu_baudrate_default.setObjectName(u"mbrtu_baudrate_default")
-
-        self.gridLayout_16.addWidget(self.mbrtu_baudrate_default, 4, 2, 1, 1)
-
-        self.label_21 = QLabel(self.widget_10)
-        self.label_21.setObjectName(u"label_21")
-        self.label_21.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
-
-        self.gridLayout_16.addWidget(self.label_21, 2, 0, 1, 1)
-
-        self.mbrtu_stopbits = QSpinBox(self.widget_10)
-        self.mbrtu_stopbits.setObjectName(u"mbrtu_stopbits")
-        self.mbrtu_stopbits.setMinimum(1)
-        self.mbrtu_stopbits.setMaximum(2)
-
-        self.gridLayout_16.addWidget(self.mbrtu_stopbits, 3, 1, 1, 1)
-
-        self.mbrtu_parity = QComboBox(self.widget_10)
-        self.mbrtu_parity.addItem("")
-        self.mbrtu_parity.addItem("")
-        self.mbrtu_parity.addItem("")
-        self.mbrtu_parity.setObjectName(u"mbrtu_parity")
-
-        self.gridLayout_16.addWidget(self.mbrtu_parity, 1, 1, 1, 1)
-
-        self.label_24 = QLabel(self.widget_10)
-        self.label_24.setObjectName(u"label_24")
-        self.label_24.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
-
-        self.gridLayout_16.addWidget(self.label_24, 5, 0, 1, 1)
-
-        self.mbrtu_serialtype = QComboBox(self.widget_10)
-        self.mbrtu_serialtype.addItem("")
-        self.mbrtu_serialtype.addItem("")
-        self.mbrtu_serialtype.setObjectName(u"mbrtu_serialtype")
-
-        self.gridLayout_16.addWidget(self.mbrtu_serialtype, 5, 1, 1, 1)
-
-        self.mbrtu_serialtype_default = QPushButton(self.widget_10)
-        self.mbrtu_serialtype_default.setObjectName(u"mbrtu_serialtype_default")
-
-        self.gridLayout_16.addWidget(self.mbrtu_serialtype_default, 5, 2, 1, 1)
-
-        self.mbrtu_device_default = QPushButton(self.widget_10)
-        self.mbrtu_device_default.setObjectName(u"mbrtu_device_default")
-
-        self.gridLayout_16.addWidget(self.mbrtu_device_default, 0, 2, 1, 1)
-
-
-        self.gridLayout_15.addWidget(self.widget_10, 1, 0, 1, 1)
-
-        self.verticalSpacer_6 = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
-
-        self.gridLayout_15.addItem(self.verticalSpacer_6, 6, 0, 1, 1)
+        self.gridLayout_15.addWidget(self.widget_15, 7, 0, 1, 1)
 
         self.line_5 = QFrame(self.mbrtu_settings)
         self.line_5.setObjectName(u"line_5")
         self.line_5.setFrameShape(QFrame.Shape.HLine)
         self.line_5.setFrameShadow(QFrame.Shadow.Sunken)
 
-        self.gridLayout_15.addWidget(self.line_5, 2, 0, 1, 1)
+        self.gridLayout_15.addWidget(self.line_5, 4, 0, 1, 1)
 
         self.label_18 = QLabel(self.mbrtu_settings)
         self.label_18.setObjectName(u"label_18")
@@ -895,7 +907,7 @@ class Ui_MainWindow(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollAreaWidgetContents = QWidget()
         self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
-        self.scrollAreaWidgetContents.setGeometry(QRect(0, -162, 745, 646))
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 745, 646))
         self.gridLayout_26 = QGridLayout(self.scrollAreaWidgetContents)
         self.gridLayout_26.setObjectName(u"gridLayout_26")
         self.line_11 = QFrame(self.scrollAreaWidgetContents)
@@ -911,14 +923,14 @@ class Ui_MainWindow(object):
         self.gridLayout_31.setObjectName(u"gridLayout_31")
         self.tool_load_ao_file_dialog = QToolButton(self.widget_22)
         self.tool_load_ao_file_dialog.setObjectName(u"tool_load_ao_file_dialog")
-        icon = QIcon()
+        icon1 = QIcon()
         iconThemeName = u"document-open"
         if QIcon.hasThemeIcon(iconThemeName):
-            icon = QIcon.fromTheme(iconThemeName)
+            icon1 = QIcon.fromTheme(iconThemeName)
         else:
-            icon.addFile(u"../../../../../.designer/backup", QSize(), QIcon.Normal, QIcon.Off)
+            icon1.addFile(u"../../../../../.designer/backup", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
 
-        self.tool_load_ao_file_dialog.setIcon(icon)
+        self.tool_load_ao_file_dialog.setIcon(icon1)
 
         self.gridLayout_31.addWidget(self.tool_load_ao_file_dialog, 2, 4, 1, 1)
 
@@ -981,7 +993,7 @@ class Ui_MainWindow(object):
 
         self.tool_load_do_file_dialog = QToolButton(self.widget_22)
         self.tool_load_do_file_dialog.setObjectName(u"tool_load_do_file_dialog")
-        self.tool_load_do_file_dialog.setIcon(icon)
+        self.tool_load_do_file_dialog.setIcon(icon1)
 
         self.gridLayout_31.addWidget(self.tool_load_do_file_dialog, 0, 4, 1, 1)
 
@@ -1009,7 +1021,7 @@ class Ui_MainWindow(object):
 
         self.tool_load_di_file_dialog = QToolButton(self.widget_22)
         self.tool_load_di_file_dialog.setObjectName(u"tool_load_di_file_dialog")
-        self.tool_load_di_file_dialog.setIcon(icon)
+        self.tool_load_di_file_dialog.setIcon(icon1)
 
         self.gridLayout_31.addWidget(self.tool_load_di_file_dialog, 1, 4, 1, 1)
 
@@ -1020,7 +1032,7 @@ class Ui_MainWindow(object):
 
         self.tool_load_ai_file_dialog = QToolButton(self.widget_22)
         self.tool_load_ai_file_dialog.setObjectName(u"tool_load_ai_file_dialog")
-        self.tool_load_ai_file_dialog.setIcon(icon)
+        self.tool_load_ai_file_dialog.setIcon(icon1)
 
         self.gridLayout_31.addWidget(self.tool_load_ai_file_dialog, 3, 4, 1, 1)
 
@@ -1048,20 +1060,20 @@ class Ui_MainWindow(object):
 
         self.tool_dump_di_file_dialog = QToolButton(self.widget_20)
         self.tool_dump_di_file_dialog.setObjectName(u"tool_dump_di_file_dialog")
-        icon1 = QIcon()
+        icon2 = QIcon()
         iconThemeName = u"document-save"
         if QIcon.hasThemeIcon(iconThemeName):
-            icon1 = QIcon.fromTheme(iconThemeName)
+            icon2 = QIcon.fromTheme(iconThemeName)
         else:
-            icon1.addFile(u"../../../../../.designer/backup", QSize(), QIcon.Normal, QIcon.Off)
+            icon2.addFile(u"../../../../../.designer/backup", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
 
-        self.tool_dump_di_file_dialog.setIcon(icon1)
+        self.tool_dump_di_file_dialog.setIcon(icon2)
 
         self.gridLayout_28.addWidget(self.tool_dump_di_file_dialog, 1, 3, 1, 1)
 
         self.tool_dump_do_file_dialog = QToolButton(self.widget_20)
         self.tool_dump_do_file_dialog.setObjectName(u"tool_dump_do_file_dialog")
-        self.tool_dump_do_file_dialog.setIcon(icon1)
+        self.tool_dump_do_file_dialog.setIcon(icon2)
 
         self.gridLayout_28.addWidget(self.tool_dump_do_file_dialog, 0, 3, 1, 1)
 
@@ -1083,7 +1095,7 @@ class Ui_MainWindow(object):
 
         self.tool_dump_ao_file_dialog = QToolButton(self.widget_20)
         self.tool_dump_ao_file_dialog.setObjectName(u"tool_dump_ao_file_dialog")
-        self.tool_dump_ao_file_dialog.setIcon(icon1)
+        self.tool_dump_ao_file_dialog.setIcon(icon2)
 
         self.gridLayout_28.addWidget(self.tool_dump_ao_file_dialog, 2, 3, 1, 1)
 
@@ -1106,7 +1118,7 @@ class Ui_MainWindow(object):
 
         self.tool_dump_ai_file_dialog = QToolButton(self.widget_20)
         self.tool_dump_ai_file_dialog.setObjectName(u"tool_dump_ai_file_dialog")
-        self.tool_dump_ai_file_dialog.setIcon(icon1)
+        self.tool_dump_ai_file_dialog.setIcon(icon2)
 
         self.gridLayout_28.addWidget(self.tool_dump_ai_file_dialog, 3, 3, 1, 1)
 
@@ -1252,7 +1264,7 @@ class Ui_MainWindow(object):
         self.retranslateUi(MainWindow)
 
         self.tabWidget_tools.setCurrentIndex(0)
-        self.tabWidget_modbus_cl.setCurrentIndex(0)
+        self.tabWidget_modbus_cl.setCurrentIndex(2)
 
 
         QMetaObject.connectSlotsByName(MainWindow)
@@ -1561,78 +1573,7 @@ class Ui_MainWindow(object):
         self.mbrtu_start.setText(QCoreApplication.translate("MainWindow", u"Start", None))
         self.mbrtu_defaults.setText(QCoreApplication.translate("MainWindow", u"Defaults", None))
         self.label_32.setText(QCoreApplication.translate("MainWindow", u"Modbus", None))
-        self.label_33.setText(QCoreApplication.translate("MainWindow", u"client id:", None))
-#if QT_CONFIG(tooltip)
-        self.mbrtu_clientid_default.setToolTip(QCoreApplication.translate("MainWindow", u"set default modbus client id (0)", None))
-#endif // QT_CONFIG(tooltip)
-#if QT_CONFIG(statustip)
-        self.mbrtu_clientid_default.setStatusTip(QCoreApplication.translate("MainWindow", u"set default modbus client id (0)", None))
-#endif // QT_CONFIG(statustip)
-        self.mbrtu_clientid_default.setText(QCoreApplication.translate("MainWindow", u"0", None))
-#if QT_CONFIG(tooltip)
-        self.mbrtu_clientid.setToolTip(QCoreApplication.translate("MainWindow", u"modbus client id", None))
-#endif // QT_CONFIG(tooltip)
-#if QT_CONFIG(statustip)
-        self.mbrtu_clientid.setStatusTip(QCoreApplication.translate("MainWindow", u"modbus client id", None))
-#endif // QT_CONFIG(statustip)
         self.label_23.setText(QCoreApplication.translate("MainWindow", u"baud rate:", None))
-        self.label_19.setText(QCoreApplication.translate("MainWindow", u"device:", None))
-#if QT_CONFIG(tooltip)
-        self.mbrtu_device.setToolTip(QCoreApplication.translate("MainWindow", u"serial device", None))
-#endif // QT_CONFIG(tooltip)
-#if QT_CONFIG(statustip)
-        self.mbrtu_device.setStatusTip(QCoreApplication.translate("MainWindow", u"serial device", None))
-#endif // QT_CONFIG(statustip)
-#if QT_CONFIG(tooltip)
-        self.mbrtu_stopbits_default.setToolTip(QCoreApplication.translate("MainWindow", u"set default number of stop bits (1)", None))
-#endif // QT_CONFIG(tooltip)
-#if QT_CONFIG(statustip)
-        self.mbrtu_stopbits_default.setStatusTip(QCoreApplication.translate("MainWindow", u"set default number of stop bits (1)", None))
-#endif // QT_CONFIG(statustip)
-        self.mbrtu_stopbits_default.setText(QCoreApplication.translate("MainWindow", u"1", None))
-        self.label_22.setText(QCoreApplication.translate("MainWindow", u"stop bits:", None))
-#if QT_CONFIG(tooltip)
-        self.mbrtu_databits_default.setToolTip(QCoreApplication.translate("MainWindow", u"default number of data bits (8)", None))
-#endif // QT_CONFIG(tooltip)
-#if QT_CONFIG(statustip)
-        self.mbrtu_databits_default.setStatusTip(QCoreApplication.translate("MainWindow", u"default number of data bits (8)", None))
-#endif // QT_CONFIG(statustip)
-        self.mbrtu_databits_default.setText(QCoreApplication.translate("MainWindow", u"8", None))
-#if QT_CONFIG(tooltip)
-        self.mbrtu_baudrate.setToolTip(QCoreApplication.translate("MainWindow", u"serial baud rate", None))
-#endif // QT_CONFIG(tooltip)
-#if QT_CONFIG(statustip)
-        self.mbrtu_baudrate.setStatusTip(QCoreApplication.translate("MainWindow", u"serial baud rate", None))
-#endif // QT_CONFIG(statustip)
-        self.mbrtu_baudrate.setText(QCoreApplication.translate("MainWindow", u"115200", None))
-        self.label_20.setText(QCoreApplication.translate("MainWindow", u"parity:", None))
-#if QT_CONFIG(tooltip)
-        self.mbrtu_databits.setToolTip(QCoreApplication.translate("MainWindow", u"number of data bits", None))
-#endif // QT_CONFIG(tooltip)
-#if QT_CONFIG(statustip)
-        self.mbrtu_databits.setStatusTip(QCoreApplication.translate("MainWindow", u"number of data bits", None))
-#endif // QT_CONFIG(statustip)
-#if QT_CONFIG(tooltip)
-        self.mbrtu_parity_default.setToolTip(QCoreApplication.translate("MainWindow", u"set default serial parity (None)", None))
-#endif // QT_CONFIG(tooltip)
-#if QT_CONFIG(statustip)
-        self.mbrtu_parity_default.setStatusTip(QCoreApplication.translate("MainWindow", u"set default serial parity (None)", None))
-#endif // QT_CONFIG(statustip)
-        self.mbrtu_parity_default.setText(QCoreApplication.translate("MainWindow", u"None", None))
-#if QT_CONFIG(tooltip)
-        self.mbrtu_baudrate_default.setToolTip(QCoreApplication.translate("MainWindow", u"set default serial baud rate", None))
-#endif // QT_CONFIG(tooltip)
-#if QT_CONFIG(statustip)
-        self.mbrtu_baudrate_default.setStatusTip(QCoreApplication.translate("MainWindow", u"set default serial baud rate", None))
-#endif // QT_CONFIG(statustip)
-        self.mbrtu_baudrate_default.setText(QCoreApplication.translate("MainWindow", u"115200", None))
-        self.label_21.setText(QCoreApplication.translate("MainWindow", u"data bits:", None))
-#if QT_CONFIG(tooltip)
-        self.mbrtu_stopbits.setToolTip(QCoreApplication.translate("MainWindow", u"number of stop bits", None))
-#endif // QT_CONFIG(tooltip)
-#if QT_CONFIG(statustip)
-        self.mbrtu_stopbits.setStatusTip(QCoreApplication.translate("MainWindow", u"number of stop bits", None))
-#endif // QT_CONFIG(statustip)
         self.mbrtu_parity.setItemText(0, QCoreApplication.translate("MainWindow", u"None", None))
         self.mbrtu_parity.setItemText(1, QCoreApplication.translate("MainWindow", u"Even", None))
         self.mbrtu_parity.setItemText(2, QCoreApplication.translate("MainWindow", u"Odd", None))
@@ -1643,7 +1584,37 @@ class Ui_MainWindow(object):
 #if QT_CONFIG(statustip)
         self.mbrtu_parity.setStatusTip(QCoreApplication.translate("MainWindow", u"serial parity", None))
 #endif // QT_CONFIG(statustip)
+#if QT_CONFIG(tooltip)
+        self.mbrtu_baudrate.setToolTip(QCoreApplication.translate("MainWindow", u"serial baud rate", None))
+#endif // QT_CONFIG(tooltip)
+#if QT_CONFIG(statustip)
+        self.mbrtu_baudrate.setStatusTip(QCoreApplication.translate("MainWindow", u"serial baud rate", None))
+#endif // QT_CONFIG(statustip)
+        self.mbrtu_baudrate.setText(QCoreApplication.translate("MainWindow", u"115200", None))
+        self.label_21.setText(QCoreApplication.translate("MainWindow", u"data bits:", None))
+        self.label_19.setText(QCoreApplication.translate("MainWindow", u"device:", None))
         self.label_24.setText(QCoreApplication.translate("MainWindow", u"type:", None))
+#if QT_CONFIG(tooltip)
+        self.mbrtu_parity_default.setToolTip(QCoreApplication.translate("MainWindow", u"set default serial parity (None)", None))
+#endif // QT_CONFIG(tooltip)
+#if QT_CONFIG(statustip)
+        self.mbrtu_parity_default.setStatusTip(QCoreApplication.translate("MainWindow", u"set default serial parity (None)", None))
+#endif // QT_CONFIG(statustip)
+        self.mbrtu_parity_default.setText(QCoreApplication.translate("MainWindow", u"None", None))
+#if QT_CONFIG(tooltip)
+        self.mbrtu_stopbits_default.setToolTip(QCoreApplication.translate("MainWindow", u"set default number of stop bits (1)", None))
+#endif // QT_CONFIG(tooltip)
+#if QT_CONFIG(statustip)
+        self.mbrtu_stopbits_default.setStatusTip(QCoreApplication.translate("MainWindow", u"set default number of stop bits (1)", None))
+#endif // QT_CONFIG(statustip)
+        self.mbrtu_stopbits_default.setText(QCoreApplication.translate("MainWindow", u"1", None))
+#if QT_CONFIG(tooltip)
+        self.mbrtu_databits_default.setToolTip(QCoreApplication.translate("MainWindow", u"default number of data bits (8)", None))
+#endif // QT_CONFIG(tooltip)
+#if QT_CONFIG(statustip)
+        self.mbrtu_databits_default.setStatusTip(QCoreApplication.translate("MainWindow", u"default number of data bits (8)", None))
+#endif // QT_CONFIG(statustip)
+        self.mbrtu_databits_default.setText(QCoreApplication.translate("MainWindow", u"8", None))
         self.mbrtu_serialtype.setItemText(0, QCoreApplication.translate("MainWindow", u"rs232", None))
         self.mbrtu_serialtype.setItemText(1, QCoreApplication.translate("MainWindow", u"rs485", None))
 
@@ -1653,6 +1624,27 @@ class Ui_MainWindow(object):
 #if QT_CONFIG(statustip)
         self.mbrtu_serialtype.setStatusTip(QCoreApplication.translate("MainWindow", u"serial type", None))
 #endif // QT_CONFIG(statustip)
+        self.label_22.setText(QCoreApplication.translate("MainWindow", u"stop bits:", None))
+#if QT_CONFIG(tooltip)
+        self.mbrtu_baudrate_default.setToolTip(QCoreApplication.translate("MainWindow", u"set default serial baud rate", None))
+#endif // QT_CONFIG(tooltip)
+#if QT_CONFIG(statustip)
+        self.mbrtu_baudrate_default.setStatusTip(QCoreApplication.translate("MainWindow", u"set default serial baud rate", None))
+#endif // QT_CONFIG(statustip)
+        self.mbrtu_baudrate_default.setText(QCoreApplication.translate("MainWindow", u"115200", None))
+#if QT_CONFIG(tooltip)
+        self.mbrtu_stopbits.setToolTip(QCoreApplication.translate("MainWindow", u"number of stop bits", None))
+#endif // QT_CONFIG(tooltip)
+#if QT_CONFIG(statustip)
+        self.mbrtu_stopbits.setStatusTip(QCoreApplication.translate("MainWindow", u"number of stop bits", None))
+#endif // QT_CONFIG(statustip)
+#if QT_CONFIG(tooltip)
+        self.mbrtu_databits.setToolTip(QCoreApplication.translate("MainWindow", u"number of data bits", None))
+#endif // QT_CONFIG(tooltip)
+#if QT_CONFIG(statustip)
+        self.mbrtu_databits.setStatusTip(QCoreApplication.translate("MainWindow", u"number of data bits", None))
+#endif // QT_CONFIG(statustip)
+        self.label_20.setText(QCoreApplication.translate("MainWindow", u"parity:", None))
 #if QT_CONFIG(tooltip)
         self.mbrtu_serialtype_default.setToolTip(QCoreApplication.translate("MainWindow", u"set default serial type (rs232)", None))
 #endif // QT_CONFIG(tooltip)
@@ -1667,6 +1659,27 @@ class Ui_MainWindow(object):
         self.mbrtu_device_default.setStatusTip(QCoreApplication.translate("MainWindow", u"clear serial device", None))
 #endif // QT_CONFIG(statustip)
         self.mbrtu_device_default.setText(QCoreApplication.translate("MainWindow", u"clear", None))
+#if QT_CONFIG(tooltip)
+        self.mbrtu_device.setToolTip(QCoreApplication.translate("MainWindow", u"serial device", None))
+#endif // QT_CONFIG(tooltip)
+#if QT_CONFIG(statustip)
+        self.mbrtu_device.setStatusTip(QCoreApplication.translate("MainWindow", u"serial device", None))
+#endif // QT_CONFIG(statustip)
+        self.mbrtu_search_tty.setText(QCoreApplication.translate("MainWindow", u"...", None))
+        self.label_33.setText(QCoreApplication.translate("MainWindow", u"client id:", None))
+#if QT_CONFIG(tooltip)
+        self.mbrtu_clientid_default.setToolTip(QCoreApplication.translate("MainWindow", u"set default modbus client id (0)", None))
+#endif // QT_CONFIG(tooltip)
+#if QT_CONFIG(statustip)
+        self.mbrtu_clientid_default.setStatusTip(QCoreApplication.translate("MainWindow", u"set default modbus client id (0)", None))
+#endif // QT_CONFIG(statustip)
+        self.mbrtu_clientid_default.setText(QCoreApplication.translate("MainWindow", u"0", None))
+#if QT_CONFIG(tooltip)
+        self.mbrtu_clientid.setToolTip(QCoreApplication.translate("MainWindow", u"modbus client id", None))
+#endif // QT_CONFIG(tooltip)
+#if QT_CONFIG(statustip)
+        self.mbrtu_clientid.setStatusTip(QCoreApplication.translate("MainWindow", u"modbus client id", None))
+#endif // QT_CONFIG(statustip)
         self.label_18.setText(QCoreApplication.translate("MainWindow", u"Serial", None))
         self.tabWidget_modbus_cl.setTabText(self.tabWidget_modbus_cl.indexOf(self.tab_mbrtu), QCoreApplication.translate("MainWindow", u"Modbus Client RTU", None))
         self.tabWidget_tools.setTabText(self.tabWidget_tools.indexOf(self.tab_modbus_clients), QCoreApplication.translate("MainWindow", u"Modbus Clients", None))
