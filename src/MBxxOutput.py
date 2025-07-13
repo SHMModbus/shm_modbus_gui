@@ -23,6 +23,7 @@ class MBxxOutput(QtWidgets.QMainWindow, Ui_MBxxxOutput):
         self.actionSave_STDOUT.triggered.connect(self.__save_stdout)
         self.actionSave_STDERR.triggered.connect(self.__save_stderr)
 
+        self.process_terminated_by_event: bool = False
         self.process = QProcess()
         self.process.readyReadStandardOutput.connect(self.__handle_stdout)
         self.process.readyReadStandardError.connect(self.__handle_stderr)
@@ -52,13 +53,14 @@ class MBxxOutput(QtWidgets.QMainWindow, Ui_MBxxxOutput):
             ]
             QMessageBox.critical(
                 self, "Client terminated", "\n".join(msg))
-        else:
+        elif not self.process_terminated_by_event:
             QMessageBox.information(self, "Client terminated",
                                     "Modbus client terminated successfully.")
         self.finished.emit(exit_code)
 
     def closeEvent(self, event):
         super(MBxxOutput, self).closeEvent(event)
+        self.process_terminated_by_event = True
         self.process.terminate()
         self.closed.emit()
 
