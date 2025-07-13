@@ -12,8 +12,8 @@ class SHMTools:
 
         self.hexdump: dict[str, SHMHexdump] = {}
         self.random: dict[str, SHMRandom] = {}
-        self.inspect_values = None
-        self.set_values = None
+        self.inspect_values: dict[str, InspectSHM] = {}
+        self.set_values: dict[str, SetValues] = {}
 
     def close_all(self) -> None:
         # close all hexdump windows
@@ -27,12 +27,14 @@ class SHMTools:
             self.random[shm_name].close()
 
         # close inspect_values
-        if self.inspect_values:
-            self.inspect_values.close()
+        inspec_shm_name = [x for x in self.inspect_values.keys()]
+        for shm_name in inspec_shm_name:
+            self.inspect_values[shm_name].close()
 
         # close set_values
-        if self.set_values:
-            self.set_values.close()
+        set_shm_name = [x for x in self.set_values.keys()]
+        for shm_name in set_shm_name:
+            self.set_values[shm_name].close()
 
     def start_hexdump(self, shm_name: str, registers: int, register_size: int,
                       semaphore: str | None = None) -> SHMHexdump:
@@ -58,28 +60,22 @@ class SHMTools:
         return random
 
     def start_inspect_values(self, shm_prefix: str, num_DO: int, num_DI: int, num_AO: int, num_AI: int, semaphore: str | None = None):
-        if self.inspect_values:
-            raise RuntimeError(f"Internal Error: A inspect_values object already exists")
+        if shm_prefix in self.inspect_values:
+            raise RuntimeError(f"Internal Error: A inspect_values object for shm prefix {shm_prefix} already exists")
 
-        self.inspect_values = InspectSHM(shm_prefix, num_DO, num_DI, num_AO, num_AI, semaphore)
-        self.inspect_values.closed.connect(self.__clear_inspect_values)
-        self.inspect_values.show()
-        return self.inspect_values
+        self.inspect_values[shm_prefix] = InspectSHM(shm_prefix, num_DO, num_DI, num_AO, num_AI, semaphore)
+        self.inspect_values[shm_prefix].closed.connect(lambda: self.inspect_values.pop(shm_prefix))
+        self.inspect_values[shm_prefix].show()
+        return self.inspect_values[shm_prefix]
 
     def start_set_values(self, shm_prefix: str, num_DO: int, num_DI: int, num_AO: int, num_AI: int, semaphore: str | None = None):
-        if self.set_values:
-            raise RuntimeError(f"Internal Error: A set_values object already exists")
+        if shm_prefix in self.set_values:
+            raise RuntimeError(f"Internal Error: A set_values object shm prefix {shm_prefix} already exists")
 
-        self.set_values = SetValues(shm_prefix, num_DO, num_DI, num_AO, num_AI, semaphore)
-        self.set_values.closed.connect(self.__clear_set_values)
-        self.set_values.show()
-        return self.set_values
-
-    def __clear_inspect_values(self):
-        self.inspect_values = None
-
-    def __clear_set_values(self):
-        self.set_values = None
+        self.set_values[shm_prefix] = SetValues(shm_prefix, num_DO, num_DI, num_AO, num_AI, semaphore)
+        self.set_values[shm_prefix].closed.connect(lambda: self.set_values.pop(shm_prefix))
+        self.set_values[shm_prefix].show()
+        return self.set_values[shm_prefix]
 
     @staticmethod
     def dump_shm_to_file(shm_name: str, filename: str, semaphore: str | None) -> None:
@@ -90,7 +86,12 @@ class SHMTools:
         if process.waitForFinished(1000):
             if process.exitCode() != 0:
                 stderr = bytes(process.readAllStandardError()).decode("utf-8")
-                raise RuntimeError(f"{stderr} (exit code: {process.exitCode()})")
+                err_msg = stderr.split(':', maxsplit=2)
+                if len(err_msg) == 3:
+                    err_msg = err_msg[-1].strip()
+                else:
+                    err_msg = stderr
+                raise RuntimeError(f"{err_msg}\n\nexit code: {process.exitCode()}")
         else:
             process.kill()
             raise RuntimeError(f"command dump-shm timed out")
@@ -112,7 +113,12 @@ class SHMTools:
         if process.waitForFinished(1000):
             if process.exitCode() != 0:
                 stderr = bytes(process.readAllStandardError()).decode("utf-8")
-                raise RuntimeError(f"{stderr} (exit code: {process.exitCode()})")
+                err_msg = stderr.split(':', maxsplit=2)
+                if len(err_msg) == 3:
+                    err_msg = err_msg[-1].strip()
+                else:
+                    err_msg = stderr
+                raise RuntimeError(f"{err_msg}\n\nexit code: {process.exitCode()}")
         else:
             process.kill()
             raise RuntimeError(f"command write-shm timed out")

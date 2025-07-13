@@ -5,7 +5,7 @@ from .py_ui import Ui_RandomizeShm
 
 
 class SHMRandom(QtWidgets.QWidget, Ui_RandomizeShm):
-    closed = QtCore.Signal()
+    closed = QtCore.Signal(str)
 
     def __init__(self, shm_name: str, num_registers: int, register_size: int, bitmask: int | None = None,
                  semaphore: str | None = None, mb_client_pid: int | None = None):
@@ -142,7 +142,7 @@ class SHMRandom(QtWidgets.QWidget, Ui_RandomizeShm):
         if self.process:
             self.process.terminate()
             self.process.waitForFinished(500)
-        self.closed.emit()
+        self.closed.emit(self.shm_name)
 
 
 if __name__ == "__main__":

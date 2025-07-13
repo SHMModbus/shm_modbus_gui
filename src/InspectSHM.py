@@ -19,7 +19,7 @@ from .InspectSHM_AddString import InspectSHM_AddString
 
 
 class InspectSHM(QtWidgets.QMainWindow, Ui_InspectSHM):
-    closed = QtCore.Signal()
+    closed = QtCore.Signal(str)
 
     class TableCols(enum.IntEnum):
         NAME = 0
@@ -74,6 +74,8 @@ class InspectSHM(QtWidgets.QMainWindow, Ui_InspectSHM):
             "AO": num_AO * 2,
             "AI": num_AI * 2,
         }
+
+        self.setWindowTitle(f"{self.windowTitle()} {self.name_prefix}*")
 
         self.__setup_add_buttons()
 
@@ -346,7 +348,7 @@ class InspectSHM(QtWidgets.QMainWindow, Ui_InspectSHM):
         self.timer.stop()
         if self.add_window:
             self.add_window.close()
-        self.closed.emit()
+        self.closed.emit(self.name_prefix)
         self.exec_mutex.unlock()
 
     def save_config(self):

@@ -7,7 +7,7 @@ from .py_ui import Ui_ShmHexdump
 
 
 class SHMHexdump(QtWidgets.QMainWindow, Ui_ShmHexdump):
-    closed = QtCore.Signal()
+    closed = QtCore.Signal(str)
 
     def __init__(self, shm_name: str, num_registers: int, register_size: int, semaphore: str | None = None) -> None:
         super(SHMHexdump, self).__init__()
@@ -120,7 +120,7 @@ class SHMHexdump(QtWidgets.QMainWindow, Ui_ShmHexdump):
         self.exec_mutex.lock()
         super(SHMHexdump, self).closeEvent(event)
         self.timer.stop()
-        self.closed.emit()
+        self.closed.emit(self.shm_name)
         self.exec_mutex.unlock()
 
 

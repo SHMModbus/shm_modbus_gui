@@ -190,7 +190,7 @@ class SetValuesEntry:
 
 
 class SetValues(QtWidgets.QMainWindow, Ui_SetValues):
-    closed = QtCore.Signal()
+    closed = QtCore.Signal(str)
 
     class TableCols(enum.IntEnum):
         NAME = 0
@@ -223,6 +223,8 @@ class SetValues(QtWidgets.QMainWindow, Ui_SetValues):
         self.cfg_data = {}
 
         self.exec_mutex = QMutex()
+
+        self.setWindowTitle(f"{self.windowTitle()} {self.name_prefix}*")
 
         self.__setup_buttons()
         self.__setup_actions()
@@ -415,4 +417,4 @@ class SetValues(QtWidgets.QMainWindow, Ui_SetValues):
         super(SetValues, self).closeEvent(event)
         if self.add_window:
             self.add_window.close()
-        self.closed.emit()
+        self.closed.emit(self.name_prefix)

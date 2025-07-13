@@ -50,6 +50,20 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         # Version popup
         self.actionVersion.triggered.connect(lambda: self.version_popup())
 
+        # active tool windows
+        self.active_tool_hexdump_DO: set[str] = set()
+        self.active_tool_hexdump_DI: set[str] = set()
+        self.active_tool_hexdump_AO: set[str] = set()
+        self.active_tool_hexdump_AI: set[str] = set()
+
+        self.active_tool_random_DO: set[str] = set()
+        self.active_tool_random_DI: set[str] = set()
+        self.active_tool_random_AO: set[str] = set()
+        self.active_tool_random_AI: set[str] = set()
+
+        self.active_tool_inspect: set[str] = set()
+        self.active_tool_set: set[str] = set()
+
     def __init_mb(self) -> None:
         self.__mb_button_actions()
         self.__mb_default_values()
@@ -501,13 +515,19 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.__shm_tools_init_inspect_gui()
         self.__shm_tools_init_set_gui()
 
+        self.clien_id_selector.currentTextChanged.connect(self.__enable_tool_buttons)
+
     def __shm_tools_init_hexdump_gui(self) -> None:
         def on_button_hexdump_do_clicked() -> None:
             hexdump = self.shm_tools.start_hexdump(f"{self.__get_shm_name_prefix()}DO", self.modbus_cfg.do, 1,
                                                    self.modbus_cfg.sem_name if self.modbus_cfg.sem_enable else None)
             self.tool_hexdump_do.setEnabled(False)
-            hexdump.closed.connect(
-                lambda: self.tool_hexdump_do.setEnabled(True))
+            self.active_tool_hexdump_DO.add(hexdump.shm_name)
+            def closed(shm_name):
+                self.active_tool_hexdump_DO.remove(shm_name)
+                self.__enable_tool_button_hexdump_do()
+
+            hexdump.closed.connect(closed)
 
         self.tool_hexdump_do.clicked.connect(on_button_hexdump_do_clicked)
 
@@ -515,8 +535,13 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             hexdump = self.shm_tools.start_hexdump(f"{self.__get_shm_name_prefix()}DI", self.modbus_cfg.di, 1,
                                                    self.modbus_cfg.sem_name if self.modbus_cfg.sem_enable else None)
             self.tool_hexdump_di.setEnabled(False)
-            hexdump.closed.connect(
-                lambda: self.tool_hexdump_di.setEnabled(True))
+            self.active_tool_hexdump_DI.add(hexdump.shm_name)
+
+            def closed(shm_name):
+                self.active_tool_hexdump_DI.remove(shm_name)
+                self.__enable_tool_button_hexdump_di()
+
+            hexdump.closed.connect(closed)
 
         self.tool_hexdump_di.clicked.connect(on_button_hexdump_di_clicked)
 
@@ -524,8 +549,13 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             hexdump = self.shm_tools.start_hexdump(f"{self.__get_shm_name_prefix()}AO", self.modbus_cfg.ao, 2,
                                                    self.modbus_cfg.sem_name if self.modbus_cfg.sem_enable else None)
             self.tool_hexdump_ao.setEnabled(False)
-            hexdump.closed.connect(
-                lambda: self.tool_hexdump_ao.setEnabled(True))
+            self.active_tool_hexdump_AO.add(hexdump.shm_name)
+
+            def closed(shm_name):
+                self.active_tool_hexdump_AO.remove(shm_name)
+                self.__enable_tool_button_hexdump_ao()
+
+            hexdump.closed.connect(closed)
 
         self.tool_hexdump_ao.clicked.connect(on_button_hexdump_ao_clicked)
 
@@ -533,8 +563,13 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             hexdump = self.shm_tools.start_hexdump(f"{self.__get_shm_name_prefix()}AI", self.modbus_cfg.ai, 2,
                                                    self.modbus_cfg.sem_name if self.modbus_cfg.sem_enable else None)
             self.tool_hexdump_ai.setEnabled(False)
-            hexdump.closed.connect(
-                lambda: self.tool_hexdump_ai.setEnabled(True))
+            self.active_tool_hexdump_AI.add(hexdump.shm_name)
+
+            def closed(shm_name):
+                self.active_tool_hexdump_AI.remove(shm_name)
+                self.__enable_tool_button_hexdump_ai()
+
+            hexdump.closed.connect(closed)
 
         self.tool_hexdump_ai.clicked.connect(on_button_hexdump_ai_clicked)
 
@@ -544,7 +579,13 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                                                  self.modbus_cfg.sem_name if self.modbus_cfg.sem_enable else None, 0x1,
                                                  mb_client_pid=self.command_pid)
             self.tool_random_do.setEnabled(False)
-            random.closed.connect(lambda: self.tool_random_do.setEnabled(True))
+            self.active_tool_random_DO.add(random.shm_name)
+
+            def closed(shm_name):
+                self.active_tool_random_DO.remove(shm_name)
+                self.__enable_tool_button_random_do()
+
+            random.closed.connect(closed)
 
         self.tool_random_do.clicked.connect(on_button_random_do_clicked)
 
@@ -553,7 +594,13 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                                                  self.modbus_cfg.sem_name if self.modbus_cfg.sem_enable else None, 0x1,
                                                  mb_client_pid=self.command_pid)
             self.tool_random_di.setEnabled(False)
-            random.closed.connect(lambda: self.tool_random_di.setEnabled(True))
+            self.active_tool_random_DI.add(random.shm_name)
+
+            def closed(shm_name):
+                self.active_tool_random_DI.remove(shm_name)
+                self.__enable_tool_button_random_di()
+
+            random.closed.connect(closed)
 
         self.tool_random_di.clicked.connect(on_button_random_di_clicked)
 
@@ -562,7 +609,13 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                                                  self.modbus_cfg.sem_name if self.modbus_cfg.sem_enable else None,
                                                  mb_client_pid=self.command_pid)
             self.tool_random_ao.setEnabled(False)
-            random.closed.connect(lambda: self.tool_random_ao.setEnabled(True))
+            self.active_tool_random_AO.add(random.shm_name)
+
+            def closed(shm_name):
+                self.active_tool_random_AO.remove(shm_name)
+                self.__enable_tool_button_random_ao()
+
+            random.closed.connect(closed)
 
         self.tool_random_ao.clicked.connect(on_button_random_ao_clicked)
 
@@ -571,7 +624,13 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                                                  self.modbus_cfg.sem_name if self.modbus_cfg.sem_enable else None,
                                                  mb_client_pid=self.command_pid)
             self.tool_random_ai.setEnabled(False)
-            random.closed.connect(lambda: self.tool_random_ai.setEnabled(True))
+            self.active_tool_random_AI.add(random.shm_name)
+
+            def closed(shm_name):
+                self.active_tool_random_AI.remove(shm_name)
+                self.__enable_tool_button_random_ai()
+
+            random.closed.connect(closed)
 
         self.tool_random_ai.clicked.connect(on_button_random_ai_clicked)
 
@@ -632,7 +691,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                                                 self.modbus_cfg.sem_name if self.modbus_cfg.sem_enable else None)
             except Exception as e:
                 QMessageBox.critical(
-                    self, "Error", f"Failed to dump shared memory: {e}")
+                    self, "Error", f"Failed to dump shared memory:\n{e}")
 
         self.tool_dump_do.clicked.connect(on_dump_do)
 
@@ -642,7 +701,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                                                 self.modbus_cfg.sem_name if self.modbus_cfg.sem_enable else None)
             except Exception as e:
                 QMessageBox.critical(
-                    self, "Error", f"Failed to dump shared memory: {e}")
+                    self, "Error", f"Failed to dump shared memory:\n{e}")
 
         self.tool_dump_di.clicked.connect(on_dump_di)
 
@@ -652,7 +711,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                                                 self.modbus_cfg.sem_name if self.modbus_cfg.sem_enable else None)
             except Exception as e:
                 QMessageBox.critical(
-                    self, "Error", f"Failed to dump shared memory: {e}")
+                    self, "Error", f"Failed to dump shared memory:\n{e}")
 
         self.tool_dump_ao.clicked.connect(on_dump_ao)
 
@@ -662,7 +721,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                                                 self.modbus_cfg.sem_name if self.modbus_cfg.sem_enable else None)
             except Exception as e:
                 QMessageBox.critical(
-                    self, "Error", f"Failed to dump shared memory: {e}")
+                    self, "Error", f"Failed to dump shared memory:\n{e}")
 
         self.tool_dump_ai.clicked.connect(on_dump_ai)
 
@@ -740,7 +799,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                     self.modbus_cfg.sem_name if self.modbus_cfg.sem_enable else None)
             except Exception as e:
                 QMessageBox.critical(
-                    self, "Error", f"Failed to load shared memory: {e}")
+                    self, "Error", f"Failed to load shared memory:\n{e}")
 
         self.tool_load_di.clicked.connect(on_load_di)
 
@@ -754,7 +813,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                     self.modbus_cfg.sem_name if self.modbus_cfg.sem_enable else None)
             except Exception as e:
                 QMessageBox.critical(
-                    self, "Error", f"Failed to load shared memory: {e}")
+                    self, "Error", f"Failed to load shared memory:\n{e}")
 
         self.tool_load_ao.clicked.connect(on_load_ao)
 
@@ -768,7 +827,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                     self.modbus_cfg.sem_name if self.modbus_cfg.sem_enable else None)
             except Exception as e:
                 QMessageBox.critical(
-                    self, "Error", f"Failed to load shared memory: {e}")
+                    self, "Error", f"Failed to load shared memory:\n{e}")
 
         self.tool_load_ai.clicked.connect(on_load_ai)
 
@@ -779,8 +838,11 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                                                                  self.modbus_cfg.ai,
                                                                  self.modbus_cfg.sem_name if self.modbus_cfg.sem_enable else None)
             self.tool_inspec_values.setEnabled(False)
-            inspect_values.closed.connect(
-                lambda: self.tool_inspec_values.setEnabled(True))
+            self.active_tool_inspect.add(inspect_values.name_prefix)
+            def closed(shm_name):
+                self.active_tool_inspect.remove(shm_name)
+                self.__enable_tool_button_inspect()
+            inspect_values.closed.connect(closed)
 
         self.tool_inspec_values.clicked.connect(on_button_tool_inspect)
 
@@ -791,8 +853,12 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                                                          self.modbus_cfg.ai,
                                                          self.modbus_cfg.sem_name if self.modbus_cfg.sem_enable else None)
             self.tool_set_values.setEnabled(False)
-            set_values.closed.connect(
-                lambda: self.tool_set_values.setEnabled(True))
+            self.active_tool_set.add(set_values.name_prefix)
+
+            def closed(shm_name):
+                self.active_tool_set.remove(shm_name)
+                self.__enable_tool_button_set()
+            set_values.closed.connect(closed)
 
         self.tool_set_values.clicked.connect(on_button_tool_set)
 
@@ -842,3 +908,56 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
         id_suffix = self.clien_id_selector.currentData()
         return f"{self.modbus_cfg.name_prefix}{id_suffix}"
+
+    def __enable_tool_button_hexdump_do(self):
+        prefix = self.__get_shm_name_prefix()
+        self.tool_hexdump_do.setEnabled(f"{prefix}DO" not in self.active_tool_hexdump_DO)
+
+    def __enable_tool_button_hexdump_di(self):
+        prefix = self.__get_shm_name_prefix()
+        self.tool_hexdump_di.setEnabled(f"{prefix}DI" not in self.active_tool_hexdump_DI)
+
+    def __enable_tool_button_hexdump_ao(self):
+        prefix = self.__get_shm_name_prefix()
+        self.tool_hexdump_ao.setEnabled(f"{prefix}AO" not in self.active_tool_hexdump_AO)
+
+    def __enable_tool_button_hexdump_ai(self):
+        prefix = self.__get_shm_name_prefix()
+        self.tool_hexdump_ai.setEnabled(f"{prefix}AI" not in self.active_tool_hexdump_AI)
+
+    def __enable_tool_button_random_do(self):
+        prefix = self.__get_shm_name_prefix()
+        self.tool_random_do.setEnabled(f"{prefix}DO" not in self.active_tool_random_DO)
+
+    def __enable_tool_button_random_di(self):
+        prefix = self.__get_shm_name_prefix()
+        self.tool_random_di.setEnabled(f"{prefix}DI" not in self.active_tool_random_DI)
+
+    def __enable_tool_button_random_ao(self):
+        prefix = self.__get_shm_name_prefix()
+        self.tool_random_ao.setEnabled(f"{prefix}AO" not in self.active_tool_random_AO)
+
+    def __enable_tool_button_random_ai(self):
+        prefix = self.__get_shm_name_prefix()
+        self.tool_random_ai.setEnabled(f"{prefix}AI" not in self.active_tool_random_AI)
+
+    def __enable_tool_button_inspect(self):
+        prefix = self.__get_shm_name_prefix()
+        self.tool_inspec_values.setEnabled(prefix not in self.active_tool_inspect)
+
+    def __enable_tool_button_set(self):
+        prefix = self.__get_shm_name_prefix()
+        self.tool_set_values.setEnabled(prefix not in self.active_tool_set)
+
+    def __enable_tool_buttons(self):
+        prefix = self.__get_shm_name_prefix()
+        self.tool_hexdump_do.setEnabled(f"{prefix}DO" not in self.active_tool_hexdump_DO)
+        self.tool_hexdump_di.setEnabled(f"{prefix}DI" not in self.active_tool_hexdump_DI)
+        self.tool_hexdump_ao.setEnabled(f"{prefix}AO" not in self.active_tool_hexdump_AO)
+        self.tool_hexdump_ai.setEnabled(f"{prefix}AI" not in self.active_tool_hexdump_AI)
+        self.tool_random_do.setEnabled(f"{prefix}DO" not in self.active_tool_random_DO)
+        self.tool_random_di.setEnabled(f"{prefix}DI" not in self.active_tool_random_DI)
+        self.tool_random_ao.setEnabled(f"{prefix}AO" not in self.active_tool_random_AO)
+        self.tool_random_ai.setEnabled(f"{prefix}AI" not in self.active_tool_random_AI)
+        self.tool_inspec_values.setEnabled(prefix not in self.active_tool_inspect)
+        self.tool_set_values.setEnabled(prefix not in self.active_tool_set)
