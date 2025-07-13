@@ -141,7 +141,7 @@ class SHMRandom(QtWidgets.QWidget, Ui_RandomizeShm):
         super(SHMRandom, self).closeEvent(event)
         if self.process:
             self.process.terminate()
-        self.process.waitForFinished(500)
+            self.process.waitForFinished(500)
         self.closed.emit()
 
 
