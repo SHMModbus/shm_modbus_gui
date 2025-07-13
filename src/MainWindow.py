@@ -292,8 +292,24 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             self.mbtcp_start.setText("Stop")
             self.tab_shm_tools.setEnabled(True)
 
-            # execute command
+            # get config
             self.modbus_cfg = MBConfig(self)
+
+            # client id selection
+            self.clien_id_selector.clear()
+            if self.mbtcp_separate.isChecked():
+                self.clien_id_selector.setEnabled(True)
+                if self.mbtcp_separate_all.isChecked():
+                    for client_id in range(256):
+                        self.clien_id_selector.addItem(f"{client_id}", f"{client_id:02x}_")
+                else:
+                    self.clien_id_selector.addItem("Other", "")
+                    for client_id in sorted(self.modbus_cfg.separate_list):
+                        self.clien_id_selector.addItem(f"{client_id}", f"{client_id:02x}_")
+            else:
+                self.clien_id_selector.setEnabled(False)
+
+            # execute command
             self.modbus_cfg.modbus_type = "tcp"
             self.__exec_process("Shared Memory Modbus TCP Client")
 
@@ -376,6 +392,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             self.mbrtu_defaults.setEnabled(False)
             self.mbrtu_start.setText("Stop")
             self.tab_shm_tools.setEnabled(True)
+            self.clien_id_selector.setEnabled(False)
+            self.clien_id_selector.clear()
 
             # execute command
             self.modbus_cfg = MBConfig(self)
@@ -485,7 +503,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
     def __shm_tools_init_hexdump_gui(self) -> None:
         def on_button_hexdump_do_clicked() -> None:
-            hexdump = self.shm_tools.start_hexdump(f"{self.modbus_cfg.name_prefix}DO", self.modbus_cfg.do, 1,
+            hexdump = self.shm_tools.start_hexdump(f"{self.__get_shm_name_prefix()}DO", self.modbus_cfg.do, 1,
                                                    self.modbus_cfg.sem_name if self.modbus_cfg.sem_enable else None)
             self.tool_hexdump_do.setEnabled(False)
             hexdump.closed.connect(
@@ -494,7 +512,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.tool_hexdump_do.clicked.connect(on_button_hexdump_do_clicked)
 
         def on_button_hexdump_di_clicked() -> None:
-            hexdump = self.shm_tools.start_hexdump(f"{self.modbus_cfg.name_prefix}DI", self.modbus_cfg.di, 1,
+            hexdump = self.shm_tools.start_hexdump(f"{self.__get_shm_name_prefix()}DI", self.modbus_cfg.di, 1,
                                                    self.modbus_cfg.sem_name if self.modbus_cfg.sem_enable else None)
             self.tool_hexdump_di.setEnabled(False)
             hexdump.closed.connect(
@@ -503,7 +521,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.tool_hexdump_di.clicked.connect(on_button_hexdump_di_clicked)
 
         def on_button_hexdump_ao_clicked() -> None:
-            hexdump = self.shm_tools.start_hexdump(f"{self.modbus_cfg.name_prefix}AO", self.modbus_cfg.ao, 2,
+            hexdump = self.shm_tools.start_hexdump(f"{self.__get_shm_name_prefix()}AO", self.modbus_cfg.ao, 2,
                                                    self.modbus_cfg.sem_name if self.modbus_cfg.sem_enable else None)
             self.tool_hexdump_ao.setEnabled(False)
             hexdump.closed.connect(
@@ -512,7 +530,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.tool_hexdump_ao.clicked.connect(on_button_hexdump_ao_clicked)
 
         def on_button_hexdump_ai_clicked() -> None:
-            hexdump = self.shm_tools.start_hexdump(f"{self.modbus_cfg.name_prefix}AI", self.modbus_cfg.ai, 2,
+            hexdump = self.shm_tools.start_hexdump(f"{self.__get_shm_name_prefix()}AI", self.modbus_cfg.ai, 2,
                                                    self.modbus_cfg.sem_name if self.modbus_cfg.sem_enable else None)
             self.tool_hexdump_ai.setEnabled(False)
             hexdump.closed.connect(
@@ -522,7 +540,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
     def __shm_tools_init_random_gui(self) -> None:
         def on_button_random_do_clicked() -> None:
-            random = self.shm_tools.start_random(f"{self.modbus_cfg.name_prefix}DO", self.modbus_cfg.do, 1,
+            random = self.shm_tools.start_random(f"{self.__get_shm_name_prefix()}DO", self.modbus_cfg.do, 1,
                                                  self.modbus_cfg.sem_name if self.modbus_cfg.sem_enable else None, 0x1,
                                                  mb_client_pid=self.command_pid)
             self.tool_random_do.setEnabled(False)
@@ -531,7 +549,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.tool_random_do.clicked.connect(on_button_random_do_clicked)
 
         def on_button_random_di_clicked() -> None:
-            random = self.shm_tools.start_random(f"{self.modbus_cfg.name_prefix}DI", self.modbus_cfg.di, 1,
+            random = self.shm_tools.start_random(f"{self.__get_shm_name_prefix()}DI", self.modbus_cfg.di, 1,
                                                  self.modbus_cfg.sem_name if self.modbus_cfg.sem_enable else None, 0x1,
                                                  mb_client_pid=self.command_pid)
             self.tool_random_di.setEnabled(False)
@@ -540,7 +558,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.tool_random_di.clicked.connect(on_button_random_di_clicked)
 
         def on_button_random_ao_clicked() -> None:
-            random = self.shm_tools.start_random(f"{self.modbus_cfg.name_prefix}AO", self.modbus_cfg.ao, 2,
+            random = self.shm_tools.start_random(f"{self.__get_shm_name_prefix()}AO", self.modbus_cfg.ao, 2,
                                                  self.modbus_cfg.sem_name if self.modbus_cfg.sem_enable else None,
                                                  mb_client_pid=self.command_pid)
             self.tool_random_ao.setEnabled(False)
@@ -549,7 +567,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.tool_random_ao.clicked.connect(on_button_random_ao_clicked)
 
         def on_button_random_ai_clicked() -> None:
-            random = self.shm_tools.start_random(f"{self.modbus_cfg.name_prefix}AI", self.modbus_cfg.ai, 2,
+            random = self.shm_tools.start_random(f"{self.__get_shm_name_prefix()}AI", self.modbus_cfg.ai, 2,
                                                  self.modbus_cfg.sem_name if self.modbus_cfg.sem_enable else None,
                                                  mb_client_pid=self.command_pid)
             self.tool_random_ai.setEnabled(False)
@@ -562,7 +580,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         def on_dump_do_file_dialog() -> None:
             text = self.tool_dump_do_file.text()
             filename = text if len(
-                text) else f"{os.getcwd()}/{self.modbus_cfg.name_prefix}DO"
+                text) else f"{os.getcwd()}/{self.__get_shm_name_prefix()}DO"
 
             file_name, _ = QFileDialog.getSaveFileName(
                 self, caption="select DO register dump file", dir=filename)
@@ -574,7 +592,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         def on_dump_di_file_dialog() -> None:
             text = self.tool_dump_di_file.text()
             filename = text if len(
-                text) else f"{os.getcwd()}/{self.modbus_cfg.name_prefix}DI"
+                text) else f"{os.getcwd()}/{self.__get_shm_name_prefix()}DI"
 
             file_name, _ = QFileDialog.getSaveFileName(
                 self, caption="select DI register dump file", dir=filename)
@@ -586,7 +604,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         def on_dump_ao_file_dialog() -> None:
             text = self.tool_dump_ao_file.text()
             filename = text if len(
-                text) else f"{os.getcwd()}/{self.modbus_cfg.name_prefix}ao"
+                text) else f"{os.getcwd()}/{self.__get_shm_name_prefix()}ao"
 
             file_name, _ = QFileDialog.getSaveFileName(
                 self, caption="select AO register dump file", dir=filename)
@@ -598,7 +616,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         def on_dump_ai_file_dialog() -> None:
             text = self.tool_dump_ai_file.text()
             filename = text if len(
-                text) else f"{os.getcwd()}/{self.modbus_cfg.name_prefix}ai"
+                text) else f"{os.getcwd()}/{self.__get_shm_name_prefix()}ai"
 
             file_name, _ = QFileDialog.getSaveFileName(
                 self, caption="select AI register dump file", dir=filename)
@@ -610,7 +628,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         # dump buttons
         def on_dump_do() -> None:
             try:
-                self.shm_tools.dump_shm_to_file(f"{self.modbus_cfg.name_prefix}DO", self.tool_dump_do_file.text(),
+                self.shm_tools.dump_shm_to_file(f"{self.__get_shm_name_prefix()}DO", self.tool_dump_do_file.text(),
                                                 self.modbus_cfg.sem_name if self.modbus_cfg.sem_enable else None)
             except Exception as e:
                 QMessageBox.critical(
@@ -620,7 +638,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
         def on_dump_di() -> None:
             try:
-                self.shm_tools.dump_shm_to_file(f"{self.modbus_cfg.name_prefix}DI", self.tool_dump_di_file.text(),
+                self.shm_tools.dump_shm_to_file(f"{self.__get_shm_name_prefix()}DI", self.tool_dump_di_file.text(),
                                                 self.modbus_cfg.sem_name if self.modbus_cfg.sem_enable else None)
             except Exception as e:
                 QMessageBox.critical(
@@ -630,7 +648,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
         def on_dump_ao() -> None:
             try:
-                self.shm_tools.dump_shm_to_file(f"{self.modbus_cfg.name_prefix}AO", self.tool_dump_ao_file.text(),
+                self.shm_tools.dump_shm_to_file(f"{self.__get_shm_name_prefix()}AO", self.tool_dump_ao_file.text(),
                                                 self.modbus_cfg.sem_name if self.modbus_cfg.sem_enable else None)
             except Exception as e:
                 QMessageBox.critical(
@@ -640,7 +658,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
         def on_dump_ai() -> None:
             try:
-                self.shm_tools.dump_shm_to_file(f"{self.modbus_cfg.name_prefix}AI", self.tool_dump_ai_file.text(),
+                self.shm_tools.dump_shm_to_file(f"{self.__get_shm_name_prefix()}AI", self.tool_dump_ai_file.text(),
                                                 self.modbus_cfg.sem_name if self.modbus_cfg.sem_enable else None)
             except Exception as e:
                 QMessageBox.critical(
@@ -652,7 +670,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         def on_load_do_file_dialog() -> None:
             text = self.tool_load_do_file.text()
             filename = text if len(
-                text) else f"{os.getcwd()}/{self.modbus_cfg.name_prefix}DO"
+                text) else f"{os.getcwd()}/{self.__get_shm_name_prefix()}DO"
 
             file_name, _ = QFileDialog.getOpenFileName(
                 self, caption="select DO register load file", dir=filename)
@@ -664,7 +682,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         def on_load_di_file_dialog() -> None:
             text = self.tool_load_di_file.text()
             filename = text if len(
-                text) else f"{os.getcwd()}/{self.modbus_cfg.name_prefix}DI"
+                text) else f"{os.getcwd()}/{self.__get_shm_name_prefix()}DI"
 
             file_name, _ = QFileDialog.getOpenFileName(
                 self, caption="select DI register load file", dir=filename)
@@ -676,7 +694,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         def on_load_ao_file_dialog() -> None:
             text = self.tool_load_ao_file.text()
             filename = text if len(
-                text) else f"{os.getcwd()}/{self.modbus_cfg.name_prefix}AO"
+                text) else f"{os.getcwd()}/{self.__get_shm_name_prefix()}AO"
 
             file_name, _ = QFileDialog.getOpenFileName(
                 self, caption="select AO register load file", dir=filename)
@@ -688,7 +706,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         def on_load_ai_file_dialog() -> None:
             text = self.tool_load_ai_file.text()
             filename = text if len(
-                text) else f"{os.getcwd()}/{self.modbus_cfg.name_prefix}AI"
+                text) else f"{os.getcwd()}/{self.__get_shm_name_prefix()}AI"
 
             file_name, _ = QFileDialog.getOpenFileName(
                 self, caption="select AI register load file", dir=filename)
@@ -701,7 +719,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         def on_load_do() -> None:
             try:
                 self.shm_tools.load_shm_from_file(
-                    f"{self.modbus_cfg.name_prefix}DO",
+                    f"{self.__get_shm_name_prefix()}DO",
                     self.tool_load_do_file.text(),
                     self.tool_load_do_invert.isChecked(),
                     self.tool_load_do_repeat.isChecked(),
@@ -715,7 +733,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         def on_load_di() -> None:
             try:
                 self.shm_tools.load_shm_from_file(
-                    f"{self.modbus_cfg.name_prefix}DI",
+                    f"{self.__get_shm_name_prefix()}DI",
                     self.tool_load_di_file.text(),
                     self.tool_load_di_invert.isChecked(),
                     self.tool_load_di_repeat.isChecked(),
@@ -729,7 +747,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         def on_load_ao() -> None:
             try:
                 self.shm_tools.load_shm_from_file(
-                    f"{self.modbus_cfg.name_prefix}AO",
+                    f"{self.__get_shm_name_prefix()}AO",
                     self.tool_load_ao_file.text(),
                     self.tool_load_ao_invert.isChecked(),
                     self.tool_load_ao_repeat.isChecked(),
@@ -743,7 +761,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         def on_load_ai() -> None:
             try:
                 self.shm_tools.load_shm_from_file(
-                    f"{self.modbus_cfg.name_prefix}AI",
+                    f"{self.__get_shm_name_prefix()}AI",
                     self.tool_load_ai_file.text(),
                     self.tool_load_ai_invert.isChecked(),
                     self.tool_load_ai_repeat.isChecked(),
@@ -756,7 +774,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
     def __shm_tools_init_inspect_gui(self):
         def on_button_tool_inspect() -> None:
-            inspect_values = self.shm_tools.start_inspect_values(self.modbus_cfg.name_prefix, self.modbus_cfg.do,
+            inspect_values = self.shm_tools.start_inspect_values(self.__get_shm_name_prefix(), self.modbus_cfg.do,
                                                                  self.modbus_cfg.di, self.modbus_cfg.ao,
                                                                  self.modbus_cfg.ai,
                                                                  self.modbus_cfg.sem_name if self.modbus_cfg.sem_enable else None)
@@ -768,7 +786,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
     def __shm_tools_init_set_gui(self):
         def on_button_tool_set() -> None:
-            set_values = self.shm_tools.start_set_values(self.modbus_cfg.name_prefix, self.modbus_cfg.do,
+            set_values = self.shm_tools.start_set_values(self.__get_shm_name_prefix(), self.modbus_cfg.do,
                                                          self.modbus_cfg.di, self.modbus_cfg.ao,
                                                          self.modbus_cfg.ai,
                                                          self.modbus_cfg.sem_name if self.modbus_cfg.sem_enable else None)
@@ -817,3 +835,10 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
         QMessageBox.information(
             self, "SHM Modbus Version", version_str)
+
+    def __get_shm_name_prefix(self):
+        if not self.clien_id_selector.isEnabled():
+            return f"{self.modbus_cfg.name_prefix}"
+
+        id_suffix = self.clien_id_selector.currentData()
+        return f"{self.modbus_cfg.name_prefix}{id_suffix}"
