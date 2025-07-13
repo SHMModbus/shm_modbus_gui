@@ -4,7 +4,7 @@ import os
 
 setup(
     name='shm-modbus-gui',
-    version='2.1.4',
+    version='2.2.0',
     description='gui for shm-modbus',
     license='GPLv3',
     author='Nikolas Koesling',
