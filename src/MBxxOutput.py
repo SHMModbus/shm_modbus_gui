@@ -45,6 +45,16 @@ class MBxxOutput(QtWidgets.QMainWindow, Ui_MBxxxOutput):
         self.stderr.insertPlainText(text)
 
     def __process_finished(self, exit_code: int, exit_status: QProcess.ExitStatus):
+        if exit_code != 0:
+            msg = [
+                f"Modbus client terminated with exit code {exit_code}.",
+                "See stderr output for details."
+            ]
+            QMessageBox.critical(
+                self, "Client terminated", "\n".join(msg))
+        else:
+            QMessageBox.information(self, "Client terminated",
+                                    "Modbus client terminated successfully.")
         self.finished.emit(exit_code)
 
     def closeEvent(self, event):

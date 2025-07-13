@@ -453,10 +453,6 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.mbrtu_start.setText("Start")
         self.tab_modbus_setings.setEnabled(True)
 
-        if exit_code != 0:
-            QMessageBox.information(
-                self, "Client terminated", f"Modbus client terminated with exit code {exit_code}")
-
     def __command_window_closed(self) -> None:
         """
         @brief actions when command window is closed
